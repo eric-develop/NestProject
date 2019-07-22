@@ -93,104 +93,103 @@
 
 <div class="modal fade" id="myModal">
   <div class="modal-dialog">
-    <div class="modal-content" style="width: 900px;">
+    <div class="modal-content" style="width: 1100px; height:600px;">
       <div class="modal-header">
           <h4 class="modal-title">회원가입</h4>
         <button id="modalclose" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
       </div>
 
-
-      <div class="container" ></div>
-      <div class="modal-body" style="padding-top: 80px;">
+     
+         <div class="modal-body" style="padding-top:5px; width:1000px;">
         	<form method="post" action="memberInsert.do">
-        	<div style="width: 400px; display: inline-block; height: 100%;">
-
-        	
-              <div class="input-group mb-3">
-                   <div class="input-group mb-3" style="magin-top:10px;">
-		                <input type="email" name="userId" class="btn btn-outline-secondary" placeholder="아이디" aria-label="Recipient's username" aria-describedby="button-addon2" style="border-bottom-right-radius: 0%; border-top-right-radius: 0% ;width: 250px;;">
-		                 <div class="input-group-append">
-                  	 	 <button class="btn btn-outline-secondary" type="button" id="button-addon2">인증번호 전송</button>
-                 		 </div>
-		                
-	              </div>
-			      <div style="margin-bottom: 10px;">
-				            <input type="text" class="btn btn-outline-secondary" placeholder="인증번호를 입력해주세요." aria-label="Recipient's username" aria-describedby="button-addon2" style=" width: 269px;">
-				            <button type="button"  style="height: 36px; width: 60px; border-radius: 0.5rem; border-top-right-radius: 0%; border-bottom-right-radius: 0%; border: none; 
-					         background: #F28B30; color: #fff; "  type="button" >
-					            확인</button>
-					            <button type="button"  style=" height: 36px; border-radius: 0.5rem;  border-top-left-radius: 0%; border-bottom-left-radius: 0%; border: none; 
-					                border: #F28B30 1px solid ; background: #fff; color: #454545; "  type="button">
-					            재전송</button>
-        		  </div>
-	              
-	              
-                   <input type="password" name="password" placeholder="비밀번호를 입력해주세요."  class="btn btn-outline-secondary" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" style="margin-bottom: 10px; width: 100%;">
-                </div>
-       	
-        
-        
-      
-
-
-<!-----아이디 닉네임 input/중복확인-->
-           
-             <div class="input-group mb-3"style="margin-top:10pz;">
-                  <input type="text" name="userName" class="btn btn-outline-secondary" placeholder="이름" aria-label="Recipient's username" aria-describedby="button-addon2" style="border-bottom-right-radius: 0%; border-top-right-radius: 0% ; width: 311px;">
-                 
-                </div>
-           
-           
-              <div class="input-group mb-3"style="margin-top:10pz;">
-                  <input type="text" name="nickName" class="btn btn-outline-secondary" placeholder="닉네임" aria-label="Recipient's username" aria-describedby="button-addon2" style="border-bottom-right-radius: 0%; border-top-right-radius: 0% ; width: 311px;">
-                 
-                </div>
-                
-              <div class="input-group mb-3"style="margin-top:10pz;">
-                  <input type="text" name="phone1" class="btn btn-outline-secondary"  aria-label="Recipient's username" aria-describedby="button-addon2" style="border-bottom-right-radius: 0%; border-top-right-radius: 0% ; width: 100px;">&nbsp; - &nbsp;
-               		<input type="text" name="phone2" class="btn btn-outline-secondary"  aria-label="Recipient's username" aria-describedby="button-addon2" style="border-bottom-right-radius: 0%; border-top-right-radius: 0% ; width: 100px;">&nbsp; - &nbsp;
-               		<input type="text" name="phone3"class="btn btn-outline-secondary"  aria-label="Recipient's username" aria-describedby="button-addon2" style="border-bottom-right-radius: 0%; border-top-right-radius: 0% ; width: 100px;">
-               </div>
-                
-                
-        
-      </div>
-
-
-      <!---오른쪽 설문 -->
-        <div style="padding: 20px; width: 400px; float: right; border-left: solid 1px #424242">
-            <p id="age" style="margin:0%;"> 연령을 선택 해 주세요. </p>
-            <select name="ageGroup" style="width: 200px; margin-bottom: 10px;">
-        
-              <option value="10대">10대</option>
-              <option value="20대">20대</option>
-              <option value="30대">30대
-              <option value="40대">40대</option>
-              <option value="50대">50대</option>
-              <option value="60대">60대</option>
-            </select>
+        	 
+        	 <div id="totalcontainer" style="display:inline-block; width:1110px; height:500px; padding:20px;">
+        	  <div id="container1" style="display:inline-block; margin:0px; width:450px;" >
+	              <div class="form-group" style="margin-bottom:5px; width:450px;">
+	            		<label style="margin-top:5px;">이메일</label><br>
+			            <input type="email" name="userId" class="form-control" style="width:250px; height:40px; display:inline-block; ">
+	                  	<button class="btn btn-outline-secondary" type="button" id="button-addon2" style="height:40px; margin-bottom:3px;">인증번호 전송</button>
+		          </div>
+		              
+		          <div class="form-group" style="margin-bottom:5px;">
+		           	  <label>인증번호 입력</label><br>
+					  <input type="email" name="userId" class="form-control" style="width:120px; display:inline-block;" >
+					  <button type="button"  style="height: 36px; width: 60px; border-radius: 0.5rem; border-top-right-radius: 0%; border-bottom-right-radius: 0%; border: none; background: #F28B30; color: #fff; display:inline-block;" type="button" >확인</button>
+	                  <button type="button"  style=" height: 36px; border-radius: 0.5rem;  border-top-left-radius: 0%; border-bottom-left-radius: 0%; border: none; border: #F28B30 1px solid ; background: #fff; color: #454545; display:inline-block;" type="button" >재전송</button>
+		          </div>
+		            
+		          <div class="form-group" style="margin-bottom:5px;">
+	            		<label style="margin-top:5px;">비밀번호</label><br>
+			            <input type="email" name="userId" class="form-control" style="width:250px; height:40px; display:inline-block;">
+	                  	
+		          </div>
+	               
+	       		 <div class="form-group" style="margin-bottom:5px;">
+	            		<label>비밀번호 확인</label><br>
+			            <input type="email" name="userId" class="form-control" style="width:250px; height:40px; display:inline-block;">
+	                  
+		          </div>
+	       
+			       <div class="form-group" style="margin-bottom:5px;">
+	            		<label>이름</label><br>
+			            <input type="email" name="userId" class="form-control" style="width:250px; height:40px; display:inline-block;">
+	                  
+		          </div> 
+		          
+		           <div class="form-group" style="margin-bottom:5px;">
+	            		<label>닉네임</label><br>
+			            <input type="email" name="userId" class="form-control" style="width:250px; height:40px; display:inline-block;">
+		          </div> 
+          </div>    <!-- 회원가입 폼 왼쪽 끝 -->
           
           
-           <p id="age" style="margin:0%;"> 사용목적 </p>
-            <select name="purpose" style="width: 200px; margin-bottom: 10px;">
-             
-              <option value="개인적 사용">개인적 사용</option>
-              <option value="2">학업 프로젝트</option>
-              <option value="3">업무용 </option>
-            </select>
-         
-             <p id="age" style="margin:0%;"> 업무 분야 </p>
-            <select name="jobField" style="width: 200px;">
-             
-              <option value="IT">IT</option>
-              <option value="2">디자인</option>
-              <option value="3">교육</option>
-              <option value="4">사업</option>
-              <option value="5">경영</option>
-              <option value="6">전산</option>
-            </select>
-            <br>
-            <br><br>
+          <div id="container2" style="display:inline-block; border-left:1px solid #424242; width:550px; margin:0px;	padding-left:50px;">
+               
+                   <div class="form-group" style="margin-bottom:5px;">
+	            		<label>전화번호</label><br>
+			            <input type="text" name="phone1" class="form-control" style="width:75px; height:40px; display:inline-block;"> - 
+			            <input type="text" name="phone2" class="form-control" style="width:75px; height:40px; display:inline-block;"> - 
+			            <input type="text" name="phone3" class="form-control" style="width:75px; height:40px; display:inline-block;">
+		           </div> 
+          
+  
+       
+	          <div class="col-md-5 mb-3" style="margin:0px; padding:0px; width:100px;">
+	            <label for="country">연령대</label>
+	            <select class="custom-select d-block w-100" id="country" required>
+	              <option value="10대">10대</option>
+	              <option value="20대">20대</option>
+	              <option value="30대">30대</option>
+	              <option value="40대">40대</option>
+	              <option value="50대">50대</option>
+	              <option value="기타">기타</option>
+	            </select>
+	          
+              </div>
+          		
+          		 <div class="col-md-5 mb-3" style="margin:0px; padding:0px; width:200px;">
+	            <label for="country">사용 목적</label>
+	            <select class="custom-select d-block w-100" id="country" required>
+	              <option value="개인용도">개인용도</option>
+	              <option value="그룹웨어">그룹웨어</option>
+	              <option value="커뮤니티">커뮤니티</option>
+	              <option value="기타">기타</option>
+	            </select>
+	           
+              </div>
+              
+               <div class="col-md-5 mb-3" style="margin:0px; padding:0px; width:100px;">
+	            <label for="country">업무 분야</label>
+	            <select class="custom-select d-block w-100" id="country" required>
+	              <option value="IT">IT</option>
+	              <option value="금융">금융</option>
+	              <option value="제조업">제조업</option>
+	              <option value="기타">기타</option>
+	            </select>
+	            
+	           
+              </div>
+  
             <input id="joincheck" type="checkbox" disabled value="agree" >개인정보 이용 약관동의
             
             <div style="display: inline-block; margin-bottom: 10px;">
@@ -202,29 +201,21 @@
             <div style="    display: inline-block;">
                 <a style="  height: 32px; border: none; background: rgb(143, 143, 143); width: 100px" data-toggle="modal" href="#myModal2" class="btn btn-primary">약관 보기</a>
             </div>
-                </div>
-                 <div class="modal-footer" style="width: 100%;" > <a style="width: 50%; background: silver" href="#" data-dismiss="modal" class="btn">취소</a>
-		          
-		         <input type="submit" value="확인"  class="btn btn-primary" style="width: 50%; background:#F28B30; border: none;"/>
-		        </div>
-      
-                
-      		</form>
-      		
-        </div>
-        
-       
-      </div>
+     
+		        <div class="modal-footer" style="width: 100%;" > <a style="width: 50%; background: silver" href="#" data-dismiss="modal" class="btn">취소</a>
+				          
+				<input type="submit" value="확인"  class="btn btn-primary" style="width: 50%; background:#F28B30; border: none;"/>
+		    	</div>
+	    	
+	    	 </div> 
+	    	 
+	    	 </div>
+	      </form>
+	   </div>
+     </div>
+   </div>
+ </div>     
 
-
-
-      <div class="modal-footer"> <a href="#" data-dismiss="modal" class="btn">Close</a>
-        <a href="#" class="btn btn-primary">Save changes</a>
-
-      </div>
-    </div>
-    
-  </div>
 
 
 
@@ -250,6 +241,7 @@
 
   }
 </script>
+
 <div class="modal fade rotate" id="myModal1">
   <div class="modal-dialog">
     <div class="modal-content">
