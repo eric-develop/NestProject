@@ -1,0 +1,566 @@
+﻿html,body{
+    height:100%; 
+    width: 100%;
+    margin:0;
+}
+#left_navi{
+    height: 100%;
+    float: left;
+    width: 240px;
+    background: #424242;
+    display: block;
+    
+}
+#join-left{
+  padding-left: 20px;
+  float : left;
+  width:340px;
+  display:inline-block;
+}
+#join-right{
+  border-left: 1px solid #454545;
+}
+
+.modal-body{
+  width: 100%;
+  
+}
+.container2{
+    width: 1200px;
+    height: 800px;
+    margin: 0 auto;
+    position: absolute
+}
+
+
+
+header{
+    width: 100%;
+    height: 60px;
+    background: #F28B30;
+     top: 0;
+}
+#intro1{
+    height: 160px;
+    position: absolute;
+
+    top: 320px;
+    
+}
+#login{
+    width: 1200px;
+    margin: 0 auto;
+   
+    height: 60px;
+    
+}
+
+#logo img{
+    width: 120px;
+    padding-top: 5px;
+}
+#toploginbtn{
+
+    margin-top: 10px;
+    float: right;
+    width: 130px;
+}
+#introJOin{
+    width: 150px;
+    height: 100%;;
+    margin-right:30px;
+     display: inline-block;
+     position: absolute;
+     top: 200px;
+}
+#introLogin{
+    width: 150px;
+    text-align: center;
+    
+    left: 200px;
+    position: absolute;
+     top: 200px;
+    
+}
+#main1box{
+
+     position: absolute;
+     width: 100%;
+     left: 0;
+     height: 900px;
+  
+    background-image: url(../images/mackbookmain.png);
+   
+ }
+ #intro2{
+    background-image: url(../images/mainnot.jpg);
+    float: left;
+    
+    width: 626px;
+    height: 626px;
+    
+    
+    position: absolute;
+    
+
+
+
+    
+
+ }
+  #intro3{
+    background-image: url(../images/imessage.png);
+    
+    
+    width: 626px;
+    height: 360px;
+    float: right;
+
+   
+
+
+ }
+#mainbox4{
+    background-image: url(../images/mainoffice.png);
+    margin: 0 auto;
+    
+    width: 800px;
+    
+    height: 600px;
+   
+
+}
+#main4text{
+    
+    width: 500px;
+    padding-top: 100px;
+    margin: 0 auto;
+    
+   
+    
+}
+#main4text h3,
+#main4text p{
+    text-align: center;
+}
+#main2box{
+    
+    margin-top: 300px;
+    width: 460px;
+    float: right;
+  
+}
+#main3box{
+    
+    float: left;
+
+    width: 500px; 
+    margin-top: 100px;
+}
+#main1box h3,
+#main2box h3,
+#main3box h3  {
+    font-size: 28px;
+    font-weight: 700;
+}
+#main1box p,
+#main2box p,
+#main3box p  {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 26px;
+    height: 220px;
+    padding-top: 40px;
+}
+
+#mainlastdiv ul li div {
+    background: #454545;
+     width: 120px; height: 120px;
+
+}
+#mainlastul{
+    width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#mainlastli{
+    list-style: none;
+    width: 180px;
+    padding: 10px;
+    display: inline-block;
+
+
+}
+#mlip{
+    
+    color: #454545;
+    
+
+}
+#mtitle{
+    color: #fff; padding-top: 50px; text-align: center
+
+}
+
+#mainlastdiv{
+    width: 1200px;
+    margin: 0 auto;
+    
+    display: block;
+    padding-top: 100px;
+}
+#mainlastone{
+    padding: 20px;
+    list-style: none;
+    display: inline-block;
+}
+
+.container_{
+    margin: 0 auto;
+    width: 1200px;
+    height: 100%;
+  
+   
+}
+#loginbox{
+    
+    width: 800px;
+    
+    margin: 0 auto;
+    position: relative;
+}
+
+#loginlogo{
+    width: 220px;
+    margin: 0 auto;
+    padding-top: 130px;
+    
+}
+#loginbox h3{
+    text-align: center;
+    margin-bottom: 50px;
+}
+#idbox,
+#pwdbox{
+    width: 300px;
+    border-radius: 30px;
+    padding-right: 30px;
+    padding-left: 20px;
+    display: block;
+    height: 42px;
+    border: 1px solid #d1d1d1;
+    line-height: 22px;
+    color: #505050;
+    margin: 0 auto;
+}
+#inputbox{
+    margin: 0 auto;
+    width: 400px;
+}
+#left_navi ul li:first-child{
+
+margin-top: 60px;
+
+width: 60px;
+height: 60px;
+margin: 0 auto;
+background: #fff;
+margin-top:30px;
+margin-bottom:30px;
+
+
+}
+#left_navi ul li{
+    list-style: none;
+    text-decoration: none;
+    color: #fff;
+    padding: 10px;
+  
+
+}
+
+#left_navi ul{
+    padding: 0%;
+    margin: 0%;
+    
+}
+#left_bottom_box{
+    border-top: 1px solid #fff;
+    position: fixed;
+    bottom: 0;
+    width: 240px;
+    
+}
+#help{
+    
+    color: #fff;
+    padding:10px;
+   
+}
+
+#second_container{
+    box-sizing: border-box;
+    direction: ltr;
+    height: 100%;
+    position: relative;
+    width: 340px;
+    will-change: transform;
+    overflow: hidden;
+    background: #f5f5f5;
+    display: block;
+    float: left;
+
+}
+#sc1,
+#sc1:hover,
+#sc2{
+    padding: 10%;
+    cursor: pointer;
+    border-bottom: 1px solid gainsboro; 
+
+}
+#sc3{
+    
+    cursor: pointer;
+    border-bottom: 1px solid gainsboro;
+}
+
+.whitebox{
+    flex-grow: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    background: #ffffff;
+    position: relative; 
+    
+}
+#top_line{
+    width: 100%;
+    height: 80px;
+    top: 0;
+    border-bottom: 1px solid #424242;
+    display: inline;
+    position: relative;
+}
+#wicon{
+    display: inline-block;
+    background: #424242;
+    width: 40px;
+    height: 40px;
+    margin: 20px;
+    float: left;
+}
+#toptext p{
+    font-size: 10px;
+    text-align: center;
+    
+    
+}
+#topbtn{
+    float: right;
+    margin: 30px;
+}
+#top_text{
+   
+    display: inline-block;
+    line-height: 50px;
+    width: 120px;
+    margin: 0%;
+    
+}
+
+
+  .toggler {
+    width: 500px;
+    height: 200px;
+  }
+  #button {
+    padding: .5em 1em;
+    text-decoration: none;
+  }
+  #effect {
+    position: relative;
+    width: 240px;
+    height: 170px;
+    padding: 0.4em;
+  }
+  #effect h3 {
+    margin: 0;
+    padding: 0.4em;
+    text-align: center;
+  }
+
+
+
+
+
+
+
+  /*
+  =============*/
+  #joindiv{ 
+         text-align: center; 
+         display: block; 
+         margin: 0 auto; 
+         font-size: 16px; 
+         color: #999; 
+
+     } 
+     .title{ 
+         font-family: 'Oswald', sans-serif; 
+         font-size: 30px; 
+         color: #454545; 
+     } 
+     #join_label { 
+         display: block; 
+         margin-top: 20px; 
+         letter-spacing: 2px; 
+     } 
+     #join_form { 
+         
+         width: 400px; 
+     } 
+     #join_input, #join_input_pwd, #join_input_emailnum { 
+         width: 400px; 
+         height: 40px; 
+         background-color: #efefef; 
+         border-radius: 6px; 
+         border: 1px solid #dedede; 
+         padding: 10px; 
+         margin-top: 3px; 
+         font-size: 0.9em; 
+         color: #3a3a3a; 
+         margin:0 auto;
+         margin: 10px;
+     } 
+         input:focus, textarea:focus{ 
+             border: 1px solid #97d6eb; 
+         } 
+     
+     textarea{ 
+         height: 60px; 
+         background-color: #efefef; 
+     } 
+     #submit{ 
+         width: 127px; 
+         height: 48px; 
+         text-align: center; 
+         border: none; 
+         margin-top: 20px; 
+         cursor: pointer; 
+     } 
+     #submit:hover{ 
+         color: #fff; 
+         background-color: #216282; 
+         opacity: 0.9; 
+     } 
+     #cancel { 
+         width: 127px; height: 48px; 
+         text-align: center; 
+         border: none; 
+         margin-top: 20px; 
+         cursor: pointer; 
+     } 
+     #cancel:hover{ 
+         color: #fff; 
+         background-color: #216282; 
+         opacity: 0.9; 
+     }
+/* 이부분이 문제입니다. */
+/****************************************/
+    .modal { 
+         position: fixed; 
+         left: 0; 
+         top: 0; 
+         width: 100%; 
+         height: 100%; 
+         background-color: rgba(0, 0, 0, 0.5); 
+         /* 여기에서 불투명도도 0으로, 화면 표시도 안보이게 주어서 안보였습니다. */
+         /* opacity: 0;
+         visibility: hidden; */
+         transform: scale(1.1); 
+         transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s; 
+     }
+     .modal-content { 
+         position: absolute; 
+         top: 50%; 
+         left: 50%; 
+         /* -50%는 왼쪽에서 오른쪽으로 기준, 뒤의 -50%는 위에서 아래로 기준이므로 뒷 부분을 20%로 수정 하였습니다. */
+         /* 직접 수정해 가면서 차이점 체크 한 번 해보세요! */
+         transform: translate(-50%, 20%); 
+         background-color: white; 
+         padding: 1rem 1.5rem; 
+        
+         height: 600px; 
+         border-radius: 0.5rem;
+     } 
+/****************************************/
+     .close-button { 
+         float: right; 
+         width: 1.5rem; 
+         line-height: 1.5rem; 
+         text-align: center; 
+         cursor: pointer; 
+         border-radius: 0.25rem; 
+         background-color: lightgray; 
+
+     } 
+     .close-button:hover { 
+         background-color: darkgray; 
+     } 
+     .show-modal { 
+         opacity: 1; 
+         visibility: visible; 
+         transform: scale(1.0); 
+         transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s; 
+     } 
+
+     .join_lef{
+            width: 400px;
+            display: inline-block;
+            float: left;
+     }
+    
+.join_right{
+    margin-top: 60px;
+    padding: 10px;
+    border-left: 1px solid #454545;
+    width: 320px;
+    display: inline-block;
+    float: right;
+    height: 400px;
+}
+#num_ch{
+    border-radius: 0.5rem; 
+    background: #F28B30; 
+    color: #fff; 
+    width: 380px; 
+    height: 40px;
+    margin: 10px;
+
+}
+#age{
+    text-align: left;
+    margin-bottom: 10px; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
