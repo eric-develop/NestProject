@@ -157,7 +157,9 @@
 		          
 		           <div class="form-group" style="margin-bottom:1px;">
 	            		<label>닉네임</label><br>
-			            <input type="text" name="nickName" class="form-control" style="width:250px; height:40px; display:inline-block;">
+			            <input type="text" name="nickName" id="nickName" class="form-control" style="width:250px; height:40px; display:inline-block;">
+			            <label id="nickDupCheckLabel" style="display:none; font-size:12px; color:red;">이미 사용중인 닉네임입니다.</label>
+			            <label id="nickValidLabel" style="display:none; font-size:12px; color:green;">사용가능한 닉네임입니다.</label>
 		          </div> 
           </div>    <!-- 회원가입 폼 왼쪽 끝 -->
           
@@ -175,7 +177,7 @@
        
 	          <div class="col-md-5 mb-3" style="margin:0px; padding:0px; width:100px;">
 	            <label for="ageGroup">연령대</label>
-	            <select class="custom-select d-block w-100" id="ageGroup" required>
+	            <select class="custom-select d-block w-100" id="ageGroup" name="ageGroup" required>
 	              <option value="10대">10대</option>
 	              <option value="20대">20대</option>
 	              <option value="30대">30대</option>
@@ -188,7 +190,7 @@
           		
           		 <div class="col-md-5 mb-3" style="margin:0px; padding:0px; width:200px;">
 	            <label for="purpose">사용 목적</label>
-	            <select class="custom-select d-block w-100" id="purpose" required>
+	            <select class="custom-select d-block w-100" id="purpose" name="purpose" required>
 	              <option value="개인용도">개인용도</option>
 	              <option value="그룹웨어">그룹웨어</option>
 	              <option value="커뮤니티">커뮤니티</option>
@@ -199,7 +201,7 @@
               
                <div class="col-md-5 mb-3" style="margin:0px; padding:0px; width:100px;">
 	            <label for="jobField">업무 분야</label>
-	            <select class="custom-select d-block w-100" id="jobField" required>
+	            <select class="custom-select d-block w-100" id="jobField" name="jobField" required>
 	              <option value="IT">IT</option>
 	              <option value="금융">금융</option>
 	              <option value="제조업">제조업</option>
@@ -409,7 +411,7 @@
 
 <script>
 		
-		$(function(){
+		
 			
 			// 이메일 유효성 체크 이벤트
 			$("#userId").on("keyup",function(){
@@ -454,6 +456,40 @@
 				 }	
 
 			});
+
+
+			
+			// 닉네임 유효성 체크
+			$("#nickName").on("keyup",function(){
+				var nickName = $(this).val();
+			
+						 $.ajax({
+							url : "${pageContext.request.contextPath}/member/nickDupCheck.do",
+							data : {nickName : nickName},
+							dataType : "json",
+							success : function(data){
+								if(data.isUsable == true){
+									$('#nickNameValidLabel').show();
+									$('#nickDupLabel').hide();
+								
+								}else{
+									$('#nickNameValidLabel').hide();
+									$('#nickDupLabel').show();
+								}
+							},
+							error : function(req,status,error){
+								console.log("아이디 중복 체크 실패!");
+								// 화면 에러 로그
+								console.log(req);
+								console.log(status);
+								console.log(error);
+							}
+							 
+						 }); // ajax끝
+			 
+				 });
+
+	
 			
 			// 비밀번호 유효성 체크 정규표현식 함수(영문,숫자,특수문자 8자리 이상 20자리 이하)
 		      function pwdRegEx(pwd){  
@@ -490,7 +526,7 @@
 			
 		
 			
-	  }); // $(function()) 끝
+	
 			
 
 			

@@ -9,6 +9,7 @@ public interface MemberService {
 		Member updateMember(Member m);
 		int deleteMember(String userId);
 		int idDupCheck(String userId);
+		int nickDupCheck(String nickName);
 		
 	
 }
