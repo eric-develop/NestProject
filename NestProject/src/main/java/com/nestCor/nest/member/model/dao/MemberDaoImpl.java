@@ -44,7 +44,7 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int nickDupCheck(String nickName) {
-		System.out.println(nickName);
+		
 		return sqlSession.selectOne("Member_mapper.nickDupCheck",nickName);
 	}
 

@@ -107,7 +107,7 @@
 <div class="modal fade" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content" style="width: 1100px; height:700px;">
-      <div class="modal-header">
+      <div class="modal-header" style="border-bottom:1px solid orange;">
           <h4 class="modal-title">회원가입</h4>
         <button id="modalclose" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
       </div>
@@ -116,13 +116,13 @@
          <div class="modal-body" style="padding-top:5px; width:1000px;">
         	<form method="post" action="memberInsert.do">
         	 
-        	 <div id="totalcontainer" style="display:inline-block; width:1110px; height:500px; padding:20px;">
-        	  <div id="container1" style="display:inline-block; margin:0px; width:450px;" >
+        	 <div id="totalcontainer" style="position:relative; width:1110px; height:500px; padding:10px;">
+        	  <div id="container1" style="position:absolute; margin:0px; width:450px; height:500px;" >
 	             
 	              <div class="form-group" style="margin-bottom:1px; width:450px;">
 	            		<label style="margin-top:5px;">이메일</label><br>
 			            <input type="email" id="userId" name="userId" class="form-control" style="width:250px; height:40px; display:inline-block; ">
-	                  	<button class="btn btn-outline-secondary" type="button" id="button-addon2" style="height:40px; margin-bottom:3px;">인증번호 전송</button><br>
+	                  	<button class="btn btn-outline-secondary" type="button" id="authBtn" style="height:40px; margin-bottom:3px;">인증번호 전송</button><br>
 	                  	<label id="emailAvailableLabel" style="color:green; font-size:12px; display:none; margin-left:1px;">사용 가능한 이메일입니다.</label>
 	                  	<label id="emailDupLabel" style="color:red; font-size:12px; display:none; margin-left:1px;">이미 사용중인 이메일입니다.</label>
 	                  	<label id="emailValidLabel" style="color:red; font-size:12px; display:none; margin-left:1px;">이메일 형식이 올바르지 않습니다.</label>
@@ -146,7 +146,7 @@
 	       		 <div class="form-group" style="margin-bottom:1px;">
 	            		<label>비밀번호 확인</label><br>
 			            <input type="password" id="password2" name="password2" class="form-control" style="width:250px; height:40px; display:inline-block;"><br>
-	                  	<label id="pwdResult"></label>
+	                  	<label id="pwdResult" style="display:none;"></label>
 		          </div>
 	       
 			       <div class="form-group" style="margin-bottom:1px;">
@@ -157,14 +157,13 @@
 		          
 		           <div class="form-group" style="margin-bottom:1px;">
 	            		<label>닉네임</label><br>
-			            <input type="text" name="nickName" id="nickName" class="form-control" style="width:250px; height:40px; display:inline-block;">
+			            <input type="text" name="nickName" id="nickName" class="form-control" style="width:250px; height:40px; display:inline-block;"><br>
 			            <label id="nickDupCheckLabel" style="display:none; font-size:12px; color:red;">이미 사용중인 닉네임입니다.</label>
 			            <label id="nickValidLabel" style="display:none; font-size:12px; color:green;">사용가능한 닉네임입니다.</label>
 		          </div> 
           </div>    <!-- 회원가입 폼 왼쪽 끝 -->
           
-          
-          <div id="container2" style="display:inline-block; border-left:1px solid #424242; width:550px; margin:0px;	padding-left:50px;">
+          <div id="container2" style="position:absolute; left:500px; border-left:1px solid orange; width:550px; height:500px;margin:0px; padding-left:50px;">
                
                    <div class="form-group" style="margin-bottom:5px;">
 	            		<label>전화번호</label><br>
@@ -469,12 +468,12 @@
 							dataType : "json",
 							success : function(data){
 								if(data.isUsable == true){
-									$('#nickNameValidLabel').show();
-									$('#nickDupLabel').hide();
+									$('#nickValidLabel').show();
+									$('#nickDupCheckLabel').hide();
 								
 								}else{
-									$('#nickNameValidLabel').hide();
-									$('#nickDupLabel').show();
+									$('#nickValidLabel').hide();
+									$('#nickDupCheckLabel').show();
 								}
 							},
 							error : function(req,status,error){
@@ -512,18 +511,38 @@
 		         var pwd2 = $('#password2').val();
 		      
 		         if(!isSamePwd(pwd1,pwd2)){
+		        	$('#pwdResult').show();
 		            $('#pwdResult').html("비밀번호가 일치하지 않습니다.").css('color','red').css('font-size','12px');
 		         }else if(!pwdRegEx(pwd2)){
+		        	 $('#pwdResult').show();
 		            $('#pwdResult').html("");
 		            $('#pwdResult').html("비밀번호는 숫자,영문 대소문자, 특수문자로 구성된<br> 8자리 이상 20자리 이하이어야 합니다.").css('color','red');
 		         }else{
+		        	 $('#pwdResult').show();
 		            $('#pwdResult').html("사용 가능한 비밀번호입니다.").css('color','green');
 		         }
 		         
 		      });
 		
 			
-			
+		      $("#authBtn").click(function () {
+		            var data = {"userId": $("#userId").val()};
+		            var authNum = "";
+		            
+		            $.ajax({
+		                url : "${pageContext.request.contextPath}/member/mailAuth.do",
+		                data : data,
+		                success : function (data) {
+		                    authNum = data;
+		                    alert("인증번호 전송완료.");
+		                   
+		            
+		                }
+		                
+		            });
+		            
+		        });// 이메일 인증 버튼 end
+	
 		
 			
 	

@@ -45,7 +45,7 @@ public class MemberController {
 			System.out.println("회원가입 성공");
 		}
 		
-		return "member/login";
+		return "client/member/login";
 		
 	}
 	
@@ -63,13 +63,17 @@ public class MemberController {
 	@RequestMapping(value="/member/nickDupCheck.do")
 	@ResponseBody
 	public Map<String,Object> nickDupCheck(@RequestParam String nickName){
-			System.out.println("컨트로ㅗㄹ러");
+			
 		 Map<String,Object> map = new HashMap<>();
 		 boolean isUsable = mService.nickDupCheck(nickName)== 0 ? true:false;
 	     map.put("isUsable", isUsable);
 	    
 		return map;
 	}
+	
+	
+	
+	
 	
 	
 	
