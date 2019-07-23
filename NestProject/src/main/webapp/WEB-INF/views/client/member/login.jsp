@@ -7,10 +7,23 @@
 
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <title>Document</title>
+    
+    
+   <style>
+   .btn-outline-secondary{
+   	height:35px;
+   	margin-bottom:1px;
+   }
+   .btn-outline-secondary:hover{
+    	background:#F28B30;
+		
+    }
+    
+   </style>
 </head>
 <body>
  
@@ -93,7 +106,7 @@
 
 <div class="modal fade" id="myModal">
   <div class="modal-dialog">
-    <div class="modal-content" style="width: 1100px; height:600px;">
+    <div class="modal-content" style="width: 1100px; height:700px;">
       <div class="modal-header">
           <h4 class="modal-title">회원가입</h4>
         <button id="modalclose" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -105,40 +118,46 @@
         	 
         	 <div id="totalcontainer" style="display:inline-block; width:1110px; height:500px; padding:20px;">
         	  <div id="container1" style="display:inline-block; margin:0px; width:450px;" >
-	              <div class="form-group" style="margin-bottom:5px; width:450px;">
+	             
+	              <div class="form-group" style="margin-bottom:1px; width:450px;">
 	            		<label style="margin-top:5px;">이메일</label><br>
-			            <input type="email" name="userId" class="form-control" style="width:250px; height:40px; display:inline-block; ">
-	                  	<button class="btn btn-outline-secondary" type="button" id="button-addon2" style="height:40px; margin-bottom:3px;">인증번호 전송</button>
+			            <input type="email" id="userId" name="userId" class="form-control" style="width:250px; height:40px; display:inline-block; ">
+	                  	<button class="btn btn-outline-secondary" type="button" id="button-addon2" style="height:40px; margin-bottom:3px;">인증번호 전송</button><br>
+	                  	<label id="emailAvailableLabel" style="color:green; font-size:12px; display:none; margin-left:1px;">사용 가능한 이메일입니다.</label>
+	                  	<label id="emailDupLabel" style="color:red; font-size:12px; display:none; margin-left:1px;">이미 사용중인 이메일입니다.</label>
+	                  	<label id="emailValidLabel" style="color:red; font-size:12px; display:none; margin-left:1px;">이메일 형식이 올바르지 않습니다.</label>
 		          </div>
-		              
-		          <div class="form-group" style="margin-bottom:5px;">
+		          
+		          <div class="form-group" style="margin-bottom:1px;">
 		           	  <label>인증번호 입력</label><br>
-					  <input type="email" name="userId" class="form-control" style="width:120px; display:inline-block;" >
-					  <button type="button"  style="height: 36px; width: 60px; border-radius: 0.5rem; border-top-right-radius: 0%; border-bottom-right-radius: 0%; border: none; background: #F28B30; color: #fff; display:inline-block;" type="button" >확인</button>
-	                  <button type="button"  style=" height: 36px; border-radius: 0.5rem;  border-top-left-radius: 0%; border-bottom-left-radius: 0%; border: none; border: #F28B30 1px solid ; background: #fff; color: #454545; display:inline-block;" type="button" >재전송</button>
+					  <input type="text" id="vNum" class="form-control" style="width:120px; display:inline-block;" >
+					 	 <div class="btn-group">
+               	 	 	   <button type="button" class="btn btn-sm btn-outline-secondary">확인</button>
+               			   <button type="button" class="btn btn-sm btn-outline-secondary">재전송</button>
+                		</div>
 		          </div>
 		            
-		          <div class="form-group" style="margin-bottom:5px;">
+		          <div class="form-group" style="margin-bottom:1px;">
 	            		<label style="margin-top:5px;">비밀번호</label><br>
-			            <input type="email" name="userId" class="form-control" style="width:250px; height:40px; display:inline-block;">
+			            <input type="password" id="password1" name="password1" class="form-control" style="width:250px; height:40px; display:inline-block;">
 	                  	
 		          </div>
 	               
-	       		 <div class="form-group" style="margin-bottom:5px;">
+	       		 <div class="form-group" style="margin-bottom:1px;">
 	            		<label>비밀번호 확인</label><br>
-			            <input type="email" name="userId" class="form-control" style="width:250px; height:40px; display:inline-block;">
-	                  
+			            <input type="password" id="password2" name="password2" class="form-control" style="width:250px; height:40px; display:inline-block;"><br>
+	                  	<label id="pwdResult"></label>
 		          </div>
 	       
-			       <div class="form-group" style="margin-bottom:5px;">
+			       <div class="form-group" style="margin-bottom:1px;">
 	            		<label>이름</label><br>
-			            <input type="email" name="userId" class="form-control" style="width:250px; height:40px; display:inline-block;">
+			            <input type="text" name="userName" class="form-control" style="width:250px; height:40px; display:inline-block;">
 	                  
 		          </div> 
 		          
-		           <div class="form-group" style="margin-bottom:5px;">
+		           <div class="form-group" style="margin-bottom:1px;">
 	            		<label>닉네임</label><br>
-			            <input type="email" name="userId" class="form-control" style="width:250px; height:40px; display:inline-block;">
+			            <input type="text" name="nickName" class="form-control" style="width:250px; height:40px; display:inline-block;">
 		          </div> 
           </div>    <!-- 회원가입 폼 왼쪽 끝 -->
           
@@ -155,8 +174,8 @@
   
        
 	          <div class="col-md-5 mb-3" style="margin:0px; padding:0px; width:100px;">
-	            <label for="country">연령대</label>
-	            <select class="custom-select d-block w-100" id="country" required>
+	            <label for="ageGroup">연령대</label>
+	            <select class="custom-select d-block w-100" id="ageGroup" required>
 	              <option value="10대">10대</option>
 	              <option value="20대">20대</option>
 	              <option value="30대">30대</option>
@@ -168,8 +187,8 @@
               </div>
           		
           		 <div class="col-md-5 mb-3" style="margin:0px; padding:0px; width:200px;">
-	            <label for="country">사용 목적</label>
-	            <select class="custom-select d-block w-100" id="country" required>
+	            <label for="purpose">사용 목적</label>
+	            <select class="custom-select d-block w-100" id="purpose" required>
 	              <option value="개인용도">개인용도</option>
 	              <option value="그룹웨어">그룹웨어</option>
 	              <option value="커뮤니티">커뮤니티</option>
@@ -179,15 +198,14 @@
               </div>
               
                <div class="col-md-5 mb-3" style="margin:0px; padding:0px; width:100px;">
-	            <label for="country">업무 분야</label>
-	            <select class="custom-select d-block w-100" id="country" required>
+	            <label for="jobField">업무 분야</label>
+	            <select class="custom-select d-block w-100" id="jobField" required>
 	              <option value="IT">IT</option>
 	              <option value="금융">금융</option>
 	              <option value="제조업">제조업</option>
 	              <option value="기타">기타</option>
 	            </select>
 	            
-	           
               </div>
   
             <input id="joincheck" type="checkbox" disabled value="agree" >개인정보 이용 약관동의
@@ -201,15 +219,18 @@
             <div style="    display: inline-block;">
                 <a style="  height: 32px; border: none; background: rgb(143, 143, 143); width: 100px" data-toggle="modal" href="#myModal2" class="btn btn-primary">약관 보기</a>
             </div>
+     	
      
-		        <div class="modal-footer" style="width: 100%;" > <a style="width: 50%; background: silver" href="#" data-dismiss="modal" class="btn">취소</a>
+     
+		    <div class="modal-footer" style="width: 100%; margin-top:10px; padding-left:0px; border" > 
+		    <a style="width: 50%; background: silver; margin:0px;" href="#" data-dismiss="modal" class="btn">취소</a>
 				          
 				<input type="submit" value="확인"  class="btn btn-primary" style="width: 50%; background:#F28B30; border: none;"/>
-		    	</div>
+		    </div>
 	    	
 	    	 </div> 
 	    	 
-	    	 </div>
+	       </div>
 	      </form>
 	   </div>
      </div>
@@ -379,13 +400,107 @@
         <div class="modal-footer" style="width: 100%;"> 
           <a href="#" data-dismiss="modal" class="btn" style="width: 50%; border:solid 1px #636363;" >비동의</a>
           <a href="#" onclick="agree2();" class="btn btn-primary" style="width: 50%;">동의</a>
-  
         </div>
       </div>
     </div>
   </div>
 
-
-
 </body>
+
+<script>
+		
+		$(function(){
+			
+			// 이메일 유효성 체크 이벤트
+			$("#userId").on("keyup",function(){
+				var userId = $(this).val();
+				var regEx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+				 
+				// 유효한 이메일 형식인지 판별
+				if(regEx.test(userId) == false){
+					$('#emailAvailableLabel').hide();
+					$('#emailValidLabel').show();
+					$('#emailDupLabel').hide();
+				}else if(true){ // 중복 이메일인지 판별
+					
+						 $.ajax({
+							url : "${pageContext.request.contextPath}/member/idDupCheck.do",
+							data : {userId : userId},
+							dataType : "json",
+							success : function(data){
+								if(data.isUsable == true){
+									$('#emailAvailableLabel').show();
+									$('#emailValidLabel').hide();
+									$('#emailDupLabel').hide();
+								
+								}else{
+									$('#emailAvailableLabel').hide();
+									$('#emailValidLabel').hide();
+									$('#emailDupLabel').show();
+									
+								}
+							},
+							error : function(req,status,error){
+								console.log("아이디 중복 체크 실패!");
+								// 화면 에러 로그
+								console.log(req);
+								console.log(status);
+								console.log(error);
+							}
+							 
+						 }); // ajax끝
+				
+					 
+				 }	
+
+			});
+			
+			// 비밀번호 유효성 체크 정규표현식 함수(영문,숫자,특수문자 8자리 이상 20자리 이하)
+		      function pwdRegEx(pwd){  
+		         var pwdRegEx = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/;
+		      
+		         return pwdRegEx.test(pwd);
+		      }
+		      
+		      // 두 비밀번호가 같은지 체크하는 함수
+		      function isSamePwd(pwd1,pwd2){
+		         if(pwd1 == pwd2){
+		            return true;
+		         }else return false;
+		         
+		      }
+
+		      // 비밀번호 유효성체크 이벤트 함수
+		      $('[name^="password"]').change(function(){
+		         var pwd1 = $('#password1').val();
+		         var pwd2 = $('#password2').val();
+		      
+		         if(!isSamePwd(pwd1,pwd2)){
+		            $('#pwdResult').html("비밀번호가 일치하지 않습니다.").css('color','red').css('font-size','12px');
+		         }else if(!pwdRegEx(pwd2)){
+		            $('#pwdResult').html("");
+		            $('#pwdResult').html("비밀번호는 숫자,영문 대소문자, 특수문자로 구성된<br> 8자리 이상 20자리 이하이어야 합니다.").css('color','red');
+		         }else{
+		            $('#pwdResult').html("사용 가능한 비밀번호입니다.").css('color','green');
+		         }
+		         
+		      });
+		
+			
+			
+		
+			
+	  }); // $(function()) 끝
+			
+
+			
+	
+
+		
+
+	</script>
+
+
+
+
 </html>

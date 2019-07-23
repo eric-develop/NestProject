@@ -1,9 +1,13 @@
 package com.nestCor.nest.member.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nestCor.nest.member.model.service.MemberService;
 import com.nestCor.nest.member.model.vo.Member;
@@ -44,6 +48,21 @@ public class MemberController {
 		return "member/login";
 		
 	}
+	
+	@RequestMapping(value="/member/idDupCheck.do")
+	@ResponseBody
+	public Map<String,Object> idDupCheck(@RequestParam String userId){
+		
+		 Map<String,Object> map = new HashMap<>();
+		 boolean isUsable = mService.idDupCheck(userId)== 0? true:false;
+	     map.put("isUsable", isUsable);
+	    
+		return map;
+	}
+	
+	
+	
+	
 	
 	
 }

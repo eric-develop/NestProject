@@ -8,4 +8,9 @@
 			INSERT INTO MEMBER VALUES(SEQ_MNO.NEXTVAL,DEFAULT,#{userId},#{password},#{userName},#{nickName},#{phone},#{ageGroup},#{purpose},#{jobField},DEFAULT,DEFAULT,DEFAULT,DEFAULT)
 		</insert>
 		
+		<select id="idDupCheck" parameterType="string" resultType="_int">
+			SELECT COUNT(*) FROM MEMBER WHERE USERID= #{userId}
+		</select>
+		
+		
 </mapper>

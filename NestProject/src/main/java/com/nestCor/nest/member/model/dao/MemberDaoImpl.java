@@ -36,4 +36,10 @@ public class MemberDaoImpl implements MemberDao {
 		return 0;
 	}
 
+	@Override
+	public int idDupCheck(String userId) {
+		
+		return sqlSession.selectOne("Member_mapper.idDupCheck",userId);
+	}
+
 }

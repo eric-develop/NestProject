@@ -36,4 +36,10 @@ public class MemberServiceImpl implements MemberService {
 		return 0;
 	}
 
+	@Override
+	public int idDupCheck(String userId) {
+		
+		return mDao.idDupCheck(userId);
+	}
+
 }

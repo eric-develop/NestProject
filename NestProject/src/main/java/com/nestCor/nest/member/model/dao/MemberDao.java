@@ -7,4 +7,5 @@ public interface MemberDao {
 		Member selectMember(String userId);
 		Member updateMember(Member m);
 		int deleteMember(String userId);
+		int idDupCheck(String userId);
 }
