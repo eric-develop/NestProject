@@ -32,7 +32,7 @@ public class MemberController {
 	public String memberLogin() {
 		
 		
-		return "client/services/mainPage";
+		return "client/services/note_main";
 	}
 	
 	
