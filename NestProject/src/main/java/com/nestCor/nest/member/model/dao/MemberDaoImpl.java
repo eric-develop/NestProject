@@ -14,7 +14,8 @@ public class MemberDaoImpl implements MemberDao {
 	
 	@Override
 	public int insertMember(Member m) {
-		
+		System.out.println("dao옴");
+		System.out.println(m);
 		return sqlSession.insert("Member_mapper.insertMember",m);
 	}
 
@@ -40,6 +41,18 @@ public class MemberDaoImpl implements MemberDao {
 	public int idDupCheck(String userId) {
 		
 		return sqlSession.selectOne("Member_mapper.idDupCheck",userId);
+	}
+
+	@Override
+	public int nickDupCheck(String nickName) {
+		
+		return sqlSession.selectOne("Member_mapper.nickDupCheck",nickName);
+	}
+
+	public Member searchId(Member m) {
+	
+	
+		return sqlSession.selectOne("Member_mapper.searchId",m);
 	}
 
 }
