@@ -32,12 +32,12 @@ public class MemberController {
 		return "client/services/mainPage";
 	}
 	
+	
 	@RequestMapping("/member/memberInsert.do")
 	public String memberEnroll(Member m,@RequestParam(value="phone1") String phone1,@RequestParam(value="phone2") String phone2,@RequestParam(value="phone3") String phone3) {
-		System.out.println("전달된 member : " + m);
+		
 		String phone = String.join("-", phone1,phone2,phone3);
 		m.setPhone(phone);
-		
 		
 		int result = mService.insertMember(m);
 		

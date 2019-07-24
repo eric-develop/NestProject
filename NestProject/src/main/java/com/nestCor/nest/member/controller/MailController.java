@@ -33,6 +33,17 @@ public class MailController {
 	    return str;
 	}
 	    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 난수 발생 메소드
 	private String randomNum() {
 	    StringBuffer buffer = new StringBuffer();
 	        

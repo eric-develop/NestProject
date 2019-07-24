@@ -114,7 +114,7 @@
 
      
          <div class="modal-body" style="padding-top:5px; width:1000px;">
-        	<form method="post" action="memberInsert.do">
+        	<form method="post" action="memberInsert.do" onsubmit= "return validate();">
         	 
         	 <div id="totalcontainer" style="position:relative; width:1110px; height:500px; padding:10px;">
         	  <div id="container1" style="position:absolute; margin:0px; width:450px; height:500px;" >
@@ -122,7 +122,7 @@
 	              <div class="form-group" style="margin-bottom:1px; width:450px;">
 	            		<label style="margin-top:5px;">이메일</label><br>
 			            <input type="email" id="userId" name="userId" class="form-control" style="width:250px; height:40px; display:inline-block; ">
-	                  	<button class="btn btn-outline-secondary" type="button" id="authBtn" style="height:40px; margin-bottom:3px;">인증번호 전송</button><br>
+	                  	<button class="btn btn-outline-secondary" type="button" id="authBtn" style="height:40px; margin-bottom:3px;" onclick="sendAuthNum();">인증번호 전송</button><br>
 	                  	<label id="emailAvailableLabel" style="color:green; font-size:12px; display:none; margin-left:1px;">사용 가능한 이메일입니다.</label>
 	                  	<label id="emailDupLabel" style="color:red; font-size:12px; display:none; margin-left:1px;">이미 사용중인 이메일입니다.</label>
 	                  	<label id="emailValidLabel" style="color:red; font-size:12px; display:none; margin-left:1px;">이메일 형식이 올바르지 않습니다.</label>
@@ -130,10 +130,10 @@
 		          
 		          <div class="form-group" style="margin-bottom:1px;">
 		           	  <label>인증번호 입력</label><br>
-					  <input type="text" id="vNum" class="form-control" style="width:120px; display:inline-block;" >
+					  <input type="text" id="clientAuthNum" class="form-control" style="width:120px; display:inline-block;" >
 					 	 <div class="btn-group">
-               	 	 	   <button type="button" class="btn btn-sm btn-outline-secondary">확인</button>
-               			   <button type="button" class="btn btn-sm btn-outline-secondary">재전송</button>
+               	 	 	   <button type="button" id="emailVerifyBtn"class="btn btn-sm btn-outline-secondary">확인</button>
+               			   <button type="button" id="resendBtn" class="btn btn-sm btn-outline-secondary">재전송</button>
                 		</div>
 		          </div>
 		            
@@ -343,7 +343,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-            <h class="modal-title">네스트 서비스 약관동의서</h4>
+            <h4 class="modal-title">네스트 서비스 약관동의서</h4>
           <button  id="closeModaljoincheck2" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
           
   
@@ -409,9 +409,13 @@
 </body>
 
 <script>
+
+		var emailValidNum = 0;   // 이메일 유효성 체크 통과 했는지?
+		var pwdValidNum = 0;	// 비밀번호 유효성 체크 통과 했는지?
+		var nickValidNum = 0;	// 닉네임 유효성 체크 통과 했는지?
+		var authCheckNum = 0;   // 이메일인증 유효성 체크 통과 했는지?
+		var authNum = "";		// 인증번호 저장할 변수
 		
-		
-			
 			// 이메일 유효성 체크 이벤트
 			$("#userId").on("keyup",function(){
 				var userId = $(this).val();
@@ -422,6 +426,8 @@
 					$('#emailAvailableLabel').hide();
 					$('#emailValidLabel').show();
 					$('#emailDupLabel').hide();
+					window.emailValidNum = 0;
+					
 				}else if(true){ // 중복 이메일인지 판별
 					
 						 $.ajax({
@@ -433,11 +439,13 @@
 									$('#emailAvailableLabel').show();
 									$('#emailValidLabel').hide();
 									$('#emailDupLabel').hide();
-								
+									window.emailValidNum = 1;
+									
 								}else{
 									$('#emailAvailableLabel').hide();
 									$('#emailValidLabel').hide();
 									$('#emailDupLabel').show();
+									window.emailValidNum = 0;
 									
 								}
 							},
@@ -455,13 +463,10 @@
 				 }	
 
 			});
-
-
-			
 			// 닉네임 유효성 체크
 			$("#nickName").on("keyup",function(){
 				var nickName = $(this).val();
-			
+				
 						 $.ajax({
 							url : "${pageContext.request.contextPath}/member/nickDupCheck.do",
 							data : {nickName : nickName},
@@ -470,10 +475,11 @@
 								if(data.isUsable == true){
 									$('#nickValidLabel').show();
 									$('#nickDupCheckLabel').hide();
-								
+									window.nickValidNum = 1;
 								}else{
 									$('#nickValidLabel').hide();
 									$('#nickDupCheckLabel').show();
+									window.nickValidNum = 0;
 								}
 							},
 							error : function(req,status,error){
@@ -513,46 +519,85 @@
 		         if(!isSamePwd(pwd1,pwd2)){
 		        	$('#pwdResult').show();
 		            $('#pwdResult').html("비밀번호가 일치하지 않습니다.").css('color','red').css('font-size','12px');
+		            window.pwdValidNum = 0;
 		         }else if(!pwdRegEx(pwd2)){
 		        	 $('#pwdResult').show();
 		            $('#pwdResult').html("");
 		            $('#pwdResult').html("비밀번호는 숫자,영문 대소문자, 특수문자로 구성된<br> 8자리 이상 20자리 이하이어야 합니다.").css('color','red');
+		            window.pwdValidNum = 0;
 		         }else{
 		        	 $('#pwdResult').show();
 		            $('#pwdResult').html("사용 가능한 비밀번호입니다.").css('color','green');
+		            window.pwdValidNum = 1;
 		         }
 		         
 		      });
 		
 			
-		      $("#authBtn").click(function () {
-		            var data = {"userId": $("#userId").val()};
-		            var authNum = "";
-		            
-		            $.ajax({
-		                url : "${pageContext.request.contextPath}/member/mailAuth.do",
-		                data : data,
-		                success : function (data) {
-		                    authNum = data;
-		                    alert("인증번호 전송완료.");
-		                   
-		            
-		                }
-		                
-		            });
-		            
-		        });// 이메일 인증 버튼 end
-	
-		
+		      // 인증번호 전송 함수
+		      function sendAuthNum(){	
+				   var data = {"userId": $("#userId").val()}; 
+				         $.ajax({
+				                url : "${pageContext.request.contextPath}/member/mailAuth.do",
+				                data : data,
+				                success : function (data) {
+				                    window.authNum = data;
+				               
+				                    alert("인증번호 전송완료.");
+				                    console.log(window.authNum);
+				                }  
+				            });
+		      }
+		 
 			
-	
-			
-
-			
-	
-
-		
-
+		     // 인증번호 확인 함수
+		       $("#emailVerifyBtn").on("click",function(){
+		    		var inputAuthNum = $('#clientAuthNum').val();
+		    		
+		    		if(inputAuthNum == authNum){
+		    			window.authCheckNum = 1;
+		    			alert("인증이 완료되었습니다.");
+		    		}else{
+		    			window.authCheckNum = 0;
+		    			alert("인증번호가 일치하지 않습니다.");
+		    		}
+		       });
+		     
+		     // 인증번호 재전송 함수
+		      $("#resendBtn").on("click",function(){
+		    	 	sendAuthNum();
+		    	 	
+		      });
+		     
+		     
+		   function validate(){
+			   
+			   var isAgree1 = $('#joincheck').prop('checked');
+			   var isAgree2 = $('#joincheck2').prop('checked');
+		    	if(window.emailValidNum == 0){
+		    		alert("이메일이 이미 사용중이거나 유효하지 않은 형식입니다.");
+		    		return false;
+		    	}else if(window.pwdValidNum == 0){
+		    		alert("유효하지 않은 비밀번호입니다.");
+		    		return false;
+		    	}else if(window.nickValidNum == 0){
+		    		alert("이미 사용중인 닉네임이거나 유효하지 않은 형식입니다.");
+		    		return false;
+		    	}else if(window.authCheckNum == 0){
+		    		alert("메일 인증이 완료되지 않았습니다.");
+		    		return false;
+			    }else if(isAgree1 == false || isAgree2 == false){
+			    	alert("회원 약관에 모두 동의해주세요");
+			    	return false;
+			    }
+		    	else{
+			   		alert("회원가입이 완료되었습니다.");
+			   		return true;
+			    }
+		    	
+		   } 
+		        
+		        
 	</script>
 
 
