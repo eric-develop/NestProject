@@ -18,7 +18,7 @@ public class MailController {
 	@RequestMapping(value="/member/mailAuth.do" ,produces="text/plain;charset=utf-8")
 	@ResponseBody
 	public String emailAuth(@RequestParam("userId") String userId) {
-	    ModelAndView mav = new ModelAndView();
+	  
 	        
 	    String authNum = "";
 	        

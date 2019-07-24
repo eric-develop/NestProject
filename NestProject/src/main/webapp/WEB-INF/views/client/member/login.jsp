@@ -19,7 +19,13 @@
    	margin-bottom:1px;
    }
    .btn-outline-secondary:hover{
-    	background:#F28B30;
+    	background:gray;
+		
+    }
+    
+    .btn-outline-warning:hover{
+    	background:orange;
+    	
 		
     }
     
@@ -60,7 +66,7 @@
 <!-------modal-------->
 
 </div>
-<a href="#" style="text-align: center; text-decoration:none; color: #454545;"><p style="width: 200px; margin:0 auto; font-size: 12px; margin-top: 30px">비밀번호가 생각나지 않으시나요?</p></a>
+<a href="${pageContext.request.contextPath}/member/memberSearchView.do" style="text-align: center; text-decoration:none; color: #454545;"><p style="width: 200px; margin:0 auto; font-size: 12px; margin-top: 30px">비밀번호가 생각나지 않으시나요?</p></a>
 
 </div>
 
@@ -122,7 +128,7 @@
 	              <div class="form-group" style="margin-bottom:1px; width:450px;">
 	            		<label style="margin-top:5px;">이메일</label><br>
 			            <input type="email" id="userId" name="userId" class="form-control" style="width:250px; height:40px; display:inline-block; ">
-	                  	<button class="btn btn-outline-secondary" type="button" id="authBtn" style="height:40px; margin-bottom:3px;" onclick="sendAuthNum();">인증번호 전송</button><br>
+	                  	<button class="btn btn-outline-info" type="button" id="authBtn" style="height:40px; margin-bottom:3px;" onclick="sendAuthNum();">인증번호 전송</button><br>
 	                  	<label id="emailAvailableLabel" style="color:green; font-size:12px; display:none; margin-left:1px;">사용 가능한 이메일입니다.</label>
 	                  	<label id="emailDupLabel" style="color:red; font-size:12px; display:none; margin-left:1px;">이미 사용중인 이메일입니다.</label>
 	                  	<label id="emailValidLabel" style="color:red; font-size:12px; display:none; margin-left:1px;">이메일 형식이 올바르지 않습니다.</label>
@@ -131,15 +137,15 @@
 		          <div class="form-group" style="margin-bottom:1px;">
 		           	  <label>인증번호 입력</label><br>
 					  <input type="text" id="clientAuthNum" class="form-control" style="width:120px; display:inline-block;" >
-					 	 <div class="btn-group">
-               	 	 	   <button type="button" id="emailVerifyBtn"class="btn btn-sm btn-outline-secondary">확인</button>
-               			   <button type="button" id="resendBtn" class="btn btn-sm btn-outline-secondary">재전송</button>
+					 	 <div class="btn-group" style="margin-bottom:2px;">
+               	 	 	   <button type="button" id="emailVerifyBtn"class="btn btn-sm btn btn-outline-info" style="width:53px;height:38px;">확인</button>
+               			   <button type="button" id="resendBtn" class="btn btn-sm btn btn-outline-info" style="height:38px;">재전송</button>
                 		</div>
 		          </div>
 		            
 		          <div class="form-group" style="margin-bottom:1px;">
 	            		<label style="margin-top:5px;">비밀번호</label><br>
-			            <input type="password" id="password1" name="password1" class="form-control" style="width:250px; height:40px; display:inline-block;">
+			            <input type="password" id="password" name="password" class="form-control" style="width:250px; height:40px; display:inline-block;">
 	                  	
 		          </div>
 	               
@@ -212,21 +218,21 @@
             <input id="joincheck" type="checkbox" disabled value="agree" >개인정보 이용 약관동의
             
             <div style="display: inline-block; margin-bottom: 10px;">
-                <a style=" height: 32px; border: none; background: rgb(143, 143, 143); width: 100px" data-toggle="modal" href="#myModal1" class="btn btn-primary">약관 보기</a>
+                <a style=" height: 28px; width: 60px;" data-toggle="modal" href="#myModal1" class="btn btn-outline-info">보기</a>
             </div>
             <br>
 
             <input id="joincheck2" type="checkbox" disabled value="agree" >네스트 서비스 약관동의
-            <div style="    display: inline-block;">
-                <a style="  height: 32px; border: none; background: rgb(143, 143, 143); width: 100px" data-toggle="modal" href="#myModal2" class="btn btn-primary">약관 보기</a>
+            <div style="display: inline-block;">
+                <a style=" height: 28px; width: 60px" data-toggle="modal" href="#myModal2" class="btn btn-outline-info">보기</a>
             </div>
      	
      
      
-		    <div class="modal-footer" style="width: 100%; margin-top:10px; padding-left:0px; border" > 
-		    <a style="width: 50%; background: silver; margin:0px;" href="#" data-dismiss="modal" class="btn">취소</a>
-				          
-				<input type="submit" value="확인"  class="btn btn-primary" style="width: 50%; background:#F28B30; border: none;"/>
+		    <div class="modal-footer" style="width: 100%; margin-top:40px; padding-left:0px; border-top:1px solid orange;" > 
+		    <a style="width: 22%; border:1px solid gray; margin:0px; cursor:pointer;" data-dismiss="modal" class="btn btn-outline-secondary">취소</a>
+			
+				<input type="submit" value="확인" class="btn btn-outline-warning" style="width:22%; border: 1px solid orange; margin-left:10px;"/>
 		    </div>
 	    	
 	    	 </div> 
@@ -513,7 +519,7 @@
 
 		      // 비밀번호 유효성체크 이벤트 함수
 		      $('[name^="password"]').change(function(){
-		         var pwd1 = $('#password1').val();
+		         var pwd1 = $('#password').val();
 		         var pwd2 = $('#password2').val();
 		      
 		         if(!isSamePwd(pwd1,pwd2)){

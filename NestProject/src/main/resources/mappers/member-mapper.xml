@@ -16,4 +16,8 @@
 			SELECT COUNT(*) FROM MEMBER WHERE NICKNAME = #{nickName}
 		</select>
 		
+		<select id="searchId" parameterType="Member" resultType="Member">
+			SELECT * FROM MEMBER WHERE USERNAME=#{userName} AND PHONE=#{phone}
+		</select>
+		
 </mapper>
