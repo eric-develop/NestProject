@@ -6,7 +6,7 @@
  <meta charset="utf-8">
  <meta http-equiv="X-UA-Compatible" content="IE=edge">
  <meta name="viewport" content="width=device-width, initial-scale=1">
- <script src="<%= request.getContextPath() %>/resources/js/jquery-3.4.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="crossorigin="anonymous"></script>
  <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
@@ -40,12 +40,12 @@
 	            <div class="panel-body">
 	          	
 					<label for="userName">이름</label><br>
-		           	<input type ="text" id="userName" name = "userName" class="form-control" style="width:100px; height:30px;margin-bottom:15px;">
-		           	<label for="phone1">연락처</label><br>
-		            <input type = "text" id="phone1" name = "phone1" class="form-control" style="width:60px; height:30px; display:inline;">&nbsp;-&nbsp;<input type="text" id="phone2" name = "phone2" class="form-control" style="width:60px; height:30px; display:inline;"> -&nbsp;<input type = "text" id="phone3"name = "phone3" class="form-control" style="width:60px; height:30px; display:inline;"> 
-		            <input type="button" value="인증번호 발송" class="btn btn-info"	 style="margin:0px 0px 3px 10px; background:#364559; border:none;" onclick="sendVerifyNum();"><br>
+		           	<input type ="text" id="userNameForId" name="userNameForId" class="form-control" style="width:100px; height:30px;margin-bottom:15px;">
+		           	<label for="phone1ForId">연락처</label><br>
+		            <input type = "text" id="phone1ForId" name ="phone1ForId" class="form-control" style="width:60px; height:30px; display:inline;">&nbsp;-&nbsp;<input type="text" id="phone2ForId" name = "phone2ForId" class="form-control" style="width:60px; height:30px; display:inline;"> -&nbsp;<input type = "text" id="phone3ForId"name = "phone3ForId" class="form-control" style="width:60px; height:30px; display:inline;"> 
+		            <input type="button" value="인증번호 발송" class="btn btn-info"	 style="margin:0px 0px 3px 10px; background:#364559; border:none;" onclick="sendVerifyNumForId();"><br>
 		            <label for="verifyNum" style="margin-top:15px">인증번호 입력</label><br>
-		            <input type ="text" id="inputVerifyNum" class="form-control" style="width:100px; height:30px;margin-right:6px; display:inline-block;">
+		            <input type ="text" id="inputVerifyNumForId" class="form-control" style="width:100px; height:30px;margin-right:6px; display:inline-block;">
 		            <input type="button" value="찾기" id="findIdBtn" class="btn btn-info"  data-toggle="modal" data-target=".bd-example-modal-sm" style="background:#364559; border:none;" onclick="findId();">
 	            </div>
 	           
@@ -54,20 +54,24 @@
 		</div>   
 	  
 	  
-		<div class="panel" style="width:410px; height:301px; border:1px solid orange;">
+		<div class="panel" style="width:410px; height:350px; border:1px solid orange;">
 	            <div class="panel-heading">
 	              <h3 class="panel-title" >비밀번호 찾기</h3>
 	            </div>
 	            <div class="panel-body">
 	          	 
-			    	<label for="sName">이메일</label><br>
-		           	<input type = "text" name = "sEmail" id="sEmail" class="form-control" style="width:200px; height:30px; margin-bottom:5px;">
-		           	<label for="sName">이름</label><br>
-		            <input type = "text" name = "sName" id="sName"class="form-control" style="width:100px; height:30px; margin-bottom:5px;">
-		            <label for="sName">주민등록번호</label><br>
-		            <input type = "text" name = "sSSn1" id="sSSN1"class="form-control" style="width:80px; height:30px; display:inline;">&nbsp;-&nbsp;<input type = "password" name = "sSSN2" id="sSSN2"class="form-control" style="width:80px; height:30px; display:inline;">
-		            
-		            <input type="button" value="비밀번호 찾기" style="height:33px;margin-top:14px;background:#364559; border:none;" class="btn btn-info" onclick="isRightInfo()">
+			    	<label for="userId">이메일</label><br>
+		           	<input type = "text" name = "userId" id="userId" class="form-control" style="width:200px; height:30px; margin-bottom:5px;">
+		           	<label for="userNameForPwd">이름</label><br>
+		            <input type = "text" name = "userNameForPwd" id="userNameForPwd"class="form-control" style="width:100px; height:30px; margin-bottom:5px;">
+		            <label for="sName"></label><br>
+		            <label for="phone1ForPwd">연락처</label><br>
+		           
+		            <input type = "text" id="phone1ForPwd" name = "phone1ForPwd" class="form-control" style="width:60px; height:30px; display:inline;">&nbsp;-&nbsp;<input type="text" id="phone2ForPwd" name = "phone2ForPwd" class="form-control" style="width:60px; height:30px; display:inline;"> -&nbsp;<input type = "text" id="phone3ForPwd"name = "phone3ForPwd" class="form-control" style="width:60px; height:30px; display:inline;"> 
+		            <input type="button" value="인증번호 발송" class="btn btn-info"	 style="margin:0px 0px 3px 10px; background:#364559; border:none;" onclick="sendVerifyNumForPwd();"><br>
+		            <label for="verifyNum" style="margin-top:15px">인증번호 입력</label><br>
+		            <input type ="text" id="inputVerifyNumForPwd" class="form-control" style="width:100px; height:30px;margin-right:6px; display:inline-block;">
+		            <input type="button" value="찾기" id="findPwdBtn" class="btn btn-info"  data-toggle="modal" data-target=".bd-example-modal-sm" style="background:#364559; border:none;" onclick="isRightInfo();">
 	      			<button id="popUpSetPwd" data-toggle="modal" data-target="#resetPwdModal" style="display:none;"></button>
 	      			<button id="popUpFailMsg" data-toggle="modal" data-target="#myModal" style="display:none;"></button>
 	            </div>
@@ -137,19 +141,22 @@
 <script>
 	
 	// 인증 문자 체크를 위한 전역변수
-	var verifyNum = "";
+	var verifyNum1 = ""; // 아이디 찾기용 
+	var verifyNum2 = ""; // 비번찾기용
 	
 	
 	// 아이디를 찾아주는 함수
 	function findId(){
 		
-		if(window.verifyNum == $('#inputVerifyNum').val()){
-			var phone = $('#phone1').val() + '-' + $('#phone2').val() + '-' +  $('#phone3').val();
-		
+		if(window.verifyNum1 == $('#inputVerifyNumForId').val()){
+			var phone = $('#phone1ForId').val() + '-' + $('#phone2ForId').val() + '-' +  $('#phone3ForId').val();
+			console.log("들어옴");
+			console.log($('#userNameForId').val());
+			
 			$.ajax({
 				url : "${pageContext.request.contextPath}/member/searchId.do",
 				type : "get",
-				data : {userName: $('#userName').val(), phone : phone},
+				data : {userName: $('#userNameForId').val(), phone : phone},
 				dataType : "json",
 				success : function(data){
 					
@@ -188,45 +195,56 @@
 		$('#pwdFailAlert').css('visibility','hidden');
 	});
 	
+
 	// 비밀번호 재설정 함수
 	function isRightInfo(){
-		// 입력한 정보의 이메일이 있는지 확인
-		$.ajax({
-			url : "/semi/searchPwd.do",
-			type : "post",
-			data : {sEmail : $('#sEmail').val(),sName : $('#sName').val(), sSSN1: $('#sSSN1').val(), sSSN2:$('#sSSN2').val()},
-			success : function(data){
+		var phone = $('#phone1ForPwd').val() + '-' + $('#phone2ForPwd').val() + '-' +  $('#phone3ForPwd').val();
+		
+		// 인증번호 확인
+		if(window.verifyNum2 == $('#inputVerifyNumForPwd').val()){
+	
+			$.ajax({
+				url : "${pageContext.request.contextPath}/member/searchPwd.do",
+				type : "post",
+				data : {userId : $('#userId').val(), userName : $('#userNameForPwd').val(), phone: phone},
+				dataType : "json",
+				success : function(data){
+				 	
+					console.log(data.userId);
 				
-				var emailRegEx = /@+/;
-				// 입력한 정보에 해당하는 이메일이 존재한다면?
-				if(emailRegEx.test(data)){
-				
-					// 새 비번 입력하는 modal창 띄워줌
-					$('#popUpSetPwd').trigger('click');
+					var emailRegEx = /@+/;
+				 	console.log(emailRegEx.test(data.userId));
+					// 입력한 정보에 해당하는 회원이 있다면?
+					if(emailRegEx.test(data.userId)){
 					
-				
-					$('#resetPwdBtn').on('click',function(){
-						if(!isSamePwd($('#newPwd1').val(),$('#newPwd2').val())){
-							alert("두 비밀번호가 같지 않습니다.")
-						}else if(!pwdRegEx($('#newPwd1').val())){
-							alert("규정에 맞지 않는 비밀번호입니다.")
-						}else{
-								$.ajax({
-									url : "/semi/rePwd.do",
-									type : "get",
-									data : {email: $('#sEmail').val(), userPwd:$('#newPwd1').val()},
-									success: function(){
-										alert("비밀번호 변경이 완료되었습니다.");
-										$('.close').trigger('click');
-										location.href="/semi/views/member/memberSearch.jsp";
-									},
-									error: function(){
-										alert("에러!");
-									}
-								
-								}); 	
-					      }
-					   });
+						// 새 비번 입력하는 modal창 띄워줌
+						$('#popUpSetPwd').trigger('click');
+					
+						$('#resetPwdBtn').on('click',function(){
+							if(!isSamePwd($('#newPwd1').val(),$('#newPwd2').val())){
+								alert("두 비밀번호가 같지 않습니다.")
+							}else if(!pwdRegEx($('#newPwd1').val())){
+								alert("규정에 맞지 않는 비밀번호입니다.")
+							}else{
+									$.ajax({
+										url : "${pageContext.request.contextPath}/member/resetPwd.do",
+										type : "get",
+										data : {userId: $('#userId').val(), password:$('#newPwd1').val()},
+										dataType : "json",
+										success: function(data){
+											
+											alert(data.msg);
+											$('.close').trigger('click');
+											location.href="${pageContext.request.contextPath}/member/memberSearchView.do";
+											
+										},
+										error: function(){
+											alert("에러!");
+										}
+									
+									}); 	
+						      }
+						   });
 					
 					
 				}else{ // 그렇지 않다면?
@@ -242,7 +260,15 @@
 			 }	// 1차 error
 		}); // 1차 ajax
 		
+		}else{
+			alert("인증번호가 일치하지 않습니다.");
+		}
 	}// 가장큰 함수
+	
+	
+	
+	
+	
 	
 	// 비밀번호 유효성 체크 정규표현식 함수(영문,숫자,특수문자 8자리 이상 20자리 이하)
 	function pwdRegEx(pwd){  
@@ -275,18 +301,39 @@
 		
 	});
 	
-	function sendVerifyNum(){
-		
+	function sendVerifyNumForId(){
 		
 		$.ajax({
 			url : "${pageContext.request.contextPath}/member/sendMsg.do",
 			type : "get",
-			data : {phone : '+82' + $('#phone1').val() + $('#phone2').val() + $('#phone3').val()},
+			data : {phone : '+82' + $('#phone1ForId').val() + $('#phone2ForId').val() + $('#phone3ForId').val()},
 			dataType : "json",
 			success : function(data){
 				alert("인증 문자가 발송되었습니다.");
-				window.verifyNum = data;
-				console.log(window.verifyNum);
+				window.verifyNum1 = data;
+				console.log(window.verifyNum1);
+			},
+			error : function(req,status,error){
+				alert("문자 발송을 실패했습니다.");
+				console.log(req);
+				console.log(status);
+				console.log(error);
+			}
+			
+		});
+	}
+	
+	function sendVerifyNumForPwd(){
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath}/member/sendMsg.do",
+			type : "get",
+			data : {phone : '+82' + $('#phone1ForPwd').val() + $('#phone2ForPwd').val() + $('#phone3ForPwd').val()},
+			dataType : "json",
+			success : function(data){
+				alert("인증 문자가 발송되었습니다.");
+				window.verifyNum2 = data;
+				console.log(window.verifyNum2);
 			},
 			error : function(req,status,error){
 				alert("문자 발송을 실패했습니다.");
@@ -298,5 +345,10 @@
 		});
 		
 	}
+	
+	
+	
+	
+	
 </script>
 </html>

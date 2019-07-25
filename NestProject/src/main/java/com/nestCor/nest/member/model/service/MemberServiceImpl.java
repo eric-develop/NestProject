@@ -20,8 +20,8 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public Member selectMember(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return mDao.selectMember(userId);
 	}
 
 	@Override
@@ -52,6 +52,18 @@ public class MemberServiceImpl implements MemberService {
 	public Member searchId(Member m) {
 		
 		return mDao.searchId(m);
+	}
+
+	@Override
+	public Member searchPwd(Member m) {
+		
+		return mDao.searchPwd(m);
+	}
+
+	@Override
+	public int resetPwd(Member m) {
+		
+		return mDao.resetPwd(m);
 	}
 
 }
