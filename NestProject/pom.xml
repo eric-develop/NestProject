@@ -228,6 +228,11 @@
 		    <version>${org.springframework-version}</version>
 		</dependency>
        
+       <dependency>
+		  <groupId>com.twilio.sdk</groupId>
+		  <artifactId>twilio</artifactId>
+		  <version>7.40.1</version>
+	   </dependency>
 	</dependencies>
     <build>
         <plugins>

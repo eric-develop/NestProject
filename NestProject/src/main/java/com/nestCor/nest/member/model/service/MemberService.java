@@ -10,6 +10,7 @@ public interface MemberService {
 		int deleteMember(String userId);
 		int idDupCheck(String userId);
 		int nickDupCheck(String nickName);
+		Member searchId(Member m);
 		
 	
 }

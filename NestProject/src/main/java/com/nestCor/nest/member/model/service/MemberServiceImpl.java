@@ -48,4 +48,10 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.nickDupCheck(nickName);
 	}
 
+	@Override
+	public Member searchId(Member m) {
+		
+		return mDao.searchId(m);
+	}
+
 }

@@ -44,7 +44,7 @@
                     <button style="width: 150px;" type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/member/memberEnroll.do'">간편 가입하기 > </button>
             </div>
             <div id="introLogin">
-                    <button style="width: 150px;" type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/member/loginView.do'" >로그인</button>
+                    <button style="width: 150px;" type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/test/test.do'" >로그인</button>
             </div>
         </div>
 
