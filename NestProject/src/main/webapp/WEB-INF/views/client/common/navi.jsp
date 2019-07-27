@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <head>
   <meta charset="UTF-8">
   <script src="https://kit.fontawesome.com/df37f96d20.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/jquery-3.4.0.min.js"></script>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/styles.css">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -25,11 +25,11 @@
     <div id="left_navi" style="padding:0%;" class="col-md-2 col-xs-1">
       <div id="usericon">
         <i class="far fa-user-circle" style="font-size: 50px; color: #b8b8b8"></i>
-        <span style="font-size: 16px; color:#fff;">user </span>
+        <span style="font-size: 16px; color:#fff;">${member.nickName} </span>
       </div>
       
       <div id="logoutdiv">
-          <p style="color : #fff; margin-top: 10px; ">user님 안녕하세요.</p>
+          <p style="color : #fff; margin-top: 10px; ">${member.nickName}님 안녕하세요.</p>
           <button type="button" class="btn btn-secondary btn-sm" style="width: 100%;">로그아웃</button>
         </div>
       <div id="noticenav">

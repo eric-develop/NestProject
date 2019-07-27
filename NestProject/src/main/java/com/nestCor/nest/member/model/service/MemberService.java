@@ -11,6 +11,8 @@ public interface MemberService {
 		int idDupCheck(String userId);
 		int nickDupCheck(String nickName);
 		Member searchId(Member m);
+		Member searchPwd(Member m);
+		int resetPwd(Member m);
 		
 	
 }

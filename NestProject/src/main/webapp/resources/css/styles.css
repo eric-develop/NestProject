@@ -237,12 +237,13 @@ header{
     padding-top: 130px;
     
 }
+
 #loginbox h3{
     text-align: center;
     margin-bottom: 50px;
 }
-#idbox,
-#pwdbox{
+
+.idBox,.pwdBox{
     width: 300px;
     border-radius: 30px;
     padding-right: 30px;

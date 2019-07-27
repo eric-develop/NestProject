@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
 
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/styles.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.4.1.js"integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -38,14 +38,18 @@
             <img src="${pageContext.request.contextPath}/resources/images/nest_logo.png" style="width: 220px;">
         </div>
         <div id="loginbox">
-
+			
             <h3 style="font-size: 24px; padding-top: 100px;">로그인</h3>
+         
             <div id="inputbox">
-            <input id="idbox" type="email" placeholder="아이디를 입력해주세요."><br>
-            <input id="pwdbox" type="password" placeholder="비밀번호를 입력해주세요."><br>
-            <div style="width: 300px; margin: 0 auto; border-radius: 30px;">
-                <button style="width: 100%;" type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/member/memberLogin.do'">로그인</button>
-            </div>
+             <form method="post" action="${pageContext.request.contextPath}/member/memberLogin.do">   
+            
+	            <input id="loginUserId" name="userId" class="idBox" type="email" placeholder="아이디를 입력해주세요."><br>
+	            <input id="loginPassword" name="password" class="pwdBox" type="password" placeholder="비밀번호를 입력해주세요."><br>
+	            <div style="width: 300px; margin: 0 auto; border-radius: 30px;">
+	                <button style="width: 100%;" type="submit" class="btn btn-secondary">로그인</button>
+	            </div>
+         	  </form>  
             <div style="margin: 20px 20px;">
 	            <input style="margin-left: 40px;" type="checkbox" name="check" value="keeplogin"><span  style="margin-right: 20px; margin-left: 5px;">로그인 상태유지</span>
 	            <input type="checkbox" name="check" value="remembermail"><span style="margin-left: 5px;">이메일 기억하기</span>
@@ -70,10 +74,6 @@
 
 </div>
 
-
-
-       
-       
     </div>
 <script>
    $(document).ready(function() {
@@ -422,6 +422,9 @@
 		var authCheckNum = 0;   // 이메일인증 유효성 체크 통과 했는지?
 		var authNum = "";		// 인증번호 저장할 변수
 		
+
+		
+		
 			// 이메일 유효성 체크 이벤트
 			$("#userId").on("keyup",function(){
 				var userId = $(this).val();
@@ -465,7 +468,6 @@
 							 
 						 }); // ajax끝
 				
-					 
 				 }	
 
 			});

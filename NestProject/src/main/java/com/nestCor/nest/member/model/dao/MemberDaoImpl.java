@@ -14,15 +14,14 @@ public class MemberDaoImpl implements MemberDao {
 	
 	@Override
 	public int insertMember(Member m) {
-		System.out.println("dao옴");
-		System.out.println(m);
+
 		return sqlSession.insert("Member_mapper.insertMember",m);
 	}
 
 	@Override
 	public Member selectMember(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return sqlSession.selectOne("Member_mapper.selectMember",userId);
 	}
 
 	@Override
@@ -53,6 +52,19 @@ public class MemberDaoImpl implements MemberDao {
 	
 	
 		return sqlSession.selectOne("Member_mapper.searchId",m);
+	}
+
+	@Override
+	public Member searchPwd(Member m) {
+		
+		
+		return sqlSession.selectOne("Member_mapper.searchPwd",m);
+	}
+
+	@Override
+	public int resetPwd(Member m) {
+		
+		return sqlSession.update("Member_mapper.resetPwd",m);
 	}
 
 }
