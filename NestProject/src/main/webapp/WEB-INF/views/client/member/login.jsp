@@ -38,15 +38,18 @@
             <img src="${pageContext.request.contextPath}/resources/images/nest_logo.png" style="width: 220px;">
         </div>
         <div id="loginbox">
-
+			
             <h3 style="font-size: 24px; padding-top: 100px;">로그인</h3>
+         
             <div id="inputbox">
-            <input id="loginUserId" class="idBox" type="email" placeholder="아이디를 입력해주세요."><br>
-            <input id="loginPassword" class="pwdBox" type="password" placeholder="비밀번호를 입력해주세요."><br>
-            <div style="width: 300px; margin: 0 auto; border-radius: 30px;">
-                <button style="width: 100%;" type="button" class="btn btn-secondary" onclick="doLogin();">로그인</button>
-            </div>
+             <form method="post" action="${pageContext.request.contextPath}/member/memberLogin.do">   
             
+	            <input id="loginUserId" name="userId" class="idBox" type="email" placeholder="아이디를 입력해주세요."><br>
+	            <input id="loginPassword" name="password" class="pwdBox" type="password" placeholder="비밀번호를 입력해주세요."><br>
+	            <div style="width: 300px; margin: 0 auto; border-radius: 30px;">
+	                <button style="width: 100%;" type="submit" class="btn btn-secondary">로그인</button>
+	            </div>
+         	  </form>  
             <div style="margin: 20px 20px;">
 	            <input style="margin-left: 40px;" type="checkbox" name="check" value="keeplogin"><span  style="margin-right: 20px; margin-left: 5px;">로그인 상태유지</span>
 	            <input type="checkbox" name="check" value="remembermail"><span style="margin-left: 5px;">이메일 기억하기</span>
@@ -419,11 +422,7 @@
 		var authCheckNum = 0;   // 이메일인증 유효성 체크 통과 했는지?
 		var authNum = "";		// 인증번호 저장할 변수
 		
-		function doLogin(){
-			var userId = $('#loginUserId').val();
-			var password = $('#loginPassword').val();
-			location.href="${pageContext.request.contextPath}/member/memberLogin.do?userId="+ userId + "&password="+password;
-		}
+
 		
 		
 			// 이메일 유효성 체크 이벤트
