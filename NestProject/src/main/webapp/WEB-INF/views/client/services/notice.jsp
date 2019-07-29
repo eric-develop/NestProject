@@ -51,7 +51,7 @@
                         <td>2019/00/00</td>
                         <td>10</td>
                     </tr>
-
+ 
                 </tbody>
             </table>
         </div>
