@@ -30,7 +30,7 @@
       
       <div id="logoutdiv">
           <p style="color : #fff; margin-top: 10px; ">${member.nickName}님 안녕하세요.</p>
-          <button type="button" class="btn btn-secondary btn-sm" style="width: 100%;">로그아웃</button>
+          <button type="button" class="btn btn-secondary btn-sm" style="width: 100%;" onclick="doLogout();">로그아웃</button>
         </div>
       <div id="noticenav">
         <ul id="navul">
@@ -57,6 +57,11 @@
       </div>
 
     </div>
+  <script>
+   function doLogout(){
+	   location.href='${pageContext.request.contextPath}/member/logout.do';
+   }
   
+  </script>
 
     

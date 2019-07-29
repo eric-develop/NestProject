@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.nestCor.nest.member.model.service.MemberService;
 import com.nestCor.nest.member.model.vo.Member;
@@ -71,6 +72,18 @@ public class MemberController {
 			model.addAttribute("member",m);
 			
 			return url;
+	}
+	
+	@RequestMapping("/member/logout.do")
+	public String memberLogout(SessionStatus sessionStatus) {
+			
+		if(!sessionStatus.isComplete()) {
+			sessionStatus.setComplete();
+		}
+	
+		
+		return "redirect:/";
+	
 	}
 	
 	
