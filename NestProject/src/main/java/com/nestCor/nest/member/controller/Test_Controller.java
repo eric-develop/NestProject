@@ -8,6 +8,6 @@ public class Test_Controller {
 
 	@RequestMapping("/test/test.do")
 	public String testView() {
-		return "client/services/note_main";
+		return "client/services/notice";
 	}
 }

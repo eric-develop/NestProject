@@ -23,7 +23,7 @@
   
  <div id="topnavbar" >
                      <div id="up_logo">
-                    <img src="./resources/images/nest_logo.png"></div>
+                    <img src="/resources/images/nest_logo.png"></div>
                      
                      <div style="float: right; margin-top: 10px; margin-right: 20px;">
                 <button  type="button" class="btn btn-outline-secondary">노트로이동</button>

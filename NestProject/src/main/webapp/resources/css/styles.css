@@ -7,7 +7,7 @@
     height: 100%;
     float: left;
     width: 240px;
-    background: #1a1a1a;
+    background:  rgb(255, 119, 0);
     display: block;
     padding-top: 20px;
     
@@ -269,6 +269,7 @@ header{
     text-align: center;
     margin-bottom: 50px;
 }
+
 #idbox,
 #pwdbox{
     width: 300px;
@@ -310,9 +311,10 @@ header{
 
 }
 #centerbtn{
-    width: 800px;
+    width: 1200px;
     margin: 0 auto;
-    padding-top:80px;
+    padding-top:60px;
+    height: 300px;
 }
 #navul{
     list-style: none;
@@ -400,11 +402,18 @@ header{
     margin-top: 80px;
 }
 
+.btn-sm{
+    
+    background: #fff;
+    color: #969696;
 
+}
 #navli:hover{
 
-    background: #3a3a3a;
+    background: #F28B30;
     font-color: #fff;
+    cursor: pointer;
+
 }
 #help{
     margin: 0%;
@@ -500,7 +509,7 @@ header{
 }
 #navli_icon{
     font-size: 20px;
-    color: #b8b8b8 ;
+    color: #fff;
     margin-right: 10px;
 }
 #trash_list{
@@ -721,21 +730,56 @@ header{
     float: left;
     margin-top: 50px;
     padding-top: 80px;
-    border: 1px solid #f5f5f5;
-    cursor: pointer;
+    border: 1px solid #d2d2d2;
+    
     
 }
 
 #center2{
     width: 400px;
     height: 200px;
-    border: 1px solid #f5f5f5;
+    border-top: 1px solid #d2d2d2;
+    border-bottom: 1px solid #d2d2d2;
     display: inline-block;
     margin-top: 50px;
     padding-top: 80px;   
-    cursor: pointer; 
+
+}
+#center3{
+    width: 400px;
+    height: 200px;
+    border: 1px solid #d2d2d2;
+    display: inline-block;
+    margin-top: 50px;
+    padding-top: 80px;   
+
+    float: right;
 }
 
+#center1 h6,
+#center2 h6, 
+#center3 h6{
+    text-align: center;
+    border-radius: 20px;
+    background: #F28B30;
+    width: 200px;
+    height:40px;
+    color: #fff;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 10px;
+    cursor: pointer;
+}
+#center1 h6:hover,
+#center2 h6:hover, 
+#center3 h6:hover{
+
+    background: rgb(255, 119, 0);
+  
+}
+.btn-outline-secondary{
+    background: none;
+}
 
 #basic, #premium, #business{
     width: 330px;
@@ -767,7 +811,43 @@ header{
     margin: 0 auto;
     margin-top: 40px;
 }
+#footer{
+    border-top: 1px solid #969696;
+    height: 100px;
+}
+#customer_top_right_btn{
+    float: right;
+    padding-top: 10px;
+    
+    
+}
+#customer_top_right_btn button{
+    color: #fff;
+    border: 1px solid #fff;
+    
+}
+#cus_ul{
+    list-style: none;
+    padding-top: 20px;
+    padding: 20px;
+    margin: 0%;
 
+}
+#cus_ul li:hover{
+    list-style: none;
+    background: #f5f5f5;
+    
+
+}
+#cus_ul li{
+    
+    border-bottom: 1px solid #d5d5d5;
+    height: 40px;
+    padding-top: 8px;
+
+}
+    
+    
 
 
 
