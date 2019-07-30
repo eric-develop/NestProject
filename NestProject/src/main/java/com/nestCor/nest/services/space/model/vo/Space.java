@@ -17,8 +17,9 @@ public class Space implements Serializable {
 		private int spaceNo;
 		private int bizNo;
 		private String spaceName;
+		private String spaceExplain;
 		private String rightSet;
 		private Date createDate;
-	
+		private String postSpaceDir;
 	
 }

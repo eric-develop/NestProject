@@ -14,7 +14,7 @@
 <body style="height:100%;width:100%;">
   <div style="height:100%;width:100%;">
        
-<c:import url="../common/navi.jsp"/>
+ <c:import url="../../common/navi.jsp"/>
 
 
 

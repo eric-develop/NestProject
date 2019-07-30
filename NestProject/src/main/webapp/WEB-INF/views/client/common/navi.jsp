@@ -64,6 +64,11 @@
           <ul id="navul" style= "margin-top:10px;">
                <p>스페이스</p>
               <li style="cursor:pointer;" data-toggle="modal" data-target="#exampleModal">&nbsp;&nbsp;스페이스 만들기</li>
+              <c:forEach items="${spaceList}" var="sList">
+              	<li>${sList.spaceName}</li>
+              </c:forEach>
+              
+              
           </ul>
           
           
@@ -90,40 +95,39 @@
 		        </button>
 		      </div>
 		      
-		      
-		      <div class="modal-body">
+		      <form action="${pageContext.request.contextPath}/space/createSpace.do" method="post">
+		        <div class="modal-body">
+		      	
 		       	  <div class="form-group">
-			    	<input type="text" class="form-control" id="spaceName" placeholder="스페이스 이름을 입력하세요">
+			    	<input type="text" class="form-control" id="spaceName" name="spaceName" placeholder="스페이스 이름을 입력하세요">
 			  	  </div>
 			  	  
 			  	   <div class="form-group">
-			    	<input type="text" class="form-control" id="spaceExplain" placeholder="스페이스에 대한 설명을 적어주세요" style="height:60px; margin:0px;">
+			    	<input type="text" class="form-control" id="spaceExplain" name="spaceExplain" placeholder="스페이스에 대한 설명을 적어주세요" style="height:60px; margin:0px;">
 			  	   </div>
 			  	   
 			  	   <div class="form-group form-check" >
-					  <input type="checkbox" class="form-check-input" id="dirPostCheck">
+					  <input type="checkbox" class="form-check-input" id="postSpaceDir" name="postSpaceDir">
 				 	  <label class="form-check-label" for="dirPostCheck">스페이스 디렉토리에 게시</label>
 				   </div>
  				   
  				   <label>접근 권한 설정 </label>
- 				   <select class="form-control form-control-sm" id="spaceAuth">
- 				   <option>선택</option>
-				   <option>다른 사람들이 접근 권한을 요청해야합니다.</option>
-				   <option>다른 사람들이 보기 권한을 가지고 접근할 수 있습니다.</option>
-				   <option>다른 사람들이 수정 권한을 가지고 접근할 수 있습니다.</option>
-				   <option>다른 사람들이 수정 권한 및 다른 사용자 초대권한을 가지고 접근할 수 있습니다.</option>
+ 				   <select class="form-control form-control-sm" id="rightSet" name="rightSet">
+ 				   <option value="none">선택</option>
+				   <option value="A1">다른 사람들이 접근 권한을 요청해야합니다.</option>
+				   <option value="A2">다른 사람들이 보기 권한을 가지고 접근할 수 있습니다.</option>
+				   <option value="A3">다른 사람들이 수정 권한을 가지고 접근할 수 있습니다.</option>
+				   <option value="A4">다른 사람들이 수정 권한 및 다른 사용자 초대권한을 가지고 접근할 수 있습니다.</option>
 				   </select>
 
- 				   
-			  	
 		      </div>
-		      
-		     
-		      
+
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="cancelCreateSpace();">취소</button>
-		        <button type="button" class="btn btn-primary" onclick="createSpace();">만들기</button>
+		        <button type="submit" class="btn btn-primary" onclick="createSpace();">만들기</button>
 		      </div>
+		    </form>
+		      
 		    </div>
 		  </div>
 		</div>
@@ -151,9 +155,7 @@
 	   	$('#spaceAuth').val("선택");
    }
    
-  function createSpace(){
-	  location.href="${pageContext.request.contextPath}/space"
-  }
+ 
    
    
    

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Space_mapper">
+		
+		<insert id="insertSpace" parameterType="Space">
+			INSERT INTO SPACE VALUES(SEQ_SPACENO.NEXTVAL,#{bizNo},#{spaceName},#{spaceExplain},#{rightSet},#{postSpaceDir},DEFAULT)
+			
+			<selectKey keyProperty="spaceNo" resultType="_int" order="AFTER">
+				SELECT SEQ_SPACENO.CURRVAL FROM DUAL
+			</selectKey>
+		</insert>
+		
+		<insert id="insertCreateMember" parameterType="_int">
+
+			INSERT INTO SPACE_MEMBER VALUES(SEQ_SNO.NEXTVAL,#{spaceNo},#{mNo},DEFAULT,DEFAULT,DEFAULT,DEFAULT)
+		</insert>
+		
+		<select id="selectSpaceList" parameterType="_int" resultType="Space">
+			
+			SELECT * FROM SPACE WHERE BIZNO=#{bizNo}
+		</select>
+		
+</mapper>
