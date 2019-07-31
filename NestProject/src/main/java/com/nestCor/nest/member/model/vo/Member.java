@@ -10,6 +10,7 @@ public class Member implements Serializable{
 		private static final long serialVersionUID = 1000L;
 		private int mNo;
 		private int serviceNo;
+		private int bizNo;
 		private String userId;
 		private String password;
 		private String userName;
@@ -183,9 +184,16 @@ public class Member implements Serializable{
 			this.phone = phone;
 		}
 
+	
+
+		public int getBizNo() {
+			return bizNo;
+		}
 
 
-
+		public void setBizNo(int bizNo) {
+			this.bizNo = bizNo;
+		}
 
 
 

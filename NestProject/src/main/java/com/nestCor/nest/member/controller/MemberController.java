@@ -1,6 +1,7 @@
 package com.nestCor.nest.member.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,17 +12,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.nestCor.nest.member.model.service.MemberService;
 import com.nestCor.nest.member.model.vo.Member;
+import com.nestCor.nest.services.space.model.service.SpaceService;
+import com.nestCor.nest.services.space.model.vo.Space;
 
-@SessionAttributes(value="{member}")
+@SessionAttributes(value= {"member"})
 
 @Controller
 public class MemberController {
 		
 	@Autowired
 	private MemberService mService;
+	
+	@Autowired
+	private SpaceService sService;
 	
 	@Autowired
 	private BCryptPasswordEncoder pwdEncoder;
@@ -45,11 +52,13 @@ public class MemberController {
 			String msg = "";
 			System.out.println(userId);
 			Member m = mService.selectMember(userId);
+			List<Space> spaceList = null;
 			
 			if(m != null) {
 				if(pwdEncoder.matches(password, m.getPassword())) {
-					
-					url = "client/services/note_main";
+		
+					spaceList = sService.selectSpaceList(m.getBizNo());
+					url = "client/services/note/note_main";
 					
 				}else {
 					url = "/member/loginView.do";
@@ -67,10 +76,23 @@ public class MemberController {
 				model.addAttribute("url",url).addAttribute("msg",msg);
 				return "client/member/loginError";
 			}
-			
+			System.out.println("spaceList : " + spaceList);
+			if(spaceList != null) model.addAttribute("spaceList",spaceList); 
 			model.addAttribute("member",m);
 			
 			return url;
+	}
+	
+	@RequestMapping("/member/logout.do")
+	public String memberLogout(SessionStatus sessionStatus) {
+			
+		if(!sessionStatus.isComplete()) {
+			sessionStatus.setComplete();
+		}
+	
+		
+		return "redirect:/";
+	
 	}
 	
 	
