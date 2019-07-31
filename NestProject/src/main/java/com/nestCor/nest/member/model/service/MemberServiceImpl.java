@@ -1,5 +1,7 @@
 package com.nestCor.nest.member.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -64,6 +66,12 @@ public class MemberServiceImpl implements MemberService {
 	public int resetPwd(Member m) {
 		
 		return mDao.resetPwd(m);
+	}
+
+	@Override
+	public List<Member> selectBizMemberList(int bizNo) {
+		
+		return mDao.selectBizMemberList(bizNo);
 	}
 
 }

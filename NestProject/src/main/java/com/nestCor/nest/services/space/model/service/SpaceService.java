@@ -12,6 +12,7 @@ public interface SpaceService {
 		int deleteSpace(String spaceName);
 		
 		
+		
 		// 스페이스 컨텐츠 가져오는 것도 할 예정.
 		
 

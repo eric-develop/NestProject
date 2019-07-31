@@ -42,6 +42,18 @@
             문서, PDF, 사진, 동영상, 오디오 파일을 노트에 직접 끌어다 놓으세요. 서식 지정 모음에서 종이클립 아이콘을 클릭해 첨부..</p>
         </div>
       </div>
+      
+      <!------------------------------------- 메신저 테스트 영역 --------------------------------------- -->
+      	<div style="width:400px; height:400px; border: 1px solid black;">
+      		<ul>
+      			<c:forEach items="${bizMemberList}" var="bizList">
+      				<li style="cursor:pointer;">${bizList.userName}</li>
+      			</c:forEach>
+      		</ul>	
+      			
+      	</div>
+      
+      
     </div>
 
 

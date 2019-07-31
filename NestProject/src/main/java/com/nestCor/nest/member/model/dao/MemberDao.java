@@ -1,5 +1,7 @@
 package com.nestCor.nest.member.model.dao;
 
+import java.util.List;
+
 import com.nestCor.nest.member.model.vo.Member;
 
 public interface MemberDao {
@@ -12,4 +14,5 @@ public interface MemberDao {
 		Member searchId(Member m);
 		Member searchPwd(Member m);
 		int resetPwd(Member m);
+		List<Member> selectBizMemberList(int bizNo);
 } 

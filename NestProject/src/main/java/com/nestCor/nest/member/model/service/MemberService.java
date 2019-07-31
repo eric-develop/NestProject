@@ -1,5 +1,7 @@
 package com.nestCor.nest.member.model.service;
 
+import java.util.List;
+
 import com.nestCor.nest.member.model.vo.Member;
 
 public interface MemberService {
@@ -13,6 +15,7 @@ public interface MemberService {
 		Member searchId(Member m);
 		Member searchPwd(Member m);
 		int resetPwd(Member m);
+		List<Member> selectBizMemberList(int bizNo);
 		
 	
 }

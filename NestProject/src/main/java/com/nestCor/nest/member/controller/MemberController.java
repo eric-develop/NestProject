@@ -53,11 +53,13 @@ public class MemberController {
 			System.out.println(userId);
 			Member m = mService.selectMember(userId);
 			List<Space> spaceList = null;
+			List<Member> bizMemberList = null;
 			
 			if(m != null) {
 				if(pwdEncoder.matches(password, m.getPassword())) {
-		
+					
 					spaceList = sService.selectSpaceList(m.getBizNo());
+					bizMemberList = mService.selectBizMemberList(m.getBizNo());
 					url = "client/services/note/note_main";
 					
 				}else {
@@ -76,9 +78,11 @@ public class MemberController {
 				model.addAttribute("url",url).addAttribute("msg",msg);
 				return "client/member/loginError";
 			}
-			System.out.println("spaceList : " + spaceList);
-			if(spaceList != null) model.addAttribute("spaceList",spaceList); 
-			model.addAttribute("member",m);
+			
+			if(spaceList != null) model.addAttribute("spaceList",spaceList);
+			
+			model.addAttribute("member",m)
+			.addAttribute("bizMemberList",bizMemberList);
 			
 			return url;
 	}
@@ -211,6 +215,7 @@ public class MemberController {
 		
 		return map;
 	}
+	
 	
 
 	

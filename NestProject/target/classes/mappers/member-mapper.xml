@@ -32,4 +32,9 @@
 			UPDATE MEMBER SET PASSWORD=#{password} WHERE USERID=#{userId}
 		</update>
 		
+		<select id="selectBizMemberList" parameterType="_int" resultType="Member">
+			SELECT * FROM MEMBER WHERE BIZNO = #{bizNo}
+		
+		</select>
+		
 </mapper>
