@@ -243,6 +243,7 @@
         $("#space_add_id").hide();
         $("#space_delete_id").hide();
         $("#space_right_first_div").hide();
+        $("#space_cencel_id").hide();
 
      
         $("#space_edit_id").show();
