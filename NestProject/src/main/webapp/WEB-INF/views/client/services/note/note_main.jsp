@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>    
+
 <!DOCTYPE html>
 <html lang="ko" style="height:100%;width:100%;">
 
@@ -15,7 +16,7 @@
   <div style="height:100%;width:100%;">
   
    <c:import url="../../common/navi.jsp"/>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
 
     <!--=======================================노트 목록=========================================================-->
 
@@ -42,17 +43,6 @@
             문서, PDF, 사진, 동영상, 오디오 파일을 노트에 직접 끌어다 놓으세요. 서식 지정 모음에서 종이클립 아이콘을 클릭해 첨부..</p>
         </div>
       </div>
-      
-      <!------------------------------------- 메신저 테스트 영역 --------------------------------------- -->
-      	<div style="width:400px; height:400px; border: 1px solid black;">
-      		<ul>
-      			<c:forEach items="${bizMemberList}" var="bizList">
-      				<li style="cursor:pointer;">${bizList.userName}</li>
-      			</c:forEach>
-      		</ul>	
-      			
-      	</div>
-      
       
     </div>
 
@@ -94,6 +84,112 @@
 
       <!------------------------------------------------------------------------------------------------------------------------------------------>
       <div id="note" style="overflow-y: auto; height: 900px;">
+        
+         <!------------------------------------- 메신저 테스트 영역 --------------------------------------- -->
+      	<div style="width:700px; height:200px; border: 1px solid black; float:">
+      		<ul>
+      			<c:forEach items="${bizMemberList}" var="bizList">
+      				<li class="bizMembers" style="cursor:pointer;" onclick="callChatLogs('${bizList.nickName}');">${bizList.nickName}</li>
+      			</c:forEach>
+      		</ul>	
+      	</div>
+      	
+      	<div id="msgBox" style="width:700px; height:600px; border: 1px solid black; ">
+      	 	<label id="nickNameLabel"></label>
+      	 	
+      	 	<div id="chatArea" style="width:700px; height:500px; border: 1px solid tomato">
+      	 		
+      	 	</div>	
+      		
+      		<div>
+      			<textArea id="msgContent" style="width:200px; height:50px;"></textArea>
+      			<button id="sendMsg">전송</button>
+      		</div>
+      
+      </div>
+      
+  
+      <script>
+        var receiver = "";
+          
+    	  var socket = io("localhost:3000");
+
+          socket.on('connect',function(){
+              console.log('서버와 연결');
+      	  });
+    	  
+
+          function callChatLogs(nickName){
+        	 window.receiver = nickName;
+        	  $('#chatArea').children().remove();
+      		 // 기존 채팅 내역 가져오기
+      		 socket.emit('callChatLogs',{receiver: receiver, sender: '${member.nickName}'});
+      		 
+          }	 
+          	
+          
+          
+          
+           $('#sendMsg').on('click',function(){
+
+         	  msgContent = $('#msgContent').val();
+       
+         	  socket.emit('sendMsg',{msg : msgContent, sender: '${member.nickName}', receiver: receiver});
+         	  
+         	  $('#msgContent').val('');
+           });
+        
+           socket.on('serverResponse',function(data){
+        	   
+          	  $('#chatArea').append($('<div>/',{text:data.msg}));
+          	  
+            });
+       
+           socket.on('returnChatLogs',function(data){
+        	   var printHtml = "";
+        	
+        		
+        	   for(var logs in data.logs){
+        		
+        		   if(data.logs[logs].sender == '${member.nickName}'){
+       	 			printHtml+= "<div style='margin-left:70%'>" + data.logs[logs].sender  + ": <br>"+ data.logs[logs].content + "</div>";
+       	 			
+       	 			}else{	
+       	 				printHtml+= "<div style='margin-left:0%'>" + data.logs[logs].sender  + ": <br>" +data.logs[logs].content + "</div>";
+       	 			/* $('#chatArea').append($('<div>/',{text:element.content}));	 */
+       	 			}
+        	   }
+        		 $('#chatArea').append(printHtml);
+        	   
+        	   
+        	 /* 	data.logs.forEach(function(element){
+        	 		console.log(element);
+        	 	
+        	 		if(element.sender == '${member.nickName}'){
+        	 			printHtml+= "<div style='margin-left:70%'>" + element.content + "</div>";
+        	 			
+        	 		}else{	
+        	 			printHtml+= "<div style='margin-left:0%'>" + element.content + "</div>";
+        	 			/* $('#chatArea').append($('<div>/',{text:element.content}));	
+        	 		}
+        	 		 $('#chatArea').append(printHtml);
+        	 	});
+              */
+           });
+			
+
+      
+      </script>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <h4>NEST에 오신 것을 환영합니다 👋</h4>
 
 

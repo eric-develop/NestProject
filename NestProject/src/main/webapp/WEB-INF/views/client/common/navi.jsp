@@ -22,9 +22,11 @@
       crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+   	
   
 </head>
-
+	
     <div id="left_navi" style="padding:0%;" class="col-md-2 col-xs-1">
 
         <div id="usericon">
@@ -155,13 +157,8 @@
 	   	$('#spaceAuth').val("선택");
    }
    
- 
    
-   
-   
-   
-   
-   
+  
    
    
    
