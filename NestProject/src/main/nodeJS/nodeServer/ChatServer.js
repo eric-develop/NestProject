@@ -38,10 +38,13 @@ io.on('connect',function(socket){
     
   	  socket.on('sendMsg',function(data){
     	
-    	io.emit('serverResponse', {msg : data.msg});
+    	io.emit('serverResponse', {msg : data.msg, sender : data.sender, receiver:data.receiver } );
     		console.log("서버 리스폰");
+    		
+    		
     	  insertDocuments(db,data,function() {
            
+    		  
     	  });
     	
   	   });

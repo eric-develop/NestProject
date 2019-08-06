@@ -54,16 +54,17 @@
     <section id="box2" class="whitebox col-md-7 col-xs-9">
 
       <div id="top_line">
-
+      
         <!---============  클릭시 확장 div,스크립트  ==============---->
         <div style=" margin-top: 30px; display: inline-block;">
           <span id="sizeBtn" onclick="sizeChange();" style="cursor: pointer;"><i class="fas fa-expand"  style="font-size:20px; margin-right: 10px;"></i>화면
-            크게</span>
+                    크게
+          </span>
           <button type="button" class="btn btn-primary btn-sm"
             style="margin-left: 20px; background: #F28B30; border: none; color: #fff;">공유하기</button>
 
-        </div>
-        <div class="input-group mb-3" style="    width: 280px;
+	    </div>
+        <div class="input-group mb-3" style="width: 280px;
              float: right;
              margin-top: 20px;">
           <input style="width: 200px;" type="text" class="form-control" aria-label="Recipient's username"
@@ -140,8 +141,17 @@
            });
         
            socket.on('serverResponse',function(data){
-        	   
-          	  $('#chatArea').append($('<div>/',{text:data.msg}));
+        	  
+        	  if(data.sender == '${member.nickName}'){
+    
+        		 $('#chatArea').append("<div style='margin-left:70%'>" + data.sender  + " : <br> " + data.msg+ "</div>"); 
+        		 
+        	  }else{
+		  
+        		  $('#chatArea').append("<div style='margin-left:0%'>" + data.sender  + " : <br> " + data.msg+ "</div>"); 
+        	  }
+        	  
+      	  
           	  
             });
        
@@ -159,6 +169,7 @@
        	 			/* $('#chatArea').append($('<div>/',{text:element.content}));	 */
        	 			}
         	   }
+        	   
         		 $('#chatArea').append(printHtml);
         	   
         	   
