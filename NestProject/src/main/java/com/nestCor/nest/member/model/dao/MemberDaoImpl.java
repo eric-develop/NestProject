@@ -1,5 +1,7 @@
 package com.nestCor.nest.member.model.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -65,6 +67,12 @@ public class MemberDaoImpl implements MemberDao {
 	public int resetPwd(Member m) {
 		
 		return sqlSession.update("Member_mapper.resetPwd",m);
+	}
+
+	@Override
+	public List<Member> selectBizMemberList(int bizNo) {
+	
+		return sqlSession.selectList("Member_mapper.selectBizMemberList",bizNo);
 	}
 
 }
