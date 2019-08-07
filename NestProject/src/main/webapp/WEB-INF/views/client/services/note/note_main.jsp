@@ -90,7 +90,7 @@
       	<div style="width:700px; height:200px; border: 1px solid black; float:">
       		<ul>
       			<c:forEach items="${bizMemberList}" var="bizList">
-      				<li class="bizMembers" style="cursor:pointer;" onclick="callChatLogs('${bizList.nickName}');">${bizList.nickName}</li>
+      				<li class="bizMembers" style="cursor:pointer;" onclick="chatStartFn('${bizList.nickName}');">${bizList.nickName}</li>
       			</c:forEach>
       		</ul>	
       	</div>
@@ -119,8 +119,21 @@
               console.log('서버와 연결');
       	  });
     	  
-
-          function callChatLogs(nickName){
+		  // 채팅을 시작시켜주는 함수(상대방 닉네임 누르는 순간)
+          function chatStartFn(nickName){
+			  // 로그인한 사용자의 닉네임과 대화를 하고자하는 상대의 닉네임으로 RoomNo 생성 Or 조회
+        	  
+			  $.ajax({
+				 
+					url :         		  
+        		  
+        		  
+        	  })
+        	  
+        	  
+        	  
+        	  socket.emit()
+        	  
         	 window.receiver = nickName;
         	  $('#chatArea').children().remove();
       		 // 기존 채팅 내역 가져오기
