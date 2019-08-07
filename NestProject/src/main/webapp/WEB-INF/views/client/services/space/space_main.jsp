@@ -12,6 +12,34 @@
 
 <style> 
 
+@media ( min-width : 1200px;) {
+	#top_line{
+	width: 80%;
+	padding:0px 20px;
+	}
+	.whitebox{
+	width: 80%;
+	}
+	body{
+	margin: 0 auto;
+	}
+	}
+
+@media ( min-width : 400px;) {
+	#top_line{
+	width: 100%;
+	float: left;
+	padding:0px 20px;
+	}
+	.whitebox{
+	width: 100%;
+	float: left;
+	}
+	body{
+	margin: 0 auto;
+	}
+	}
+
 
 </style>
 
@@ -25,7 +53,7 @@
 		<!--===========================노트 흰색=====================================================================-->
 		
 
-			<div id="top_line" style="padding-top: 20px;" class="whitebox col-lg-10 ">
+			<div id="top_line">
 
 
 				<div style="display: inline-block;"> 
@@ -59,7 +87,7 @@
 			</div>
 			<!---=============================----------->
 
-			<section class="whitebox col-lg-10 ">
+			<section class="whitebox ">
 				<div class="row">
 				<!--left_div-->
 				<div id="space_left" class="col-lg-6 col-md-12 col-xs-12">
@@ -67,19 +95,20 @@
 					<h8 style="display:inline-block;  padding: 0px 20px 4px 10px;"> Whats news</h8>
 	<!-- - -->
 					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-						<ol class="carousel-indicators">
+						<!-- <ol class="carousel-indicators">
 
 							<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
 							<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-							<!--리스트가 7개 이상일 경우 주석을 풀고, 11개 이상일 경우 추가하면 됩니다.-->
-							<!-- <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
-						</ol>
+							리스트가 7개 이상일 경우 주석을 풀고, 11개 이상일 경우 추가하면 됩니다.
+							<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+						</ol> -->
 						<div class="carousel-inner">
 					
 							<ul class="carousel-item active col-lg-12 col-md-12 col-xs-12" id="slide_ul">
 							<!-- <img src="resources/images/nest_logo.png" class="d-block w-100" alt="..."> -->
 
 								<li class="col-md-4 col-xs-4"> 
+								<div style="width: 100%; height: 50%;">
 									<div id="news_membericon" class="rounded-circle">
 								
 										<!--=========data-intervala .carousel-item에 추가 하면 자동으로 다음 항목으로 순환하는 시간 간격을 변경합니다. -->
@@ -88,92 +117,105 @@
 									<div id="space_news_first_div">
 										<p id="space_gray_p">우리들의 소통 공간</p>
 										<p id="space_blue_p">20분전</p>
-										<!--시간, 또는 날짜-->
-										<div id="space_news_first_div2"></div>
-									</div>
-								</li>
-								<li class="col-md-4 col-xs-4">
-									<div id="news_membericon" class="rounded-circle">
-										<!--  이미지 필요-->
-
-									</div>
-									<span>Megan.R</span>
-									<div id="space_news_first_div">
-										<p id="space_gray_p">우리들의 소통 공간</p>
-										<p id="space_blue_p">20분전</p>
-										<!--시간, 또는 날짜-->
-										<div id="space_news_first_div2">
-											<!--글 또는 이미지 -->
 										</div>
-									</div>
+										</div>
+										<!--시간, 또는 날짜-->
+										<div id="space_news_first_div2"></div>
+									
 								</li>
-								<li class="col-md-4 col-xs-4">
+								
+								<li class="col-md-4 col-xs-4"> 
+								<div style="width: 100%; height: 50%;">
 									<div id="news_membericon" class="rounded-circle">
-										<!--  이미지 필요-->
-
+								
+										<!--=========data-intervala .carousel-item에 추가 하면 자동으로 다음 항목으로 순환하는 시간 간격을 변경합니다. -->
 									</div>
 									<span>Megan.R</span>
 									<div id="space_news_first_div">
 										<p id="space_gray_p">우리들의 소통 공간</p>
 										<p id="space_blue_p">20분전</p>
+										</div>
+										</div>
 										<!--시간, 또는 날짜-->
 										<div id="space_news_first_div2"></div>
+									
+								</li>
+								<li class="col-md-4 col-xs-4"> 
+								<div style="width: 100%; height: 50%;">
+									<div id="news_membericon" class="rounded-circle">
+								
+										<!--=========data-intervala .carousel-item에 추가 하면 자동으로 다음 항목으로 순환하는 시간 간격을 변경합니다. -->
 									</div>
+									<span>Megan.R</span>
+									<div id="space_news_first_div">
+										<p id="space_gray_p">우리들의 소통 공간</p>
+										<p id="space_blue_p">20분전</p>
+										</div>
+										</div>
+										<!--시간, 또는 날짜-->
+										<div id="space_news_first_div2"></div>
+									
 								</li>
 								
 								</ul>
-							<div class="carousel-item">
+							
 								<ul class="carousel-item active col-lg-12 col-md-12 col-xs-12" id="slide_ul">
 									<!-- <img src="resources/images/nest_logo.png" class="d-block w-100" alt="..."> -->
 
-									<li class="col-md-4 col-xs-4">
-										<div id="news_membericon" class="rounded-circle">
-											<!--  이미지 필요-->
-
+									<li class="col-md-4 col-xs-4"> 
+								<div style="width: 100%; height: 50%;">
+									<div id="news_membericon" class="rounded-circle">
+								
+										<!--=========data-intervala .carousel-item에 추가 하면 자동으로 다음 항목으로 순환하는 시간 간격을 변경합니다. -->
+									</div>
+									<span>Megan.R</span>
+									<div id="space_news_first_div">
+										<p id="space_gray_p">우리들의 소통 공간</p>
+										<p id="space_blue_p">20분전</p>
 										</div>
-										<span>Megan.R</span>
-										<div id="space_news_first_div">
-											<p id="space_gray_p">우리들의 소통 공간</p>
-											<p id="space_blue_p">20분전</p>
-											<!--시간, 또는 날짜-->
-											<div id="space_news_first_div2"></div>
 										</div>
-									</li>
-									<li class="col-md-4 col-xs-4">
-										<div id="news_membericon" class="rounded-circle">
-											<!--  이미지 필요-->
-
+										<!--시간, 또는 날짜-->
+										<div id="space_news_first_div2"></div>
+									
+								</li>
+									<li class="col-md-4 col-xs-4"> 
+								<div style="width: 100%; height: 50%;">
+									<div id="news_membericon" class="rounded-circle">
+								
+										<!--=========data-intervala .carousel-item에 추가 하면 자동으로 다음 항목으로 순환하는 시간 간격을 변경합니다. -->
+									</div>
+									<span>Megan.R</span>
+									<div id="space_news_first_div">
+										<p id="space_gray_p">우리들의 소통 공간</p>
+										<p id="space_blue_p">20분전</p>
 										</div>
-										<span>Megan.R</span>
-										<div id="space_news_first_div">
-											<p id="space_gray_p">우리들의 소통 공간</p>
-											<p id="space_blue_p">20분전</p>
-											<!--시간, 또는 날짜-->
-											<div id="space_news_first_div2">
-												<!--글 또는 이미지 -->
-											</div>
 										</div>
-                                    </li>
-                                    <li class="col-md-4 col-xs-4" >
-										<div id="news_membericon" class="rounded-circle">
-											<!--  이미지 필요-->
-
+										<!--시간, 또는 날짜-->
+										<div id="space_news_first_div2"></div>
+									
+								</li>
+                                    <li class="col-md-4 col-xs-4"> 
+								<div style="width: 100%; height: 50%;">
+									<div id="news_membericon" class="rounded-circle">
+								
+										<!--=========data-intervala .carousel-item에 추가 하면 자동으로 다음 항목으로 순환하는 시간 간격을 변경합니다. -->
+									</div>
+									<span>Megan.R</span>
+									<div id="space_news_first_div">
+										<p id="space_gray_p">우리들의 소통 공간</p>
+										<p id="space_blue_p">20분전</p>
 										</div>
-										<span>Megan.R</span>
-										<div id="space_news_first_div">
-											<p id="space_gray_p">우리들의 소통 공간</p>
-											<p id="space_blue_p">20분전</p>
-											<!--시간, 또는 날짜-->
-											<div id="space_news_first_div2"></div>
 										</div>
-									</li>
+										<!--시간, 또는 날짜-->
+										<div id="space_news_first_div2"></div>
+									
+								</li>
 								</ul>
 						
 
 					
 
-						</div>
-						
+										
 						
 						
 						
@@ -397,7 +439,7 @@
   </div>
 
 	<!--=================하단 노트목록 ======================================-->
-<div id="space_note_table" class="col-lg-12 col-md-12 col-xs-12">
+<div id="space_note_table" class="col-lg-12">
                 <p style="display: inline-block;    margin-top: 50px; ;font-weight: 500;"><i class="fas fa-heart" style="margin-right: 10px;"></i>함께쓰는 공유 노트</p>
                 <!--새노트-->
                     <div style="float: right; margin-top: 50px; cursor: pointer;">
