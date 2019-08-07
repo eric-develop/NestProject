@@ -35,23 +35,23 @@ client.connect(function(err) {
 io.on('connect',function(socket){
     console.log("새로운 클라이언트가 서버에 들어왔습니다.");
 
-    
-  	  socket.on('sendMsg',function(data){
     	
-    	io.emit('serverResponse', {msg : data.msg, sender : data.sender, receiver:data.receiver } );
-    		console.log("서버 리스폰");
-    		
-    		
+      // 메세지 전송 이벤트 발생시
+  	  socket.on('sendMsg',function(data){
+    	// 상대방과 자신의 채팅창에 전송 메세지를 띄우기 위한 이벤트
+  		
+    	io.to(data.roomNo).emit('serverResponse', {msg : data.msg, sender : data.sender, receiver:data.receiver } );
+    	
+    		// DB에 채팅 내역 저장
     	  insertDocuments(db,data,function() {
            
     		  
     	  });
     	
   	   });
-  		
+  	   // 상대방과의 채팅로그 요청하는 이벤트 발생 시
   	   socket.on('callChatLogs',function(data){
   
-  		 
   		   findDocuments(db,data,function(logs){
   			  console.log("보내는 로그들 : " + logs);
   			 socket.emit('returnChatLogs',{logs:logs});
@@ -81,19 +81,15 @@ io.on('connect',function(socket){
         
     	// Use connect method to connect to the Server
     
-
-  
+  	// 상대방과 채팅을 시작하려 할때 이벤트 리스폰
+    socket.on('joinRoom',function(data){
     
+    	var roomNo = data;
+        socket.join(data.roomNo);
+      
+    });
     
-//    socket.on('joinRoom',function(data){
-//        var room;
-//        socket.leave(room);
-//        room = data.room;
-//        socket.join(room);
-//        socket.emit('roomChange',{room : room});
-//
-//    });
-    
+  	// 소켓 접속 해제 시 
     socket.on('disconnect',function(){
     	
         console.log('클라이언트 접속 종료');

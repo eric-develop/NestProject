@@ -7,24 +7,29 @@
 		
 		<insert id="insertSpace" parameterType="Space">
 			INSERT INTO SPACE VALUES(SEQ_SPACENO.NEXTVAL,#{bizNo},#{spaceName},#{spaceExplain},#{rightSet},#{postSpaceDir},DEFAULT)
-		
+			
 			<selectKey keyProperty="spaceNo" resultType="_int" order="AFTER">
 				SELECT SEQ_SPACENO.CURRVAL FROM DUAL
 			</selectKey>
-		
-		
 		</insert>
 		
-
 		<insert id="insertCreateMember" parameterType="_int">
 
 			INSERT INTO SPACE_MEMBER VALUES(SEQ_SNO.NEXTVAL,#{spaceNo},#{mNo},DEFAULT,DEFAULT,DEFAULT,DEFAULT)
 		</insert>
 		
-		
 		<select id="selectSpaceList" parameterType="_int" resultType="Space">
 			
 			SELECT * FROM SPACE WHERE BIZNO=#{bizNo}
 		</select>
+		
+		<select id="selectChatRoomNo" parameterType="ChatRoom" resultType="ChatRoom">
+			
+			SELECT ROOMNO FROM CHATROOM WHERE CHATTERS LIKE CONCAT('%',CONCAT(#{chatter1},'%')) AND CHATTERS LIKE CONCAT('%',CONCAT(#{chatter2},'%'))
+		</select>
+		
+		<insert id="createChatRoomNo" parameterType="ChatRoom">
+			INSERT INTO CHATROOM VALUES(SEQ_ROOMIDX.NEXTVAL,#{chatters},DEFAULT,SEQ_ROOMNO.NEXTVAL)
+		</insert>
 		
 </mapper>
