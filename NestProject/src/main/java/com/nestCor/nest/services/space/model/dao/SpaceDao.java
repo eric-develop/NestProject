@@ -2,6 +2,7 @@ package com.nestCor.nest.services.space.model.dao;
 
 import java.util.List;
 
+import com.nestCor.nest.services.space.model.vo.ChatRoom;
 import com.nestCor.nest.services.space.model.vo.Space;
 
 public interface SpaceDao {
@@ -10,4 +11,6 @@ public interface SpaceDao {
 	List<Space> selectSpaceList(int bizNo);
 	int updateSpace(Space space);
 	int deleteSpace(String spaceName);
+	ChatRoom selectChatRoomNo(ChatRoom chatRoom);
+	int createChatRoomNo(ChatRoom chatRoom);
 }

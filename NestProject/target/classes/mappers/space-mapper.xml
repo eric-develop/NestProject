@@ -23,4 +23,13 @@
 			SELECT * FROM SPACE WHERE BIZNO=#{bizNo}
 		</select>
 		
+		<select id="selectChatRoomNo" parameterType="ChatRoom" resultType="ChatRoom">
+			
+			SELECT ROOMNO FROM CHATROOM WHERE CHATTERS LIKE CONCAT('%',CONCAT(#{chatter1},'%')) AND CHATTERS LIKE CONCAT('%',CONCAT(#{chatter2},'%'))
+		</select>
+		
+		<insert id="createChatRoomNo" parameterType="ChatRoom">
+			INSERT INTO CHATROOM VALUES(SEQ_ROOMIDX.NEXTVAL,#{chatters},DEFAULT,SEQ_ROOMNO.NEXTVAL)
+		</insert>
+		
 </mapper>
