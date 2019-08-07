@@ -8,9 +8,16 @@
 <c:import url="../../common/head.jsp">
 	<c:param name="titleName" value="스페이스" />
 </c:import>
+<head>
 
+<style> 
+
+
+</style>
+
+</head>
 <body style="height: 100%; width: 100%;" >
-	<div id="p_div">
+
 		<c:import url="../../common/navi.jsp" />
 
 
@@ -18,10 +25,10 @@
 		<!--===========================노트 흰색=====================================================================-->
 		
 
-			<div id="top_line" style="padding-top: 20px;" class="whitebox col-lg-10 col-md-10 col-xs-11">
+			<div id="top_line" style="padding-top: 20px;" class="whitebox col-lg-10 ">
 
 
-				<div style="display: inline-block;">
+				<div style="display: inline-block;"> 
 					<h5>노트북</h5>
 					<p >내 노트북 목록</p>
 
@@ -52,7 +59,7 @@
 			</div>
 			<!---=============================----------->
 
-			<section class="whitebox col-lg-10 col-md-10 col-xs-11">
+			<section class="whitebox col-lg-10 ">
 				<div class="row">
 				<!--left_div-->
 				<div id="space_left" class="col-lg-6 col-md-12 col-xs-12">
@@ -459,6 +466,14 @@
 
             </div>
 	</section>
-	</div>
+	
+<script type="text/javascript">
+$(document)[0].scrollingElement.on('change', function(){
+	if ( $(document)[0].scrollingElement.scrollWidth >= 1200) {
+		$('#left_navi').css('height', $(document)[0].scrollingElement.scrollHeight);
+	}
+});
+</script>
+	
 </body>
 </html>
