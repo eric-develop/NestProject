@@ -6,9 +6,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nestCor.nest.member.model.vo.Member;
 import com.nestCor.nest.services.space.model.service.SpaceService;
+import com.nestCor.nest.services.space.model.vo.ChatRoom;
 import com.nestCor.nest.services.space.model.vo.Space;
 
 @Controller
@@ -48,5 +51,18 @@ public class SpaceController {
 		return url;
 	}
 	
+	@RequestMapping("/space/selectChatRoomNo.do")
+	@ResponseBody
+	public int selectChatRoomNo(@RequestParam("chatter1") String chatter1,@RequestParam("chatter2") String chatter2) {
+		
+		ChatRoom chatRoom = new ChatRoom();
+		chatRoom.setChatter1(chatter1);
+		chatRoom.setChatter2(chatter2);
+		chatRoom.setChatters(String.join(",", chatter1,chatter2));
+		
+		int roomNo = sService.selectChatRoomNo(chatRoom);
+		
+		return roomNo;
+	}
 	
 }

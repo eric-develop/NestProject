@@ -23,6 +23,7 @@ public class Member implements Serializable{
 		private String phone;
 		private Date expir_Date;
 		private Date enrollDate;
+	
 		public Member() {
 		
 		}
@@ -163,9 +164,20 @@ public class Member implements Serializable{
 			this.enrollDate = enrollDate;
 		}
 
+
+
+
+
+
+
 		public String getPhone() {
 			return phone;
 		}
+
+
+
+
+
 
 
 		public void setPhone(String phone) {
@@ -182,13 +194,6 @@ public class Member implements Serializable{
 		public void setBizNo(int bizNo) {
 			this.bizNo = bizNo;
 		}
-
-
-		
-
-
-
-
 
 
 

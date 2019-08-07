@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nestCor.nest.member.model.vo.Member;
 import com.nestCor.nest.services.space.model.dao.SpaceDao;
+import com.nestCor.nest.services.space.model.vo.ChatRoom;
 import com.nestCor.nest.services.space.model.vo.Space;
 
 @Service
@@ -45,6 +45,26 @@ public class SpaceServiceImpl implements SpaceService {
 	public int deleteSpace(String spaceName) {
 
 		return 0;
+	}
+
+
+	@Override
+	public int selectChatRoomNo(ChatRoom chatRoom) {
+		int roomNo = 0;
+		// 기존에 형성되어있는 ChatRoom이 있는지 확인
+		ChatRoom resultRoom = sDao.selectChatRoomNo(chatRoom);
+		
+		// 없다면?
+		if(resultRoom == null) {
+			// ChatRoom 생성
+			int result = sDao.createChatRoomNo(chatRoom);
+			// 새로만든 방 번호 가져옴
+			if(result > 0) resultRoom = sDao.selectChatRoomNo(chatRoom);		
+		}
+		
+		roomNo = resultRoom.getRoomNo();
+		
+		return roomNo;
 	}
 
 }

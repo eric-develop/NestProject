@@ -56,7 +56,7 @@
             <li id="navli">&nbsp;&nbsp;<i id="navli_icon" class="fas fa-caret-up"></i>업그레이드</li>
             <!---새창 오픈-->
            <!--  <a href="community.html" target="_blank" style="list-style:none; text-decoration: none; color: #fff;"> -->
-              <li id="navli">&nbsp;&nbsp;<i  id="navli_icon" class="fas fa-comment"></i>커뮤니티</li>
+              <li id="navli" onclick="location.href='${pageContext.request.contextPath}/board/board.do'">&nbsp;&nbsp;<i id="navli_icon" class="fas fa-comment"></i>커뮤니티</li>
           
   
           </ul>
