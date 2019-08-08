@@ -217,7 +217,7 @@ var height;
 
     <div id="second_container" value="slide">
       <div id="sc1" style="border-bottom: 1px solid #1a1a1a; padding: 14px;">
-        <h5 id="toptext">휴지통</h5>
+        <h5 id="toptext">${nbtitle}</h5>
         <p id="sclist">0개의 노트</p>
       </div>
       <div id="sc2">
@@ -248,6 +248,10 @@ var height;
 	</ul>
  </div>
 
+
+
+
+
     <!--===========================노트 흰색=====================================================================-->
     <div id="body_div">
     <div id="top_line">
@@ -256,12 +260,10 @@ var height;
         <div style=" margin-top: 30px; display: inline-block;">
           <span style="padding-left:20px;" id="sizeBtn" onclick="sizeChange();" style="cursor: pointer;"><i class="fas fa-expand"  style="font-size:20px; margin-right: 10px;"></i>화면
             크게</span>
-          <button type="button" onclick="deleteAllTrash();" class="btn btn-primary btn-sm"
-            style="margin-left: 20px; background: #F28B30; border: none; color: #fff;">전체삭제하기</button>
-		  <button class="btn" onclick="deleteOneTrash();" 
-		  style="margin-left: 20px; background: #F28B30; border: none; color: #fff;">삭제하기</button>
-		  <button class="btn" onclick="restoreTrash();" 
-		  style="margin-left: 20px; background: #F28B30; border: none; color: #fff;">복원하기</button>
+          <button type="button" class="btn btn-primary btn-sm"
+            style="margin-left: 20px; background: #F28B30; border: none; color: #fff;">공유하기</button>
+		  <button class="btn" onclick="saveNote()" style="margin-left: 20px; background: #F28B30; border: none; color: #fff;">저장하기</button>
+		  <button class="btn" onclick="goTrash()" style="margin-left: 20px; background: #F28B30; border: none; color: #fff;">삭제하기</button>
         </div>
         <div class="input-group mb-3" style="    width: 280px;
              float: right;
@@ -388,7 +390,6 @@ $(window).on('resize', function(){
 				data:{nno:i},
 				dataType:'json',
 				success:function(data){
-					obj=obj;
 					$('#ntitle').val(data.ntitle);
 					if(find) $('#ncontent').html(data.ncontent);
 					else tinyMCE.activeEditor.setContent(data.ncontent);
@@ -431,12 +432,12 @@ $(window).on('resize', function(){
 			}
 		});
 	}
-function restoreTrash(){
+function goTrash(){
 		
 		$.ajax({
-			url:'${pageContext.request.contextPath}/note/restoreTrash.do',
+			url:'${pageContext.request.contextPath}/notebook/trashGo.do',
 			type: 'POST',
-			data:{nno:i,trashcan:"N"},
+			data:{nno:i,trashcan:"Y"},
 			dataType:'json',
 			success:function(data){
 				if(data){
@@ -452,45 +453,6 @@ function restoreTrash(){
 			}
 		});
 	}
-function deleteOneTrash(){
-	$.ajax({
-		url:'${pageContext.request.contextPath}/note/deleteOneTrash.do',
-		type: 'POST',
-		data:{nno:i},
-		dataType:'json',
-		success:function(data){
-			
-				obj.parent().remove();
-				$('.noteCheck').eq(0).prop('checked',true);
-				check($('.noteCheck').eq(0).prop('checked'),$('.noteCheck').eq(0));
-					
-			
-		},error : function(request,status,error){
-		    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-		}
-	});
-}
-
-function deleteAllTrash(){
-	$.ajax({
-		url:'${pageContext.request.contextPath}/note/deleteAllTrash.do',
-		type: 'POST',
-		data:{mno:${member.mNo}},
-		dataType:'json',
-		success:function(data){
-			if(data){
-				//alert("삭제성공");
-				$('.noteCheck').parent().remove();
-			}else{
-				alert("삭제실패");}				
-			
-		},error : function(request,status,error){
-		    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-		}
-	});
-}
-
-
 	</script>
 </body>
 

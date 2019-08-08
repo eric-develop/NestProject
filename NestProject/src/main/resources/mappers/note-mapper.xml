@@ -14,7 +14,7 @@
 	</insert>
 	
 	<select id="noteDetail" parameterType="_int" resultType="note">
-		SELECT * FROM NOTE WHERE NNO = #{nno} AND MNO = 1
+		SELECT * FROM NOTE WHERE NNO = #{nno}
 	</select>
 	
 	<select id="selectOneNote" parameterType="_int" resultMap="note"> 

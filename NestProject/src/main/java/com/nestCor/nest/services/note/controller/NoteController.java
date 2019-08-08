@@ -13,13 +13,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.nestCor.nest.services.note.model.service.NoteService;
 import com.nestCor.nest.services.note.model.vo.Note;
 
+
 @Controller
 public class NoteController {
+	
 	
 	@Autowired
 	NoteService noteService;
@@ -29,6 +32,21 @@ public class NoteController {
 		return "client/services/note/index";
 	}
 	
+	@RequestMapping("/note/nShare.do")
+	public String noteShare() {
+		return "client/services/note/note_file_share";
+	}
+	
+	@RequestMapping("/note/tag.do")
+	public String tag() {
+		return "client/services/note/note_tag";
+	}
+	
+	
+	
+	
+	
+	
 	@RequestMapping("/note/newNote.do")
 	public String newNote() {
 		return "client/services/note/finalTemplate";
@@ -36,11 +54,12 @@ public class NoteController {
 	
 	@RequestMapping("/note/noteDetail.do")
 	@ResponseBody
-	public Note noteDetail(@RequestParam("nno") int nno, Model model) {
+	public Note noteDetail(@RequestParam("nno") int nno) {
 		Note note = new Note();
 		
 		note = noteService.noteDetail(nno);
-		System.out.println("들어옴");
+		
+		System.out.println(note+"들어옴");
 		return note;
 	}
 	
@@ -56,13 +75,12 @@ public class NoteController {
 		boolean check;
 		if(result>0) check=true;
 		else check=false;
-		
 		return check;
 	}
 	
 	
 	@RequestMapping("/note/note.do")
-	public String selectListNote(@RequestParam("mno") int mno, @RequestParam("yn") String yn, Model model) {
+	public String selectListNote(@RequestParam("mno") int mno, @RequestParam("trashcan") String yn, Model model) {
 		
 		Note note = new Note(mno,yn);
 		System.out.println(note);
@@ -72,8 +90,8 @@ public class NoteController {
 		
 		model.addAttribute("list",list);
 		String path;
-		if(yn.equals("Y")) path="client/services/note/trashView";
-		else path="client/services/note/noteview";
+		if(yn.equals("Y")) path="client/services/note/note_trashcan";
+		else path="client/services/note/note_main";
 		
 		return path;
 	}
@@ -130,33 +148,36 @@ public class NoteController {
 	
 	
 	@RequestMapping("/note/deleteOneTrash.do")
-	public String deleteOneTrash(@RequestParam int nno, Model model) {
+	@ResponseBody
+	public Boolean deleteOneTrash(@RequestParam int nno) {
 		System.out.println("delete 전 확인 : " + nno);
 		int result = noteService.deleteOneTrash(nno);
-		if(result>0) System.out.println("삭제 완료");
-		else System.out.println("삭제 실패");
-		
-		Note note = new Note(1,"Y");
-		System.out.println(note);
-		List<Note> list = noteService.selectListNote(note);
-		model.addAttribute("list", list);
-		return "client/services/note/trashView";
+		boolean tf;
+		if(result>0) tf=true;
+		else tf=false;
+
+		return tf;
 	}
 	
 	@RequestMapping("/note/deleteAllTrash.do")
-	public String deleteAllTrash(@RequestParam int mno) {
+	@ResponseBody
+	public boolean deleteAllTrash(@RequestParam int mno) {
 		System.out.println("mno 확인 : "+mno);
 		int result = noteService.deleteAllTrash(mno);
 		
-		if(result>0) System.out.println("전체삭제 완료");
-		else System.out.println("전체삭제 실패");
+		boolean tf;
+		if(result>0) tf=true;
+		else tf=false;
 		
-		return "client/services/note/trashView";
+		
+		
+		return tf;
 	}
 	
 	
 	@RequestMapping("/note/restoreTrash.do")
-	public String restoreTrash(@RequestParam("nno") int nno, @RequestParam("trashcan") String trashcan, Model model) {
+	@ResponseBody
+	public boolean restoreTrash(@RequestParam("nno") int nno, @RequestParam("trashcan") String trashcan) {
 		Note note = new Note();
 		note.setNno(nno);
 		note.setTrashcan(trashcan);
@@ -168,12 +189,11 @@ public class NoteController {
 		List<Note> list = noteService.selectListNote(note2);
 		System.out.println("list : "+list);
 		
-		if(result>0) System.out.println("노트로 이동");
-		else System.out.println("이동 실패");
-		
-		model.addAttribute("list",list);
-		
-		return "client/services/note/trashView";
+		boolean tf;
+		if(result>0) tf=true;
+		else tf=false;
+
+		return tf;
 	}
 	
 	@RequestMapping(value = "/a/images", method = RequestMethod.POST)
@@ -186,7 +206,7 @@ public class NoteController {
 	    return "{\"location\":\"" + filePath + "\"}";
 
 	}
-	@RequestMapping(value = "/a/files", method = RequestMethod.POST)
+	@RequestMapping(value = "/a/files", method = RequestMethod.POST, produces = "application/String; charset=utf8")
 	@ResponseBody
 	public String handleTinyMCEUpload2(@RequestParam("files") MultipartFile files[],HttpSession session) {
 	    System.out.println("uploading______________________________________MultipartFile " + files.length);

@@ -1,17 +1,213 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>    
 <!DOCTYPE html>
 <html lang="ko" style="height:100%;width:100%;">
+<head>
+<c:import url="../../common/head.jsp">
+	<c:param name="titleName" value="휴지통" />
+</c:import>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+<script src="https://cdn.tiny.cloud/1/thfe5r10bknp9pbzrorb1rah5doyys51i6hsjncezu0tpruv/tinymce/5/tinymce.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/ko_KR.js"></script>
 
- 
-  <title>노트</title>
+<style>
+@media ( min-width : 1200px) {
+	
+#second_container{
+    box-sizing: border-box;
+    direction: ltr;
+    height:100%;
+    position: relative;
+    width: 20%;
+    will-change: transform;
+    
+    background: #f5f5f5;
+    display: block;
+    float: left;
+    padding: 0%;
+}.whitebox2{
+	width: 65%;
+	display: inline-block;
+}.whitebox2_wide{
+	width: 85%;
+	display: inline-block;
+}#note{
+height:auto;
+padding:20px;
+width:100%;
+overflow-y:auto;
+}
+#whitebox_footer{
+bottom: 0; 
+position: fixed;
+display: inline-block;
+height: 50px;
+border-top: #d1d1d1 1px solid;
+width: 100%;
+background: #fff;
+}#body_div{
+height: auto;
+}
+}
+	
+	
+@media ( min-width : 400px) {
+	
+#second_container{
+    box-sizing: border-box;
+    direction: ltr;
+    height:100%;
+    position: relative;
+    width: 20%;
+    will-change: transform;
+    
+    background: #f5f5f5;
+    display: block;
+    float: left;
+    padding: 0%;
+}.whitebox2{
+	width: 65%;
+	display: inline-block;
+}
+#whitebox_footer{
+bottom: 0; 
+position: fixed;
+display: inline-block;
+height: 50px;
+border-top: #d1d1d1 1px solid;
+width: 100%;
+background: #fff;
+}#body_div{
+}
+}
+</style>
+<script>
+var height;
+	$(function(){
+		var i = $('#text').css('height');
+		var arr = i.split('p');
+		
+		console.log(arr[0]);
+		height=arr[0]-2;
+		console.log(height);
+		tinymce.init({
+			  selector:'textarea',
+			  language : 'ko_KR',
+			  height: height,
+			  plugins: [
+			    'link image imagetools table code'
+			  ],
+			  menubar:false,
+			  toolbar: 'undo redo styleselect fontselect fontsizeselect bold italic alignleft aligncenter alignright alignjustify code table imageupload fileupload',
+			  allow_script_urls: true,
+			  content_css:"https://use.fontawesome.com/releases/v5.2.0/css/all.css",
+			  extended_valid_elements: "button[class|id|onclick],script[src|async|defer|type|charset],div,span[*],i[*]",
+			  setup: function(editor) {
+				  
+	              // create input and insert in the DOM
+	              var inp2 = $('<input id="tinymce-uploader" type="file" name="pic" style="display:none">');
+	              $(editor.getElement()).parent().append(inp2);
+	              var inp = $('<input id="tinymce-uploader" type="file" name="pic" accept="image/*" style="display:none">');
+	              $(editor.getElement()).parent().append(inp);
 
+	              // add the image upload button to the editor toolbar
+	              editor.ui.registry.addButton('imageupload', { 
+	                icon: 'image',
+	                onAction: function(e) { // when toolbar button is clicked, open file select modal
+	                  inp.trigger('click');
+	                }
+	              });
+	              
+	              editor.ui.registry.addButton('fileupload', { 
+	                icon: 'save',
+	                onAction: function(e) { // when toolbar button is clicked, open file select modal
+	                  inp2.trigger('click');
+	                }
+	              });
+	              
+	              // when a file is selected, upload it to the server
+	              inp.on("change", function(e){
+	                uploadImage($(this), editor);
+	              });
+				  
+	              inp2.on("change", function(e){
+	                uploadFile($(this), editor);
+	              });
+	              
+	            function uploadImage(inp, editor) {
+	              var input = inp.get(0);
+	              var data = new FormData();
+	              data.append('files', input.files[0]);
+	              var scriptLoader = new tinymce.dom.ScriptLoader();
+	              
+	              $.ajax({
+	                url: '${pageContext.request.contextPath}/a/images',
+	                type: 'POST',
+	                data: data,
+	                enctype: 'multipart/form-data',
+	                dataType : 'json',
+	                processData: false, // Don't process the files
+	                contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+	                content_css:"",
+	                success: function(data, textStatus, jqXHR) {
+	                  editor.insertContent('<img class="content-img" src="${pageContext.request.contextPath}' + data.location + '" data-mce-src="${pageContext.request.contextPath}' + data.location + '" />');
+	                  
+	                },
+	                error: function(jqXHR, textStatus, errorThrown) {
+	                  if(jqXHR.responseText) {
+	                    errors = JSON.parse(jqXHR.responseText).errors
+	                    alert('Error uploading image: ' + errors.join(", ") + '. Make sure the file is an image and has extension jpg/jpeg/png.');
+	                  }
+	                }
+	              });
+	            }
+	            
+	            function uploadFile(inp, editor) {
+	              var input = inp.get(0);
+	              var data = new FormData();
+	              data.append('files', input.files[0]);
+	              var scriptLoader = new tinymce.dom.ScriptLoader();
+	              
+	              $.ajax({
+	                url: '${pageContext.request.contextPath}/a/files',
+	                type: 'POST',
+	                data: data,
+	                enctype: 'multipart/form-data',
+	                dataType : 'json',
+	                processData: false, // Don't process the files
+	                contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+	                success: function(data, textStatus, jqXHR) {
+	                	var file=data.location.split('/');
+	                	console.log(file[file.length-1]);
+	                	var fileName=file[file.length-1];
+	                	
+	                  editor.insertContent('<a href="${pageContext.request.contextPath}'+data.location+'" style="color:gray;font-weight:normal;"><i class="far fa-file-archive"></i> '+fileName+' </a>');
+	                  
+	                },
+	                error: function(jqXHR, textStatus, errorThrown) {
+	                  if(jqXHR.responseText) {
+	                    errors = JSON.parse(jqXHR.responseText).errors
+	                    alert('Error uploading image: ' + errors.join(", ") + '. Make sure the file is an image and has extension jpg/jpeg/png.');
+	                  }
+	                }
+	              });
+	            }
+	            
+	            
+	            
+	      }
+				
+		
+			  });
+	});
 
-
-<body style="height:100%;width:100%;">
-  <div style="height:100%;width:100%;">
+</script>    
+</head>
+<body style="height:100%; width:100%;">
+  
   
    <c:import url="../../common/navi.jsp"/>
 
@@ -19,7 +215,7 @@
     <!--=======================================노트 목록=========================================================-->
 
 
-    <div id="second_container"  value="slide">
+    <div id="second_container" value="slide">
       <div id="sc1" style="border-bottom: 1px solid #1a1a1a; padding: 14px;">
         <h5 id="toptext">모든 노트</h5>
         <p id="sclist">0개의 노트</p>
@@ -34,31 +230,36 @@
           </span>
         </div>
       </div>
-      <div id="sc3">
-        <div style="padding:10px;">
-          <p>첨부파일의 놀라움
-
-            문서, PDF, 사진, 동영상, 오디오 파일을 노트에 직접 끌어다 놓으세요. 서식 지정 모음에서 종이클립 아이콘을 클릭해 첨부..</p>
-        </div>
-      </div>
-    </div>
-
-
-
-
+      <style>
+      	li{
+      		list-style:none;
+      	}
+      </style>
+      <ul>
+		<c:forEach var="note" items="${list}" varStatus="status">
+			<li>
+				<div id="sc3">
+				<input class="noteCheck" type="checkbox" value="${note.nno}"/>
+				<b>${note.ntitle}</b>
+					<br />
+				</div>
+			</li>
+		</c:forEach>
+	</ul>
+ </div>
 
     <!--===========================노트 흰색=====================================================================-->
-    <section id="box2" class="whitebox">
-
-      <div id="top_line">
+    <div id="body_div">
+    <div id="top_line">
 
         <!---============  클릭시 확장 div,스크립트  ==============---->
         <div style=" margin-top: 30px; display: inline-block;">
-          <span id="sizeBtn" onclick="sizeChange();" style="cursor: pointer;"><i class="fas fa-expand"  style="font-size:20px; margin-right: 10px;"></i>화면
+          <span style="padding-left:20px;" id="sizeBtn" onclick="sizeChange();" style="cursor: pointer;"><i class="fas fa-expand"  style="font-size:20px; margin-right: 10px;"></i>화면
             크게</span>
           <button type="button" class="btn btn-primary btn-sm"
             style="margin-left: 20px; background: #F28B30; border: none; color: #fff;">공유하기</button>
-
+		  <button class="btn" onclick="saveNote()" style="margin-left: 20px; background: #F28B30; border: none; color: #fff;">저장하기</button>
+		  <button class="btn" onclick="goTrash()" style="margin-left: 20px; background: #F28B30; border: none; color: #fff;">삭제하기</button>
         </div>
         <div class="input-group mb-3" style="    width: 280px;
              float: right;
@@ -75,117 +276,32 @@
 
 
       </div>
+    
+    <section id="box2" class="whitebox2">
+
+      
 
 
 
 
       <!------------------------------------------------------------------------------------------------------------------------------------------>
-      <div id="note" style="overflow-y: auto; height: 900px;">
-        <h4>NEST에 오신 것을 환영합니다 👋</h4>
-
-
-        <p> NEST는 노트 필기, 작업 관리, 프로젝트 진행, 자료 정리를 위한 최적의 장소입니다. 이제부터 소개해 드릴 인기 기능들을 활용해 정보를 캡처하고, 정리하고, 어디서나 액세스하세요.
-        </p>
-
-        <br><br><br><br><br>
-
-
-        <p><b>아이디어 캡처</b></p>
-        <br><br><br>
-
-        <ul style="list-style: symbols()">
-          <li>멋진 아이디어를 모두 기록하세요</li>
-          <li>좋아하는 글꼴로 노트 필기</li>
-          <li>굵은 글씨, 기울임꼴, 밑줄, 하이라이트로 텍스트를 강조하거나, 텍스트에 색상을 추가하세요.</li>
-        </ul>
-
-        <br><br><br><br><br><br><br><br>
-
-
-
-        <p><b> 할 일 목록 만들기</b></p>
-
-
-        <br><br><br>
-        <p> 체크박스와 번호 매기기 목록으로 작업을 관리하고 업무를 진행시키세요.</p>
-        <br><br><br>
-
-        1. [x]🎉 Evernote 사용 방법 알아보기
-        2. []📝 노트 만들기
-        3. []📘 노트북으로 노트를 정리하세요
-        <br><br><br><br><br><br><br>
-
-
-
-        알리미 추가
-        * Mac, Windows, iOS, Android에서 사용할 수 있습니다. www.evernote.com/download로 이동하세요.
-
-
-        작업과 마감일을 관리하세요. 알람 시계 아이콘을 클릭해 노트에 알리미를 설정하세요.
-
-
-
-
-
-
-        표 만들기
-
-
-        중요한 정보를 정리해 프로젝트를 관리하세요.
-        더 자세히 알고 싶으세요? 표에 관한 블로그 게시물을 읽어보세요.
-        세부 정보
-        Gifs
-        셀의 오른쪽 상단에서 아래 방향 화살표를 선택해 표의 서식을 지정하세요.
-
-
-        프로 팁: 셀을 병합할 수 있습니다!
-        셀 사이의 회색 점 위에 마우스를 갖다 대어 행과 열을 추가하세요.
-        표에서 행과 열을 끌어서 이동하세요.
-
-
-
-
-        노트북으로 노트 정리
-
-
-        노트북은 노트의 모음입니다. 새로운 노트는 다른 노트북을 지정하지 않는 한 기본 노트북에 저장됩니다. 추가 노트북을 만들어 주제별로 노트를 정리하세요. 다른 사람들의 노트 정리 방법을 참고하세요:
-
-
-        업무 프로젝트
-        * 프로젝트 아이디어
-        * 회의 노트
-        * 프로젝트 일정표
-        사회학 101
-        * 강의 노트
-        * 강의 계획서
-        * 에세이 안
-        뉴욕 여행
-        * 호텔 정보
-        * 항공편 정보
-        * 여행 스케줄
-
-
-
-
-        노트 공유
-
-
-        노트 오른쪽 상단 모서리의 공유 버튼을 클릭해 다른 Evernote 사용자들과 노트를 공유할 수 있습니다. 이메일이나 공유 링크를 통해서도 모든 사람과 노트를 공유할 수 있습니다.
-
-
-
-
-
-
-
-
-
-
-        질문이 있으신가요?
-
-
-        고센터에서 Nest에 관해 자세히 알아보세요.
-
+      <div id="note" style="height: 800px;">
+        <div class="Editor-Title" style="width:100%;height:7.33333%">
+			<div class="Title" style="width:100%;border-bottom:1px solid lightgray;height:100%">
+				<input type="text" id="ntitle" name="ntitle" placeholder="제목 없음" style="font-size:30px;width:100%; height:100%; border:none; padding-left:10px" />
+			</div>
+		</div>
+		<div id="text" style="overflow:auto;height:92.66666%;k">	
+				<textarea id="ncontent" name="ncontent" style="border-color:transparent"><b>테스트입니다.</b></textarea>
+		</div>
+		<style>
+			.tox-tinymce{
+				border:none;
+			}
+			.tox-toolbar__group{
+				display:none;
+			}
+		</style>
       </div>
       <div id="whitebox_footer">
         <i class="fas fa-tags" style="font-size: 20px; color: #b8b8b8 ; margin-right: 10px;"></i>
@@ -193,7 +309,7 @@
       </div>
 
     </section>
-  </div>
+    </div>
   <script>
     function sizeChange(){
           if(document.getElementById('second_container').classList.toggle('hide-element')){
@@ -201,12 +317,139 @@
           } else {
             document.getElementById('second_container').style.display = 'block';
           }
-          document.getElementById('box2').classList.toggle('col-md-7');
-          document.getElementById('box2').classList.toggle('col-md-10');
+          document.getElementById('box2').classList.toggle('whitebox2');
+          document.getElementById('box2').classList.toggle('whitebox2_wide');
     }
   </script>
 
 
+<script type="text/javascript">
+// ing functionalism
+function widthResize(){
+	if(parseInt($('#body_div').css('width')) >= 1200){
+	   $('#second_container').css('height', $('#body_div').css('height'));
+	   $('#left_navi').css('height', $('#body_div').css('height'));
+	} else {
+		$('#left_navi').css('height', '70px');
+	}
+}
+//최초 실행시 
+$(function(){
+	if(parseInt($('#body_div').css('width')) >= 1200){
+		   $('#second_container').css('height', $('#body_div').css('height'));
+		   $('#left_navi').css('height', $('#body_div').css('height'));
+		} else {
+			$('#left_navi').css('height', '70px');
+		}
+});
+// 화면 사이즈 변경시 
+$(window).on('resize', function(){
+	if(parseInt($('#body_div').css('width')) >= 1200){
+	   $('#second_container').css('height', $('#body_div').css('height'));
+	   $('#left_navi').css('height', $('#body_div').css('height'));
+	} else {
+		$('#left_navi').css('height', '70px');
+	}
+});
+</script>
+<script>
+	var find=true;
+	var i;
+	var obj;
+	$(function(){ // 처음 페이지 열 때
+		$('.noteCheck').eq(0).prop('checked',true);
+		i=$('.noteCheck').eq(0).val();
+		obj=$('.noteCheck').eq(0);
+		console.log(i+"/"+obj);
+		check($('.noteCheck').eq(0).prop('checked'),obj);
+	});
+	
+	$('.noteCheck').click(function(){ // 노트 선택 시 
+		i = $(this).val();
+		console.log(i);
+		
+		var checked = $(this).prop('checked');
+		obj = $(this);
+		console.log(checked);
+		
+		check(checked,obj);
+		
+	});
+	
+	function check(checked,obj){
+		if(checked){
+			$('.noteCheck').prop('checked', false);
+			obj.prop('checked', true);
+			
+			$.ajax({
+				url:'${pageContext.request.contextPath}/note/noteDetail.do',
+				data:{nno:i},
+				dataType:'json',
+				success:function(data){
+					$('#ntitle').val(data.ntitle);
+					if(find) $('#ncontent').html(data.ncontent);
+					else tinyMCE.activeEditor.setContent(data.ncontent);
+					find=false;
+				},error : function(request,status,error){
+    			    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+    			}
+			});
+		}
+	}
+	
+	
+	function deleteOneNote(){
+		location.href="${pageContext.request.contextPath}"
+            +"/note/goBackTrash.do?nno="+i+"&trashcan=Y";
+	}
+	
+	function deleteAllNote(){
+		location.href="${pageContext.request.contextPath}"
+            +"/note/goAllTrash.do?mno=1&trashcan=Y";
+	}
+	function saveNote(){
+		var ntitle = $('#ntitle').val();
+		var ncontent = tinyMCE.activeEditor.getContent();
+		$.ajax({
+			url:'${pageContext.request.contextPath}/note/saveNote.do',
+			type: 'POST',
+			data:{nno:i,ntitle:ntitle,ncontent:ncontent},
+			dataType:'json',
+			success:function(data){
+				if(data){
+					alert("저장성공");
+					console.log(obj.parent().children(1).text().trim());
+					obj.parent().children(1).text(ntitle);
+				}else{
+					alert("저장실패");}				
+				
+			},error : function(request,status,error){
+			    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
+		});
+	}
+function goTrash(){
+		
+		$.ajax({
+			url:'${pageContext.request.contextPath}/notebook/trashGo.do',
+			type: 'POST',
+			data:{nno:i,trashcan:"Y"},
+			dataType:'json',
+			success:function(data){
+				if(data){
+					//alert("삭제성공");
+					obj.parent().remove();
+					$('.noteCheck').eq(0).prop('checked',true);
+					check($('.noteCheck').eq(0).prop('checked'),$('.noteCheck').eq(0));
+				}else{
+					alert("삭제실패");}				
+				
+			},error : function(request,status,error){
+			    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
+		});
+	}
+	</script>
 </body>
 
 </html>

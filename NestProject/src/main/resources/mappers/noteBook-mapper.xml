@@ -29,7 +29,7 @@
 		WHERE MNO = #{mno}
 	</update>
 	
-	<update id="trashGo" parameterType="noteBook">
+	<update id="trashGo" parameterType="note">
 		UPDATE NOTE SET TRASHCAN= #{trashcan} WHERE NNO = #{nno}
 	</update>
 	

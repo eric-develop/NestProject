@@ -82,7 +82,7 @@
 	
 	function deleteAllTrash(){
 		location.href="${pageContext.request.contextPath}"
-            +"/note/deleteAllTrash.do?mno=1";
+            +"/note/deleteAllTrash.do?mno=${member.mNo}";
 	}
 	
 	function restoreTrash(){
