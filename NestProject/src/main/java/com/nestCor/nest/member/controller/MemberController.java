@@ -19,7 +19,7 @@ import com.nestCor.nest.member.model.vo.Member;
 import com.nestCor.nest.services.space.model.service.SpaceService;
 import com.nestCor.nest.services.space.model.vo.Space;
 
-@SessionAttributes(value= {"member"})
+@SessionAttributes(value= {"member","spaceList","bizMemberList"})
 
 @Controller
 public class MemberController {
