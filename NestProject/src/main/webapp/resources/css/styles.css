@@ -112,7 +112,7 @@ header{
 }
 #space_right_first_div{
 	overflow:auto;
-    background: #edeeee;
+    background: rgb(248,248,248);
     width: 100%;
     height: 316px;
     padding: 2% 2% 0% 2%;
@@ -125,8 +125,7 @@ header{
 #space_right_first_div2 {
     background: #edeeee;
     width: 100%;
-    height: 346px;
-    margin-top:20px;
+    height: 300px;
     padding: 2% 2% 0% 2%;
     display: inline-block;
     float: right;

@@ -10,7 +10,7 @@
 			
 			<selectKey keyProperty="spaceNo" resultType="_int" order="AFTER">
 				SELECT SEQ_SPACENO.CURRVAL FROM DUAL
-			</selectKey>
+			</selectKey>	
 			
 		</insert>
 		
