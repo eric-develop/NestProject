@@ -19,8 +19,7 @@
 </head>
 <body>
     
-        
-  
+
  <div id="topnavbar" >
                      <div id="up_logo">
                     <img src="/resources/images/nest_logo.png"></div>

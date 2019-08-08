@@ -11,10 +11,12 @@
 			<selectKey keyProperty="spaceNo" resultType="_int" order="AFTER">
 				SELECT SEQ_SPACENO.CURRVAL FROM DUAL
 			</selectKey>
+			
 		</insert>
 		
+		
 		<insert id="insertCreateMember" parameterType="_int">
-
+		
 			INSERT INTO SPACE_MEMBER VALUES(SEQ_SNO.NEXTVAL,#{spaceNo},#{mNo},DEFAULT,DEFAULT,DEFAULT,DEFAULT)
 		</insert>
 		
@@ -31,5 +33,24 @@
 		<insert id="createChatRoomNo" parameterType="ChatRoom">
 			INSERT INTO CHATROOM VALUES(SEQ_ROOMIDX.NEXTVAL,#{chatters},DEFAULT,SEQ_ROOMNO.NEXTVAL)
 		</insert>
+		
+		
+		<resultMap type="Note" id="NoteMap">
+		      <result column="nickName" property="nwriter"/>
+	    </resultMap>
+		
+		
+		<select id="selectNoteList" parameterType="_int" resultMap="NoteMap">
+			SELECT * FROM (SELECT NNO,NBNO,SPACENO,NTITLE,NCONTENT,NICKNAME,SHARESCOPE,TRASHCAN FROM NOTE N, MEMBER M WHERE N.MNO = M.MNO)
+		</select>
+		
+		<select id="selectNoteBookList" parameterType="_int" resultType="NoteBook">
+			SELECT * FROM NOTEBOOK WHERE SPACENO=#{spaceNo}
+		</select>
+		
+		
+		
+		
+		
 		
 </mapper>

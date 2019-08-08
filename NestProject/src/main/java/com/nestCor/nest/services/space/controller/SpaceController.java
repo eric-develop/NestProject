@@ -1,10 +1,14 @@
 package com.nestCor.nest.services.space.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -63,6 +67,19 @@ public class SpaceController {
 		int roomNo = sService.selectChatRoomNo(chatRoom);
 		
 		return roomNo;
+	}
+	
+	@RequestMapping("/space/selectOneSpace.do")
+	public String selectOneSpace(@RequestParam int spaceNo, Model model) {
+		
+        Map<String,Object> spaceContentsMap = sService.getSpaceContentsMap(spaceNo);
+        
+        System.out.println("spaceContentsMap : " + spaceContentsMap);
+
+        model.addAttribute("spaceContentsMap",spaceContentsMap);
+		
+	
+		return "client/services/space/space_main"; 
 	}
 	
 }

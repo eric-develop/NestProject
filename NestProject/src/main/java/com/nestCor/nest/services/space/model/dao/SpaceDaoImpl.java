@@ -1,12 +1,16 @@
 package com.nestCor.nest.services.space.model.dao;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.nestCor.nest.member.model.vo.Member;
+import com.nestCor.nest.services.note.model.vo.Note;
+import com.nestCor.nest.services.notebook.model.vo.NoteBook;
 import com.nestCor.nest.services.space.model.vo.ChatRoom;
 import com.nestCor.nest.services.space.model.vo.Space;
 
@@ -56,6 +60,24 @@ public class SpaceDaoImpl implements SpaceDao {
 	public int createChatRoomNo(ChatRoom chatRoom) {
 		
 		return sqlSession.insert("Space_mapper.createChatRoomNo",chatRoom);
+	}
+
+	@Override
+	public Map<String,Object> getSpaceContentsMap(int spaceNo) {
+		
+		Map<String,Object> spaceContentsMap = new HashMap<>();
+		
+		List<Note> noteList = new ArrayList<>();
+		List<NoteBook> noteBookList = new ArrayList<>();
+		
+		noteList = sqlSession.selectList("Space_mapper.selectNoteList",spaceNo);
+		noteBookList = sqlSession.selectList("Space_mapper.selectNoteBookList",spaceNo);
+		
+		spaceContentsMap.put("noteList", noteList);
+		spaceContentsMap.put("noteBookList", noteBookList);
+		
+		
+		return spaceContentsMap;
 	}
 	
 	

@@ -1,99 +1,125 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>     
+<c:import url="../../common/head.jsp"/>
 
-<head>
- 
-      <meta charset="UTF-8">
-    <script src="https://kit.fontawesome.com/df37f96d20.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/jquery-3.4.0.min.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/styles.css">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    
-   	
-  
-</head>
+
+<div id="left_navi" style="padding: 0%;" class="sidebar-sticky ">
+
+	<div id="usericon">
+		<div id="person_img_div" class="rounded-circle"></div>
+
+
+
+		<span style="font-size: 16px; color: #fff;">user </span>
+		<div id="left_nav_msg_div">
+			<i id="left_nav_msg" class="fas fa-comment"></i> <span
+				id="left_nav_msg_count"><b>2</b></span>
+			<!-- 카톡 메세지 갯수 필 -->
+		</div>
+
+
+	</div>
+	<div id="logoutdiv">
+		<button id="note_loginbtn" type="button" class="btn-sm">로그아웃</button>
+
+	</div>
+	<div id="noticenav">
 	
-    <div id="left_navi" style="padding:0%;" class="col-md-2 col-xs-1">
+		<ul id="navul">
+			<li id="newnote" class="navlinone">&nbsp;&nbsp;<i
+				class="fas fa-plus-circle"
+				style="font-size: 20px; color: #fff; margin-right: 10px;"> </i>새노트
+			</li>
+			<!-- - 모바일에서 메뉴 네비 드롭다운 -->
+			<li class="nav-item dropdown"><a id="drop_1"style="color: #fff;"
+					class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+					role="button" aria-haspopup="true" aria-expanded="false"><i
+						id="navli_icon" class="fas fa-cog"></i>노트</a>
+					<div class="dropdown-menu">
+						<a  class="dropdown-item" href="#"><i id="navli_icon"
+							class="fas fa-caret-up"></i>모든노트</a> <a class="dropdown-item"
+							href="#"><i id="navli_icon" class="fas fa-cog"></i>노트북</a> <a
+							class="dropdown-item" href="#"><i id="navli_icon"
+							class="far fa-question-circle"></i>새노트</a>
+					</div>
+			</li>
+								
+		</ul>
+							
+				</div>
 
-        <div id="usericon">
-          <i class="far fa-user-circle" style="font-size: 50px; color: #b8b8b8"></i>
-  
-  
-  
-          <span style="font-size: 16px; color:#fff;">${member.nickName} </span>
-  
-  
-  
-  
-          
-        </div>
-        <div id="logoutdiv">
-  
-            <p style="color : #fff; margin-top: 10px; ">${member.nickName}님 안녕하세요.</p>
-            <button type="button" class="btn-sm" style="width: 100%; border: none;" onclick="doLogout();">로그아웃</button>
-          </div>
-        <div id="noticenav">
-          <ul id="navul">
-            <li id="newnote"> &nbsp;&nbsp;<i class="fas fa-plus-circle"
-                style="font-size: 20px; color: #fff; margin-right: 10px;"> </i>새노트</li>
-            <li id="navli">&nbsp;&nbsp;<i id="navli_icon" class="fas fa-sticky-note"></i>모든 노트</li>
-            <li id="navli">&nbsp;&nbsp;<i id="navli_icon" class="far fa-sticky-note"></i>노트북</li>
-            <li id="navli">&nbsp;&nbsp;<i id="navli_icon" class="fas fa-folder"></i>공유 문서함</li>
-            <li id="navli">&nbsp;&nbsp;<i id="navli_icon" class="fas fa-tags"></i>태그</li>
-            <li id="navli">&nbsp;&nbsp;<i id="navli_icon" class="fas fa-trash-alt"></i>휴지통</li>
-            <li id="navli">&nbsp;&nbsp;<i id="navli_icon" class="fas fa-caret-up"></i>업그레이드</li>
-            <!---새창 오픈-->
-           <!--  <a href="community.html" target="_blank" style="list-style:none; text-decoration: none; color: #fff;"> -->
-              <li id="navli">&nbsp;&nbsp;<i  id="navli_icon" class="fas fa-comment"></i>커뮤니티</li>
-          
-  
-          </ul>
-         
-          <ul id="navul" style= "margin-top:10px;">
-               <p>스페이스</p>
-              <li style="cursor:pointer;" data-toggle="modal" data-target="#exampleModal">&nbsp;&nbsp;스페이스 만들기</li>
-              <c:forEach items="${spaceList}" var="sList">
-              	<li>${sList.spaceName}</li>
-              </c:forEach>
-              
-              
-          </ul>
-          
-          
-          <ul id="navul" style= "margin-top:210px;">
-              <li id="help">&nbsp;&nbsp;<i id="navli_icon" class="fas fa-cog"></i>설정</li>
-              <li id="help">&nbsp;&nbsp;<i id="navli_icon" class="far fa-question-circle"></i>고객센터</li>
-          </ul>
-        </div>
-        
-      </div>
-      
-      
+					<div class="dropdown-menu2">
+	    <ul style=" padding: 0; ">
+				<li class="nav-item dropdown"><a id="drop_1"style="color: #fff;"
+					class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+					role="button" aria-haspopup="true" aria-expanded="false"><i
+						id="navli_icon" class="fas fa-cog"></i>설정</a> 
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="#"><i id="navli_icon"
+							class="fas fa-caret-up"></i>업그레이드</a> <a class="dropdown-item"
+							href="#"><i id="navli_icon" class="fas fa-cog"></i>설정</a> <a
+							class="dropdown-item" href="#"><i id="navli_icon"
+							class="far fa-question-circle"></i>고객센터</a>
+					</div>
+				 </li>
+		</ul>
+			</div>
+
+
+
+
 		
+			<li id="navli">&nbsp;&nbsp;<i id="navli_icon"
+				class="fas fa-sticky-note"></i>모든 노트
+			</li>
+			<li id="navli">&nbsp;&nbsp;<i id="navli_icon"
+				class="far fa-sticky-note"></i>노트북
+			</li>
+			<li id="navli">&nbsp;&nbsp;<i id="navli_icon"
+				class="fas fa-folder"></i>공유 문서함
+			</li>
+			<li id="navli" class="navlinone">&nbsp;&nbsp;<i id="navli_icon"
+				class="fas fa-tags"></i>태그
+			</li>
+			<li id="navli" class="navlinone">&nbsp;&nbsp;<i id="navli_icon"
+				class="fas fa-trash-alt"></i>휴지통
+			</li>
 		
-		<!-------------------------------- 스페이스 생성하는 모달 ------------------------------>
+
+
+
+			<!-- --아코디언 매뉴 -->
+			<li class="sidebar-item showw"><a href="#pages"
+				data-toggle="collapse" class="sidebar-link collapsed">
+					&nbsp;&nbsp; <i class="fas fa-th-large"
+					style="font-size: 20px; color: #fff; margin-right: 10px; padding-top: 10px;"></i><span
+					style="color: #fff;" class="align-middle">스페이스</span>
+			    </a>
+			    
+				<ul id="pages" class="sidebar-dropdown list-unstyled collapse ">
+					<li style="padding: 10px; height: 40px;" class="sidebar-link"><a
+						class="sidebar-link" href="#"
+						style="text-decoration: none; color: #fff; display: block;" data-toggle="modal" data-target="#exampleModal">스페이스
+							만들기</a></li>
+							
+					     <c:forEach items="${spaceList}" var="sList">
+              				<li style="padding: 10px; height: 40px;" class="sidebar-link">
+              				<a class="sidebar-link" style="text-decoration: none; color: #fff; display: block; cursor:pointer;" onclick="goToSpace(${sList.spaceNo});">${sList.spaceName}</a>
+							</li>
+             			 </c:forEach>	
+				</ul>
+			</li>
+	<!-------------------------------- 스페이스 생성하는 모달 ------------------------------>
 		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content" style="width:650px; height:400px;">
 		      <div class="modal-header" style="border:none;">
 		        <h5 class="modal-title" id="exampleModalLabel">스페이스 생성</h5>
 		        <button type="button" id="xBtn" class="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true" >&times;</span>
-		          
+		           <span aria-hidden="true" >&times;</span>
 		        </button>
 		      </div>
 		      
@@ -133,34 +159,35 @@
 		    </div>
 		  </div>
 		</div>
-      
-      
-      
- <script>
- 	
-   $('#xBtn').on('click',function(){
-	    $('#spaceName').val("");
-	   	$('#spaceExplain').val("");
-	   	$('#dirPostCheck').attr("checked",false);
-	   	$('#spaceAuth').val("선택");
-	   
-   });
- 	
-   function doLogout(){
-	   location.href='${pageContext.request.contextPath}/member/logout.do';
-   }
-  
-   function cancelCreateSpace(){
-	   	$('#spaceName').val("");
-	   	$('#spaceExplain').val("");
-	   	$('#dirPostCheck').attr("checked",false);
-	   	$('#spaceAuth').val("선택");
-   }
-   
-   
-  
-   
-   
-   
-  </script>     
-      
+
+
+
+			<li id="navli">&nbsp;&nbsp;<i id="navli_icon"
+				class="fas fa-caret-up"></i>업그레이드
+			</li>
+			<!---새창 오픈-->
+			<!--  <a href="community.html" target="_blank" style="list-style:none; text-decoration: none; color: #fff;"> -->
+			<li id="navli" onclick="goToComunity();">&nbsp;&nbsp;<i id="navli_icon"
+				class="fas fa-comment"></i>커뮤니티
+			</li>
+
+
+			<li id="navli">&nbsp;&nbsp;<i id="navli_icon" class="fas fa-cog"></i>설정
+			</li>
+			<li id="navli">&nbsp;&nbsp;<i id="navli_icon"
+				class="far fa-question-circle"></i>고객센터
+			</li>
+	
+	</div>
+	
+	<script>
+		function goToComunity(){
+			window.open("${pageContext.request.contextPath}/board/board.do");
+		}
+		
+		function goToSpace(spaceNo){
+			location.href="${pageContext.request.contextPath}/space/selectOneSpace.do?spaceNo=" + spaceNo;
+		}
+	
+	</script>
+	
