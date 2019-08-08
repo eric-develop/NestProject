@@ -5,22 +5,103 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>    
 <!DOCTYPE html>
 <html lang="ko" style="height:100%;width:100%;">
+<head>
+<c:import url="../../common/head.jsp">
+	<c:param name="titleName" value="휴지통" />
+</c:import>
 
- 
-  <title>노트</title>
+<style>
 
 
+@media ( min-width : 1200px) {
+	
+#second_container{
+    box-sizing: border-box;
+    direction: ltr;
+    height:100%;
+    position: relative;
+    width: 20%;
+    will-change: transform;
+    
+    background: #f5f5f5;
+    display: block;
+    float: left;
+    padding: 0%;
 
-<body style="height:100%;width:100%;">
-  <div style="height:100%;width:100%;">
+}.whitebox2{
+	width: 65%;
+	display: inline-block;
+}.whitebox2_wide{
+	width: 85%;
+	display: inline-block;
+}#note{
+height:auto;
+padding:20px;
+width:100%;
+overflow-y:auto;
+
+}
+#whitebox_footer{
+bottom: 0; 
+position: fixed;
+display: inline-block;
+height: 50px;
+border-top: #d1d1d1 1px solid;
+width: 100%;
+background: #fff;
+}#body_div{
+height: auto;
+
+}
+}
+	
+	
+@media ( min-width : 400px) {
+	
+#second_container{
+    box-sizing: border-box;
+    direction: ltr;
+    height:100%;
+    position: relative;
+    width: 20%;
+    will-change: transform;
+    
+    background: #f5f5f5;
+    display: block;
+    float: left;
+    padding: 0%;
+
+}.whitebox2{
+	width: 65%;
+	display: inline-block;
+}
+#whitebox_footer{
+bottom: 0; 
+position: fixed;
+display: inline-block;
+height: 50px;
+border-top: #d1d1d1 1px solid;
+width: 100%;
+background: #fff;
+}#body_div{
+}
+}
+</style>
+    
+
+</head>
+
+
+<body style="height:100%; width:100%;">
   
-   <c:import url="../common/navi.jsp"/>
+  
+   <c:import url="../../common/navi.jsp"/>
 
 
     <!--=======================================노트 목록=========================================================-->
 
 
-    <div id="second_container" class="col-md-3 col-xs-2" value="slide">
+    <div id="second_container" value="slide">
       <div id="sc1" style="border-bottom: 1px solid #1a1a1a; padding: 14px;">
         <h5 id="toptext">모든 노트</h5>
         <p id="sclist">0개의 노트</p>
@@ -49,13 +130,12 @@
 
 
     <!--===========================노트 흰색=====================================================================-->
-    <section id="box2" class="whitebox col-md-7 col-xs-9">
-
-      <div id="top_line">
+    <div id="body_div">
+    <div id="top_line">
 
         <!---============  클릭시 확장 div,스크립트  ==============---->
         <div style=" margin-top: 30px; display: inline-block;">
-          <span id="sizeBtn" onclick="sizeChange();" style="cursor: pointer;"><i class="fas fa-expand"  style="font-size:20px; margin-right: 10px;"></i>화면
+          <span style="padding-left:20px;" id="sizeBtn" onclick="sizeChange();" style="cursor: pointer;"><i class="fas fa-expand"  style="font-size:20px; margin-right: 10px;"></i>화면
             크게</span>
           <button type="button" class="btn btn-primary btn-sm"
             style="margin-left: 20px; background: #F28B30; border: none; color: #fff;">공유하기</button>
@@ -76,12 +156,16 @@
 
 
       </div>
+    
+    <section id="box2" class="whitebox2">
+
+      
 
 
 
 
       <!------------------------------------------------------------------------------------------------------------------------------------------>
-      <div id="note" style="overflow-y: auto; height: 900px;">
+      <div id="note">
         <h4>NEST에 오신 것을 환영합니다 👋</h4>
 
 
@@ -194,7 +278,7 @@
       </div>
 
     </section>
-  </div>
+    </div>
   <script>
     function sizeChange(){
           if(document.getElementById('second_container').classList.toggle('hide-element')){
@@ -202,11 +286,45 @@
           } else {
             document.getElementById('second_container').style.display = 'block';
           }
-          document.getElementById('box2').classList.toggle('col-md-7');
-          document.getElementById('box2').classList.toggle('col-md-10');
+          document.getElementById('box2').classList.toggle('whitebox2');
+          document.getElementById('box2').classList.toggle('whitebox2_wide');
     }
   </script>
 
+
+<script type="text/javascript">
+// ing functionalism
+function widthResize(){
+	if(parseInt($('#body_div').css('width')) >= 1200){
+	   $('#second_container').css('height', $('#body_div').css('height'));
+	   $('#left_navi').css('height', $('#body_div').css('height'));
+	} else {
+		$('#left_navi').css('height', '70px');
+	}
+}
+//최초 실행시 
+$(function(){
+	if(parseInt($('#body_div').css('width')) >= 1200){
+		   $('#second_container').css('height', $('#body_div').css('height'));
+		   $('#left_navi').css('height', $('#body_div').css('height'));
+		} else {
+			$('#left_navi').css('height', '70px');
+		}
+});
+
+// 화면 사이즈 변경시 
+$(window).on('resize', function(){
+	if(parseInt($('#body_div').css('width')) >= 1200){
+	   $('#second_container').css('height', $('#body_div').css('height'));
+	   $('#left_navi').css('height', $('#body_div').css('height'));
+	} else {
+		$('#left_navi').css('height', '70px');
+	}
+});
+
+
+
+</script>
 
 </body>
 

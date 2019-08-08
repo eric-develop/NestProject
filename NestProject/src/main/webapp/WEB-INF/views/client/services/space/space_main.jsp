@@ -12,7 +12,7 @@
 
 <style> 
 
-@media ( min-width : 1200px;) {
+@media ( min-width : 1200px) {
 	#top_line{
 	width: 80%;
 	padding:0px 20px;
@@ -22,14 +22,19 @@
 	}
 	body{
 	margin: 0 auto;
+	}#top_line_margin{
+	margin-top: 20px;
+	display: inline-block;
+
 	}
 	}
 
-@media ( min-width : 400px;) {
+@media ( min-width : 400px) {
 	#top_line{
 	width: 100%;
 	float: left;
 	padding:0px 20px;
+	
 	}
 	.whitebox{
 	width: 100%;
@@ -37,6 +42,10 @@
 	}
 	body{
 	margin: 0 auto;
+	}#top_line_margin{
+		margin: 0;
+		
+		display: inline-block;
 	}
 	}
 
@@ -62,7 +71,8 @@
 
 				</div>
 				<!---============   ==============---->
-				<div style="float: right; margin-top: 20px;">
+				<div style="float: right; display: inline-block;">
+				<div id="top_line_margin" style="display: inline-block;">
 					<i class="fas fa-users" style="font-size: 30px; color: #a8a8a8;"></i>
 					<span style="color: #afafaf">10 members</span>
 					<div id="top_membericon" class="rounded-circle"></div>
@@ -80,7 +90,7 @@
 					</div>
 					<!--5개의 사용자 아이콘 노출 후 남은 5명 숫자로 나타내야합니다,-->
 
-
+</div>
 					<button type="button" class="btn btn-warning"
 						style="margin-left: 10px;">초대하기</button>
 				</div>
@@ -338,9 +348,9 @@
           
           
   </script>
-</head>
 
-<body>
+
+
   <!-- 
   <a href="javascript:doDisplay();">> 내용보기</a><br/><br/>
 <div id="myDIV">
@@ -507,12 +517,13 @@
 
 
             </div>
+            </div>
 	</section>
 	
 <script type="text/javascript">
 $(document)[0].scrollingElement.on('change', function(){
-	if ( $(document)[0].scrollingElement.scrollWidth >= 1200) {
-		$('#left_navi').css('height', $(document)[0].scrollingElement.scrollHeight);
+	if ( ($(document)[0].scrollingElement.scrollWidth >= 1200)&& ($(document)[0].scrollingElement.scrollHeight >= $('#body_div'))) {
+		$('#left_navi').css('height', $(document)[0].scrollingElement.scrollingHeight);
 	}
 });
 </script>
