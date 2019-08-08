@@ -19,7 +19,12 @@
             <div id="login">
                  <div id="logo" style="width: 200px; float: left; padding-top: 10px;">
                 <img src="${pageContext.request.contextPath}/resources/images/nest_wlogo.png"></div>
-        <div id="toploginbtn"><button style="width: 100px;" type="button" class="btn btn-light">login</button>
+        <div id="toploginbtn"><button style="width: 100px;" type="button" class="btn btn-light" onclick="gogo()">login</button>
+        	<script>
+        		function gogo(){
+        			location.href="${pageContext.request.contextPath}/note/index.do";
+        		}
+        	</script>
         </div>
      </div>
     </header>
