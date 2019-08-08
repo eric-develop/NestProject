@@ -1,6 +1,7 @@
 package com.nestCor.nest.services.space.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.nestCor.nest.services.space.model.vo.ChatRoom;
 import com.nestCor.nest.services.space.model.vo.Space;
@@ -13,4 +14,5 @@ public interface SpaceDao {
 	int deleteSpace(String spaceName);
 	ChatRoom selectChatRoomNo(ChatRoom chatRoom);
 	int createChatRoomNo(ChatRoom chatRoom);
+	Map<String,Object> getSpaceContentsMap(int spaceNo);
 }

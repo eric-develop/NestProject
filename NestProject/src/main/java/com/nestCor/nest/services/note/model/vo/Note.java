@@ -13,6 +13,7 @@ public class Note implements Serializable {
 	private String ncontent;
 	private String sharescope;
 	private String trashcan;
+	private String nwriter;
 	
 	public Note() {}
 
@@ -100,12 +101,21 @@ public class Note implements Serializable {
 		this.trashcan = trashcan;
 	}
 
+	public String getNwriter() {
+		return nwriter;
+	}
+
+
+	public void setNwriter(String nwriter) {
+		this.nwriter = nwriter;
+	}
 	
 
 	@Override
 	public String toString() {
 		return "Note [nno=" + nno + ", mno=" + mno + ", nbno=" + nbno + ", spaceno=" + spaceno + ", ntitle=" + ntitle
-				+ ", ncontent=" + ncontent + ", sharescope=" + sharescope + ", trashcan=" + trashcan + "]";
+				+ ", ncontent=" + ncontent + ", sharescope=" + sharescope + ", trashcan=" + trashcan + ", nwriter="
+				+ nwriter + "]";
 	}
 
 	

@@ -286,44 +286,83 @@ display: none;
 
 
 
-		<!-- --아코디언 매뉴 	 -->
-		<li class="sidebar-item showw"><a href="#pages"
-			data-toggle="collapse" class="sidebar-link collapsed">
-				&nbsp;&nbsp; <i class="fas fa-th-large"
-				style="font-size: 20px; color: #fff; margin-right: 10px; padding-top: 10px;"></i><span
-				style="color: #fff;" class="align-middle">스페이스</span>
-		</a>
-			<ul id="pages" class="sidebar-dropdown list-unstyled collapse ">
-				<li style="padding: 10px; height: 40px;" class="sidebar-link"><a
-					class="sidebar-link" href="#"
-					style="text-decoration: none; color: #fff; display: block;">스페이스
-						만들기</a></li>
-				<li style="padding: 10px; height: 40px;" class="sidebar-link"><a
-					class="sidebar-link" href="#"
-					style="text-decoration: none; color: #fff; display: block;">스페이스
-						만들기</a></li>
-				<li style="padding: 10px; height: 40px;" class="sidebar-link"><a
-					class="sidebar-link" href="#"
-					style="text-decoration: none; color: #fff; display: block;">스페이스
-						만들기</a></li>
-				<li style="padding: 10px; height: 40px;" class="sidebar-link"><a
-					class="sidebar-link" href="#"
-					style="text-decoration: none; color: #fff; display: block;">스페이스
-						만들기</a></li>
+		<!-- --아코디언 매뉴 -->
+			<li class="sidebar-item showw"><a href="#pages"
+				data-toggle="collapse" class="sidebar-link collapsed">
+					&nbsp;&nbsp; <i class="fas fa-th-large"
+					style="font-size: 20px; color: #fff; margin-right: 10px; padding-top: 10px;"></i><span
+					style="color: #fff;" class="align-middle">스페이스</span>
+			    </a>
+			    
+				<ul id="pages" class="sidebar-dropdown list-unstyled collapse ">
+					<li style="padding: 10px; height: 40px;" class="sidebar-link"><a
+						class="sidebar-link" href="#"
+						style="text-decoration: none; color: #fff; display: block;" data-toggle="modal" data-target="#exampleModal">스페이스
+							만들기</a></li>
+							
+					     <c:forEach items="${spaceList}" var="sList">
+              				<li style="padding: 10px; height: 40px;" class="sidebar-link">
+              				<a class="sidebar-link" style="text-decoration: none; color: #fff; display: block; cursor:pointer;" onclick="goToSpace(${sList.spaceNo});">${sList.spaceName}</a>
+							</li>
+             			 </c:forEach>	
+				</ul>
+			</li>
+	<!-------------------------------- 스페이스 생성하는 모달 ------------------------------>
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content" style="width:650px; height:400px;">
+		      <div class="modal-header" style="border:none;">
+		        <h5 class="modal-title" id="exampleModalLabel">스페이스 생성</h5>
+		        <button type="button" id="xBtn" class="close" data-dismiss="modal" aria-label="Close">
+		           <span aria-hidden="true" >&times;</span>
+		        </button>
+		      </div>
+		      
+		      <form action="${pageContext.request.contextPath}/space/createSpace.do" method="post">
+		        <div class="modal-body">
+		      	
+		       	  <div class="form-group">
+			    	<input type="text" class="form-control" id="spaceName" name="spaceName" placeholder="스페이스 이름을 입력하세요">
+			  	  </div>
+			  	  
+			  	   <div class="form-group">
+			    	<input type="text" class="form-control" id="spaceExplain" name="spaceExplain" placeholder="스페이스에 대한 설명을 적어주세요" style="height:60px; margin:0px;">
+			  	   </div>
+			  	   
+			  	   <div class="form-group form-check" >
+					  <input type="checkbox" class="form-check-input" id="postSpaceDir" name="postSpaceDir">
+				 	  <label class="form-check-label" for="dirPostCheck">스페이스 디렉토리에 게시</label>
+				   </div>
+ 				   
+ 				   <label>접근 권한 설정 </label>
+ 				   <select class="form-control form-control-sm" id="rightSet" name="rightSet">
+ 				   <option value="none">선택</option>
+				   <option value="A1">다른 사람들이 접근 권한을 요청해야합니다.</option>
+				   <option value="A2">다른 사람들이 보기 권한을 가지고 접근할 수 있습니다.</option>
+				   <option value="A3">다른 사람들이 수정 권한을 가지고 접근할 수 있습니다.</option>
+				   <option value="A4">다른 사람들이 수정 권한 및 다른 사용자 초대권한을 가지고 접근할 수 있습니다.</option>
+				   </select>
 
-			</ul></li>
+		      </div>
 
-		<!--  -->
-
-
-
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="cancelCreateSpace();">취소</button>
+		        <button type="submit" class="btn btn-primary" onclick="createSpace();">만들기</button>
+		      </div>
+		    </form>
+		      
+		    </div>
+		  </div>
+		</div>
+	
+		
 		<li id="navli">&nbsp;&nbsp;<i id="navli_icon"
 			class="fas fa-caret-up"></i>업그레이드
 		</li>
 		<!---새창 오픈-->
 		<!--  <a href="community.html" target="_blank" style="list-style:none; text-decoration: none; color: #fff;"> -->
-		<li id="navli">&nbsp;&nbsp;<i id="navli_icon"
-			class="fas fa-comment"></i>커뮤니티
+		<li id="navli" onclick="goToComunity();">&nbsp;&nbsp;<i id="navli_icon"
+				class="fas fa-comment"></i>커뮤니티
 		</li>
 
 
@@ -365,4 +404,12 @@ $(function(){
 		}).show();
 	});
 });
+
+function goToComunity(){
+			window.open("${pageContext.request.contextPath}/board/board.do");
+		}
+		
+function goToSpace(spaceNo){
+	location.href="${pageContext.request.contextPath}/space/selectOneSpace.do?spaceNo=" + spaceNo;
+}
 </script>

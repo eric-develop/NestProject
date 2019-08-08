@@ -1,6 +1,7 @@
 package com.nestCor.nest.services.space.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.nestCor.nest.services.space.model.vo.ChatRoom;
 import com.nestCor.nest.services.space.model.vo.Space;
@@ -11,6 +12,7 @@ public interface SpaceService {
 		int updateSpace(Space space);
 		int deleteSpace(String spaceName);
 		int selectChatRoomNo(ChatRoom chatRoom);
+		Map<String,Object> getSpaceContentsMap(int spaceNo);
 
 		
 		

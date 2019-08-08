@@ -1,6 +1,8 @@
 package com.nestCor.nest.services.space.model.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,6 +67,15 @@ public class SpaceServiceImpl implements SpaceService {
 		roomNo = resultRoom.getRoomNo();
 		
 		return roomNo;
+	}
+
+
+	@Override
+	public Map<String,Object> getSpaceContentsMap(int spaceNo) {
+		
+		Map<String,Object> spaceContentsMap = sDao.getSpaceContentsMap(spaceNo);
+		
+		return spaceContentsMap;
 	}
 
 }
