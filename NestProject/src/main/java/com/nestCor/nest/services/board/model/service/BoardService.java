@@ -1,9 +1,9 @@
-package com.nestCor.nest.board.model.service;
+package com.nestCor.nest.services.board.model.service;
 
 import java.util.List;
 import java.util.Map;
 
-import com.nestCor.nest.board.model.vo.Board;
+import com.nestCor.nest.services.board.model.vo.Board;
 
 public interface BoardService {
 	/**

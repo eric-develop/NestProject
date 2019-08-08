@@ -1,4 +1,4 @@
-package com.nestCor.nest.board.model.service;
+package com.nestCor.nest.services.board.model.service;
 
 import java.util.List;
 import java.util.Map;
@@ -6,8 +6,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nestCor.nest.board.model.dao.BoardDao;
-import com.nestCor.nest.board.model.vo.Board;
+import com.nestCor.nest.services.board.model.dao.BoardDao;
+import com.nestCor.nest.services.board.model.vo.Board;
 
 @Service
 public class BoardServiceImp implements BoardService {

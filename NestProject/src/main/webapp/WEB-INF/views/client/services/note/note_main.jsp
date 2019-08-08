@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>    
 <!DOCTYPE html>
 <html lang="ko" style="height:100%;width:100%;">
 
@@ -20,7 +19,7 @@
     <!--=======================================노트 목록=========================================================-->
 
 
-    <div id="second_container" class="col-md-3 col-xs-2" value="slide">
+    <div id="second_container"  value="slide">
       <div id="sc1" style="border-bottom: 1px solid #1a1a1a; padding: 14px;">
         <h5 id="toptext">모든 노트</h5>
         <p id="sclist">0개의 노트</p>
@@ -49,7 +48,7 @@
 
 
     <!--===========================노트 흰색=====================================================================-->
-    <section id="box2" class="whitebox col-md-7 col-xs-9">
+    <section id="box2" class="whitebox">
 
       <div id="top_line">
 
@@ -159,7 +158,7 @@
         사회학 101
         * 강의 노트
         * 강의 계획서
-        * 에세이 초안
+        * 에세이 안
         뉴욕 여행
         * 호텔 정보
         * 항공편 정보

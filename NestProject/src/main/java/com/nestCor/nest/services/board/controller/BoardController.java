@@ -1,4 +1,4 @@
-package com.nestCor.nest.board.controller;
+package com.nestCor.nest.services.board.controller;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nestCor.nest.common.util.Utils;
-import com.nestCor.nest.board.model.service.BoardService;
-import com.nestCor.nest.board.model.vo.Board;
+import com.nestCor.nest.services.board.model.service.BoardService;
+import com.nestCor.nest.services.board.model.vo.Board;
 
 @Controller
 public class BoardController {
@@ -25,7 +25,7 @@ public class BoardController {
 	public String boardMain() {
 		System.out.println("/board/board.do가 호출되었습니다.");
 		
-		return "board/boardMain";
+		return "client/services/board/boardMain";
 	}
 	
 	@RequestMapping("board/boardList.do")
@@ -56,7 +56,7 @@ public class BoardController {
 		
 		//다음으로 보낼때 카테고리들 값을 같이 넘겨주기 위해서 ModelAndView를 썼다.
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("board/boardList"); // 보낼 뷰의 경로
+		mv.setViewName("client/services/board/boardList"); // 보낼 뷰의 경로
 		
 		// 다음 뷰로 보낼 cate1_code, cate2_code
 		mv.addObject("cate1_code", cate1_code); 
@@ -69,7 +69,7 @@ public class BoardController {
 	@RequestMapping("board/boardForm.do")
 	public ModelAndView boardForm(@RequestParam String cate1_code, @RequestParam String cate2_code){
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/board/boardForm"); // 뷰의 이름
+		mv.setViewName("client/services/board/boardForm"); // 뷰의 이름
 		System.out.println("/board/boardForm.do가 호출되었습니다. 넘어온 카테고리1값 : " +cate1_code + " 카테고리2값 : "+cate2_code);
 		
 		// 뷰로 보낼 cate1_code, cate2_code
@@ -101,7 +101,7 @@ public class BoardController {
 		
 		model.addAttribute("loc", loc).addAttribute("msg", msg);
 		
-		return "common/msg";	
+		return "client/services/board/common/msg";	
 	}
 	
 	//게시물 조회
@@ -110,7 +110,7 @@ public class BoardController {
 		System.out.println("/board/boardView.do가 호출되었습니다.");
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/board/boardView"); // 뷰의 이름
+		mv.setViewName("/client/services/board/boardView"); // 뷰의 이름
 		
 		System.out.println("조회할 글번호 : "+bno);
 		model.addAttribute("board", boardService.selectOneBoard(bno));
@@ -126,7 +126,7 @@ public class BoardController {
 		System.out.println("/board/boardView.do가 호출되었습니다.");
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/board/boardUpdateView"); // 뷰의 이름
+		mv.setViewName("client/services/board/boardUpdateView"); // 뷰의 이름
 		
 		System.out.println("수정할 글번호 : "+bno);
 		model.addAttribute("board", boardService.selectOneBoard(bno));
@@ -171,7 +171,7 @@ public class BoardController {
 		model.addAttribute("loc", loc)
 		.addAttribute("msg", msg);
 		
-		return "common/msg";
+		return "client/services/board/common/msg";
 	}
 	
 	
@@ -195,7 +195,7 @@ public class BoardController {
 		
 		model.addAttribute("loc", loc).addAttribute("msg", msg);
 		
-		return "common/msg";
+		return "client/services/board/common/msg";
 	}
 	
 	

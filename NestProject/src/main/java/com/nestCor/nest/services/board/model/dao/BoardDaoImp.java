@@ -1,4 +1,4 @@
-package com.nestCor.nest.board.model.dao;
+package com.nestCor.nest.services.board.model.dao;
 
 import java.util.List;
 import java.util.Map;
@@ -8,7 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.nestCor.nest.board.model.vo.Board;
+import com.nestCor.nest.services.board.model.vo.Board;
 
 @Repository
 public class BoardDaoImp implements BoardDao {

@@ -1,4 +1,4 @@
-package com.nestCor.nest.board.model.vo;
+package com.nestCor.nest.services.board.model.vo;
 
 import java.io.Serializable;
 import java.sql.Date;

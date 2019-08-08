@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.*, com.nestCor.nest.board.model.vo.*" %>
+<%@ page import="java.util.*, com.nestCor.nest.services.board.model.vo.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -12,7 +12,7 @@
 	<!-- Page Wrapper -->
 	<div id="wrapper" style="background-color: #f6c23e">
 
-		<c:import url="../common/menubar.jsp"/>
+		<c:import url="./common/menubar.jsp"/>
 
 			<!-- 게시글 작성 part -->
 			<div class="col-md-8 col-xs-12 " id="container0 "
@@ -67,7 +67,7 @@
 				</form>
 			</div>
 			<br><br>
-		<c:import url="../common/footer.jsp"/>
+		<c:import url="./common/footer.jsp"/>
 	</div>
 	<!-- End of Content Wrapper -->
 

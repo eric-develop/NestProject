@@ -11,7 +11,7 @@
 	<!-- Page Wrapper -->
 	<div id="wrapper" style="background-color: #f6c23e">
 
-		<c:import url="../common/menubar.jsp" />
+		<c:import url="./common/menubar.jsp" />
 
 		<!-- View 화면 구현부분 ////////////////////////////////////////////////////////////////////////////////////////////////////-->
 		<div id="community" style="padding: 10px;">
@@ -148,7 +148,7 @@
 			</div>
 		</div>
 
-		<c:import url="../common/footer.jsp" />
+		<c:import url="./common/footer.jsp" />
 	</div>
 	<!-- End of Content Wrapper -->
 

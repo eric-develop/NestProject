@@ -1,9 +1,9 @@
-package com.nestCor.nest.board.model.dao;
+package com.nestCor.nest.services.board.model.dao;
 
 import java.util.List;
 import java.util.Map;
 
-import com.nestCor.nest.board.model.vo.Board;
+import com.nestCor.nest.services.board.model.vo.Board;
 
 public interface BoardDao {
 	//게시물 추가
