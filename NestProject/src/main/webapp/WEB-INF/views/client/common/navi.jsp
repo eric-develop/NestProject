@@ -194,7 +194,10 @@ display: none;
 	</div>
 
 
-
+	<button type="button" class="btn" data-toggle="modal" data-target="#myModal"
+            		style="width: 100%; border: none; margin-top: 10px; color: darknavy; font-size: 14px;">
+			    비즈니스 그룹 요청
+			</button>
 
 
 	<div id="logoutdiv">

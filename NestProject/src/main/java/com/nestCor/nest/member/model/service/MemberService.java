@@ -16,6 +16,26 @@ public interface MemberService {
 		Member searchPwd(Member m);
 		int resetPwd(Member m);
 		List<Member> selectBizMemberList(int bizNo);
+		/***
+		 * 멤버 비즈니스 등록
+		 * @param m
+		 * @return
+		 */
+		int updateMemberBizNo(Member m);
+		
+		/***
+		 * 비즈니스 서비스 변경
+		 * @param m
+		 * @return
+		 */
+		int memberBusinessServiceUpdate(int mNo);
+		
+		/***
+		 * 프리미엄 서비스 변경
+		 * @param m
+		 * @return
+		 */
+		int memberPremiumServiceUpdate(int mNo);
 		
 	
 }

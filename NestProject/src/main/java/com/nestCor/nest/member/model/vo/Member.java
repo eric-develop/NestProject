@@ -23,7 +23,10 @@ public class Member implements Serializable{
 		private String phone;
 		private Date expir_Date;
 		private Date enrollDate;
-	
+		
+		private String admin;
+		private String approval;
+		private Date spaceEnrollDate;
 		public Member() {
 		
 		}
@@ -197,13 +200,81 @@ public class Member implements Serializable{
 
 
 
+
+
+
+
+		public String getAdmin() {
+			return admin;
+		}
+
+
+
+
+
+
+
+		public void setAdmin(String admin) {
+			this.admin = admin;
+		}
+
+
+
+
+
+
+
+		public String getApproval() {
+			return approval;
+		}
+
+
+
+
+
+
+
+		public void setApproval(String approval) {
+			this.approval = approval;
+		}
+
+
+
+
+
+
+
+		public Date getSpaceEnrollDate() {
+			return spaceEnrollDate;
+		}
+
+
+
+
+
+
+
+		public void setSpaceEnrollDate(Date spaceEnrollDate) {
+			this.spaceEnrollDate = spaceEnrollDate;
+		}
+
+
+
+
+
+
+
 		@Override
 		public String toString() {
-			return "Member [mNo=" + mNo + ", serviceNo=" + serviceNo + ", userId=" + userId + ", password=" + password
-					+ ", userName=" + userName + ", nickName=" + nickName + ", ageGroup=" + ageGroup + ", purpose="
-					+ purpose + ", jobField=" + jobField + ", alive=" + alive + ", valid=" + valid + ", phone=" + phone
-					+ ", expir_Date=" + expir_Date + ", enrollDate=" + enrollDate + "]";
+			return "Member [mNo=" + mNo + ", serviceNo=" + serviceNo + ", bizNo=" + bizNo + ", userId=" + userId
+					+ ", password=" + password + ", userName=" + userName + ", nickName=" + nickName + ", ageGroup="
+					+ ageGroup + ", purpose=" + purpose + ", jobField=" + jobField + ", alive=" + alive + ", valid="
+					+ valid + ", phone=" + phone + ", expir_Date=" + expir_Date + ", enrollDate=" + enrollDate
+					+ ", admin=" + admin + ", approval=" + approval + ", spaceEnrollDate=" + spaceEnrollDate + "]";
 		}
+
+
+		
 
 		
 		

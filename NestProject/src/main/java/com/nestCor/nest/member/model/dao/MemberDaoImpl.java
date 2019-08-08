@@ -74,5 +74,23 @@ public class MemberDaoImpl implements MemberDao {
 	
 		return sqlSession.selectList("Member_mapper.selectBizMemberList",bizNo);
 	}
+	
+	@Override
+	public int memberBusinessServiceUpdate(int mNo) {
+
+		return sqlSession.update("Member_mapper.memberBusinessUpdate", mNo);
+	}
+
+	@Override
+	public int memberPremiumServiceUpdate(int mNo) {
+		
+		return sqlSession.update("Member_mapper.memberPremiumUpdate", mNo);
+	}
+	
+	@Override
+	public int updateMemberBizNo(Member m) {
+		return sqlSession.update("Member_mapper.updateMemberBizNo", m);
+	}
+
 
 }

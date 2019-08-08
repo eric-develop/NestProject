@@ -73,5 +73,24 @@ public class MemberServiceImpl implements MemberService {
 		
 		return mDao.selectBizMemberList(bizNo);
 	}
+	
+	@Override
+	public int memberBusinessServiceUpdate(int mNo) {
+
+		return mDao.memberBusinessServiceUpdate(mNo);
+	}
+	
+	@Override
+	public int memberPremiumServiceUpdate(int mNo) {
+		
+		return mDao.memberPremiumServiceUpdate(mNo);
+	}
+
+
+	@Override
+	public int updateMemberBizNo(Member m) {
+		return mDao.updateMemberBizNo(m);
+	}
+
 
 }

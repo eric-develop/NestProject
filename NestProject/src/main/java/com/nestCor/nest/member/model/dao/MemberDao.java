@@ -15,4 +15,8 @@ public interface MemberDao {
 		Member searchPwd(Member m);
 		int resetPwd(Member m);
 		List<Member> selectBizMemberList(int bizNo);
+
+		int updateMemberBizNo(Member m);
+		int memberBusinessServiceUpdate(int mNo);
+		int memberPremiumServiceUpdate(int mNo);
 } 
