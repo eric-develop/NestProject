@@ -1,3 +1,9 @@
+노트메인, 스페이스 메인,
+노트 태그, 노트 리스트
+노트 파일 리스트
+노트 휴지통
+
+
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -174,7 +180,7 @@ float: left;
 
           <div style="
           width: 100px;
-          float: right;    margin-top: 30px;">
+          float: right; ">
               <ul style="list-style: none;  padding: 0%;position: fixed; 
               margin: 0%;">
                   <li class="menu">
@@ -207,6 +213,27 @@ float: left;
 
     </section>
     </div>
+
+
+ <script>
+              // html dom 이 다 로딩된 후 실행된다.
+              $(document).ready(function(){
+                  // menu 클래스 바로 하위에 있는 a 태그를 클릭했을때
+                  $(".menu>a").click(function(){
+                      var submenu = $(this).next("ul");
+           
+                      // submenu 가 화면상에 보일때는 위로 보드랍게 접고 아니면 아래로 보드랍게 펼치기
+                      if( submenu.is(":visible") ){
+                          submenu.slideUp();
+                      }else{
+                          submenu.slideDown();
+                      }
+                  });
+              });
+          </script>
+
+
+
   <script>
     function sizeChange(){
           if(document.querySelector('.second_container').classList.toggle('hide-element')){
@@ -254,3 +281,10 @@ $(window).on('resize', function(){
 </body>
 
 </html>
+
+
+
+
+
+
+
