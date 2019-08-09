@@ -14,7 +14,7 @@
 
 @media ( min-width : 1200px) {
 	#top_line{
-	width: 80%;
+	
 	padding:0px 20px;
 	}
 	.whitebox{
@@ -29,7 +29,7 @@
 	}
 	}
 
-@media ( min-width : 400px) {
+@media  ( min-width : 300px) and (max-width: 1199.98px)  {{
 	#top_line{
 	width: 100%;
 	float: left;
@@ -37,7 +37,7 @@
 	
 	}
 	.whitebox{
-	width: 100%;
+	width: 80%;
 	float: left;
 	}
 	body{
@@ -60,12 +60,12 @@
 
 
 		<!--===========================노트 흰색=====================================================================-->
-		
+		<div id="box2" class="body_div">
 
 			<div id="top_line">
 
 
-				<div style="display: inline-block;"> 
+				<div style="display: inline-block; padding-left: 20px;"> 
 					<h5>노트북</h5>
 					<p >내 노트북 목록</p>
 
@@ -97,7 +97,7 @@
 			</div>
 			<!---=============================----------->
 
-			<section class="whitebox ">
+			<section class="whitebox">
 				<div class="row">
 				<!--left_div-->
 				<div id="space_left" class="col-lg-6 col-md-12 col-xs-12">
@@ -478,6 +478,16 @@
                             <td>나에게만</td>
                         </tr>
 
+
+
+
+
+
+
+
+
+
+
                         <!---->
                         <script src="http://code.jquery.com/jquery-latest.js"></script>
                         <script type="text/javascript">
@@ -496,11 +506,7 @@
 
                         <!---->
 
-
-
-
-
-                        <tr>
+ <tr>
                             <th scope="row">2</th>
                             <td>Jacob</td>
                             <td>Thornton</td>
@@ -519,14 +525,43 @@
             </div>
             </div>
 	</section>
-	
+	</div>
+
+
+
 <script type="text/javascript">
-$(document)[0].scrollingElement.on('change', function(){
-	if ( ($(document)[0].scrollingElement.scrollWidth >= 1200)&& ($(document)[0].scrollingElement.scrollHeight >= $('#body_div'))) {
-		$('#left_navi').css('height', $(document)[0].scrollingElement.scrollingHeight);
+//최초 실행시 
+$(function(){
+	if(parseInt($('body').css('width')) >= 1200){
+		console.log("길이가 길 때");
+	   $('.second_container').css('height', $('.body_div').css('height'));
+	   $('.left_navi').css('height', $('.body_div').css('height'));
+	} else {
+		console.log("길이가 짧을 때");
+		$('.left_navi').css('height',  '70px');
+		$('.second_container').css('height', $('.body_div').css('height'));
 	}
 });
+
+// 화면 사이즈 변경시 
+$(window).on('resize', function(){
+	if(parseInt($('body').css('width')) >= 1200){
+		console.log("길이가 길 때");
+	   $('.second_container').css('height', $('.body_div').css('height'));
+	   $('.left_navi').css('height', $('.body_div').css('height'));
+	} else {
+		console.log("길이가 짧을 때");
+		$('.left_navi').css('height',  '70px');
+		$('.second_container').css('height', $('.body_div').css('height'));
+	}
+});
+ 
+
+
 </script>
+
+                       
 	
+
 </body>
 </html>

@@ -31,9 +31,7 @@
 
 }.whitebox{
 	width: 85%;
-	display: inline-block;
-}.whitebox2_wide{
-	width: 85%;
+	height:90%;
 	display: inline-block;
 }#note{
 height:auto;
@@ -50,14 +48,16 @@ height: 50px;
 border-top: #d1d1d1 1px solid;
 width: 100%;
 background: #fff;
-}#body_div{
-height: auto;
+}.body_div{
+height: 100%;
+width: 85%;
+float: left;
 
 }
 }
 	
 	
-@media ( min-width : 400px) {
+@media ( min-width : 300px) and (max-width: 1199.98px) {
 	
 #second_container{
     box-sizing: border-box;
@@ -73,7 +73,8 @@ height: auto;
     padding: 0%;
 
 }.whitebox{
-	width: 85%;
+	width:100%;
+	height:90%;
 	display: inline-block;
 }
 #whitebox_footer{
@@ -84,10 +85,15 @@ height: 50px;
 border-top: #d1d1d1 1px solid;
 width: 100%;
 background: #fff;
-}#body_div{
+}.body_div{
+height: 100%;
+width: 100%;
+float: left;
 }
 }
 </style>
+    
+
     
 
 </head>
@@ -96,7 +102,8 @@ background: #fff;
 	<c:import url="../../common/navi.jsp"/>
 
 <!--===========================노트 흰색=======================================================================-->
-        <div id="body_div"> 
+      
+    <div id="box2" class="body_div">
          <div id="top_line">
 
         <div style=" display: inline-block; padding-left: 20px;">
@@ -109,7 +116,7 @@ background: #fff;
           <i class="fas fa-plus-circle" style="font-size: 10px; color: #F28B30; margin-right: 10px;"> </i>새노트
         </div>
       </div>
-  <section id="box2" class="whitebox">
+  <section class="whitebox">
       <!--================= 노트목록 ======================================-->
       <div id="note_table" style="height: 100%;">
 
@@ -180,7 +187,55 @@ background: #fff;
       </div>
 
     </section>
+    
+    
   </div>
+  
+      </section>
+    </div>
+  <script>
+    function sizeChange(){
+          if(document.querySelector('.second_container').classList.toggle('hide-element')){
+            document.querySelector('.second_container').style.display = 'none';
+          } else {
+            document.querySelector('.second_container').style.display = 'block';
+          }
+          document.getElementById('box2').classList.toggle('body_div');
+          document.getElementById('box2').classList.toggle('body_div2');
+    }
+  </script>
+
+
+<script type="text/javascript">
+//최초 실행시 
+$(function(){
+	if(parseInt($('body').css('width')) >= 1200){
+		console.log("길이가 길 때");
+	   $('.second_container').css('height', $('.body_div').css('height'));
+	   $('.left_navi').css('height', $('.body_div').css('height'));
+	} else {
+		console.log("길이가 짧을 때");
+		$('.left_navi').css('height',  '70px');
+		$('.second_container').css('height', $('.body_div').css('height'));
+	}
+});
+
+// 화면 사이즈 변경시 
+$(window).on('resize', function(){
+	if(parseInt($('body').css('width')) >= 1200){
+		console.log("길이가 길 때");
+	   $('.second_container').css('height', $('.body_div').css('height'));
+	   $('.left_navi').css('height', $('.body_div').css('height'));
+	} else {
+		console.log("길이가 짧을 때");
+		$('.left_navi').css('height',  '70px');
+		$('.second_container').css('height', $('.body_div').css('height'));
+	}
+});
+ 
+
+
+</script>
 </body>
 
 </html>

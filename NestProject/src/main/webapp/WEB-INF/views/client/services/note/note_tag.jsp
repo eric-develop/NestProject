@@ -28,8 +28,11 @@
     float: left;
     padding: 0%;
 
-}.whitebox2{
+}.whitebox{
 	width: 65%;
+	overflow:auto;
+	height:90%;
+	
 	display: inline-block;
 }.whitebox2_wide{
 	width: 85%;
@@ -49,14 +52,17 @@ height: 50px;
 border-top: #d1d1d1 1px solid;
 width: 100%;
 background: #fff;
-}#body_div{
-height: auto;
+}.body_div{
+height: 100%;
+float: left;
+width: 85%;
+
 
 }
 }
 	
 	
-@media ( min-width : 400px) {
+@media ( min-width : 300px) and (max-width: 1199.98px)  {
 	
 #second_container{
     box-sizing: border-box;
@@ -71,8 +77,9 @@ height: auto;
     float: left;
     padding: 0%;
 
-}.whitebox2{
-	width: 65%;
+}.whitebox{
+	width: 100%;
+	height:90%;
 	display: inline-block;
 }
 #whitebox_footer{
@@ -83,7 +90,10 @@ height: 50px;
 border-top: #d1d1d1 1px solid;
 width: 100%;
 background: #fff;
-}#body_div{
+}.body_div{
+height: 100%;
+width: 100%;
+float: left;
 }
 }
 </style>
@@ -97,7 +107,7 @@ background: #fff;
 
 <!--===========================노트 흰색=====================================================================-->
       
-       <div id="body_div">
+      <div id="box2" class="body_div">
 		<div id="top_line">
 
 
@@ -148,35 +158,32 @@ background: #fff;
 <!---->
 
 <script type="text/javascript">
-// ing functionalism
-function widthResize(){
-	if(parseInt($('#body_div').css('width')) >= 1200){
-	   $('#second_container').css('height', $('#body_div').css('height'));
-	   $('#left_navi').css('height', $('#body_div').css('height'));
-	} else {
-		$('#left_navi').css('height', '70px');
-	}
-}
 //최초 실행시 
 $(function(){
-	if(parseInt($('#body_div').css('width')) >= 1200){
-		   $('#second_container').css('height', $('#body_div').css('height'));
-		   $('#left_navi').css('height', $('#body_div').css('height'));
-		} else {
-			$('#left_navi').css('height', '70px');
-		}
+	if(parseInt($('body').css('width')) >= 1200){
+		console.log("길이가 길 때");
+	   $('.second_container').css('height', $('.body_div').css('height'));
+	   $('.left_navi').css('height', $('.body_div').css('height'));
+	} else {
+		console.log("길이가 짧을 때");
+		$('.left_navi').css('height',  '70px');
+		$('.second_container').css('height', $('.body_div').css('height'));
+	}
 });
 
 // 화면 사이즈 변경시 
 $(window).on('resize', function(){
-	if(parseInt($('#body_div').css('width')) >= 1200){
-	   $('#second_container').css('height', $('#body_div').css('height'));
-	   $('#left_navi').css('height', $('#body_div').css('height'));
+	if(parseInt($('body').css('width')) >= 1200){
+		console.log("길이가 길 때");
+	   $('.second_container').css('height', $('.body_div').css('height'));
+	   $('.left_navi').css('height', $('.body_div').css('height'));
 	} else {
-		$('#left_navi').css('height', '70px');
+		console.log("길이가 짧을 때");
+		$('.left_navi').css('height',  '70px');
+		$('.second_container').css('height', $('.body_div').css('height'));
 	}
 });
-
+ 
 
 
 </script>

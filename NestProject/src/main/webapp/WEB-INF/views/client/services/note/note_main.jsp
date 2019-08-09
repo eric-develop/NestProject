@@ -15,7 +15,7 @@
 
 @media ( min-width : 1200px) {
 	
-#second_container{
+.second_container{
     box-sizing: border-box;
     direction: ltr;
     height:100%;
@@ -29,8 +29,10 @@
     padding: 0%;
 
 }.whitebox2{
-	width: 65%;
+	width: 100%;
 	display: inline-block;
+	overflow:auto;
+	height: 90%;
 }.whitebox2_wide{
 	width: 85%;
 	display: inline-block;
@@ -38,7 +40,7 @@
 height:auto;
 padding:20px;
 width:100%;
-overflow-y:auto;
+
 
 }
 #whitebox_footer{
@@ -47,18 +49,26 @@ position: fixed;
 display: inline-block;
 height: 50px;
 border-top: #d1d1d1 1px solid;
-width: 100%;
+width: 65%;
 background: #fff;
-}#body_div{
-height: auto;
-
+}.body_div{
+height: 100%;
+width:65%;
+display: inline-block;
+float: left;
+}
+.body_div2{
+height: 100%;
+width:85%;
+display: inline-block;
+float: left;
 }
 }
 	
 	
-@media ( min-width : 400px) {
+@media ( min-width : 300px) and (max-width: 1199.98px)  {
 	
-#second_container{
+.second_container{
     box-sizing: border-box;
     direction: ltr;
     height:100%;
@@ -67,12 +77,16 @@ height: auto;
     will-change: transform;
     
     background: #f5f5f5;
-    display: block;
+    display: inline-block;
     float: left;
     padding: 0%;
 
 }.whitebox2{
-	width: 65%;
+	width:100%;
+	height: 90%;
+	display: inline-block;
+}.whitebox2_wide{
+	width: 100%;
 	display: inline-block;
 }
 #whitebox_footer{
@@ -83,7 +97,22 @@ height: 50px;
 border-top: #d1d1d1 1px solid;
 width: 100%;
 background: #fff;
-}#body_div{
+}#note{
+	width:100%;
+	height: 100%;
+	
+	display: inline-block;
+}.body_div{
+height: 100%;
+width:85%;
+display: inline-block;
+float: left;
+}
+.body_div2{
+height: 100%;
+width:100%;
+display: inline-block;
+float: left;
 }
 }
 </style>
@@ -101,7 +130,7 @@ background: #fff;
     <!--=======================================노트 목록=========================================================-->
 
 
-    <div id="second_container" value="slide">
+    <div class="second_container" value="slide" style="display: inline-block;">
       <div id="sc1" style="border-bottom: 1px solid #1a1a1a; padding: 14px;">
         <h5 id="toptext">모든 노트</h5>
         <p id="sclist">0개의 노트</p>
@@ -130,7 +159,7 @@ background: #fff;
 
 
     <!--===========================노트 흰색=====================================================================-->
-    <div id="body_div">
+    <div id="box2" class="body_div">
     <div id="top_line">
 
         <!---============  클릭시 확장 div,스크립트  ==============---->
@@ -157,7 +186,7 @@ background: #fff;
 
       </div>
     
-    <section id="box2" class="whitebox2">
+    <section class="whitebox2">
 
       
 
@@ -281,47 +310,44 @@ background: #fff;
     </div>
   <script>
     function sizeChange(){
-          if(document.getElementById('second_container').classList.toggle('hide-element')){
-            document.getElementById('second_container').style.display = 'none';
+          if(document.querySelector('.second_container').classList.toggle('hide-element')){
+            document.querySelector('.second_container').style.display = 'none';
           } else {
-            document.getElementById('second_container').style.display = 'block';
+            document.querySelector('.second_container').style.display = 'block';
           }
-          document.getElementById('box2').classList.toggle('whitebox2');
-          document.getElementById('box2').classList.toggle('whitebox2_wide');
+          document.getElementById('box2').classList.toggle('body_div');
+          document.getElementById('box2').classList.toggle('body_div2');
     }
   </script>
 
 
 <script type="text/javascript">
-// ing functionalism
-function widthResize(){
-	if(parseInt($('#body_div').css('width')) >= 1200){
-	   $('#second_container').css('height', $('#body_div').css('height'));
-	   $('#left_navi').css('height', $('#body_div').css('height'));
-	} else {
-		$('#left_navi').css('height', '70px');
-	}
-}
 //최초 실행시 
 $(function(){
-	if(parseInt($('#body_div').css('width')) >= 1200){
-		   $('#second_container').css('height', $('#body_div').css('height'));
-		   $('#left_navi').css('height', $('#body_div').css('height'));
-		} else {
-			$('#left_navi').css('height', '70px');
-		}
+	if(parseInt($('body').css('width')) >= 1200){
+		console.log("길이가 길 때");
+	   $('.second_container').css('height', $('.body_div').css('height'));
+	   $('.left_navi').css('height', $('.body_div').css('height'));
+	} else {
+		console.log("길이가 짧을 때");
+		$('.left_navi').css('height',  '70px');
+		$('.second_container').css('height', $('.body_div').css('height'));
+	}
 });
 
 // 화면 사이즈 변경시 
 $(window).on('resize', function(){
-	if(parseInt($('#body_div').css('width')) >= 1200){
-	   $('#second_container').css('height', $('#body_div').css('height'));
-	   $('#left_navi').css('height', $('#body_div').css('height'));
+	if(parseInt($('body').css('width')) >= 1200){
+		console.log("길이가 길 때");
+	   $('.second_container').css('height', $('.body_div').css('height'));
+	   $('.left_navi').css('height', $('.body_div').css('height'));
 	} else {
-		$('#left_navi').css('height', '70px');
+		console.log("길이가 짧을 때");
+		$('.left_navi').css('height',  '70px');
+		$('.second_container').css('height', $('.body_div').css('height'));
 	}
 });
-
+ 
 
 
 </script>

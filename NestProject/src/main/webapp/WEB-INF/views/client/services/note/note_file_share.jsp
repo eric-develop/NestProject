@@ -12,6 +12,8 @@
 
 <style>
 
+<style>
+
 
 @media ( min-width : 1200px) {
 	
@@ -30,6 +32,7 @@
 
 }.whitebox{
 	width: 85%;
+	height:90%;
 	display: inline-block;
 }#note{
 height:auto;
@@ -46,14 +49,16 @@ height: 50px;
 border-top: #d1d1d1 1px solid;
 width: 100%;
 background: #fff;
-}#body_div{
-height: auto;
+}.body_div{
+height: 100%;
+width: 85%;
+float: left;
 
 }
 }
 	
 	
-@media ( min-width : 400px) {
+@media ( min-width : 300px) and (max-width: 1199.98px){
 	
 #second_container{
     box-sizing: border-box;
@@ -69,7 +74,8 @@ height: auto;
     padding: 0%;
 
 }.whitebox{
-	width:85%;
+	width:100%;
+	height:90%;
 	display: inline-block;
 }
 #whitebox_footer{
@@ -80,10 +86,15 @@ height: 50px;
 border-top: #d1d1d1 1px solid;
 width: 100%;
 background: #fff;
-}#body_div{
+}.body_div{
+height: 100%;
+width: 100%;
+float: left;
 }
 }
 </style>
+    
+
     
 
 </head>
@@ -94,6 +105,7 @@ background: #fff;
 
 
 <!--===========================노트 흰색=======================================================================-->
+                    <div id="box2" class="body_div">  
                       <div id="top_line">
               
            
@@ -149,7 +161,7 @@ $(function(){
 		   $('#second_container').css('height', $('#body_div').css('height'));
 		   $('#left_navi').css('height', $('#body_div').css('height'));
 		} else {
-			$('#left_navi').css('height', '70px');
+			$('#left_navi').css('height', '70px');"src/main/webapp/WEB-INF/views/client/services/note/note_tag.jsp"
 		}
 });
 
@@ -173,6 +185,7 @@ $(window).on('resize', function(){
           
         
         </section>
+        </div>
 
 </body>
 </html>

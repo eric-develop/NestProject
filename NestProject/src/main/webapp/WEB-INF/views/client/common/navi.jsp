@@ -118,7 +118,7 @@ display: none;
 </style>
 </head>
 
-<div id="left_navi" style="padding: 0%;" class="sidebar-sticky ">
+<div class="left_navi" style="padding: 0%;" class="sidebar-sticky ">
 
 	<div id="usericon">
 		<div id="person_img_div" class="rounded-circle"></div>
