@@ -1137,11 +1137,7 @@ height: 100%;
 		margin: 0;
 		font-size: 14px;
 	}
-	#usericon {
-		padding: 10px;
-		padding-top: 10px;
-		display: inline-block;
-	}
+	
 	#logoutdiv {
     display: inline-block;
     margin: 0;

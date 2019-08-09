@@ -6,10 +6,39 @@
 <!DOCTYPE html>
 <html lang="ko">
 <title>공지사항 </title>
+<head>
+<style>
+
+@media ( min-width : 300px) and (max-width: 1199.98px) {
+	#centerbtn_0{
+    margin: 0 auto;
+    width: 100%;
+    padding:20px;
+    height: 300px
+}#cus_table_div{
+width: 100%;
+height: 70%;
+}
+}
+@media ( min-width : 1200px) {
+	#centerbtn_0{
+    margin: 0 auto;
+    width: 100%;
+    height: 16%;
+}#cus_table_div{
+margin: 0 auto; width: 1200px;
+}
+}
+
+
+
+
+</style>
+</head>
 <body>
-<c:import url="../common/customer_navi.jsp"/>
+<c:import url="../../common/customer_navi.jsp"/>
     <!----------->
-    <div id="centerbtn">
+    <div id="centerbtn_0">
         <p style="text-align: left; font-size: 12px;">고객센터 &nbsp; > &nbsp; 공지사항<p>
                 <!--사이트 맵-->
                 <h4 style="text-align: center; margin-top: 50px;">공지사항</h4>
@@ -20,7 +49,7 @@
 
 
     <!----------공지사항 테이블------->
-    <div style="margin: 0 auto; width: 1200px;">
+    <div id="cus_table_div">
 
         <div style="padding: 50px 0px; height: 600px; overflow-y: scroll;">
             <table class="table">

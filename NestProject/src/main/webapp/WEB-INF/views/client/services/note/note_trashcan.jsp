@@ -63,6 +63,8 @@ height: 100%;
 width:85%;
 display: inline-block;
 float: left;
+}.menu{
+	margin-top:30px;
 }
 }
 	
@@ -105,7 +107,7 @@ background: #fff;
 	display: inline-block;
 }.body_div{
 height: 100%;
-width:85%;
+width:80%;
 display: inline-block;
 float: left;
 }
@@ -114,6 +116,8 @@ height: 100%;
 width:100%;
 display: inline-block;
 float: left;
+}.menu{
+	margin-top:30px;
 }
 }
 </style>

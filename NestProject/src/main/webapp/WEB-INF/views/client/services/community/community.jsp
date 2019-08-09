@@ -6,13 +6,13 @@
 <!DOCTYPE html>
 <html lang="ko" style="height:100%;width:100%;">
 
-
+<c:import url="../../common/head.jsp"/>
 <body>
 
 
     <div style="height:100%;width:100%;">
        
-        <c:import url="../common/navi.jsp"/>
+        <c:import url="../../common/navi.jsp"/>
 
 
         <section class="whitebox col-md-10 col-xs-11">

@@ -4,18 +4,48 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
-<html lang="ko">
- 
+<html lang="ko" style="overflow: hidden;">
+ <c:import url="../../common/customer_head.jsp"/>
 
 <title>자주찾는 질문</title>
 
+<head>
+<style>
 
+@media ( min-width : 1200px) {
+	#cus_serch {
+		height: 440px;
+	}#msg_list{
+height: 90px;
+border-bottom: #d0d0d0 1px solid;
+
+}
+.container_{
+    margin: 0 auto;
+    width: 1200px;
+    height: 100%;
+  
+   
+}
+}
+@media ( min-width : 300px) and (max-width: 1199.98px) {
+	#cus_serch {
+		height: 10%;
+	
+	}
+}.container_ {
+   width: 100%;
+   heigh:80%;
+}
+</style>
+
+</head>
 
 
 <body>
 
 
-   <c:import url="../common/customer_navi.jsp"/>
+   <c:import url="../../common/customer_navi.jsp"/>
     <!----------->
     <div id="centerbtn">
         <p style="text-align: left; font-size: 12px;">고객센터 &nbsp; > &nbsp; 자주찾는 질문<p>
@@ -25,7 +55,7 @@
 
 
     </div>
-    <div class="container_" style="height: 440px;">
+    <div id="cus_serch" class="container_">
         <p
             style="font-size: 16px; background:  #343a40; color:#fff; height: 50px; line-height: 50px; padding-left: 20px;">
             <i class="fas fa-star" style="color: #fff;"></i>
@@ -47,14 +77,14 @@
 
 
     <!------footer-->
-    <footer>
+   
         <div id="footer" class="container_">
 
 
             <p id="text"><br>ⓒ 2019 Nest Corporation All rights reserved</p>
         </div>
 
-    </footer>
+
 </body>
 
 </html>
