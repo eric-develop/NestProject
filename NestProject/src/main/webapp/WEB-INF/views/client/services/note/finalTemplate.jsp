@@ -13,77 +13,6 @@
 <script src="https://cdn.tiny.cloud/1/thfe5r10bknp9pbzrorb1rah5doyys51i6hsjncezu0tpruv/tinymce/5/tinymce.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/ko_KR.js"></script>
 
-<style>
-@media ( min-width : 1200px) {
-	
-#second_container{
-    box-sizing: border-box;
-    direction: ltr;
-    height:100%;
-    position: relative;
-    width: 20%;
-    will-change: transform;
-    
-    background: #f5f5f5;
-    display: block;
-    float: left;
-    padding: 0%;
-}.whitebox2{
-	width: 65%;
-	display: inline-block;
-}.whitebox2_wide{
-	width: 85%;
-	display: inline-block;
-}#note{
-height:auto;
-padding:20px;
-width:100%;
-overflow-y:auto;
-}
-#whitebox_footer{
-bottom: 0; 
-position: fixed;
-display: inline-block;
-height: 50px;
-border-top: #d1d1d1 1px solid;
-width: 100%;
-background: #fff;
-}#body_div{
-height: auto;
-}
-}
-	
-	
-@media ( min-width : 400px) {
-	
-#second_container{
-    box-sizing: border-box;
-    direction: ltr;
-    height:100%;
-    position: relative;
-    width: 20%;
-    will-change: transform;
-    
-    background: #f5f5f5;
-    display: block;
-    float: left;
-    padding: 0%;
-}.whitebox2{
-	width: 65%;
-	display: inline-block;
-}
-#whitebox_footer{
-bottom: 0; 
-position: fixed;
-display: inline-block;
-height: 50px;
-border-top: #d1d1d1 1px solid;
-width: 100%;
-background: #fff;
-}#body_div{
-}
-}
-</style>
 <script>
 var height;
 	$(function(){
@@ -209,55 +138,12 @@ var height;
 <body style="height:100%; width:100%;">
   
   
-   <c:import url="../../common/navi.jsp"/>
-
-
-    <!--=======================================노트 목록=========================================================-->
-
-
-    
-
-
-
-
-    <!--===========================노트 흰색=====================================================================-->
+   
+	
+	<c:import url="./common/menubar.jsp"/>
     <div id="body_div">
-    <div id="top_line">
-
-        <!---============  클릭시 확장 div,스크립트  ==============---->
-        <div style=" margin-top: 30px; display: inline-block;">
-          <span style="padding-left:20px;" id="sizeBtn" onclick="sizeChange();" style="cursor: pointer;"><i class="fas fa-expand"  style="font-size:20px; margin-right: 10px;"></i>화면
-            크게</span>
-          <button type="button" class="btn btn-primary btn-sm"
-            style="margin-left: 20px; background: #F28B30; border: none; color: #fff;">공유하기</button>
-		  <button class="btn" onclick="saveNote()" style="margin-left: 20px; background: #F28B30; border: none; color: #fff;">저장하기</button>
-		  <button class="btn" onclick="goTrash()" style="margin-left: 20px; background: #F28B30; border: none; color: #fff;">삭제하기</button>
-        </div>
-        <div class="input-group mb-3" style="    width: 280px;
-             float: right;
-             margin-top: 20px;">
-          <input style="width: 200px;" type="text" class="form-control" aria-label="Recipient's username"
-            aria-describedby="button-addon2">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
-          </div>
-        </div>
-
-        <!---============   ==============---->
-
-
-
-      </div>
     
-    <section id="box2" class="whitebox2" style="width:85%">
-
-      
-
-
-
-
-      <!------------------------------------------------------------------------------------------------------------------------------------------>
-      <div id="note" style="height: 800px;">
+       <div id="note" style="height: 800px;">
         <div class="Editor-Title" style="width:100%;height:7.33333%">
 			<div class="Title" style="width:100%;border-bottom:1px solid lightgray;height:100%">
 				<input type="text" id="ntitle" name="ntitle" placeholder="제목 없음" style="font-size:30px;width:100%; height:100%; border:none; padding-left:10px" />
@@ -279,8 +165,6 @@ var height;
         <i class="fas fa-tags" style="font-size: 20px; color: #b8b8b8 ; margin-right: 10px;"></i>
         <input type="text" placeholder="태그추가" style="border: none; width: 400px;">
       </div>
-
-    </section>
     </div>
   <script>
     function sizeChange(){

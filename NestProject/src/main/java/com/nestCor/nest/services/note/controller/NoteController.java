@@ -49,7 +49,7 @@ public class NoteController {
 	
 	@RequestMapping("/note/newNote.do")
 	public String newNote() {
-		return "client/services/note/finalTemplate";
+		return "client/services/note/newNote";
 	}
 	
 	@RequestMapping("/note/noteDetail.do")
