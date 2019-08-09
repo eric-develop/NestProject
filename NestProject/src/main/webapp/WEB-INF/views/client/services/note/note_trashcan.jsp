@@ -1,9 +1,3 @@
-노트메인, 스페이스 메인,
-노트 태그, 노트 리스트
-노트 파일 리스트
-노트 휴지통
-
-
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
