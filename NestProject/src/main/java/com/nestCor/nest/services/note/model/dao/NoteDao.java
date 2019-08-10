@@ -28,4 +28,6 @@ public interface NoteDao {
 		Note noteDetail(int nno);
 
 		int firstSave(Note note);
+		
+		int moveNote(Note note);
 }

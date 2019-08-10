@@ -70,5 +70,8 @@ public class NoteServiceImpl implements NoteService {
 		return noteDao.firstSave(note);
 	}
 	
-
+	@Override
+	public int moveNote(Note note) {
+		return noteDao.moveNote(note);
+	}
 }
