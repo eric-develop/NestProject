@@ -29,6 +29,7 @@ public class NoteBookController {
 		 System.out.println("list : "+list);
 			
 		 model.addAttribute("list",list);
+		 model.addAttribute("topmenu",3);
 		 
 		 return "client/services/note/note_list";
 	 }
@@ -40,6 +41,8 @@ public class NoteBookController {
 			
 		 model.addAttribute("list",list);
 		 model.addAttribute("nbtitle",nbtitle);
+		 model.addAttribute("topmenu",3);
+		 
 		 return "client/services/note/notebook_note";
 	 }
 	

@@ -62,7 +62,7 @@
 			<!-- Home 화면 구현부분 ////////////////////////////////////////////////////////////////////////////////////////////////////-->
 			<div id="community" style="padding:10px 19px;display:inline-block;height:100%;width:76.66666%;">
 				
-			 	<c:if test="!empty ${list}">
+			 	<c:if test="${!empty list}">
 				<div id="note" style="width:100%;height: 95%;">
 			        <div class="Editor-Title" style="height:7.33333%">
 						<div class="Title" style="width:100%;border-bottom:1px solid lightgray;height:100%">

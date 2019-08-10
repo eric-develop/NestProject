@@ -64,5 +64,11 @@ public class NoteServiceImpl implements NoteService {
 	public Note noteDetail(int nno) {
 		return noteDao.noteDetail(nno);
 	}
+	
+	@Override
+	public int firstSave(Note note) {
+		return noteDao.firstSave(note);
+	}
+	
 
 }
