@@ -11,11 +11,6 @@
 			SEQ_NNO.NEXTVAL, #{mno}, 1, 1, 
 			#{ntitle}, #{ncontent}, 's1', DEFAULT)
 	</insert>
-	<insert id="afterSave" parameterType="note">
-		INSERT INTO NOTE VALUES(							
-			#{nno}, #{mno}, 1, 1, 
-			#{ntitle}, #{ncontent}, 's1', DEFAULT)
-	</insert>
 	
 	<select id="noteDetail" parameterType="_int" resultType="note">
 		SELECT * FROM NOTE WHERE NNO = #{nno}
@@ -29,7 +24,12 @@
 	<select id="selectListNote" parameterType="note" resultType="note">
 		SELECT * FROM NOTE WHERE MNO = #{mno} AND TRASHCAN = #{trashcan} ORDER BY 1 DESC
 	</select>
-		
+	
+	<select id="searchNno" parameterType="note" resultType="_int">
+		SELECT MAX(NNO) FROM NOTE WHERE MNO = #{mno}
+	</select>
+	
+	
 	
 	<update id="updateNote" parameterType="note">
 		UPDATE NOTE SET NTITLE = #{ntitle}, NCONTENT = #{ncontent} WHERE NNO = #{nno}

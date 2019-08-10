@@ -19,8 +19,9 @@
 					display:inline-block;
 				}
 			</style>
-			<div style="width:100%;min-width:1560px;height:100%">
-			<div id="second_container" value="slide" style="overflow:auto;height:100%;display:inline-block;width:20.33333%;min-width:364px;;padding: 0 15px;float:left;border-right:1px solid">
+			<div style="width:100%;min-width:1560px;height:100%;">
+			<div id="second_container" value="slide" style="overflow:auto;height:500px;min-height:100%;display:inline-block;width:20.33333%;min-width:364px;;padding: 0 15px;float:left;border-right:1px solid">
+			     <div>
 			      <div id="sc1" style="border-bottom: 1px solid #1a1a1a; padding: 14px;">
 			        <div style="padding-top:10px;">
 			        	<h5 style="display:inline-block;">모든 노트</h5>
@@ -45,20 +46,53 @@
 			     
 					<c:forEach var="note" items="${list}" varStatus="status">
 						
-							<div id="sc2" style="height:110px">
-						        <div style="padding:10px;">
-						          
-						          <span>
-						          <input class="noteCheck" type="checkbox" value="${note.nno}" style="cursor:zz"/>
-						           <b>${note.ntitle}</b><br />
-						           <p>&nbsp&nbsp&nbsp&nbsp${note.ncontent}</p>
-						          </span>
-						        </div>
-						      </div>
+							<div class="sc3" style="height:110px;overflow:hidden;border-bottom:1px solid #dcdcdc;padding:10px;cursor:pointer">
+					        
+					          
+					          <span>
+					          <input class="noteCheck" type="hidden" value="${note.nno}" style="cursor:zz"/>
+					          <div id="list_ntitle">${note.ntitle}</div>
+					          <div id="list_ncontent">${note.ncontent}</div>
+					          </span>
+					        
+					      </div>
 						
 					</c:forEach>
-				
+					
+				</div>
 			 </div>
+			 <script>
+			 var select;
+			 var nno;
+				$('.sc3').click(function(){
+					$('.sc3').css("background","#fff");
+					$(this).css("background","#ebebeb");
+					select=$(this).index();
+					nno = $(this).children().children('input').val();
+					$.ajax({
+						url:'${pageContext.request.contextPath}/note/noteDetail.do',
+						data:{nno:nno},
+						dataType:'json',
+						success:function(data){
+							$('#ntitle').val(data.ntitle);
+							tinyMCE.activeEditor.setContent(data.ncontent);
+						},error : function(request,status,error){
+		    			    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		    			}
+					});
+				});
+				$('.sc3').mouseenter(function(){
+					$('.sc3').css("background","#fff");
+					$(this).css("background","#ebebeb");
+					$('.sc3').eq(select-3).css("background","#ebebeb");
+				});
+				$('.sc3').mouseleave(function(){
+					$('.sc3').css("background","#fff");
+					$('.sc3').eq(select-3).css("background","#ebebeb");
+				});
+				
+				
+			</script>
 			<!-- Home 화면 구현부분 ////////////////////////////////////////////////////////////////////////////////////////////////////-->
 			<div id="community" style="padding:10px 19px;display:inline-block;height:100%;width:76.66666%;">
 				
@@ -147,19 +181,21 @@
 		location.href="${pageContext.request.contextPath}"
             +"/note/goAllTrash.do?mno=1&trashcan=Y";
 	}
-	function saveNote(){
+	function afterSave(){
 		var ntitle = $('#ntitle').val();
 		var ncontent = tinyMCE.activeEditor.getContent();
 		$.ajax({
 			url:'${pageContext.request.contextPath}/note/saveNote.do',
 			type: 'POST',
-			data:{nno:i,ntitle:ntitle,ncontent:ncontent},
+			data:{nno:nno,ntitle:ntitle,ncontent:ncontent},
 			dataType:'json',
 			success:function(data){
 				if(data){
 					alert("저장성공");
-					console.log(obj.parent().children(1).text().trim());
-					obj.parent().children(1).text(ntitle);
+					$('.sc3').eq(select-3).children().children('div#list_ntitle').text(ntitle);
+					console.log($('#ncontent').text());
+					$('.sc3').eq(select-3).children().children('div#list_ncontent').text(tinyMCE.activeEditor.getContent({format: 'text'}));
+					
 				}else{
 					alert("저장실패");}				
 				
@@ -190,7 +226,7 @@ function goTrash(){
 		});
 	}
 	</script>
-
+	
 </body>
 
 </html>

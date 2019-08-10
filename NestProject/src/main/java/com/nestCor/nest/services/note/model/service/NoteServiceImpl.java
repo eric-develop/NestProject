@@ -70,5 +70,11 @@ public class NoteServiceImpl implements NoteService {
 		return noteDao.firstSave(note);
 	}
 	
+	@Override
+	public int searchNno(Note note) {
+		
+		return noteDao.searchNno(note);
+	}
+	
 
 }

@@ -67,18 +67,24 @@ public class NoteController {
 	// 새 노트 저장 시
 	@RequestMapping("/note/firstSave.do")
 	@ResponseBody
-	public boolean firstSave(@RequestParam("nno") int nno,@RequestParam("ntitle") String ntitle, @RequestParam("ncontent") String ncontent, @RequestParam("mno") int mno) {
+	public int firstSave(@RequestParam("nno") int nno,@RequestParam("ntitle") String ntitle, @RequestParam("ncontent") String ncontent, @RequestParam("mno") int mno,Model model) {
 		Note note = new Note();
 		note.setMno(mno);
 		note.setNno(nno);
 		note.setNtitle(ntitle);
 		note.setNcontent(ncontent);
+		System.out.println("저장시도");
 		int result = noteService.firstSave(note);
 		
 		boolean check;
 		if(result>0) check=true;
 		else check=false;
-		return check;
+		
+		int nNo = noteService.searchNno(note);
+		
+		
+		
+		return nNo;
 	}
 	
 	@RequestMapping("/note/saveNote.do")
@@ -88,6 +94,7 @@ public class NoteController {
 		note.setNno(nno);
 		note.setNtitle(ntitle);
 		note.setNcontent(ncontent);
+		
 		int result = noteService.updateNote(note);
 		
 		boolean check;

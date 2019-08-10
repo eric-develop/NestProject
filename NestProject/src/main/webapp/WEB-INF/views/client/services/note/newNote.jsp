@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.*, com.nestCor.nest.services.board.model.vo.*" %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -18,6 +18,7 @@
 			<div id="community" style="padding:10px 19px;">
 				<div id="note" style="height: 800px;">
 					<input id="nno" type="hidden" value="${nno}" />
+					<input id="mno" type="hidden" value="${member.mNo }" />
 			        <div class="Editor-Title" style="width:100%;height:7.33333%">
 						<div class="Title" style="width:100%;border-bottom:1px solid lightgray;height:100%">
 							<input type="text" id="ntitle" name="ntitle" placeholder="제목 없음" style="font-size:30px;width:100%; height:100%; border:none; padding-left:10px" />
@@ -49,17 +50,20 @@
 				var nno=0;
 				var ntitle = $('#ntitle').val();
 				var ncontent = tinyMCE.activeEditor.getContent();
-				if($('#nno').val()!=null){
+				var mno=$('#mno').val();
+				if($('#nno').val()>0){
 					console.log($('#nno').val());
 					nno=$('#nno').val();
 				}
+				console.log(nno+"/"+ntitle+"/"+mno);
 				$.ajax({
 					url:"${pageContext.request.contextPath}/note/firstSave.do",
 					type: 'POST',
-					data:{mno:${member.mNo},nno:nno,ntitle:ntitle,ncontent:ncontent},
+					data:{mno:mno,nno:nno,ntitle:ntitle,ncontent:ncontent},
 					dataType:'json',
 					success:function(data){
 						alert("저장성공");
+						$('#nno').val(data);
 					},error : function(request,status,error){
 					    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 					}
