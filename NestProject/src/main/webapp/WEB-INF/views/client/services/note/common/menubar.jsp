@@ -154,6 +154,11 @@ var height;
 
 <body id="page-top">
 
+	<style>
+		@font-face { font-family: 'Godo'; font-style: normal; font-weight: 400; src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff') format('woff'); } @font-face { font-family: 'Godo'; font-style: normal; font-weight: 700; src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff') format('woff'); } .godo * { font-family: 'Godo', sans-serif; }
+		* {font-family: 'Godo';}
+	</style>
+	
 	<!-- Sidebar -->
 	<ul	class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
 		id="accordionSidebar">
@@ -165,18 +170,14 @@ var height;
 			role="button" data-toggle="dropdown" aria-haspopup="true"
 			aria-expanded="false"> 
 				<img class="img-profile rounded-circle"	src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
-				<span class="mr-2 d-none d-lg-inline text-white-600 small">NEST</span>
+				<span class="mr-2 d-none d-lg-inline text-white-600 small" style="font-size:15px;">NEST</span>
 			</a> 
 			<!-- Dropdown - User Information -->
 			<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 				aria-labelledby="userDropdown">
 				<a class="dropdown-item" href="#"> <i
-					class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 프로필
-				</a> <a class="dropdown-item" href="#"> <i
-					class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> 정보수정
-				</a> <a class="dropdown-item" href="#"> <i
-					class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> 활동기록
-				</a>
+					class="fas fa-user-cog fa-sm fa-fw mr-2 text-gray-400"></i> 설정
+				</a> 
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="#" data-toggle="modal"
 					data-target="#logoutModal"> <i
@@ -198,6 +199,9 @@ var height;
 		<!-- Heading -->
 		<li class="nav-item">
 			<style>
+				.nav-link{
+					margin-left: 10px;
+				}
 				.form-control {
 				    display: block;
 				    width: 100%;
@@ -271,7 +275,7 @@ var height;
 		<a class="nav-link collapsed newNote" href="#"
 			data-toggle="collapse" data-target="#collapseBoardcast"
 			aria-expanded="true" aria-controls="collapseBoardcast"> 
-			<i class="fas fa-plus-circle"></i> <span>새 노트</span>
+			<i class="fas fa-plus-circle"></i> <span style="font-size:16px;">새 노트</span>
 		</a>
 		<script>
 			$('.newNote').click(function(){
@@ -285,7 +289,7 @@ var height;
 		<a class="nav-link collapsed note" href="#"
 			data-toggle="collapse" data-target="#collapseSport"
 			aria-expanded="true" aria-controls="collapseSport"> 
-			<i class="fas fa-fw fa-folder"></i> <span>모든 노트</span>
+			<i class="fas fa-sticky-note"></i> <span style="font-size:16px;">모든 노트</span>
 		</a>
 		<script>
 			$('.note').click(function(){
@@ -299,7 +303,7 @@ var height;
 		<a class="nav-link collapsed notebook" href="#"
 			data-toggle="collapse" data-target="#collapseSport"
 			aria-expanded="true" aria-controls="collapseSport"> 
-			<i class="fas fa-fw fa-folder"></i> <span>노트북</span>
+			<i class="fas fa-book"></i> <span style="font-size:16px;">노트북</span>
 		</a>
 		<script>
 			$('.notebook').click(function(){
@@ -313,7 +317,7 @@ var height;
 		<a class="nav-link collapsed tag" href="#"
 			data-toggle="collapse" data-target="#collapseSport"
 			aria-expanded="true" aria-controls="collapseSport"> 
-			<i class="fas fa-fw fa-folder"></i> <span>태그</span>
+			<i class="fas fa-tag"></i> <span style="font-size:16px;">태그</span>
 		</a>
 		<script>
 			$('.tag').click(function(){
@@ -327,7 +331,7 @@ var height;
 		<a class="nav-link collapsed trash" href="#"
 			data-toggle="collapse" data-target="#collapseSport"
 			aria-expanded="true" aria-controls="collapseSport"> 
-			<i class="fas fa-fw fa-folder"></i> <span>휴지통</span>
+			<i class="fas fa-trash"></i> <span style="font-size:16px;">휴지통</span>
 		</a>
 		<script>
 			$('.trash').click(function(){
@@ -341,7 +345,7 @@ var height;
 		<a class="nav-link collapsed" href="#"
 			data-toggle="collapse" data-target="#collapseSport"
 			aria-expanded="true" aria-controls="collapseSport"> 
-			<i class="fas fa-fw fa-folder"></i> <span>스페이스</span>
+			<i class="fab fa-stripe-s"></i> <span style="font-size:16px;">스페이스</span>
 		</a>
 		</li>
 		
@@ -349,7 +353,7 @@ var height;
 		<a class="nav-link collapsed" href="#"
 			data-toggle="collapse" data-target="#collapseSport"
 			aria-expanded="true" aria-controls="collapseSport"> 
-			<i class="fas fa-fw fa-folder"></i> <span>업그레이드</span>
+			<i class="fas fa-star"></i> <span style="font-size:16px;">업그레이드</span>
 		</a>
 		</li>
 		
@@ -357,7 +361,7 @@ var height;
 		<a class="nav-link collapsed community" href="#"
 			data-toggle="collapse" data-target="#collapseSport"
 			aria-expanded="true" aria-controls="collapseSport"> 
-			<i class="fas fa-fw fa-folder"></i> <span>커뮤니티</span>
+			<i class="fas fa-user-friends"></i> <span style="font-size:16px;">커뮤니티</span>
 		</a>
 		<script>
 			$('.community').click(function(){
@@ -370,11 +374,11 @@ var height;
 		<hr class="sidebar-divider">
 
 		<!-- Heading -->
-		<div class="sidebar-heading">기타</div>
+		<div class="sidebar-heading" style="font-size:14px;">기타</div>
 
 		<!-- Nav Item - Tables -->
 		<li class="nav-item"><a class="nav-link" href=""> <i
-				class="fas fa-fw fa-cog"></i> <span>고객센터</span></a></li>
+				class="fas fa-fw fa-cog"></i> <span style="font-size:16px;">고객센터</span></a></li>
 
 		<!-- Divider -->
 		<hr class="sidebar-divider d-none d-md-block">
