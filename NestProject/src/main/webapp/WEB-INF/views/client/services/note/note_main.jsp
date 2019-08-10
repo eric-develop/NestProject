@@ -19,11 +19,13 @@
 					display:inline-block;
 				}
 			</style>
-			<div style="width:1430px;min-width: 1429px; height:100%">
-			<div id="second_container" value="slide" style="height:100%;display:inline-block;width:23.33333%;padding: 0 15px;float:left;border-right:1px solid">
+			<div style="width:100%;min-width:1560px;height:100%">
+			<div id="second_container" value="slide" style="overflow:auto;height:100%;display:inline-block;width:20.33333%;min-width:364px;;padding: 0 15px;float:left;border-right:1px solid">
 			      <div id="sc1" style="border-bottom: 1px solid #1a1a1a; padding: 14px;">
-			        <h5 id="toptext">모든 노트</h5>
-			        <p id="sclist">0개의 노트</p>
+			        <div style="padding-top:10px;">
+			        	<h5 style="display:inline-block;">모든 노트</h5>
+			        	<p style="display:inline-block;float:right">0개의 노트</p>
+			        </div>
 			      </div>
 			      <div id="sc2">
 			        <div style="padding:10px;">
@@ -40,24 +42,29 @@
 			      		list-style:none;
 			      	}
 			      </style>
-			      <ul>
+			     
 					<c:forEach var="note" items="${list}" varStatus="status">
-						<li>
-							<div id="sc3">
-							<input class="noteCheck" type="checkbox" value="${note.nno}"/>
-							<b>${note.ntitle}</b>
-								<br />
-							</div>
-						</li>
+						
+							<div id="sc2" style="height:110px">
+						        <div style="padding:10px;">
+						          
+						          <span>
+						          <input class="noteCheck" type="checkbox" value="${note.nno}"/>
+						           <b>${note.ntitle}</b><br />
+						           <p>${note.ncontent}</p>
+						          </span>
+						        </div>
+						      </div>
+						
 					</c:forEach>
-				</ul>
+				
 			 </div>
 			<!-- Home 화면 구현부분 ////////////////////////////////////////////////////////////////////////////////////////////////////-->
-			<div id="community" style="padding:10px 19px;display:inline-block;width: 76.66666%;">
+			<div id="community" style="padding:10px 19px;display:inline-block;height:100%;width:76.66666%;">
 				
-			 
-				<div id="note" style="height: 800px;">
-			        <div class="Editor-Title" style="width:100%;height:7.33333%">
+			 <c:if test="!empty ${list}">
+				<div id="note" style="width:100%;height: 95%;">
+			        <div class="Editor-Title" style="height:7.33333%">
 						<div class="Title" style="width:100%;border-bottom:1px solid lightgray;height:100%">
 							<input type="text" id="ntitle" name="ntitle" placeholder="제목 없음" style="font-size:30px;width:100%; height:100%; border:none; padding-left:10px" />
 						</div>
@@ -74,11 +81,11 @@
 						}
 					</style>
 			      </div>
-			      <div id="whitebox_footer">
+			      <div id="whitebox_footer" style="height:4.9999%">
 			        <i class="fas fa-tags" style="font-size: 20px; color: #b8b8b8 ; margin-right: 10px;"></i>
 			        <input type="text" placeholder="태그추가" style="border: none; width: 400px;">
 			      </div>
-			      
+			      </c:if>
 			</div>
 			</div>	
 		</div>

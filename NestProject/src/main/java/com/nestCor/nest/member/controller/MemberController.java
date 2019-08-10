@@ -16,6 +16,8 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.nestCor.nest.member.model.service.MemberService;
 import com.nestCor.nest.member.model.vo.Member;
+import com.nestCor.nest.services.note.model.service.NoteService;
+import com.nestCor.nest.services.note.model.vo.Note;
 import com.nestCor.nest.services.space.model.service.SpaceService;
 import com.nestCor.nest.services.space.model.vo.Space;
 
@@ -29,6 +31,9 @@ public class MemberController {
 	
 	@Autowired
 	private SpaceService sService;
+	
+	@Autowired
+	private NoteService nService;
 	
 	@Autowired
 	private BCryptPasswordEncoder pwdEncoder;
@@ -60,6 +65,9 @@ public class MemberController {
 					
 					spaceList = sService.selectSpaceList(m.getBizNo());
 					bizMemberList = mService.selectBizMemberList(m.getBizNo());
+					Note note = new Note(m.getmNo(),"N");
+					List<Note> list = nService.selectListNote(note);
+					model.addAttribute("list", list);
 					url = "client/services/note/note_main";
 					
 				}else {

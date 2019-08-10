@@ -71,6 +71,7 @@ var height;
 	                  inp2.trigger('click');
 	                }
 	              });
+	               
 	              
 	              // when a file is selected, upload it to the server
 	              inp.on("change", function(e){
@@ -360,7 +361,7 @@ var height;
 		</a>
 		<script>
 			$('.community').click(function(){
-				location.href="${pageContext.request.contextPath}/board/board.do"
+				window.open("${pageContext.request.contextPath}/board/board.do");
 			});
 		</script>
 		</li>
