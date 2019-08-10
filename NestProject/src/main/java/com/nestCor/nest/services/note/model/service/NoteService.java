@@ -26,4 +26,6 @@ public interface NoteService {
 	int restoreTrash(Note note); //복원하기
 
 	Note noteDetail(int nno);
+
+	int firstSave(Note note);
 }

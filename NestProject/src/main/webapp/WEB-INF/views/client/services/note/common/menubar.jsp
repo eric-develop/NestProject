@@ -27,7 +27,13 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
 <script src="https://cdn.tiny.cloud/1/thfe5r10bknp9pbzrorb1rah5doyys51i6hsjncezu0tpruv/tinymce/5/tinymce.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/ko_KR.js"></script>
-
+<style>
+@media (max-width:768px){
+	.sidebar .nav-item .nav-link span{
+   		display:none;
+	}
+}
+</style>
 <script>
 var height;
 	$(function(){
@@ -150,6 +156,17 @@ var height;
 	});
 
 </script>    
+<style>
+	
+	.sidebar.displaynone .nav-item .nav-link span{
+		display:none;
+	}
+	.sidebar.displaynone .nav-link{
+		margin-left: 0px;
+	}
+	
+	
+</style>
 </head>
 
 <body id="page-top">
@@ -199,9 +216,7 @@ var height;
 		<!-- Heading -->
 		<li class="nav-item">
 			<style>
-				.nav-link{
-					margin-left: 10px;
-				}
+				
 				.form-control {
 				    display: block;
 				    width: 100%;
@@ -260,7 +275,7 @@ var height;
    					border-bottom-left-radius: 0;
 				}
 			</style>
-			<form class="form-inline my-2 my-lg-0">
+			<form class="form-inline my-2 my-lg-0" style="padding:12px 16px">
 				<div class="input-group" id="search" style="margin:0 auto;margin-bottom: 30px;">
 					<input class="form-control" type="search"
 						placeholder="Search" aria-label="Search" style="border:none">
@@ -272,7 +287,7 @@ var height;
 		<!-- Nav Item - 연예/방송 카테고리 -->
 		<li class="nav-item">
 		
-		<a class="nav-link collapsed newNote" href="#"
+		<a class="nav-link collapsed newNote cate" href="#"
 			data-toggle="collapse" data-target="#collapseBoardcast"
 			aria-expanded="true" aria-controls="collapseBoardcast"> 
 			<i class="fas fa-plus-circle"></i> <span style="font-size:16px;">새 노트</span>
@@ -286,7 +301,7 @@ var height;
 
 		<!-- Nav Item - 스포츠 -->
 		<li class="nav-item">
-		<a class="nav-link collapsed note" href="#"
+		<a class="nav-link collapsed note cate" href="#"
 			data-toggle="collapse" data-target="#collapseSport"
 			aria-expanded="true" aria-controls="collapseSport"> 
 			<i class="fas fa-sticky-note"></i> <span style="font-size:16px;">모든 노트</span>
@@ -300,7 +315,7 @@ var height;
 
 		<!-- Nav Item - 교육/금융/IT -->
 		<li class="nav-item">
-		<a class="nav-link collapsed notebook" href="#"
+		<a class="nav-link collapsed notebook cate" href="#"
 			data-toggle="collapse" data-target="#collapseSport"
 			aria-expanded="true" aria-controls="collapseSport"> 
 			<i class="fas fa-book"></i> <span style="font-size:16px;">노트북</span>
@@ -314,7 +329,7 @@ var height;
 
 		<!-- Nav Item - 여행/음식/생물 -->
 		<li class="nav-item">
-		<a class="nav-link collapsed tag" href="#"
+		<a class="nav-link collapsed tag cate" href="#"
 			data-toggle="collapse" data-target="#collapseSport"
 			aria-expanded="true" aria-controls="collapseSport"> 
 			<i class="fas fa-tag"></i> <span style="font-size:16px;">태그</span>
@@ -328,7 +343,7 @@ var height;
 
 		<!-- Nav Item - 취미/생활 카테고리 -->
 		<li class="nav-item">
-		<a class="nav-link collapsed trash" href="#"
+		<a class="nav-link collapsed trash cate" href="#"
 			data-toggle="collapse" data-target="#collapseSport"
 			aria-expanded="true" aria-controls="collapseSport"> 
 			<i class="fas fa-trash"></i> <span style="font-size:16px;">휴지통</span>
@@ -342,7 +357,7 @@ var height;
 		
 		<!-- Nav Item - 취미/생활 카테고리 -->
 		<li class="nav-item">
-		<a class="nav-link collapsed" href="#"
+		<a class="nav-link collapsed cate" href="#"
 			data-toggle="collapse" data-target="#collapseSport"
 			aria-expanded="true" aria-controls="collapseSport"> 
 			<i class="fab fa-stripe-s"></i> <span style="font-size:16px;">스페이스</span>
@@ -350,7 +365,7 @@ var height;
 		</li>
 		
 		<li class="nav-item">
-		<a class="nav-link collapsed" href="#"
+		<a class="nav-link collapsed cate" href="#"
 			data-toggle="collapse" data-target="#collapseSport"
 			aria-expanded="true" aria-controls="collapseSport"> 
 			<i class="fas fa-star"></i> <span style="font-size:16px;">업그레이드</span>
@@ -358,7 +373,7 @@ var height;
 		</li>
 		
 		<li class="nav-item">
-		<a class="nav-link collapsed community" href="#"
+		<a class="nav-link collapsed community cate" href="#"
 			data-toggle="collapse" data-target="#collapseSport"
 			aria-expanded="true" aria-controls="collapseSport"> 
 			<i class="fas fa-user-friends"></i> <span style="font-size:16px;">커뮤니티</span>
@@ -409,137 +424,36 @@ var height;
 				<!-- Topbar Navbar -->
 				<ul class="navbar-nav ml-auto">
 
-					<!-- Nav Item - Search Dropdown (Visible Only XS) -->
-					<li class="nav-item dropdown no-arrow d-sm-none"><a
-						class="nav-link dropdown-toggle" href="#" id="searchDropdown"
-						role="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
-					</a> <!-- Dropdown - Messages -->
-						<div
-							class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-							aria-labelledby="searchDropdown">
-							<form class="form-inline mr-auto w-100 navbar-search">
-								<div class="input-group">
-									<input type="text"
-										class="form-control bg-light border-0 small"
-										placeholder="Search for..." aria-label="Search"
-										aria-describedby="basic-addon2">
-									<div class="input-group-append">
-										<button class="btn btn-primary" type="button">
-											<i class="fas fa-search fa-sm"></i>
-										</button>
-									</div>
-								</div>
-							</form>
-						</div></li>
-
-					<!-- Nav Item - Alerts -->
+					
+						<style>
+							.save{
+								cursor:pointer;
+							}
+						</style>
+					<c:if test="${topmenu eq 1}">
 					<li class="nav-item dropdown no-arrow mx-1"><a
-						class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
+						class="nav-link dropdown-toggle save" onclick="firstSave()" id="alertsDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"> <i class="fas fa-bell fa-fw"></i> <!-- Counter - Alerts -->
-							<span class="badge badge-danger badge-counter">3+</span>
-					</a> <!-- Dropdown - Alerts -->
-						<div
-							class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-							aria-labelledby="alertsDropdown">
-							<h6 class="dropdown-header">Alerts Center</h6>
-							<a class="dropdown-item d-flex align-items-center" href="#">
-								<div class="mr-3">
-									<div class="icon-circle bg-primary">
-										<i class="fas fa-file-alt text-white"></i>
-									</div>
-								</div>
-								<div>
-									<div class="small text-gray-500">December 12, 2019</div>
-									<span class="font-weight-bold">새로운 알림이 있습니다</span>
-								</div>
-							</a> <a class="dropdown-item d-flex align-items-center" href="#">
-								<div class="mr-3">
-									<div class="icon-circle bg-success">
-										<i class="fas fa-donate text-white"></i>
-									</div>
-								</div>
-								<div>
-									<div class="small text-gray-500">December 7, 2019</div>
-									새로운 알림이 있습니다
-								</div>
-							</a> <a class="dropdown-item d-flex align-items-center" href="#">
-								<div class="mr-3">
-									<div class="icon-circle bg-warning">
-										<i class="fas fa-exclamation-triangle text-white"></i>
-									</div>
-								</div>
-								<div>
-									<div class="small text-gray-500">December 2, 2019</div>
-									새로운 알림이 있습니다
-								</div>
-							</a> <a class="dropdown-item text-center small text-gray-500"
-								href="#">Show All Alerts</a>
-						</div></li>
-
-					<!-- Nav Item - Messages -->
+						aria-expanded="false"> <i class="fas fa-save"></i>&nbsp;저장하기
+					</a></li>
+					
+					</c:if>
+					<c:if test="${topmenu eq 2}">
 					<li class="nav-item dropdown no-arrow mx-1"><a
-						class="nav-link dropdown-toggle" href="#" id="messagesDropdown"
+						class="nav-link dropdown-toggle save" onclick="afterSave()" id="alertsDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"> <i class="fas fa-envelope fa-fw"></i>
-							<!-- Counter - Messages --> 
-						<span class="badge badge-danger badge-counter">7</span>
-					</a> <!-- Dropdown - Messages -->
-						<div
-							class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-							aria-labelledby="messagesDropdown">
-							<h6 class="dropdown-header">Message Center</h6>
-							<a class="dropdown-item d-flex align-items-center" href="#">
-								<div class="dropdown-list-image mr-3">
-									<img class="rounded-circle"
-										src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
-									<div class="status-indicator bg-success"></div>
-								</div>
-								<div class="font-weight-bold">
-									<div class="text-truncate">Hi there! I am wondering if
-										you can help me with a problem I've been having.</div>
-									<div class="small text-gray-500">Emily Fowler · 58m</div>
-								</div>
-							</a> <a class="dropdown-item d-flex align-items-center" href="#">
-								<div class="dropdown-list-image mr-3">
-									<img class="rounded-circle"
-										src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
-									<div class="status-indicator"></div>
-								</div>
-								<div>
-									<div class="text-truncate">I have the photos that you
-										ordered last month, how would you like them sent to you?</div>
-									<div class="small text-gray-500">Jae Chun · 1d</div>
-								</div>
-							</a> <a class="dropdown-item d-flex align-items-center" href="#">
-								<div class="dropdown-list-image mr-3">
-									<img class="rounded-circle"
-										src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
-									<div class="status-indicator bg-warning"></div>
-								</div>
-								<div>
-									<div class="text-truncate">Last month's report looks
-										great, I am very happy with the progress so far, keep up the
-										good work!</div>
-									<div class="small text-gray-500">Morgan Alvarez · 2d</div>
-								</div>
-							</a> <a class="dropdown-item d-flex align-items-center" href="#">
-								<div class="dropdown-list-image mr-3">
-									<img class="rounded-circle"
-										src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
-									<div class="status-indicator bg-success"></div>
-								</div>
-								<div>
-									<div class="text-truncate">Am I a good boy? The reason I
-										ask is because someone told me that people say this to all
-										dogs, even if they aren't good...</div>
-									<div class="small text-gray-500">Chicken the Dog · 2w</div>
-								</div>
-							</a> <a class="dropdown-item text-center small text-gray-500"
-								href="#">Read More Messages</a>
-						</div></li>
-
+						aria-expanded="false"> <i class="fas fa-save"></i>&nbsp;저장하기
+					</a></li>
+					</c:if>
+					<c:if test="${topmenu eq 3}">
+					<li class="nav-item dropdown no-arrow mx-1"><a
+						class="nav-link dropdown-toggle save" onclick="afterSave()" id="alertsDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> <i class="fas fa-save"></i>&nbsp;저장하기
+					</a></li>
+					</c:if>
+					
+					
 					<div class="topbar-divider d-none d-sm-block"></div>
 
 					<!-- Nav Item - User Information -->
@@ -550,23 +464,57 @@ var height;
 						aria-expanded="false"> 
 							<i class="fas fa-ellipsis-v"></i>
 					</a> <!-- Dropdown - User Information -->
+					
+					<c:if test="${topmenu eq 1}">
 						<div
 							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 							aria-labelledby="userDropdown">
-							<a class="dropdown-item" href="#"> <i
-								class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 프로필
-							</a> <a class="dropdown-item" href="#"> <i
-								class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> 정보수정
-							</a> <a class="dropdown-item" href="#"> <i
-								class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> 활동기록
-							</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#" data-toggle="modal"
-								data-target="#logoutModal"> <i
-								class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-								로그아웃
+							<a class="dropdown-item" href="#"> 저장 </a>
+							<a class="dropdown-item" href="#"> 템플릿 적용</a>
+						</div>
+					</c:if>
+					<c:if test="${topmenu eq 2}">
+						<div
+							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+							aria-labelledby="userDropdown">
+							<a class="dropdown-item" href="#"> 저장
+							</a> <a class="dropdown-item" href="#"> 이동...
+							</a> <a class="dropdown-item" href="#"> 노트복제
+							</a> <a class="dropdown-item" href="#"> 노트삭제
 							</a>
 						</div>
+					</c:if>
+					<c:if test="${topmenu eq 3}">
+						<div
+							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+							aria-labelledby="userDropdown">
+							<a class="dropdown-item" href="#"> 새 노트북
+							</a> <a class="dropdown-item" href="#"> 노트북 이름바꾸기
+							</a> <a class="dropdown-item" href="#"> 노트북 삭제
+							</a> 
+						</div>
+					</c:if>
+					<c:if test="${topmenu eq 4}">
+						<div
+							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+							aria-labelledby="userDropdown">
+							<a class="dropdown-item" href="#"> 저장
+							</a> <a class="dropdown-item" href="#"> 이동...
+							</a> <a class="dropdown-item" href="#"> 노트복제
+							</a> <a class="dropdown-item" href="#"> 노트삭제
+							</a>
+						</div>
+					</c:if>
+					<c:if test="${topmenu eq 5}">
+						<div
+							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+							aria-labelledby="userDropdown">
+							<a class="dropdown-item" href="#"> 노트복원
+							</a> <a class="dropdown-item" href="#"> 삭제
+							</a> <a class="dropdown-item" href="#"> 전체삭제
+							</a>
+						</div>
+					</c:if>
 					</li>
 
 				</ul>
@@ -604,7 +552,7 @@ var height;
 		<!-- Core plugin JavaScript-->
 		<script src="${pageContext.request.contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 		<!-- Custom scripts for all pages-->
-		<script src="${pageContext.request.contextPath}/resources/js/sb-admin-2.min.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/sb-admin-1.min.js"></script>
 			
 </body>
 

@@ -62,7 +62,7 @@
 			<!-- Home 화면 구현부분 ////////////////////////////////////////////////////////////////////////////////////////////////////-->
 			<div id="community" style="padding:10px 19px;display:inline-block;height:100%;width:76.66666%;">
 				
-			 <c:if test="!empty ${list}">
+			 <c:if test="${!empty list}">
 				<div id="note" style="width:100%;height: 95%;">
 			        <div class="Editor-Title" style="height:7.33333%">
 						<div class="Title" style="width:100%;border-bottom:1px solid lightgray;height:100%">
@@ -85,7 +85,7 @@
 			        <i class="fas fa-tags" style="font-size: 20px; color: #b8b8b8 ; margin-right: 10px;"></i>
 			        <input type="text" placeholder="태그추가" style="border: none; width: 400px;">
 			      </div>
-			      </c:if>
+			  </c:if>
 			</div>
 			</div>	
 		</div>

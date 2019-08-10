@@ -48,7 +48,8 @@ public class NoteController {
 	
 	
 	@RequestMapping("/note/newNote.do")
-	public String newNote() {
+	public String newNote(Model model) {
+		model.addAttribute("topmenu",1);
 		return "client/services/note/newNote";
 	}
 	
@@ -61,6 +62,23 @@ public class NoteController {
 		
 		System.out.println(note+"들어옴");
 		return note;
+	}
+	
+	// 새 노트 저장 시
+	@RequestMapping("/note/firstSave.do")
+	@ResponseBody
+	public boolean firstSave(@RequestParam("nno") int nno,@RequestParam("ntitle") String ntitle, @RequestParam("ncontent") String ncontent, @RequestParam("mno") int mno) {
+		Note note = new Note();
+		note.setMno(mno);
+		note.setNno(nno);
+		note.setNtitle(ntitle);
+		note.setNcontent(ncontent);
+		int result = noteService.firstSave(note);
+		
+		boolean check;
+		if(result>0) check=true;
+		else check=false;
+		return check;
 	}
 	
 	@RequestMapping("/note/saveNote.do")
@@ -90,14 +108,14 @@ public class NoteController {
 		
 		model.addAttribute("list",list);
 		String path;
-		if(yn.equals("Y")) path="client/services/note/note_trashcan";
-		else path="client/services/note/note_main";
+		if(yn.equals("Y")) {path="client/services/note/note_trashcan"; model.addAttribute("topmenu",5);}
+		else {path="client/services/note/note_main"; model.addAttribute("topmenu",2);}
 		
 		return path;
 	}
 	
 	@RequestMapping("/note/insertNote.do")
-	public String insertNote(@RequestParam("ntitle") String ntitle, @RequestParam("ncontent") String ncontent) {
+	public String insertNote(@RequestParam("ntitle") String ntitle, @RequestParam("ncontent") String ncontent, Model model) {
 		
 		Note note = new Note();
 		
@@ -109,6 +127,9 @@ public class NoteController {
 		
 		if(result>0) System.out.println("저장 성공");
 		else System.out.println("실패");
+		
+		
+		
 		return "client/services/note/finalTemplate";
 	}
 	

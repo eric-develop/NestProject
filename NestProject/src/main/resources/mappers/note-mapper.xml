@@ -6,10 +6,14 @@
 	
 	<resultMap id="note" type="note"/> 
 			
-	
-	<insert id="insertNote" parameterType="note">
+	<insert id="firstSave" parameterType="note">
 		INSERT INTO NOTE VALUES(							
 			SEQ_NNO.NEXTVAL, #{mno}, 1, 1, 
+			#{ntitle}, #{ncontent}, 's1', DEFAULT)
+	</insert>
+	<insert id="afterSave" parameterType="note">
+		INSERT INTO NOTE VALUES(							
+			#{nno}, #{mno}, 1, 1, 
 			#{ntitle}, #{ncontent}, 's1', DEFAULT)
 	</insert>
 	
