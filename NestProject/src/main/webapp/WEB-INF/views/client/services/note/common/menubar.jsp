@@ -177,7 +177,7 @@ var height;
 	</style>
 	
 	<!-- Sidebar -->
-	<ul	class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+	<ul	class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" style="background:#3B332E;/*#3B332E*/;"
 		id="accordionSidebar">
 
 		<!-- Sidebar - 메뉴바 상단 -->
@@ -216,7 +216,9 @@ var height;
 		<!-- Heading -->
 		<li class="nav-item">
 			<style>
-				
+				.nav-link{
+					margin-left: 10px;
+				}
 				.form-control {
 				    display: block;
 				    width: 100%;
@@ -278,8 +280,8 @@ var height;
 			<form class="form-inline my-2 my-lg-0" style="padding:12px 16px">
 				<div class="input-group" id="search" style="margin:0 auto;margin-bottom: 30px;">
 					<input class="form-control" type="search"
-						placeholder="Search" aria-label="Search" style="border:none">
-					<span class="input-group-addon"><i class="fas fa-search"></i></span>
+						placeholder="Search" aria-label="Search" style="border:none; background:#e3e3e3d6">
+					<span class="input-group-addon"style="border:none; background:#e3e3e3d6"><i class="fas fa-search"></i></span>
 				</div>
 			</form>
 		</li>
@@ -289,8 +291,8 @@ var height;
 		
 		<a class="nav-link collapsed newNote cate" href="#"
 			data-toggle="collapse" data-target="#collapseBoardcast"
-			aria-expanded="true" aria-controls="collapseBoardcast"> 
-			<i class="fas fa-plus-circle"></i> <span style="font-size:16px;">새 노트</span>
+			aria-expanded="true" aria-controls="collapseBoardcast" style="background:#e7722e; border-radius:40px 40px; margin:0 0px 28px 15px;"> 
+			<i class="fas fa-plus-circle" style="font-size:17px"></i> <span style="font-size:16px;">새 노트</span>
 		</a>
 		<script>
 			$('.newNote').click(function(){
@@ -304,7 +306,7 @@ var height;
 		<a class="nav-link collapsed note cate" href="#"
 			data-toggle="collapse" data-target="#collapseSport"
 			aria-expanded="true" aria-controls="collapseSport"> 
-			<i class="fas fa-sticky-note"></i> <span style="font-size:16px;">모든 노트</span>
+			<i class="fas fa-sticky-note" style="font-size:17px"></i> <span style="font-size:16px;">모든 노트</span>
 		</a>
 		<script>
 			$('.note').click(function(){
@@ -318,7 +320,7 @@ var height;
 		<a class="nav-link collapsed notebook cate" href="#"
 			data-toggle="collapse" data-target="#collapseSport"
 			aria-expanded="true" aria-controls="collapseSport"> 
-			<i class="fas fa-book"></i> <span style="font-size:16px;">노트북</span>
+			<i class="fas fa-book" style="font-size:17px"></i> <span style="font-size:16px;">노트북</span>
 		</a>
 		<script>
 			$('.notebook').click(function(){
@@ -332,7 +334,7 @@ var height;
 		<a class="nav-link collapsed tag cate" href="#"
 			data-toggle="collapse" data-target="#collapseSport"
 			aria-expanded="true" aria-controls="collapseSport"> 
-			<i class="fas fa-tag"></i> <span style="font-size:16px;">태그</span>
+			<i class="fas fa-tag" style="font-size:17px"></i> <span style="font-size:16px;">태그</span>
 		</a>
 		<script>
 			$('.tag').click(function(){
@@ -346,7 +348,7 @@ var height;
 		<a class="nav-link collapsed trash cate" href="#"
 			data-toggle="collapse" data-target="#collapseSport"
 			aria-expanded="true" aria-controls="collapseSport"> 
-			<i class="fas fa-trash"></i> <span style="font-size:16px;">휴지통</span>
+			<i class="fas fa-trash" style="font-size:17px"></i> <span style="font-size:16px;">휴지통</span>
 		</a>
 		<script>
 			$('.trash').click(function(){
@@ -360,7 +362,7 @@ var height;
 		<a class="nav-link collapsed cate" href="#"
 			data-toggle="collapse" data-target="#collapseSport"
 			aria-expanded="true" aria-controls="collapseSport"> 
-			<i class="fab fa-stripe-s"></i> <span style="font-size:16px;">스페이스</span>
+			<i class="fab fa-stripe-s" style="font-size:17px"></i> <span style="font-size:16px;">스페이스</span>
 		</a>
 		</li>
 		
@@ -368,7 +370,7 @@ var height;
 		<a class="nav-link collapsed cate" href="#"
 			data-toggle="collapse" data-target="#collapseSport"
 			aria-expanded="true" aria-controls="collapseSport"> 
-			<i class="fas fa-star"></i> <span style="font-size:16px;">업그레이드</span>
+			<i class="fas fa-star" style="font-size:17px"></i> <span style="font-size:16px;">업그레이드</span>
 		</a>
 		</li>
 		
@@ -376,7 +378,7 @@ var height;
 		<a class="nav-link collapsed community cate" href="#"
 			data-toggle="collapse" data-target="#collapseSport"
 			aria-expanded="true" aria-controls="collapseSport"> 
-			<i class="fas fa-user-friends"></i> <span style="font-size:16px;">커뮤니티</span>
+			<i class="fas fa-user-friends" style="font-size:17px"></i> <span style="font-size:16px;">커뮤니티</span>
 		</a>
 		<script>
 			$('.community').click(function(){
@@ -393,7 +395,7 @@ var height;
 
 		<!-- Nav Item - Tables -->
 		<li class="nav-item"><a class="nav-link" href=""> <i
-				class="fas fa-fw fa-cog"></i> <span style="font-size:16px;">고객센터</span></a></li>
+				class="fas fa-fw fa-cog" style="font-size:17px"></i> <span style="font-size:16px;">고객센터</span></a></li>
 
 		<!-- Divider -->
 		<hr class="sidebar-divider d-none d-md-block">
@@ -413,7 +415,7 @@ var height;
 		<div id="content">
 
 			<!-- Topbar -->
-			<nav class="navbar navbar-expand navbar-light bg-white topbar static-top" style="height:55px;margin:0 1rem;border-bottom:1px solid lightgray">
+			<nav class="navbar navbar-expand navbar-light topbar static-top" style="height:55px;border-bottom:1px solid lightgray; background:#f5f5f6ed/* #f1f1f2b5 */">
 			
 				<!-- Sidebar Toggle (Topbar) -->
 				<button id="sidebarToggleTop"

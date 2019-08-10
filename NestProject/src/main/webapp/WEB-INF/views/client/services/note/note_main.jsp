@@ -49,9 +49,9 @@
 						        <div style="padding:10px;">
 						          
 						          <span>
-						          <input class="noteCheck" type="checkbox" value="${note.nno}"/>
+						          <input class="noteCheck" type="checkbox" value="${note.nno}" style="cursor:zz"/>
 						           <b>${note.ntitle}</b><br />
-						           <p>${note.ncontent}</p>
+						           <p>&nbsp&nbsp&nbsp&nbsp${note.ncontent}</p>
 						          </span>
 						        </div>
 						      </div>
