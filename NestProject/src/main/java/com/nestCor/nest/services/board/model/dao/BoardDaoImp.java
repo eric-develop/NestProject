@@ -33,12 +33,13 @@ public class BoardDaoImp implements BoardDao {
 	public int selectBoardTotalContents(Board board) {
 		System.out.println("DAO까지 cate1 과 cate2가 잘갔는지 값 확인 : "+board);
 		return sqlSession.selectOne("board.selectBoardTotalContents", board);
-	//hashmap으로 처리하라?
 	
 	}
 	
 	@Override
 	public Board selectOneBoard(int bno) {
+		//카운트 설정을 위해 업데이트를 했음 알고리즘의 힘!! 
+		sqlSession.update("board.updateCount",bno);
 		return sqlSession.selectOne("board.selectOneBoard", bno);
 	}
 

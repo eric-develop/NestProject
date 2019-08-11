@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardcomment">
+	<resultMap id="boardMap" type="boardcomment"/>
+	
+	<select id="selectBoardCommentList" parameterType="boardcomment" resultType="boardcomment"> 
+		SELECT CNO, MNO, BNO, CCONTENT, CLEVEL, LIKECOUNT, TO_CHAR(BCDATE, 'YYYY-MM-DD HH:MI:SS') BCDATE, BCDELETE 
+		FROM BCOMMENT
+		WHERE BNO=#{bno} AND BCDELETE='N'
+		ORDER BY BCDATE DESC
+	</select>
+	
+	<insert id="insertBoardComment" parameterType="boardcomment">
+		INSERT INTO BCOMMENT(CNO, MNO, BNO, CCONTENT, CLEVEL, LIKECOUNT, BCDATE, BCDELETE) 
+		VALUES (SEQ_CNO.NEXTVAL, 1, #{bno}, #{ccontent}, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
+		
+		<selectKey keyProperty="cno" resultType="_int" order="AFTER"> 
+			SELECT SEQ_CNO.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+	
+	<update id="deleteBoardComment" parameterType="boardcomment">
+		UPDATE BCOMMENT SET BCDELETE = 'Y' 
+		WHERE CNO = #{cno}
+	</update>
+	
+</mapper>

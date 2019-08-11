@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.util.*, com.nestCor.nest.services.boardComment.model.vo.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -11,7 +12,7 @@
 	<!-- Page Wrapper -->
 	<div id="wrapper" style="background-color: #f6c23e">
 
-		<c:import url="./common/menubar.jsp" />
+		<c:import url="../board/common/menubar.jsp" />
 
 		<!-- View 화면 구현부분 ////////////////////////////////////////////////////////////////////////////////////////////////////-->
 		<div id="community" style="padding: 10px;">
@@ -46,7 +47,7 @@
 			<!---------------------------------------------------------------------------------------->
 
 			<!------------------- 커뮤니티 게시판 ----------------------------->
-			<div class="com_container ">
+			<div class="com_container" style="height:100%;">
 				<div id="com_title">
 				
 					
@@ -84,7 +85,7 @@
 						<i id="downicon" class="fas fa-caret-down"
 							style="margin-right: 10px;"></i>
 						<!-- 비추/싫어요 숫자 올라가야합니다.-->
-						<span style="color: darkgrey">21</span>
+						<span style="color: darkgrey">4</span>
 					</button>
 				</div>
 				<div id="comment">
@@ -94,45 +95,34 @@
 							<form style="width: 100%; margin: 0 auto;">
 								<div class="input-group mb-3">
 
-									<input type="text" class="form-control"
-										aria-label="Recipient's username"
-										aria-describedby="button-addon2">
+									<input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" id="ccontent" name="ccontent">
 									<div class="input-group-append">
-										<button class="btn btn-outline-secondary" type="button"
-											id="button-addon2">확인</button>
+										<button class="btn btn-outline-secondary" type="button" id="button-addon2">확인</button>
 									</div>
 
 								</div>
 							</form>
 						</li>
 
-						<li class="commentli">
-							<div style="margin-bottom: 10px;">
-								<i class="fas fa-paw" style="font-size: 20px;"></i>&nbsp;&nbsp;관리자였으면&nbsp;&nbsp;
-								<span id="commentli_time">&nbsp;&nbsp;0000/00/00
-								&nbsp;&nbsp;&nbsp; 00시 00분</span>
-							</div>
-							<p>ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ감사합니다</p>
-							<div style="padding-top: 20px;">
-								<a href="#" id="commentp"
-									onclick="SirenFunction('SirenDiv'); return false;">답글달기</a>
-							</div>
-
-						</li>
-
-						<li class="singo_view " id="SirenDiv" style="display: none;">
-							<div style="margin-bottom: 10px;">
-								<i class="fas fa-paw" style="font-size: 20px;"></i>&nbsp;&nbsp;관리자였으면&nbsp;&nbsp;
-								<span id="commentli_time">&nbsp;&nbsp;0000/00/00
-								&nbsp;&nbsp;&nbsp; 00시 00분</span>
-							</div>
-							<p>ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ감사합니다</p>
-							<div style="padding-top: 20px;">
-								<a href="#" id="commentp"
-									onclick="SirenFunction('SirenDiv'); return false;">답글달기</a>
-							</div>
-
-						</li>
+						<c:forEach items="${clist}" var="bc">
+							<li id="${bc.bno}" class="commentli">
+								<div style="margin-bottom: 10px;">
+									<i class="fas fa-paw" style="font-size: 20px;"></i>&nbsp;&nbsp;${bc.mno}&nbsp;&nbsp;
+									<span id="commentli_time">&nbsp;&nbsp;${bc.bcdate}
+									</span>
+									<span>
+									<button style="padding: 5px; margin-top: 30px; margin:auto; float: right;" type="button" class="btn btn-light" 
+									onclick="location.href='${pageContext.request.contextPath}/boardComment/boardCommentDelete.do?bno=${bno}&cno=${bc.cno}'">삭제하기</button>
+									</span>
+								</div>
+								<p>${bc.ccontent}</p>
+								<div style="padding-top: 20px;">
+									<a href="#" id="commentp"
+										onclick="SirenFunction('SirenDiv'); return false;">답글달기</a>
+										
+								</div>
+							</li>
+						</c:forEach>
 					</ul>
 					<script>
 						function SirenFunction(idMyDiv) {
@@ -147,8 +137,7 @@
 				</div>
 			</div>
 		</div>
-
-		<c:import url="./common/footer.jsp" />
+		<c:import url="../board/common/footer.jsp" />
 	</div>
 	<!-- End of Content Wrapper -->
 
@@ -159,6 +148,16 @@
 		class="fas fa-angle-up"></i>
 	</a>
 
+
+	<script type="text/javascript">
+	 document.getElementById("button-addon2").addEventListener("click", function() {
+	    	if(ccontent.value==""||ccontent.value.length==0){
+				alert("댓글을 입력해 주세요");
+				return false;
+			}else{
+				location.href='${pageContext.request.contextPath}/boardComment/insertBoardComment.do?bno=${bno}&ccontent='+ccontent.value;
+			}}, false);
+	</script>
 </body>
 
 </html>

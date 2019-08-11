@@ -12,7 +12,7 @@
 	<!-- Page Wrapper -->
 	<div id="wrapper" style="background-color: #f6c23e">
 
-		<c:import url="./common/menubar.jsp"/>
+		<c:import url="../board/common/menubar.jsp"/>
 
 			<!-- 게시글 작성 part -->
 			<div class="col-md-8 col-xs-12 " id="container0 "
@@ -67,7 +67,7 @@
 				</form>
 			</div>
 			<br><br>
-		<c:import url="./common/footer.jsp"/>
+		<c:import url="../board/common/footer.jsp"/>
 	</div>
 	<!-- End of Content Wrapper -->
 

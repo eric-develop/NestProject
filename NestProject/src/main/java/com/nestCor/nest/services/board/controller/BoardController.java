@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.nestCor.nest.services.boardComment.model.service.BoardCommentService;
+import com.nestCor.nest.services.boardComment.model.vo.BoardComment;
 import com.nestCor.nest.common.util.Utils;
 import com.nestCor.nest.services.board.model.service.BoardService;
 import com.nestCor.nest.services.board.model.vo.Board;
@@ -21,14 +23,17 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 	
-	@RequestMapping("board/board.do")
+	@Autowired
+	BoardCommentService boardCommentService;
+	
+	@RequestMapping("/board/board.do")
 	public String boardMain() {
 		System.out.println("/board/board.do가 호출되었습니다.");
 		
 		return "client/services/board/boardMain";
 	}
 	
-	@RequestMapping("board/boardList.do")
+	@RequestMapping("/board/boardList.do")
 	public ModelAndView ShowboardList(@RequestParam String cate1_code, @RequestParam String cate2_code, 
 								@RequestParam(value = "cPage", required = false, defaultValue = "1") int cPage,
 								Model model){
@@ -66,7 +71,7 @@ public class BoardController {
 		return mv;
 	}
 	
-	@RequestMapping("board/boardForm.do")
+	@RequestMapping("/board/boardForm.do")
 	public ModelAndView boardForm(@RequestParam String cate1_code, @RequestParam String cate2_code){
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("client/services/board/boardForm"); // 뷰의 이름
@@ -81,7 +86,7 @@ public class BoardController {
 	
 	
 	//가급적이면 @RequestParam을 쓰지 않으려고 했는데 경로를 설정해줘야 하는 부분에서 해당 카테고리 리스트를 보여줘야 하기 때문에 부득이하게 받았다.
-	@RequestMapping("board/insertBoard.do")
+	@RequestMapping("/board/insertBoard.do")
 	public String insertBoard(@RequestParam String cate1_code, @RequestParam String cate2_code, Board board, Model model){
 		System.out.println("insertBoard 확인 : " + board);
 		int result = boardService.insertBoard(board);
@@ -114,6 +119,16 @@ public class BoardController {
 		
 		System.out.println("조회할 글번호 : "+bno);
 		model.addAttribute("board", boardService.selectOneBoard(bno));
+		
+		//comment를 같이 뿌려주기 위해 board에 삽입
+		
+		BoardComment boardcomment = new BoardComment(bno);
+		System.out.println(boardCommentService.selectBoardCommentList(boardcomment));
+		ArrayList<BoardComment> clist = new ArrayList<>(boardCommentService.selectBoardCommentList(boardcomment));
+
+		System.out.println("넘어온 list 확인 : " + clist);
+		
+		model.addAttribute("clist", clist);
 		
 		mv.addObject("bno", bno);
 		
