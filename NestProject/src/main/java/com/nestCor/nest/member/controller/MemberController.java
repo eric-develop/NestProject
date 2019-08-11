@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -60,7 +62,7 @@ public class MemberController {
 					
 					spaceList = sService.selectSpaceList(m.getBizNo());
 					bizMemberList = mService.selectBizMemberList(m.getBizNo());
-					url = "client/services/note/note_main";
+					url = "client/services/space/space_main2";
 					
 				}else {
 					url = "/member/loginView.do";
@@ -216,6 +218,19 @@ public class MemberController {
 		return map;
 	}
 	
+	@RequestMapping("member/selectBizMemberList.do")
+	@ResponseBody
+	public List<Member> selectBizMemberList(HttpSession session){
+		Member m = new Member();
+		m = (Member)session.getAttribute("member");
+		
+		List<Member> bizMemberList = null;
+
+		bizMemberList = mService.selectBizMemberList(m.getBizNo());
+		
+		
+		return bizMemberList;
+	}
 	
 
 	

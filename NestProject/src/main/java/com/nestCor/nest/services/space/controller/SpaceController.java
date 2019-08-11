@@ -79,7 +79,7 @@ public class SpaceController {
         model.addAttribute("spaceContentsMap",spaceContentsMap);
 		
 	
-		return "client/services/space/space_main"; 
+		return "client/services/space/space_main2"; 
 	}
 	
 }
