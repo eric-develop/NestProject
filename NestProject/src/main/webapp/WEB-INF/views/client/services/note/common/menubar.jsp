@@ -480,9 +480,12 @@ var height;
 							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 							aria-labelledby="userDropdown">
 							<a class="dropdown-item" href="#"> 저장
-							</a> <a class="dropdown-item" href="#"> 이동...
-							</a> <a class="dropdown-item" href="#"> 노트복제
-							</a> <a class="dropdown-item" href="#"> 노트삭제
+							</a> 
+							<a class="dropdown-item" style="cursor:pointer"> 이동...
+							</a> 
+							<a class="dropdown-item" href="#"> 노트복제
+							</a> 
+							<a class="dropdown-item" href="#"> 노트삭제
 							</a>
 						</div>
 					</c:if>
@@ -511,9 +514,9 @@ var height;
 						<div
 							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 							aria-labelledby="userDropdown">
-							<a class="dropdown-item" href="#"> 노트복원
-							</a> <a class="dropdown-item" href="#"> 삭제
-							</a> <a class="dropdown-item" href="#"> 전체삭제
+							<a class="dropdown-item"  onclick="restoreTrash()" style="cursor:pointer;"> 노트복원
+							</a> <a class="dropdown-item" onclick="deleteOneNote()" style="cursor:pointer;"> 삭제
+							</a> <a class="dropdown-item" onclick="deleteAllNote()" style="cursor:pointer;"> 전체삭제
 							</a>
 						</div>
 					</c:if>

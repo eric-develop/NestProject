@@ -30,4 +30,6 @@ public interface NoteService {
 	int firstSave(Note note);
 
 	int searchNno(Note note);
+	
+	int moveNote(Note note);
 }

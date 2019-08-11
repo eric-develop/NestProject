@@ -76,5 +76,8 @@ public class NoteServiceImpl implements NoteService {
 		return noteDao.searchNno(note);
 	}
 	
-
+	@Override
+	public int moveNote(Note note) {
+		return noteDao.moveNote(note);
+	}
 }

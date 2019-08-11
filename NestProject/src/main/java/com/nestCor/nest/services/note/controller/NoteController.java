@@ -224,6 +224,24 @@ public class NoteController {
 		return tf;
 	}
 	
+	@RequestMapping("/note/moveNote.do")
+	@ResponseBody
+	public boolean restoreTrash(@RequestParam("nno") int nno, @RequestParam("nbno") int nbno ) {
+		Note note = new Note();
+		note.setNno(nno);
+		note.setNbno(nbno);
+		System.out.println("note:" + note);
+		
+		int result = noteService.moveNote(note);
+		
+		boolean tf;
+		if(result>0) tf=true;
+		else tf=false;
+
+		return tf;
+	}
+	
+	
 	@RequestMapping(value = "/a/images", method = RequestMethod.POST)
 	@ResponseBody
 	public String handleTinyMCEUpload(@RequestParam("files") MultipartFile files[],HttpSession session) {

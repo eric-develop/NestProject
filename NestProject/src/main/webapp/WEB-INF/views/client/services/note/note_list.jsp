@@ -13,7 +13,7 @@
 	<div id="wrapper">
 
 		<c:import url="./common/menubar.jsp"/>
-		<div style="padding:15px;height: 800px;">
+		<div class="w" style="padding:15px;height: 800px;">
 					<div style="padding:10px 0">
 						<h4>노트북 목록</h4>
 					</div>

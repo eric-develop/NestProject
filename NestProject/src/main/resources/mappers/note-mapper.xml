@@ -48,6 +48,10 @@
 	<update id="restoreTrash" parameterType="note">
 		UPDATE NOTE SET TRASHCAN= #{trashcan} WHERE NNO = #{nno}			
 	</update>
+	
+	<update id="moveNote" parameterType="note">
+		UPDATE NOTE SET NBNO = #{nbno} WHERE NNO = #{nno}
+	</update>
 		
 	
 	<delete id="deleteOneTrash" parameterType="_int">

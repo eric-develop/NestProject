@@ -137,47 +137,14 @@
 		}
 	}
 	
-	
-	function deleteOneNote(){
-		location.href="${pageContext.request.contextPath}"
-            +"/note/goBackTrash.do?nno="+i+"&trashcan=Y";
-	}
-	
-	function deleteAllNote(){
-		location.href="${pageContext.request.contextPath}"
-            +"/note/goAllTrash.do?mno=1&trashcan=Y";
-	}
-	function saveNote(){
-		var ntitle = $('#ntitle').val();
-		var ncontent = tinyMCE.activeEditor.getContent();
+	function restoreTrash(){
 		$.ajax({
-			url:'${pageContext.request.contextPath}/note/saveNote.do',
+			url:'${pageContext.request.contextPath}/note/restoreTrash.do',
 			type: 'POST',
-			data:{nno:i,ntitle:ntitle,ncontent:ncontent},
+			data:{nno:i,trashcan:"N"},
 			dataType:'json',
 			success:function(data){
 				if(data){
-					alert("저장성공");
-					console.log(obj.parent().children(1).text().trim());
-					obj.parent().children(1).text(ntitle);
-				}else{
-					alert("저장실패");}				
-				
-			},error : function(request,status,error){
-			    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			}
-		});
-	}
-function goTrash(){
-		
-		$.ajax({
-			url:'${pageContext.request.contextPath}/notebook/trashGo.do',
-			type: 'POST',
-			data:{nno:i,trashcan:"Y"},
-			dataType:'json',
-			success:function(data){
-				if(data){
-					//alert("삭제성공");
 					obj.parent().remove();
 					$('.noteCheck').eq(0).prop('checked',true);
 					check($('.noteCheck').eq(0).prop('checked'),$('.noteCheck').eq(0));
@@ -189,6 +156,48 @@ function goTrash(){
 			}
 		});
 	}
+	
+	function deleteOneNote(){
+		$.ajax({
+			url:'${pageContext.request.contextPath}/note/deleteOneTrash.do',
+			type: 'POST',
+			data:{nno:i},
+			dataType:'json',
+			success:function(data){
+				if(data){
+					obj.parent().remove();
+					$('.noteCheck').eq(0).prop('checked',true);
+					check($('.noteCheck').eq(0).prop('checked'),$('.noteCheck').eq(0));
+					obj.html(data);
+				}else{
+					alert("삭제실패");}				
+				
+			},error : function(request,status,error){
+			    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
+		});
+	}
+	
+	function deleteAllNote(){
+		$.ajax({
+			url:'${pageContext.request.contextPath}/note/deleteAllTrash.do',
+			type: 'POST',
+			data:{mno:${member.mNo}},
+			dataType:'json',
+			success:function(data){
+				if(data){
+					obj.parent().parent().remove();
+					
+				}else{
+					alert("삭제실패");}				
+				
+			},error : function(request,status,error){
+			    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
+		});
+	}
+	
+	
 	</script>
 
 </body>
