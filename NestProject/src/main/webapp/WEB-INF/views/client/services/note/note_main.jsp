@@ -149,16 +149,7 @@ var height;
 			        	<p style="display:inline-block;float:right">0개의 노트</p>
 			        </div>
 			      </div>
-			      <div id="sc2">
-			        <div style="padding:10px;">
-			          <i class="far fa-lightbulb"></i>
-			          <span>
-			            노트 활용 Tip !
-			            NEST에 오신 것을 환영합니다.
-			            NEST는 노트 필기, 작업 관리, 프로젝트 진행, 자료 진행, 자료 정리를 위한 최적의…
-			          </span>
-			        </div>
-			      </div>
+			      
 			      <style>
 			      	li{
 			      		list-style:none;

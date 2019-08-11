@@ -666,8 +666,8 @@
 					<li class="nav-item dropdown no-arrow"><a
 						class="nav-link dropdown-toggle" href="#" id="userDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"> 
-							<i class="fas fa-ellipsis-v"></i>
+						aria-expanded="false" style="margin-right:18px"> 
+							<i class="fas fa-ellipsis-v" style="color:#000"></i>
 					</a> <!-- Dropdown - User Information -->
 					
 					<c:if test="${topmenu eq 1}">

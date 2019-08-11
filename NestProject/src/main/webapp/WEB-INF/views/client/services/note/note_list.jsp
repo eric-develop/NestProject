@@ -47,9 +47,9 @@
 						<tbody class="notebooklist">
 							<!-- ${b.count} 는 없어서 우선 이대로 실행 -->
 							<c:forEach items="${list}" var="notebook">
-							<div class="sc3">
-								<tr id="${notebook.nbno}">	
-									
+							
+								<tr class="notebook">	
+									<input class="nbno" type="hidden" value="${notebook.nbno}" />
 									<!---좋아요 or 추천 갯수 -->
 									<td id="title"> 
 										<a href="${pageContext.request.contextPath}/notebook/goNotebook.do?nbno=${notebook.nbno}&nbtitle=${notebook.nbtitle}" style="color: gray;">${notebook.nbtitle}&nbsp;&nbsp;[0]</a>
@@ -58,7 +58,7 @@
 									<td>${member.userName}</td>
 									<td>
 										<a
-											class="nav-link" href="#" id="userDropdown"
+											class="nav-link do" href="#" id="userDropdown"
 											role="button" data-toggle="dropdown" aria-haspopup="true"
 											aria-expanded="false" style="padding:0;"> 
 											<i class="fas fa-ellipsis-h" style="color:#858796;"></i>
@@ -71,7 +71,7 @@
 									</td>
 									
 								</tr>
-								</div>
+								
 							</c:forEach>
 						</tbody>
 					</table>
@@ -87,27 +87,13 @@
 		<!-- End of Page Wrapper -->
 
  	 <script>
- 	 var select = 3;
- 	 var nbno = $('.sc3').eq(3-3).children().children('tr').val();
-     $('.sc3').click(function(){
-        $('.sc3').css("background","#fff");
-        $(this).css("background","#ebebeb");
-        select=$(this).index();
-        nbno = $(this).children().children('tr').val();
-        $.ajax({
-           url:'${pageContext.request.contextPath}/notebook/deleteNoteBook.do',
-           data:{nbno:nbno},
-           dataType:'json',
-           success:function(data){
-              $('#nbtitle').val(data.nbtitle);
-              tinyMCE.activeEditor.setContent(data.nbcontent);
-           },error : function(request,status,error){
-                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-            }
-        });
-     });
- 	 
- 	 
+ 	 	var nbno;
+ 	 	var index;
+ 	 	$('.do').click(function(){
+ 	 		index = $('.do').index(this);
+ 	 		nbno = $('.nbno').eq(index).val();
+ 	 		console.log(index+"/"+nbno);
+ 	 	});
  	 
  		 function deleteNoteBook(){
 	      
@@ -118,9 +104,8 @@
 	         dataType:'json',
 	         success:function(data){
 	            alert("삭제성공");
-	            $('.sc3').eq(select-3).remove();
-	            $('#nbtitle').val(null);
-	            tinyMCE.activeEditor.setContent("  ");
+	            
+	            $('.nbno').eq(index).parent().remove();
 	         },error : function(request,status,error){
 	             alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 	         }
