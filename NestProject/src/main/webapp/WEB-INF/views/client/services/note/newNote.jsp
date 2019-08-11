@@ -12,7 +12,7 @@
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
-		<c:import url="./common/menubar.jsp"/>
+		<c:import url="../common/menubar.jsp"/>
 
 			<!-- Home 화면 구현부분 ////////////////////////////////////////////////////////////////////////////////////////////////////-->
 			<div id="community" style="padding:10px 19px;">

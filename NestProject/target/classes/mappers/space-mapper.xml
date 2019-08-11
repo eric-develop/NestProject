@@ -41,12 +41,14 @@
 		
 		
 		<select id="selectNoteList" parameterType="_int" resultMap="NoteMap">
-			SELECT * FROM (SELECT NNO,NBNO,SPACENO,NTITLE,NCONTENT,NICKNAME,SHARESCOPE,TRASHCAN FROM NOTE N, MEMBER M WHERE N.MNO = M.MNO)
+			SELECT * FROM (SELECT NNO,NBNO,SPACENO,NTITLE,NCONTENT,NICKNAME,SHARESCOPE,TRASHCAN,FIXED FROM NOTE N, MEMBER M WHERE N.MNO = M.MNO)
 		</select>
 		
 		<select id="selectNoteBookList" parameterType="_int" resultType="noteBook">
 			SELECT * FROM NOTEBOOK WHERE SPACENO=#{spaceNo}
 		</select>
+		
+		
 		
 		
 		

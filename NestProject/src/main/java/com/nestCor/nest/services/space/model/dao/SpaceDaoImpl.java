@@ -69,13 +69,16 @@ public class SpaceDaoImpl implements SpaceDao {
 		
 		List<Note> noteList = new ArrayList<>();
 		List<NoteBook> noteBookList = new ArrayList<>();
+		//List<Note> fixedNoteList = new ArrayList<>();
 		
 		noteList = sqlSession.selectList("Space_mapper.selectNoteList",spaceNo);
 		noteBookList = sqlSession.selectList("Space_mapper.selectNoteBookList",spaceNo);
+		//fixedNoteList = sqlSession.selectList("Space_mapper.selectFixedNoteList",spaceNo);
+		
 		
 		spaceContentsMap.put("noteList", noteList);
 		spaceContentsMap.put("noteBookList", noteBookList);
-		
+		//spaceContentsMap.put("fixedNoteList",fixedNoteList);
 		
 		return spaceContentsMap;
 	}

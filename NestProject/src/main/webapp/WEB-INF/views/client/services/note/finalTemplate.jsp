@@ -140,7 +140,7 @@ var height;
   
    
 	
-	<c:import url="./common/menubar.jsp"/>
+	<c:import url="../common/menubar.jsp"/>
     <div id="body_div">
     
        <div id="note" style="height: 800px;">

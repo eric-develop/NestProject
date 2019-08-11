@@ -14,7 +14,7 @@ public class Note implements Serializable {
 	private String sharescope;
 	private String trashcan;
 	private String nwriter;
-	
+	private String fixed;
 	public Note() {}
 
 	public Note(int nno, int mno, int nbno, int spaceno, String ntitle, String ncontent, String sharescope,
@@ -109,14 +109,24 @@ public class Note implements Serializable {
 	public void setNwriter(String nwriter) {
 		this.nwriter = nwriter;
 	}
-	
+
+	public String getFixed() {
+		return fixed;
+	}
+
+	public void setFixed(String fixed) {
+		this.fixed = fixed;
+	}
 
 	@Override
 	public String toString() {
 		return "Note [nno=" + nno + ", mno=" + mno + ", nbno=" + nbno + ", spaceno=" + spaceno + ", ntitle=" + ntitle
 				+ ", ncontent=" + ncontent + ", sharescope=" + sharescope + ", trashcan=" + trashcan + ", nwriter="
-				+ nwriter + "]";
+				+ nwriter + ", fixed=" + fixed + "]";
 	}
+	
+
+	
 
 	
 }

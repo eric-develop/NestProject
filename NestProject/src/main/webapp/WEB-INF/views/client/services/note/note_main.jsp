@@ -12,7 +12,7 @@
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
-		<c:import url="./common/menubar.jsp"/>
+		<c:import url="../common/menubar.jsp"/>
 			
 			<style>
 				#cummunity>div{

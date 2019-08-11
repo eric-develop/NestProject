@@ -67,12 +67,14 @@ public class MemberServiceImpl implements MemberService {
 		
 		return mDao.resetPwd(m);
 	}
-
+	
 	@Override
 	public List<Member> selectBizMemberList(int bizNo) {
 		
 		return mDao.selectBizMemberList(bizNo);
 	}
+	
+
 	
 	@Override
 	public int memberBusinessServiceUpdate(int mNo) {

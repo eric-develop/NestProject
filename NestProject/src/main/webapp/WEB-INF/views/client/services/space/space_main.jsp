@@ -4,75 +4,27 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
-<html lang="ko" style="height: 100%; width: 100%; ">
+<html lang="ko">
 
-<c:import url="../../common/head.jsp">
-	<c:param name="titleName" value="스페이스" />
-</c:import>
-<head>
- 
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<style> 
+<body id="page-top">
 
-@media ( min-width : 1200px) {
-	#top_line{
-	width: 80%;
-	padding:0px 20px;
-	}
-	.whitebox{
-	width: 80%;
-	}
-	body{
-	margin: 0 auto;
-	}#top_line_margin{
-	margin-top: 20px;
-	display: inline-block;
+	<!-- Page Wrapper -->
+	<div id="wrapper">
 
-	}
-	}
-
-@media ( min-width : 400px) {
-	#top_line{
-	width: 100%;
-	float: left;
-	padding:0px 20px;
-	
-	}
-	.whitebox{
-	width: 100%;
-	float: left;
-	}
-	body{
-	margin: 0 auto;
-	}#top_line_margin{
-		margin: 0;
+		<c:import url="../common/menubar.jsp"/>
 		
-		display: inline-block;
-	}
-	}
-
-
-</style>
-
-</head>
-<body style="height: 100%; width: 100%;" >
-
-		<c:import url="../../common/navi.jsp" />
-
-
-
-		<!--===========================노트 흰색=====================================================================-->
+			<div style="width:1430px;min-width: 1429px; height:100%">
+			<!--===========================노트 흰색=====================================================================-->
 		
 
 			<div id="top_line">
-
 
 				<div style="display: inline-block;"> 
 					<h5>노트북</h5>
 					<p >내 노트북 목록</p>
 
 				</div>
-				<!---============   ==============---->
+				
 				<div style="float: right; display: inline-block;">
 				<div id="top_line_margin" style="display: inline-block;">
 					<i class="fas fa-users" style="font-size: 30px; color: #a8a8a8;"></i>
@@ -91,41 +43,36 @@
 					</div>
 					<!--5개의 사용자 아이콘 노출 후 남은 5명 숫자로 나타내야합니다,-->
 
-</div>
+				</div>
 					<button type="button" class="btn btn-warning"
 						style="margin-left: 10px;">초대하기</button>
 				</div>
 			</div>
 			<!---=============================----------->
-
-			<section class="whitebox">
-				<div class="row">
+				<div>
 				<!--left_div-->
-				<div id="space_left" class="col-lg-6 col-md-12 col-xs-12">
+				<div id="space_left">
 					<!--title-->
 					<h5 style="display:inline-block;  padding: 0px 20px 4px 10px;">새로운 소식</h5>
 					
-					 <div id="space-left-Container" style="background:rgb(248,248,248); overflow:scroll;height:300px; margin-top:10px;">	
-					 	<div id="space-left-Contents" style="width:2000px; padding:10px;">
-							
-					<c:forEach var="noteList" items="${spaceContentsMap.noteList}" varStatus="i">
-							<div class="card border-secondary mb-3" style="width:300px; height:200px; display:inline-block;">
-							  <div class="card-header">${noteList.nwriter}</div>
-							  <div class="card-body text-secondary">
-							    <h5 class="card-title">${noteList.ntitle}</h5>
-							    <p class="card-text">${noteList.ncontent}</p>
-							  </div>
-							</div>
-					</c:forEach>
-							
-						
+					 <div id="space-left-Container" style="background:rgb(248,248,248); overflow:scroll; width:650px;height:300px; margin-top:10px;">	
+					 	<div id="space-left-Contents" style="width:2000px; padding:10px; display:inline-block;">
+							<c:forEach var="noteList" items="${spaceContentsMap.noteList}" varStatus="i">
+									<div class="card border-secondary mb-3" style="width:300px; height:250px; display:inline-block; margin-top:15px; margin-right:10px;">
+									  <div class="card-header">${noteList.nwriter}</div>
+									  <div class="card-body text-secondary">
+									    <h5 class="card-title">${noteList.ntitle}</h5>
+									    <p class="card-text">${noteList.ncontent}</p>
+									  </div>
+									</div>
+							</c:forEach>					
 						 </div>
 					</div>
 			    </div>
 						
 <!------right_div-------->
 		
-  <div id="space_right" class="col-lg-6 col-md-12 col-xs-12" style="margin-top:10px;">
+  <div id="space_right" style="margin-top:10px; width:650px;">
     <div>
       <h5 style="display:inline-block;  padding: 0px 20px 4px 10px; ">고정된 노트</h5>
 
@@ -141,18 +88,22 @@
 
     <!---**********************-->
     <!--추가시 div 생성-->
-    <div id="space_right_first_div2" class="col-lg-12 col-md-12 col-xs-12">
-    
-      <div id="space_r_list" class="col-lg-4 col-md-4 col-xs-4">
-        <i class="far fa-list-alt"></i> <span id="space_r_list_title">2019 여름 휴가 계획 </span>
-        
-      </div>
+    <div id="space_right_first_div2" style="margin-top:0px; width:500px; height:300px;">
+       
+      <c:forEach var="noteList" items="${spaceContentsMap.noteList}">
+      	
+      	  <c:if test="${noteList.fixed eq 'Y'}">
+	      <div id="space_r_list" class="col-lg-4 col-md-4 col-xs-4">
+	        <i class="far fa-list-alt"></i> <span id="space_r_list_title" style="cursor:pointer;">${noteList.ntitle}</span>
+	        
+	      </div>
+	      </c:if>
+      </c:forEach>
       <!---글자수 자르기, ... 붙이기-->
+      
       <script>
 
-        var space_r_list_title = "제목 넣어주세요.";
-
-        document.getElementById("space_r_list_title").innerHTML=space_r_list_title.substring(0,6)+'...';
+        /* document.getElementById("space_r_list_title").innerHTML=space_r_list_title.substring(0,6)+'...'; */
        
 
       </script>
@@ -250,12 +201,111 @@
 
             </div>
             </div>
-	</section>
-	
+
+	</div>
+	</div>
+</body>
+
+<script>
 
 	
-</body>
-<script>
+	var find=true;
+	var i;
+	var obj;
+	$(function(){ // 처음 페이지 열 때
+		$('.noteCheck').eq(0).prop('checked',true);
+		i=$('.noteCheck').eq(0).val();
+		obj=$('.noteCheck').eq(0);
+		console.log(i+"/"+obj);
+		check($('.noteCheck').eq(0).prop('checked'),obj);
+	});
+	
+	$('.noteCheck').click(function(){ // 노트 선택 시 
+		i = $(this).val();
+		console.log(i);
+		
+		var checked = $(this).prop('checked');
+		obj = $(this);
+		console.log(checked);
+		
+		check(checked,obj);
+		
+	});
+	
+	function check(checked,obj){
+		if(checked){
+			$('.noteCheck').prop('checked', false);
+			obj.prop('checked', true);
+			
+			$.ajax({
+				url:'${pageContext.request.contextPath}/note/noteDetail.do',
+				data:{nno:i},
+				dataType:'json',
+				success:function(data){
+					$('#ntitle').val(data.ntitle);
+					if(find) $('#ncontent').html(data.ncontent);
+					else tinyMCE.activeEditor.setContent(data.ncontent);
+					find=false;
+				},error : function(request,status,error){
+    			    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+    			}
+			});
+		}
+	}
+	
+	
+	function deleteOneNote(){
+		location.href="${pageContext.request.contextPath}"
+            +"/note/goBackTrash.do?nno="+i+"&trashcan=Y";
+	}
+	
+	function deleteAllNote(){
+		location.href="${pageContext.request.contextPath}"
+            +"/note/goAllTrash.do?mno=1&trashcan=Y";
+	}
+	function saveNote(){
+		var ntitle = $('#ntitle').val();
+		var ncontent = tinyMCE.activeEditor.getContent();
+		$.ajax({
+			url:'${pageContext.request.contextPath}/note/saveNote.do',
+			type: 'POST',
+			data:{nno:i,ntitle:ntitle,ncontent:ncontent},
+			dataType:'json',
+			success:function(data){
+				if(data){
+					alert("저장성공");
+					console.log(obj.parent().children(1).text().trim());
+					obj.parent().children(1).text(ntitle);
+				}else{
+					alert("저장실패");}				
+				
+			},error : function(request,status,error){
+			    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
+		});
+	}
+function goTrash(){
+		
+		$.ajax({
+			url:'${pageContext.request.contextPath}/notebook/trashGo.do',
+			type: 'POST',
+			data:{nno:i,trashcan:"Y"},
+			dataType:'json',
+			success:function(data){
+				if(data){
+					//alert("삭제성공");
+					obj.parent().remove();
+					$('.noteCheck').eq(0).prop('checked',true);
+					check($('.noteCheck').eq(0).prop('checked'),$('.noteCheck').eq(0));
+				}else{
+					alert("삭제실패");}				
+				
+			},error : function(request,status,error){
+			    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
+		});
+	}
+	
 $(document).ready(function () {
 
     $(".topnav").hover(function () {                    //마우스를 topnav에 오버시
@@ -365,9 +415,7 @@ $(document).ready(function () {
                
             }
          
-  </script>
 
-
-
+	</script>
 
 </html>
