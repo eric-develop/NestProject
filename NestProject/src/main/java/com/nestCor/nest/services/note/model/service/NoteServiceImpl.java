@@ -80,4 +80,12 @@ public class NoteServiceImpl implements NoteService {
 	public int moveNote(Note note) {
 		return noteDao.moveNote(note);
 	}
+	
+	@Override
+	public int copyNote(int nno) {
+		return noteDao.copyNote(nno);
+	}
+	
+	
+	
 }

@@ -29,7 +29,9 @@
 		SELECT MAX(NNO) FROM NOTE WHERE MNO = #{mno}
 	</select>
 	
-	
+	<insert id="copyNote" parameterType="_int">
+		INSERT INTO NOTE SELECT SEQ_NNO.NEXTVAL, MNO, NBNO, SPACENO, NTITLE, NCONTENT, SHARESCOPE, TRASHCAN FROM NOTE WHERE NNO = #{nno}
+	</insert>
 	
 	<update id="updateNote" parameterType="note">
 		UPDATE NOTE SET NTITLE = #{ntitle}, NCONTENT = #{ncontent} WHERE NNO = #{nno}

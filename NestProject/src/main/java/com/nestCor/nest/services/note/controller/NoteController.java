@@ -1,6 +1,7 @@
 package com.nestCor.nest.services.note.controller;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -41,11 +42,6 @@ public class NoteController {
 	public String tag() {
 		return "client/services/note/note_tag";
 	}
-	
-	
-	
-	
-	
 	
 	@RequestMapping("/note/newNote.do")
 	public String newNote(Model model) {
@@ -108,10 +104,9 @@ public class NoteController {
 	public String selectListNote(@RequestParam("mno") int mno, @RequestParam("trashcan") String yn, Model model) {
 		
 		Note note = new Note(mno,yn);
-		System.out.println(note);
+
 		List<Note> list = noteService.selectListNote(note);
 		
-		System.out.println("list : "+list);
 		
 		model.addAttribute("list",list);
 		String path;
@@ -121,43 +116,27 @@ public class NoteController {
 		return path;
 	}
 	
-	@RequestMapping("/note/insertNote.do")
-	public String insertNote(@RequestParam("ntitle") String ntitle, @RequestParam("ncontent") String ncontent, Model model) {
-		
-		Note note = new Note();
-		
-		note.setNcontent(ncontent);
-		note.setNtitle(ntitle);
-		note.setMno(1);
-		
-		int result = noteService.insertNote(note);
-		
-		if(result>0) System.out.println("저장 성공");
-		else System.out.println("실패");
-		
-		
-		
-		return "client/services/note/finalTemplate";
-	}
+	
 	
 	@RequestMapping("/note/goBackTrash.do")
-	public String goTrash(@RequestParam("trashcan") String trashcan, @RequestParam("nno") int nno,  Model model) {
+	@ResponseBody
+	public HashMap<String,Object> goTrash(@RequestParam("trashcan") String trashcan, @RequestParam("nno") int nno) {
 		Note note = new Note();
 		note.setNno(nno);
 		note.setTrashcan(trashcan);
 		
 		int result = noteService.goTrash(note);
 		
-		Note note2 = new Note(1,"N");
+		HashMap<String, Object> hmap = new HashMap<>();
 		
-		List<Note> list = noteService.selectListNote(note2);
+		boolean tf;
 		
-		if(result>0) System.out.println("휴지통으로이동");
-		else System.out.println("이동 실패");
+		if(result>0) tf = true;
+		else tf=false;
 		
-		model.addAttribute("list", list);
+		hmap.put("tf", tf);
 		
-		return "client/services/note/noteview";
+		return hmap;
 	}
 	
 	@RequestMapping("/note/goAllTrash.do")
@@ -171,7 +150,7 @@ public class NoteController {
 		if(result>0) System.out.println("휴지통으로이동");
 		else System.out.println("이동 실패");
 		
-		return "client/services/note/noteview";
+		return "client/services/note/note_main";
 	}
 	
 	
@@ -241,6 +220,22 @@ public class NoteController {
 		return tf;
 	}
 	
+	@RequestMapping("/note/copyNote.do")
+	public String copyNote(@RequestParam("nno") int nno,@RequestParam("mno") int mno,Model model) {
+		int result = noteService.copyNote(nno);
+		
+		Note note = new Note(mno,"N");
+
+		List<Note> list = noteService.selectListNote(note);
+
+		model.addAttribute("list",list);
+		model.addAttribute("topmenu",2);
+		
+		
+		return "client/services/note/note_main";
+	}
+	
+	
 	
 	@RequestMapping(value = "/a/images", method = RequestMethod.POST)
 	@ResponseBody
@@ -272,17 +267,12 @@ public class NoteController {
 
 	        for (int i = 0; i < files.length; i++) {
 	            if (!files[i].isEmpty()) {
-
 	                try {
 	                    boolean created = false;
-
 	                    try {
-	                        File theDir = new File(folder);
-	                        System.out.println("1");
+	                        File theDir = new File(folder); 
 	                        theDir.mkdir();
-	                        System.out.println("2");
 	                        created = true;
-	                        System.out.println("3");
 	                    } catch (SecurityException se) {
 	                        se.printStackTrace();
 	                    }
@@ -299,12 +289,9 @@ public class NoteController {
 	                } catch (Exception e) {
 	                    throw new RuntimeException("Product Image saving failed", e);
 	                }
-
 	            } else
 	                result.append(files[i].getOriginalFilename() + " Failed. ");
-
 	        }
-
 	        return result.toString();
 
 	    } catch (Exception e) {

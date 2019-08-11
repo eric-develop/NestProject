@@ -674,7 +674,7 @@
 						<div
 							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 							aria-labelledby="userDropdown">
-							<a class="dropdown-item" href="#"> 저장 </a>
+							<a class="dropdown-item" href="firstSave()"> 저장 </a>
 							<a class="dropdown-item" href="#"> 템플릿 적용</a>
 						</div>
 					</c:if>
@@ -682,14 +682,12 @@
 						<div
 							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 							aria-labelledby="userDropdown">
-							<a class="dropdown-item" href="#"> 저장
-							</a> 
-							<a class="dropdown-item" style="cursor:pointer"> 이동...
-							</a> 
-							<a class="dropdown-item" href="#"> 노트복제
-							</a> 
-							<a class="dropdown-item" href="#"> 노트삭제
-							</a>
+							<a class="dropdown-item" onclick="afterSave()" style="cursor:pointer">저장</a> 
+							<a class="dropdown-item" onclick="moveNote()" style="cursor:pointer">이동...</a>
+							<a class="dropdown-item" onclick="template()" style="cursor:pointer"> 템플릿 적용</a> 
+							<a class="dropdown-item" onclick="copyNote()" style="cursor:pointer">노트복제</a> 
+							<a class="dropdown-item" onclick="deleteOneNote()" style="cursor:pointer">노트삭제</a>
+							<a class="dropdown-item" onclick="deleteAllNote()" style="cursor:pointer">노트전체삭제</a>
 						</div>
 					</c:if>
 					<c:if test="${topmenu eq 3}">
@@ -708,6 +706,7 @@
 							aria-labelledby="userDropdown">
 							<a class="dropdown-item" href="#"> 저장
 							</a> <a class="dropdown-item" href="#"> 이동...
+							</a> <a class="dropdown-item" href="#"> 템플릿 적용
 							</a> <a class="dropdown-item" href="#"> 노트복제
 							</a> <a class="dropdown-item" href="#"> 노트삭제
 							</a>
@@ -769,119 +768,7 @@
     
 	$(function(){
 	
-	// 노트 에디터 관련 필요한 부분 // 
 	
-	/* var i = $('#text').css('height');
-	var arr = i.split('p');
-	
-	console.log(arr[0]);
-	height=arr[0]-2;
-	console.log(height);
-	tinymce.init({
-		  selector:'textarea',
-		  language : 'ko_KR',
-		  height: height,
-		  plugins: [
-		    'link image imagetools table code'
-		  ],
-		  menubar:false,
-		  toolbar: 'undo redo styleselect fontselect fontsizeselect bold italic alignleft aligncenter alignright alignjustify code table imageupload fileupload',
-		  allow_script_urls: true,
-		  content_css:"https://use.fontawesome.com/releases/v5.2.0/css/all.css",
-		  extended_valid_elements: "button[class|id|onclick],script[src|async|defer|type|charset],div,span[*],i[*]",
-		  setup: function(editor) {
-			  
-              // create input and insert in the DOM
-              var inp2 = $('<input id="tinymce-uploader" type="file" name="pic" style="display:none">');
-              $(editor.getElement()).parent().append(inp2);
-              var inp = $('<input id="tinymce-uploader" type="file" name="pic" accept="image/*" style="display:none">');
-              $(editor.getElement()).parent().append(inp);
-
-              // add the image upload button to the editor toolbar
-              editor.ui.registry.addButton('imageupload', { 
-                icon: 'image',
-                onAction: function(e) { // when toolbar button is clicked, open file select modal
-                  inp.trigger('click');
-                }
-              });
-              
-              editor.ui.registry.addButton('fileupload', { 
-                icon: 'save',
-                onAction: function(e) { // when toolbar button is clicked, open file select modal
-                  inp2.trigger('click');
-                }
-              });
-               
-              
-              // when a file is selected, upload it to the server
-              inp.on("change", function(e){
-                uploadImage($(this), editor);
-              });
-			  
-              inp2.on("change", function(e){
-                uploadFile($(this), editor);
-              });
-              
-            function uploadImage(inp, editor) {
-              var input = inp.get(0);
-              var data = new FormData();
-              data.append('files', input.files[0]);
-              var scriptLoader = new tinymce.dom.ScriptLoader();
-              
-              $.ajax({
-                url: '${pageContext.request.contextPath}/a/images',
-                type: 'POST',
-                data: data,
-                enctype: 'multipart/form-data',
-                dataType : 'json',
-                processData: false, // Don't process the files
-                contentType: false, // Set content type to false as jQuery will tell the server its a query string request
-                content_css:"",
-                success: function(data, textStatus, jqXHR) {
-                  editor.insertContent('<img class="content-img" src="${pageContext.request.contextPath}' + data.location + '" data-mce-src="${pageContext.request.contextPath}' + data.location + '" />');
-                  
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                  if(jqXHR.responseText) {
-                    errors = JSON.parse(jqXHR.responseText).errors
-                    alert('Error uploading image: ' + errors.join(", ") + '. Make sure the file is an image and has extension jpg/jpeg/png.');
-                  }
-                }
-              });
-            }
-            
-            function uploadFile(inp, editor) {
-              var input = inp.get(0);
-              var data = new FormData();
-              data.append('files', input.files[0]);
-              var scriptLoader = new tinymce.dom.ScriptLoader();
-              
-              $.ajax({
-                url: '${pageContext.request.contextPath}/a/files',
-                type: 'POST',
-                data: data,
-                enctype: 'multipart/form-data',
-                dataType : 'json',
-                processData: false, // Don't process the files
-                contentType: false, // Set content type to false as jQuery will tell the server its a query string request
-                success: function(data, textStatus, jqXHR) {
-                	var file=data.location.split('/');
-                	console.log(file[file.length-1]);
-                	var fileName=file[file.length-1];
-                	
-                  editor.insertContent('<a href="${pageContext.request.contextPath}'+data.location+'" style="color:gray;font-weight:normal;"><i class="far fa-file-archive"></i> '+fileName+' </a>');
-                  
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                  if(jqXHR.responseText) {
-                    errors = JSON.parse(jqXHR.responseText).errors
-                    alert('Error uploading image: ' + errors.join(", ") + '. Make sure the file is an image and has extension jpg/jpeg/png.');
-                  }
-                }
-              });
-            } 
-      }
-   }); // tinymce.init()끝. */
 	
    
 	$.ajax({

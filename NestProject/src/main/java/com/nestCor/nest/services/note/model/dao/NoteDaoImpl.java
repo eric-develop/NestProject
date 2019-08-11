@@ -88,5 +88,9 @@ public class NoteDaoImpl implements NoteDao {
 	public int moveNote(Note note) {
 		return sqlSession.selectOne("note.moveNote",note);
 	}
-
+	
+	@Override
+	public int copyNote(int nno) {
+		return sqlSession.insert("note.copyNote",nno);
+	}
 }

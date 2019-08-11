@@ -70,6 +70,7 @@ public class MemberController {
 					Note note = new Note(m.getmNo(),"N");
 					List<Note> list = nService.selectListNote(note);
 					model.addAttribute("list", list);
+					model.addAttribute("topmenu",2);
 					url = "client/services/note/note_main";
 					
 				}else {
