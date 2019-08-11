@@ -100,6 +100,16 @@ public class SpaceServiceImpl implements SpaceService {
 	}
 
 
+	@Override
+	public Map<String, Object> spaceNoteDetail(int spaceNo) {
+		
+		return sDao.spaceNoteDetail(spaceNo);
+	}
+
+
+	
+
+
 
 
 }

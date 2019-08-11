@@ -56,6 +56,8 @@ public class NoteController {
 	@RequestMapping("/note/noteDetail.do")
 	@ResponseBody
 	public Note noteDetail(@RequestParam("nno") int nno) {
+		System.out.println("들어오옴");
+		System.out.println("nno: " + nno);
 		Note note = new Note();
 		
 		note = noteService.noteDetail(nno);

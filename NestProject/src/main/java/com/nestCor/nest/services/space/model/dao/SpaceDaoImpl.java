@@ -98,6 +98,26 @@ public class SpaceDaoImpl implements SpaceDao {
 		sqlSession.update("Space_mapper.noteNotFix",nno);
 		
 	}
+
+	@Override
+	public Map<String, Object> spaceNoteDetail(int spaceNo) {
+		
+		Map<String,Object> spaceNoteDetailContents = new HashMap<>();
+		
+		
+		List<Note> noteList = new ArrayList<>();
+		
+		noteList = 	sqlSession.selectList("Space_mapper.spaceNoteDetail",spaceNo);
+		Space space = sqlSession.selectOne("Space_mapper.selectOneSpace",spaceNo);
+		
+		String spaceName = space.getSpaceName();
+		
+		spaceNoteDetailContents.put("list",noteList);
+		spaceNoteDetailContents.put("spaceName",spaceName);
+		
+		return spaceNoteDetailContents;
+		
+	}
 	
 	
 

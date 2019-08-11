@@ -17,6 +17,7 @@ public interface SpaceService {
 		void noteFix(int nno);
 		void noteNotFix(int nno);
 		List<Note> selectFixedNoteList();
+		Map<String, Object> spaceNoteDetail(int spaceNo);
 	
 
 		

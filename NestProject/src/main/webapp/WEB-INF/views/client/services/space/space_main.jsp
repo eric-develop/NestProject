@@ -59,11 +59,11 @@
 					 	<div id="space-left-Contents" style="width:2000px; padding:10px; display:inline-block;">
 							<c:forEach var="noteList" items="${spaceContentsMap.noteList}" varStatus="i">
 									<div class="card border-secondary mb-3" style="width:300px; height:250px; display:inline-block; margin-top:15px; margin-right:10px;">
-									  <div class="card-header">${noteList.nwriter}</div>
-									  <div class="card-body text-secondary">
-									    <h5 class="card-title">${noteList.ntitle}</h5>
-									    <p class="card-text">${noteList.ncontent}</p>
-									  </div>
+										  <div class="card-header">${noteList.nwriter}</div>
+										  <div class="card-body text-secondary">
+										    <h5 class="card-title" style="cursor:pointer;" onclick="callNoteDetail('${noteList.spaceno}','${noteList.nno}')">${noteList.ntitle}</h5>
+										    <p class="card-text">${noteList.ncontent}</p>
+										  </div>
 									</div>
 							</c:forEach>					
 						 </div>
@@ -444,6 +444,12 @@ $(document).ready(function () {
                
             }
          
+        function callNoteDetail(spaceno,nno){
+        	console.log("sno: " + spaceno);
+        	console.log("nno : " + nno);
+        	
+        	location.href ="${pageContext.request.contextPath}/space/spaceNoteDetail.do?spaceno="+spaceno+"&nno="+nno;
+        }
 
 	</script>
 

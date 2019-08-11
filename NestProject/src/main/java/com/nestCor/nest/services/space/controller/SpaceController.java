@@ -111,5 +111,18 @@ public class SpaceController {
 		
 	}
 	
+	@RequestMapping("/space/spaceNoteDetail.do")
+	public String spaceNoteDetail(@RequestParam("spaceno") int spaceNo,@RequestParam("nno") int nno,Model model) {
+	
+		Map<String,Object> spaceNoteDetailContents = 
+				sService.spaceNoteDetail(spaceNo);
+		
+		model.addAttribute("spaceNoteDetailContents",spaceNoteDetailContents);
+		model.addAttribute("nno",nno);
+		return "client/services/note/note_of_space_main";
+		
+	}
+
+	
 	
 }
