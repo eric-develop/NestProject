@@ -62,7 +62,7 @@ public class MemberController {
 					
 					spaceList = sService.selectSpaceList(m.getBizNo());
 					bizMemberList = mService.selectBizMemberList(m.getBizNo());
-					url = "client/services/space/space_main2";
+					url = "client/services/space/space_main";
 					
 				}else {
 					url = "/member/loginView.do";

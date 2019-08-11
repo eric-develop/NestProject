@@ -23,7 +23,7 @@
 			<div id="second_container" value="slide" style="overflow:auto;height:100%;display:inline-block;width:20.33333%;min-width:364px;;padding: 0 15px;float:left;border-right:1px solid">
 			      <div id="sc1" style="border-bottom: 1px solid #1a1a1a; padding: 14px;">
 			        <div style="padding-top:10px;">
-			        	<h5 style="display:inline-block;">휴지통</h5>
+			        	<h5 style="display:inline-block;">${nbtitle}</h5>
 			        	<p style="display:inline-block;float:right">0개의 노트</p>
 			        </div>
 			      </div>
@@ -62,7 +62,7 @@
 			<!-- Home 화면 구현부분 ////////////////////////////////////////////////////////////////////////////////////////////////////-->
 			<div id="community" style="padding:10px 19px;display:inline-block;height:100%;width:76.66666%;">
 				
-			 	<c:if test="${!empty list}">
+			 <c:if test="${!empty list}">
 				<div id="note" style="width:100%;height: 95%;">
 			        <div class="Editor-Title" style="height:7.33333%">
 						<div class="Title" style="width:100%;border-bottom:1px solid lightgray;height:100%">
@@ -137,57 +137,50 @@
 		}
 	}
 	
-	function restoreTrash(){
-		$.ajax({
-			url:'${pageContext.request.contextPath}/note/restoreTrash.do',
-			type: 'POST',
-			data:{nno:i,trashcan:"N"},
-			dataType:'json',
-			success:function(data){
-				if(data){
-					obj.parent().remove();
-					$('.noteCheck').eq(0).prop('checked',true);
-					check($('.noteCheck').eq(0).prop('checked'),$('.noteCheck').eq(0));
-				}else{
-					alert("삭제실패");}				
-				
-			},error : function(request,status,error){
-			    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			}
-		});
-	}
 	
 	function deleteOneNote(){
-		$.ajax({
-			url:'${pageContext.request.contextPath}/note/deleteOneTrash.do',
-			type: 'POST',
-			data:{nno:i},
-			dataType:'json',
-			success:function(data){
-				if(data){
-					obj.parent().remove();
-					$('.noteCheck').eq(0).prop('checked',true);
-					check($('.noteCheck').eq(0).prop('checked'),$('.noteCheck').eq(0));
-					obj.html(data);
-				}else{
-					alert("삭제실패");}				
-				
-			},error : function(request,status,error){
-			    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			}
-		});
+		location.href="${pageContext.request.contextPath}"
+            +"/note/goBackTrash.do?nno="+i+"&trashcan=Y";
 	}
 	
 	function deleteAllNote(){
+		location.href="${pageContext.request.contextPath}"
+            +"/note/goAllTrash.do?mno=1&trashcan=Y";
+	}
+	function saveNote(){
+		var ntitle = $('#ntitle').val();
+		var ncontent = tinyMCE.activeEditor.getContent();
 		$.ajax({
-			url:'${pageContext.request.contextPath}/note/deleteAllTrash.do',
+			url:'${pageContext.request.contextPath}/note/saveNote.do',
 			type: 'POST',
-			data:{mno:${member.mNo}},
+			data:{nno:i,ntitle:ntitle,ncontent:ncontent},
 			dataType:'json',
 			success:function(data){
 				if(data){
-					obj.parent().parent().remove();
-					
+					alert("저장성공");
+					console.log(obj.parent().children(1).text().trim());
+					obj.parent().children(1).text(ntitle);
+				}else{
+					alert("저장실패");}				
+				
+			},error : function(request,status,error){
+			    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
+		});
+	}
+function goTrash(){
+		
+		$.ajax({
+			url:'${pageContext.request.contextPath}/notebook/trashGo.do',
+			type: 'POST',
+			data:{nno:i,trashcan:"Y"},
+			dataType:'json',
+			success:function(data){
+				if(data){
+					//alert("삭제성공");
+					obj.parent().remove();
+					$('.noteCheck').eq(0).prop('checked',true);
+					check($('.noteCheck').eq(0).prop('checked'),$('.noteCheck').eq(0));
 				}else{
 					alert("삭제실패");}				
 				
@@ -196,8 +189,6 @@
 			}
 		});
 	}
-	
-	
 	</script>
 
 </body>

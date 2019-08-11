@@ -79,6 +79,25 @@ public class SpaceDaoImpl implements SpaceDao {
 		
 		return spaceContentsMap;
 	}
+
+	@Override
+	public void noteFix(int nno) {
+		
+		sqlSession.update("Space_mapper.noteFix",nno);
+		
+	}
+
+	@Override
+	public List<Note> selectFixedNoteList() {
+		
+		return sqlSession.selectList("Space_mapper.selectFixedNoteList");
+	}
+
+	@Override
+	public void noteNotFix(int nno) {
+		sqlSession.update("Space_mapper.noteNotFix",nno);
+		
+	}
 	
 	
 

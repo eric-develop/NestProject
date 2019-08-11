@@ -29,40 +29,43 @@ public class NoteBookController {
 		 System.out.println("list : "+list);
 			
 		 model.addAttribute("list",list);
+		 model.addAttribute("topmenu",3);
 		 
-		 return "client/services/note/notebookmain";
+		 return "client/services/note/note_list";
 	 }
 	  
 	 @RequestMapping("/notebook/goNotebook.do") 
-	 public String selectOneNoteBook(@RequestParam("nbno") int nbno, Model model) {
+	 public String selectOneNoteBook(@RequestParam("nbno") int nbno,@RequestParam("nbtitle") String nbtitle, Model model) {
 		 List<Note> list = noteBookService.selectOneNoteBook(nbno);
 		 System.out.println("list : "+list);
 			
 		 model.addAttribute("list",list);
-		 model.addAttribute("nbno",nbno);
-		 return "client/services/note/notebookview";
+		 model.addAttribute("nbtitle",nbtitle);
+		 model.addAttribute("topmenu",3);
+		 
+		 return "client/services/note/notebook_note";
 	 }
 	
-	 @RequestMapping("/notebook/trashGo.do") 
-	 public String trashGo(@RequestParam("trashcan") String trashcan, @RequestParam("nno") int nno, Model model) {
-
-	 Note note = new Note(); 
-	 note.setNno(nno);
-	 note.setTrashcan(trashcan);
-	 
-	 int result = noteBookService.trashGo(note);
-	 
-	 Note note2 = new Note(1,"N"); 
-	 System.out.println(note2);
-	 List<Note> list = noteService.selectListNote(note2);
-	 System.out.println("list: " + list);
-	 
-	 if(result>0) System.out.println("휴지통으로이동"); 
-	 else System.out.println("이동 실패");
-	 
-	 model.addAttribute("list", list);
-	 
-	 return "client/services/note/notebookview";
+	 @RequestMapping("/notebook/trashGo.do")
+	 @ResponseBody
+	 public Boolean trashGo(@RequestParam("trashcan") String trashcan, @RequestParam("nno") int nno) {
+		 Note note = new Note(); 
+		 note.setNno(nno);
+		 note.setTrashcan(trashcan);
+		 
+		 int result = noteBookService.trashGo(note);
+		 
+		 Note note2 = new Note(1,"N"); 
+		 System.out.println(note2);
+		 List<Note> list = noteService.selectListNote(note2);
+		 System.out.println("list: " + list);
+		 
+		 boolean data;
+		 
+		 if(result>0) data = true; 
+		 else data = false;
+	
+		 return data;
 	 }
 	 
 	

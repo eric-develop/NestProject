@@ -63,5 +63,30 @@ public class NoteDaoImpl implements NoteDao {
 	public Note noteDetail(int nno) {
 		return sqlSession.selectOne("note.noteDetail",nno);
 	}
+	
+	@Override
+	public int firstSave(Note note) {
+		
+		int result = 0;
+		
+		if(note.getNno()>0) {
+			result = sqlSession.insert("note.updateNote",note);
+		}else {
+			result = sqlSession.insert("note.firstSave",note);
+		}
+
+		return result;
+	}
+	
+	@Override
+	public int searchNno(Note note) {
+		
+		return sqlSession.selectOne("note.searchNno",note);
+	}
+	
+	@Override
+	public int moveNote(Note note) {
+		return sqlSession.selectOne("note.moveNote",note);
+	}
 
 }

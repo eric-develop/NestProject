@@ -3,109 +3,74 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
-<html lang="ko" style="height:100%;width:100%;overflow:hidden">
+<html lang="ko">
 
-<head>
-  
+<body id="page-top">
 
-  <title>노트북</title>
- 
-</head>
+	<!-- Page Wrapper -->
+	<div id="wrapper">
 
-<body style="height:100%;width:100%;">
-  <div style="height:100%;width:100%;">
-	 <c:import url="../../common/navi.jsp"/>
+		<c:import url="../common/menubar.jsp"/>
+		<div class="w" style="padding:15px;height: 800px;">
+					<div style="padding:10px 0">
+						<h4>노트북 목록</h4>
+					</div>
+					<table class="table">
+						<colgroup>
+							<col width="70%"/>
+							<col width="10%"/>
+							<col width="10%"/>
+							<col width="10%"/>
+						</colgroup>
+						
+						<style>
+							.table .thead-dark th{background-color:#edededbd;border-top:2px solid #858796;border-bottom:#e3e6f0;color:#8587968a;font-weight:500;}
+							@font-face { font-family: 'LotteMartHappy'; font-style: normal; font-weight: 400; src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartHappy/LotteMartHappyMedium.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartHappy/LotteMartHappyMedium.woff') format('woff'); } @font-face { font-family: 'LotteMartHappy'; font-style: normal; font-weight: 700; src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartHappy/LotteMartHappyBold.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartHappy/LotteMartHappyBold.woff') format('woff'); } .lottemarthappy * { font-family: 'LotteMartHappy', sans-serif; }
+							th{
+								font-family : 'LotteMartHappy';
+								font-size : 15px;
+							}
+						</style>
+						<thead class="thead-dark">
+							<tr>
+								<th>제목</th>
+                                <th>작성일</th>
+                                <th>작성자</th>
+                                <th>작성자</th>
+                                <!-- md를 붙이시면 보통 사이즈 뜻입니다. / 좌측 네비 div에 col 1또는 2를 주시고 
+								게시판 div에 11 또는 10/ 가로 숫자 합 12를 맞춰주신 후 th col에 각 각 숫자로 크기 주시면 됩니다.
+								부트스트랩에 레이아웃 참조하시면 이해하시는데 큰 도움 될거 같아요 -->
+							</tr>
+						</thead>
+						<tbody>
+							<!-- ${b.count} 는 없어서 우선 이대로 실행 -->
+							<c:forEach items="${list}" var="notebook">
+								<tr id="${notebook.nbno}">	
+									
+									<!---좋아요 or 추천 갯수 -->
+									<td id="title"> 
+										<a href="${pageContext.request.contextPath}/notebook/goNotebook.do?nbno=${notebook.nbno}&nbtitle=${notebook.nbtitle}" style="color: gray;">${notebook.nbtitle}&nbsp;&nbsp;[0]</a>
+									</td>
+									<td>8원 10일</td>
+									<td>${member.userName}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+					<c:out value="${pageBar}" escapeXml="false"/>
+				</div>
+		
+		
+		
+		
+	</div>
+		<!-- End of Content Wrapper -->
 
-
-    <!--===========================노트 흰색=====================================================================-->
-    <section class="whitebox col-md-10 col-xs-11">
-
-      <div id="top_line" style="padding-top: 20px;">
-
-
-        <div style=" display: inline-block;">
-          <h5>노트북</h5>
-          <p style="margin: 0%;">내 노트북 목록</p>
-
-        </div>
-        <!---============   ==============---->
-        <div style="float: right; margin-top: 50px;">
-          <i class="fas fa-plus-circle" style="font-size: 10px; color: #F28B30; margin-right: 10px;"> </i>새노트
-        </div>
-      </div>
-      <!--================= 노트목록 ======================================-->
-      <div id="note_table" style="height: 100%;">
-
-        <table class="table">
-
-          <thead>
-            <tr>
-              <th scope="col-md-6">제목</th>
-              <th scope="col-md-2">만든 사람</th>
-              <th scope="col-md-2">수정한 날짜</th>
-              <th scope="col-md-2">공유 대상</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="topnav">
-              <th scope="row"><i class="fas fa-caret-down" style="font-size:20px;margin-right: 10px;"></i>
-                <i class="fas fa-sticky-note" style="font-size: 20px; color: #b8b8b8 ; margin-right: 4px;"></i>
-                <span>내 노트북</span>
-              </th>
-              <td>홍길동</td>
-              <td>7월 9일</td>
-              <td>나에게만</td>
-            </tr>
-
-            <!---->
-            <script src="http://code.jquery.com/jquery-latest.js"></script>
-            <script type="text/javascript">
-              $(document).ready(function () {
-
-                $(".topnav").hover(function () {                    //마우스를 topnav에 오버시
-                  $(this).parent().find(".subnav").slideDown('normal').show();                   //subnav가 내려옴.
-                  $(this).parent().hover(function () {
-                  }, function () {
-                    $(this).parent().find(".subnav").slideUp('fast');                 //subnav에서 마우스 벗어났을 시 원위치시킴  
-                  });
-                });
-
-              });  
-            </script>
-
-            <!---->
+		<!-- End of Page Wrapper -->
 
 
-
-
-
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>@twitter</td>
-            </tr>
-          </tbody>
-        </table>
-
-
-      </div>
-
-      <div id="whitebox_footer">
-        <i class="fas fa-tags" style="font-size: 20px; color: #b8b8b8 ; margin-right: 10px;"></i>
-        <input type="text" placeholder="태그추가" style="border: none; width: 400px;">
-      </div>
-
-    </section>
-  </div>
 </body>
 
 </html>
