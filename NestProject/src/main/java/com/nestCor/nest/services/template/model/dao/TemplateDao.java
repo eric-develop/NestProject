@@ -1,18 +1,16 @@
-package com.nestCor.nest.services.template.model.service;
-
+package com.nestCor.nest.services.template.model.dao;
 
 import java.util.List;
 
 import com.nestCor.nest.services.template.model.vo.Template;
 
-public interface TemplateService {
+public interface TemplateDao {
 	
 	int insertTemplate(Template template);
 	
 	Template selectOneTemplate(int tno);
 	
 	int deleteTemplate(int tno);
-
-	List<Template> selectListTemplate(int mno);
 	
+	List<Template> selectListTemplate(int mno);
 }

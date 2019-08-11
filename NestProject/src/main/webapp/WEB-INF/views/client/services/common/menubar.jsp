@@ -675,8 +675,49 @@
 							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 							aria-labelledby="userDropdown">
 							<a class="dropdown-item" href="firstSave()"> 저장 </a>
-							<a class="dropdown-item" href="#"> 템플릿 적용</a>
+							<a class="dropdown-item" onclick="insertTemplate()" style="cursor:pointer"> 템플릿 저장</a>
+							<a class="dropdown-item" onclick="template()" style="cursor:pointer"> 템플릿 적용</a>
+							
 						</div>
+					<!-- Modal -->
+					  <div class="modal fade" id="myModal" role="dialog">
+					    <div class="modal-dialog">
+					    
+					      <!-- Modal content-->
+					      <div class="modal-content">
+					        <div class="modal-header" style="text-align:left">
+					          <h4 class="modal-title">템플릿 목록</h4>
+					          <button type="button" class="close" data-dismiss="modal">×</button>
+					        </div>
+					        <div class="modal-body" style="overflow:auto">
+					          
+					          <div>
+					          
+					          <c:forEach items="${tlist}" var="notebook" varStatus="status">
+					          	<c:if test="${status.index/2 eq 0 && status.index > 0}">
+					          	<div style="text-align:center;margin-bottom:5px;">
+					          	</c:if>
+					          		<div style="display:inline-block;">
+					          			<input class="tno" type="hidden" value="${notebook.tno }" />
+					          			<div class="noteTemplate" style="border:1px solid #ebebeb"><img src="/nest/resources/uploads/images/guzig.PNG" style="cursor:pointer;width:190px;height:220px"/></div>
+					          			<div style="text-align:center"><b>${notebook.ttitle}</b></div>
+					          		</div>
+					          	<c:if test="${status.index/2 eq 0 && status.index > 0}">
+					          	</div>
+					          	</c:if>
+					          </c:forEach>
+					          
+					          </div>
+					          
+					        </div>
+					        <div class="modal-footer">
+					          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					        </div>
+					      </div>
+					      
+					    </div>
+					  </div>
+					  
 					</c:if>
 					<c:if test="${topmenu eq 2}">
 						<div
@@ -684,11 +725,50 @@
 							aria-labelledby="userDropdown">
 							<a class="dropdown-item" onclick="afterSave()" style="cursor:pointer">저장</a> 
 							<a class="dropdown-item" onclick="moveNote()" style="cursor:pointer">이동...</a>
+							<a class="dropdown-item" onclick="insertTemplate()" style="cursor:pointer"> 템플릿 저장</a>
 							<a class="dropdown-item" onclick="template()" style="cursor:pointer"> 템플릿 적용</a> 
 							<a class="dropdown-item" onclick="copyNote()" style="cursor:pointer">노트복제</a> 
 							<a class="dropdown-item" onclick="deleteOneNote()" style="cursor:pointer">노트삭제</a>
 							<a class="dropdown-item" onclick="deleteAllNote()" style="cursor:pointer">노트전체삭제</a>
 						</div>
+						<!-- Modal -->
+					  <div class="modal fade" id="myModal" role="dialog">
+					    <div class="modal-dialog">
+					    
+					      <!-- Modal content-->
+					      <div class="modal-content">
+					        <div class="modal-header" style="text-align:left">
+					          <h4 class="modal-title">템플릿 목록</h4>
+					          <button type="button" class="close" data-dismiss="modal">×</button>
+					        </div>
+					        <div class="modal-body" style="overflow:auto">
+					          
+					          <div>
+					          
+					          <c:forEach items="${tlist}" var="notebook" varStatus="status">
+					          	<c:if test="${status.index/2 eq 0 && status.index > 0}">
+					          	<div style="text-align:center;margin-bottom:5px;">
+					          	</c:if>
+					          		<div style="display:inline-block;">
+					          			<input class="tno" type="hidden" value="${notebook.tno }" />
+					          			<div class="noteTemplate" style="border:1px solid #ebebeb"><img src="/nest/resources/uploads/images/guzig.PNG" style="cursor:pointer;width:190px;height:220px"/></div>
+					          			<div style="text-align:center"><b>${notebook.ttitle}</b></div>
+					          		</div>
+					          	<c:if test="${status.index/2 eq 0 && status.index > 0}">
+					          	</div>
+					          	</c:if>
+					          </c:forEach>
+					          
+					          </div>
+					          
+					        </div>
+					        <div class="modal-footer">
+					          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					        </div>
+					      </div>
+					      
+					    </div>
+					  </div>
 					</c:if>
 					<c:if test="${topmenu eq 3}">
 						<div
@@ -710,7 +790,7 @@
 							</a> <a class="dropdown-item" href="#"> 노트복제
 							</a> <a class="dropdown-item" href="#"> 노트삭제
 							</a>
-						</div>
+						</div>						
 					</c:if>
 					<c:if test="${topmenu eq 5}">
 						<div
@@ -929,7 +1009,7 @@
 
 /////////////// 페이지 이동 관련 함수들 //////////////////////
 $('.newNote').click(function(){
-	location.href="${pageContext.request.contextPath}/note/newNote.do"
+	location.href="${pageContext.request.contextPath}/note/newNote.do?mno=${member.mNo}"
 });
 
 $('.note').click(function(){

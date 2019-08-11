@@ -309,25 +309,74 @@ var height;
 	}
 function goTrash(){
 		
-		$.ajax({
-			url:'${pageContext.request.contextPath}/notebook/trashGo.do',
-			type: 'POST',
-			data:{nno:i,trashcan:"Y"},
-			dataType:'json',
-			success:function(data){
-				if(data){
-					//alert("삭제성공");
-					obj.parent().remove();
-					$('.noteCheck').eq(0).prop('checked',true);
-					check($('.noteCheck').eq(0).prop('checked'),$('.noteCheck').eq(0));
-				}else{
-					alert("삭제실패");}				
-				
-			},error : function(request,status,error){
-			    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			}
-		});
-	}
+	$.ajax({
+		url:'${pageContext.request.contextPath}/notebook/trashGo.do',
+		type: 'POST',
+		data:{nno:i,trashcan:"Y"},
+		dataType:'json',
+		success:function(data){
+			if(data){
+				//alert("삭제성공");
+				obj.parent().remove();
+				$('.noteCheck').eq(0).prop('checked',true);
+				check($('.noteCheck').eq(0).prop('checked'),$('.noteCheck').eq(0));
+			}else{
+				alert("삭제실패");}				
+			
+		},error : function(request,status,error){
+		    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+	});
+}
+	
+function copyNote(){
+	location.href="${pageContext.request.contextPath}/note/copyNote.do?nno="+nno+"&mno="+${member.mNo};
+}
+
+function template(){
+	$("#myModal").modal();	
+}
+
+$('.noteTemplate').click(function(){
+	var index = $('.noteTemplate').index(this);
+	//tinyMCE.activeEditor.setContent($('.tcontent').eq(index).val());
+	var tno = $('.tno').eq(index).val()
+	
+	console.log(index+"/"+tno);
+	$.ajax({
+		url:'${pageContext.request.contextPath}/template/Tselect.do',
+		data:{tno:tno},
+		type:'post',
+		dataType:'json',
+		success:function(data){
+			tinyMCE.activeEditor.setContent(data.tcontent);
+			$('#myModal').modal("hide");
+		},error : function(request,status,error){
+		    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+	});
+	
+});
+
+function insertTemplate(){
+	var ntitle = $('#ntitle').val();
+	var ncontent = tinyMCE.activeEditor.getContent();
+	$.ajax({
+		url:'${pageContext.request.contextPath}/template/Tinsert.do',
+		data:{ttitle:ntitle,tcontent:ncontent},
+		type : 'post',
+		dataType:'json',
+		success:function(data){
+			if(data.tf){
+				alert("템플릿이 저장되었습니다.");
+			}else{
+				alert("템플릿 저장을 실패하였습니다.");}				
+		},error : function(request,status,error){
+		    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+	});
+	
+}
 	</script>
 	
 </body>

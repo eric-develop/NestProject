@@ -22,6 +22,8 @@
 		<typeAlias type="com.nestCor.nest.business.model.vo.Business" alias="Business"/>
 		<typeAlias type="com.nestCor.nest.payment.model.vo.Payment" alias="Payment"/>
 		<typeAlias type="com.nestCor.nest.payment.model.vo.Service" alias="Service"/>
+		<typeAlias type="com.nestCor.nest.services.template.model.vo.Template" alias="template"/>
+		
 	</typeAliases>
 	
 </configuration>

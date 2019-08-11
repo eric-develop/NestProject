@@ -8,8 +8,6 @@ import com.nestCor.nest.services.notebook.model.vo.NoteBook;
 public interface NoteBookDao {
 	//insert, selectOne, selectList, update
 	
-	int insertNoteBook(NoteBook noteBook);
-	
 	List<Note> selectOneNoteBook(int nbno);
 	//List<Note> selectListNote(Note note);
 	
@@ -20,4 +18,12 @@ public interface NoteBookDao {
 	int trashGo(Note note);
 	
 	int insertOneRenote(int nno);
+	
+	int deleteNoteBook(int nbno);
+	
+	int changeTitle(NoteBook nb);
+	
+	int insertNoteBook(int nbno);
+	
+	
 }

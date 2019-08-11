@@ -14,19 +14,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.nestCor.nest.services.note.model.service.NoteService;
 import com.nestCor.nest.services.note.model.vo.Note;
+import com.nestCor.nest.services.template.model.service.TemplateService;
+import com.nestCor.nest.services.template.model.vo.Template;
 
 
 @Controller
 public class NoteController {
-	
-	
 	@Autowired
 	NoteService noteService;
+	
+	@Autowired
+	TemplateService templateService;
 	
 	@RequestMapping("/note/index.do")
 	public String indexgo() {
@@ -44,7 +46,11 @@ public class NoteController {
 	}
 	
 	@RequestMapping("/note/newNote.do")
-	public String newNote(Model model) {
+	public String newNote(@RequestParam("mno") int mno, Model model) {
+		
+		List<Template> list = templateService.selectListTemplate(mno);
+		
+		model.addAttribute("tlist",list);
 		model.addAttribute("topmenu",1);
 		return "client/services/note/newNote";
 	}
@@ -106,9 +112,12 @@ public class NoteController {
 		Note note = new Note(mno,yn);
 
 		List<Note> list = noteService.selectListNote(note);
-		
+		List<Template> tlist = templateService.selectListTemplate(mno);
 		
 		model.addAttribute("list",list);
+		model.addAttribute("tlist",tlist);
+		
+		
 		String path;
 		if(yn.equals("Y")) {path="client/services/note/note_trashcan"; model.addAttribute("topmenu",5);}
 		else {path="client/services/note/note_main"; model.addAttribute("topmenu",2);}
@@ -156,14 +165,19 @@ public class NoteController {
 	
 	@RequestMapping("/note/deleteOneTrash.do")
 	@ResponseBody
-	public Boolean deleteOneTrash(@RequestParam int nno) {
+	public HashMap<String, Object> deleteOneTrash(@RequestParam int nno) {
+		// 혹시 모르니 json 
+		HashMap<String, Object> hmap = new HashMap<>();
+		
 		System.out.println("delete 전 확인 : " + nno);
 		int result = noteService.deleteOneTrash(nno);
 		boolean tf;
 		if(result>0) tf=true;
 		else tf=false;
 
-		return tf;
+		hmap.put("tf", tf);
+		
+		return hmap;
 	}
 	
 	@RequestMapping("/note/deleteAllTrash.do")

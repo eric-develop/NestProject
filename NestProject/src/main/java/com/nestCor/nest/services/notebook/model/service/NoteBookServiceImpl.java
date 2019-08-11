@@ -19,8 +19,8 @@ public class NoteBookServiceImpl implements NoteBookService {
 	NoteDao noteDao;
 	
 	@Override
-	public int insertNoteBook(NoteBook noteBook) {
-		return 0;
+	public int insertNoteBook(int nbno) {
+		return notebookDao.insertNoteBook(nbno);
 	}
 
 	@Override
@@ -47,16 +47,24 @@ public class NoteBookServiceImpl implements NoteBookService {
 	
 	 @Override 
 	 public int trashGo(Note note) {
-		 System.out.println("trashGo service들어옴");
 	    return notebookDao.trashGo(note); 
 	 }
 	
 
 	@Override
 	public int insertOneRenote(int nno) {
-		System.out.println("service들어옴");
 		return notebookDao.insertOneRenote(nno);
 	}
 
-
+	@Override
+	public int deleteNoteBook(int nbno) {
+		System.out.println("delete service들어옴");
+		return notebookDao.deleteNoteBook(nbno);
+	}
+	
+	@Override
+	public int changeTitle(NoteBook nb) {
+		System.out.println("change service들어옴");
+		return notebookDao.changeTitle(nb);
+	}
 }

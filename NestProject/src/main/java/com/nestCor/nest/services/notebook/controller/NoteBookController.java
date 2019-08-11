@@ -1,5 +1,6 @@
 package com.nestCor.nest.services.notebook.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,7 @@ public class NoteBookController {
 			
 		 model.addAttribute("list",list);
 		 model.addAttribute("nbtitle",nbtitle);
-		 model.addAttribute("topmenu",3);
+		 model.addAttribute("topmenu",2);
 		 
 		 return "client/services/note/notebook_note";
 	 }
@@ -84,6 +85,56 @@ public class NoteBookController {
 		 System.out.println("result 확인 : "+result );
 		 
 		 return str;
+	 }
+	 
+	 @RequestMapping("/notebook/deleteNoteBook.do")
+	 @ResponseBody
+	 public HashMap<String, Object> deleteNoteBook(@RequestParam("nbno") int nbno) {
+		  
+		 HashMap<String, Object> hmap = new HashMap<>();
+			
+			System.out.println("delete 전 확인 : " + nbno);
+			int result = noteBookService.deleteNoteBook(nbno);
+			boolean tf;
+			if(result>0) tf=true;
+			else tf=false;
+
+			hmap.put("tf", tf);
+			
+			return hmap;
+	 }
+	 
+	 @RequestMapping("/notebook/changeTitle.do")
+	 @ResponseBody
+	 public HashMap<String, Object> changeTitle(@RequestParam("nbno") int nbno, @RequestParam("nbtitle") String nbtitle) {
+		  
+		 HashMap<String, Object> hmap = new HashMap<>();
+			NoteBook nb = new NoteBook(); 
+				nb.setNbno(nbno);
+				nb.setNbtitle(nbtitle);
+			int result = noteBookService.changeTitle(nb);
+			boolean tf;
+			if(result>0) tf=true;
+			else tf=false;
+
+			hmap.put("tf", tf);
+			
+			return hmap;
+	 }
+	 
+	 @RequestMapping("/notebook/insertNoteBook.do")
+	 @ResponseBody
+	 public HashMap<String, Object> insertNoteBook(@RequestParam("nbno") int nbno,  Model model) {
+		  
+		 HashMap<String, Object> hmap = new HashMap<>();
+			int result = noteBookService.insertNoteBook(nbno);
+			boolean tf;
+			if(result>0) tf=true;
+			else tf=false;
+
+			hmap.put("tf", tf);
+			
+			return hmap;
 	 }
 	 
 }

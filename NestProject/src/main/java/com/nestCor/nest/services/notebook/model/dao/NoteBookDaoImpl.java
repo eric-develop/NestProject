@@ -17,20 +17,10 @@ public class NoteBookDaoImpl implements NoteBookDao {
 	
 	
 	@Override
-	public int insertNoteBook(NoteBook noteBook) {
-		return 0;
-	}
-
-	@Override
 	public List<Note> selectOneNoteBook(int nbno) {
 		System.out.println("dao들어옴");
 		return sqlSession.selectList("noteBook.selectOneNoteBook", nbno);
 	}
-
-	/*
-	 * @Override public List<Note> selectListNote(Note note) { return
-	 * sqlSession.selectList("noteBook.selectListNote", note); }
-	 */
 
 	
 	@Override
@@ -46,14 +36,32 @@ public class NoteBookDaoImpl implements NoteBookDao {
 	
 	 @Override 
 	 public int trashGo(Note note) { 
-		 System.out.println(" trashGo dao들어옴");
 		 return sqlSession.update("noteBook.trashGo", note); 
 	 }
 	 
 
 	@Override
 	public int insertOneRenote(int nno) {
-		System.out.println("dao들어옴");
 		return sqlSession.insert("noteBook.insertOneRenote", nno);
 	}
+	
+	@Override
+	public int deleteNoteBook(int nbno) {
+		System.out.println("delete dao들어옴");
+		return sqlSession.delete("noteBook.deleteNoteBook", nbno);
+	}
+	
+	@Override
+	public int changeTitle(NoteBook nb) {
+		System.out.println("change dao들어옴");
+		return sqlSession.update("noteBook.changeTitle", nb);
+	}
+	
+	@Override
+	public int insertNoteBook(int nbno) {
+		System.out.println("insert dao들어옴");
+		return sqlSession.insert("noteBook.insertNoteBook", nbno);
+	}
+
+	
 }

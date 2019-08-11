@@ -7,12 +7,6 @@
 	<resultMap id="notebook" type="notebook"/>
 	<resultMap id="note" type="note"/>
 	
-	<insert id="insertNoteBook" parameterType="noteBook">
-		INSERT INTO NOTEBOOK VALUES(							
-			#{nbno}, #{mno}, #{nbtitle}, 
-			#{nbcontent}, #{nbtype}
-	</insert>
-	
 	<select id="selectOneNoteBook" parameterType="_int" resultType="note">                                    
 		SELECT * FROM NOTE WHERE NBNO = #{nbno} AND TRASHCAN='N'		
 	</select>
@@ -33,9 +27,21 @@
 		UPDATE NOTE SET TRASHCAN= #{trashcan} WHERE NNO = #{nno}
 	</update>
 	
+	<update id="changeTitle" parameterType="notebook">
+		UPDATE NOTEBOOK SET NBTITLE= #{nbtitle} WHERE NBNO = #{nbno}
+	</update>
+	
 	<insert id="insertOneRenote" parameterType="_int" >         
 		INSERT INTO NOTE SELECT SEQ_NNO.NEXTVAL, MNO, NBNO, SPACENO, NTITLE, NCONTENT, SHARESCOPE, TRASHCAN FROM NOTE WHERE NNO = #{nno}
 	</insert>
 	
+	<delete id="deleteNoteBook" parameterType="_int">
+		DELETE FROM NOTEBOOK WHERE NBNO = #{nbno}
+	</delete>
 	
+	<insert id="insertNoteBook" parameterType="_int">
+		INSERT INTO NOTEBOOK VALUES(							
+			#{nbno}, #{mno}, #{nbtitle}, 
+			#{nbcontent}, #{nbtype}
+	</insert>
 </mapper>
