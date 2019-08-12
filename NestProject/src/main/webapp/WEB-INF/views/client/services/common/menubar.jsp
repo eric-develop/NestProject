@@ -34,7 +34,7 @@
 <!-- Core plugin JavaScript-->
 <script src="${pageContext.request.contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 <!-- Custom scripts for all pages-->
-<script src="${pageContext.request.contextPath}/resources/js/sb-admin-1.min.js"></script>
+
 
 
 <style>
@@ -46,8 +46,16 @@
 .sidebar.displaynone .nav-item .nav-link span{
 		display:none;
 }
+
 .sidebar.displaynone .nav-link{
 		margin-left: 0px;
+}
+.sidebar .newNote{
+		margin:0 0px 28px 15px;
+}
+
+.sidebar.marginnone .newNote{
+		margin: none;
 }
 
 @font-face { font-family: 'Godo'; font-style: normal; font-weight: 400; src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff') format('woff'); } @font-face { font-family: 'Godo'; font-style: normal; font-weight: 700; src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff') format('woff'); } .godo * { font-family: 'Godo', sans-serif; }
@@ -455,7 +463,7 @@
 		
 		<a class="nav-link collapsed newNote cate" href="#"
 			data-toggle="collapse" data-target="#collapseBoardcast"
-			aria-expanded="true" aria-controls="collapseBoardcast" style="background:#e7722e; border-radius:40px 40px; margin:0 0px 28px 15px;"> 
+			aria-expanded="true" aria-controls="collapseBoardcast" style="background:#e7722e; border-radius:40px 40px;"> 
 			<i class="fas fa-plus-circle" style="font-size:17px"></i> <span style="font-size:16px;">새 노트</span>
 		</a>
 		
@@ -795,8 +803,8 @@
 							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 							aria-labelledby="userDropdown">
 							<a class="dropdown-item"  onclick="restoreTrash()" style="cursor:pointer;"> 노트복원
-							</a> <a class="dropdown-item" onclick="deleteOneNote()" style="cursor:pointer;"> 삭제
-							</a> <a class="dropdown-item" onclick="deleteAllNote()" style="cursor:pointer;"> 전체삭제
+							</a> <a class="dropdown-item" onclick="deleteOneTrash()" style="cursor:pointer;"> 삭제
+							</a> <a class="dropdown-item" onclick="deleteAllTrash()" style="cursor:pointer;"> 전체삭제
 							</a>
 						</div>
 					</c:if>
@@ -1065,6 +1073,6 @@ function closeChatContainer(){
 
 
 </script>
-
+<script src="${pageContext.request.contextPath}/resources/js/sb-admin-1.min.js"></script>
 </html>
 			

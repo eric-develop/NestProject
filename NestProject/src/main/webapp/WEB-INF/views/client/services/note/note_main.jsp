@@ -140,7 +140,7 @@
 					display:inline-block;
 				}
 			</style>
-			<div style="width:100%;min-width:1560px;height:100%;">
+			<div id="cont" style="width:100%;height:100%;">
 			<div id="second_container" value="slide" style="overflow:auto;height:500px;min-height:100%;display:inline-block;width:20.33333%;min-width:364px;;padding: 0 15px;float:left;border-right:1px solid">
 			     <div>
 			      <div id="sc1" style="border-bottom: 1px solid #1a1a1a; padding: 14px;">
@@ -175,10 +175,12 @@
 				</div>
 			 </div>
 			 <script>
+			 
 			 var select;
 				$(function(){
 					var value = 0;
 					
+					// 노트 리스트 색 입히기
 					while(value < 100) {
 						 $('.list_ncontent').eq(value).text($('.list_ncontent1').eq(value).text());
 						 value++;
@@ -187,6 +189,14 @@
 					$('#ntitle').text($('.list_ntitle').eq(0).text());
 					tinyMCE.activeEditor.setContent($('.list_ncontent').eq(0).html());
 					$('.sc3').eq(select).css("background","#ebebeb");
+					
+					// 에디터 반응형으로..
+					var cont = $('#cont').width();
+					  var sc = $('#second_container').width();
+					  var com = cont-sc-38;
+					  console.log(cont+"/"+sc+"/"+com);
+					  $('#community').css("width",com);
+					
 				 });
 			 
 			 var nno = $('.noteCheck').first().val();
@@ -220,7 +230,7 @@
 				
 			</script>
 			<!-- Home 화면 구현부분 ////////////////////////////////////////////////////////////////////////////////////////////////////-->
-			<div id="community" style="padding:10px 19px;display:inline-block;height:100%;width:76.66666%;">
+			<div id="community" style="padding:10px 19px;display:inline-block;height:100%;">
 				
 			 <c:if test="${!empty list}">
 				<div id="note" style="width:100%;height: 95%;">
@@ -253,7 +263,15 @@
 
 		<!-- End of Page Wrapper -->
 		<script>
-	
+		
+		$( window ).resize( function() {
+			  
+			  var cont = $('#cont').width();
+			  var sc = $('#second_container').width();
+			  var com = cont-sc-38;
+			  
+			  $('#community').css("width",com);
+		} );
 	function deleteOneNote(){
 		
 		$.ajax({
@@ -262,7 +280,7 @@
 			dataType:'json',
 			success:function(data){
 				alert("삭제성공");
-				$('.sc3').eq(select-3).remove();
+				$('.sc3').eq(select).remove();
 				$('#ntitle').val(null);
 				tinyMCE.activeEditor.setContent("  ");
 			},error : function(request,status,error){
@@ -299,27 +317,7 @@
 			}
 		});
 	}
-function goTrash(){
-		
-	$.ajax({
-		url:'${pageContext.request.contextPath}/notebook/trashGo.do',
-		type: 'POST',
-		data:{nno:i,trashcan:"Y"},
-		dataType:'json',
-		success:function(data){
-			if(data){
-				//alert("삭제성공");
-				obj.parent().remove();
-				$('.noteCheck').eq(0).prop('checked',true);
-				check($('.noteCheck').eq(0).prop('checked'),$('.noteCheck').eq(0));
-			}else{
-				alert("삭제실패");}				
-			
-		},error : function(request,status,error){
-		    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-		}
-	});
-}
+
 	
 function copyNote(){
 	location.href="${pageContext.request.contextPath}/note/copyNote.do?nno="+nno+"&mno="+${member.mNo};
