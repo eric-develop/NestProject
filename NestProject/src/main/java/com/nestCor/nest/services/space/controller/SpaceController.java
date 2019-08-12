@@ -1,6 +1,7 @@
 package com.nestCor.nest.services.space.controller;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nestCor.nest.member.model.vo.Member;
+import com.nestCor.nest.services.note.model.vo.Note;
 import com.nestCor.nest.services.space.model.service.SpaceService;
 import com.nestCor.nest.services.space.model.vo.ChatRoom;
 import com.nestCor.nest.services.space.model.vo.Space;
@@ -71,15 +73,56 @@ public class SpaceController {
 	
 	@RequestMapping("/space/selectOneSpace.do")
 	public String selectOneSpace(@RequestParam int spaceNo, Model model) {
-		
+	
         Map<String,Object> spaceContentsMap = sService.getSpaceContentsMap(spaceNo);
-        
-        System.out.println("spaceContentsMap : " + spaceContentsMap);
+     
 
         model.addAttribute("spaceContentsMap",spaceContentsMap);
-		
 	
 		return "client/services/space/space_main"; 
 	}
+	
+	@RequestMapping("/space/noteFix.do")
+	@ResponseBody
+	public void noteFix(@RequestParam int nno) {
+		System.out.println("여긴옴");
+		sService.noteFix(nno);
+
+	}
+	
+	@RequestMapping("/space/noteNotFix.do")
+	@ResponseBody
+	public void noteNotFix(@RequestParam int nno) {
+		
+		sService.noteNotFix(nno);
+
+	}
+	
+	
+	@RequestMapping("/space/selectFixedNoteList")
+	@ResponseBody
+	public List<Note> selectFixedNoteList(){
+		
+		List<Note> fixedNoteList = new ArrayList<>();
+		
+		fixedNoteList = sService.selectFixedNoteList();
+		
+		return fixedNoteList;
+		
+	}
+	
+	@RequestMapping("/space/spaceNoteDetail.do")
+	public String spaceNoteDetail(@RequestParam("spaceno") int spaceNo,@RequestParam("nno") int nno,Model model) {
+	
+		Map<String,Object> spaceNoteDetailContents = 
+				sService.spaceNoteDetail(spaceNo);
+		
+		model.addAttribute("spaceNoteDetailContents",spaceNoteDetailContents);
+		model.addAttribute("nno",nno);
+		return "client/services/note/note_of_space_main";
+		
+	}
+
+	
 	
 }

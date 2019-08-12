@@ -69,18 +69,54 @@ public class SpaceDaoImpl implements SpaceDao {
 		
 		List<Note> noteList = new ArrayList<>();
 		List<NoteBook> noteBookList = new ArrayList<>();
-		//List<Note> fixedNoteList = new ArrayList<>();
 		
 		noteList = sqlSession.selectList("Space_mapper.selectNoteList",spaceNo);
 		noteBookList = sqlSession.selectList("Space_mapper.selectNoteBookList",spaceNo);
-		//fixedNoteList = sqlSession.selectList("Space_mapper.selectFixedNoteList",spaceNo);
-		
 		
 		spaceContentsMap.put("noteList", noteList);
 		spaceContentsMap.put("noteBookList", noteBookList);
-		//spaceContentsMap.put("fixedNoteList",fixedNoteList);
+		
 		
 		return spaceContentsMap;
+	}
+
+	@Override
+	public void noteFix(int nno) {
+		
+		sqlSession.update("Space_mapper.noteFix",nno);
+		
+	}
+
+	@Override
+	public List<Note> selectFixedNoteList() {
+		
+		return sqlSession.selectList("Space_mapper.selectFixedNoteList");
+	}
+
+	@Override
+	public void noteNotFix(int nno) {
+		sqlSession.update("Space_mapper.noteNotFix",nno);
+		
+	}
+
+	@Override
+	public Map<String, Object> spaceNoteDetail(int spaceNo) {
+		
+		Map<String,Object> spaceNoteDetailContents = new HashMap<>();
+		
+		
+		List<Note> noteList = new ArrayList<>();
+		
+		noteList = 	sqlSession.selectList("Space_mapper.spaceNoteDetail",spaceNo);
+		Space space = sqlSession.selectOne("Space_mapper.selectOneSpace",spaceNo);
+		
+		String spaceName = space.getSpaceName();
+		
+		spaceNoteDetailContents.put("list",noteList);
+		spaceNoteDetailContents.put("spaceName",spaceName);
+		
+		return spaceNoteDetailContents;
+		
 	}
 	
 	

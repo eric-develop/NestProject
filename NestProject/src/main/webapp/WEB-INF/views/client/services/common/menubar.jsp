@@ -841,7 +841,7 @@
 	var height;
 	var receiver = "";
 	var roomNo = 0;
-	
+	var bizMemberCount = 0;
     /////////////////////////
     
     // 페이지 로딩될 때 실행되는 스크립트들 //
@@ -857,10 +857,17 @@
 		success : function(data){
 			
 			data.forEach(function(value){
-			
-			 $('#msg_parent').append("<div id="+value.nickName+" class='friend' style='cursor:pointer;'>"+ "<div id='friend_img' class='rounded-circle'></div><p id='msg_friend_name2'>" + value.nickName + "</p></div>");
-				
+			 window.bizMemberCount +=1;
+			 if(value.nickName != '${member.nickName}'){
+				  
+				 $('#msg_parent').append("<div id="+value.nickName+" class='friend' style='cursor:pointer;'>"+ "<div id='friend_img' class='rounded-circle'></div><p id='msg_friend_name2'>" + value.nickName + "</p></div>");
+
+				};
+			   
 			});
+			
+			$('#count_friend').html("멤버 " + window.bizMemberCount);
+			
 		}
 		
 	});
