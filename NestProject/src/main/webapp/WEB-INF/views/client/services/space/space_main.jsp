@@ -55,15 +55,16 @@
 					<!--title-->
 					<h5 style="display:inline-block;  padding: 0px 20px 4px 10px;">새로운 소식</h5>
 					
-					 <div id="space-left-Container" style="background:rgb(248,248,248); overflow:scroll; width:650px;height:300px; margin-top:10px;">	
-					 	<div id="space-left-Contents" style="width:2000px; padding:10px; display:inline-block;">
+					 <div id="space-left-Container" style="background:rgb(248,248,248); width:650px;height:300px; margin-top:10px;">	
+					 	<div style="width:650px; padding:10px; display:inline-block;    white-space: nowrap;
+overflow-x: scroll;">
 							<c:forEach var="noteList" items="${spaceContentsMap.noteList}" varStatus="i">
 									<div class="card border-secondary mb-3" style="width:300px; height:250px; display:inline-block; margin-top:15px; margin-right:10px;">
-									  <div class="card-header">${noteList.nwriter}</div>
-									  <div class="card-body text-secondary">
-									    <h5 class="card-title">${noteList.ntitle}</h5>
-									    <p class="card-text">${noteList.ncontent}</p>
-									  </div>
+										  <div class="card-header">${noteList.nwriter}</div>
+										  <div class="card-body text-secondary">
+										    <h5 class="card-title" style="cursor:pointer;" onclick="callNoteDetail('${noteList.spaceno}','${noteList.nno}')">${noteList.ntitle}</h5>
+										    <p class="card-text">${noteList.ncontent}</p>
+										  </div>
 									</div>
 							</c:forEach>					
 						 </div>
@@ -78,8 +79,7 @@
 
       <!-- --******************-  -->
       <button onclick="space_edit();" id="space_edit_id">편집</button>
-      <button onclick="space_add();" id="space_add_id">추가</button>
-      <button onclick="space_delete();" id="space_delete_id">삭제</button>
+      <button onclick="space_add();" id="space_add_id">확인</button>
       <button onclick="space_cencel();" id="space_cencel_id">취소</button>
       
     </div>
@@ -122,23 +122,19 @@
         </thead>
         <tbody>
 		  
-		  <c:forEach var="noteBookList" items="${spaceContentsMap.noteBookList}">
-           <tr>
-			<td scope="row"><input type="checkbox" name="check_note1"></td>
-            <td scope="row">
-              <i class="fas fa-sticky-note" style="font-size: 20px; color: #b8b8b8; margin-right: 4px;"></i>
-              <span>${noteBookList.nbtitle}</span>
-            </td>
-            <td>노트북 작성자</td>
-          </tr>
-		</c:forEach>
+		  
 		
-		<c:forEach var="noteList" items="${spaceContentsMap.noteList}">
+		<c:forEach var="noteList" items="${spaceContentsMap.noteList}" varStatus="status">
           <tr>
-            <td scope="row"><input type="checkbox" name="check_note1"></td>
+           
+            <td scope="row"><input type="checkbox" id="check_note${status.index}" value="${noteList.nno}"></td>
             <td><i class="fas fa-book" style="font-size: 20px; margin-right: 10px;"></i>${noteList.ntitle }</td>
             <td>${noteList.nwriter }</td>
-           
+           <c:if test="${noteList.fixed eq 'Y'}">
+           	   <script>
+           	   	$('#check_note${status.index}').attr('checked',true);
+           	   </script>
+           </c:if>
           </tr>
         </c:forEach>
        
@@ -153,7 +149,7 @@
 
 	<!--=================하단 노트목록 ======================================-->
 <div id="space_note_table" class="col-lg-12">
-                <p style="display: inline-block;    margin-top: 50px; ;font-weight: 500;"><i class="fas fa-heart" style="margin-right: 10px;"></i>함께쓰는 공유 노트</p>
+                <p style="display: inline-block; margin-top: 50px; ;font-weight: 500;"><i class="fas fa-heart" style="margin-right: 10px;"></i>함께쓰는 공유 노트</p>
                 <!--새노트-->
                     <div style="float: right; margin-top: 50px; cursor: pointer;">
                             <i class="fas fa-plus-circle" style="font-size: 10px; color: #F28B30; margin-right: 10px;"> </i>새노트
@@ -354,20 +350,52 @@ $(document).ready(function () {
       }
       
       function space_add(){      
-        var checkedCount = 0;
+        
         $('input:checkbox').each(function(){
-          $(this).prop('checked') && checkedCount ++;
+          
+          if($(this).prop('checked')){
+        	  var nno = $(this).val();
+        	
+        	  $.ajax({
+        		 url : "${pageContext.request.contextPath}/space/noteFix.do?nno="+nno,
+        		 type : 'get',
+        		 success : function(){
+    
+        		 }
+        	  });
+          }else{
+			var nno = $(this).val();  
+			console.log(nno);
+        	  $.ajax({
+        		 url : "${pageContext.request.contextPath}/space/noteNotFix.do?nno="+nno,
+        		 type : 'get',
+        		 success : function(){
+    
+        		 }
+        	  });
+          }
+          
         });
-
-        console.log(checkedCount);
-              if (checkedCount > 0){
-              
-                var space_add_ok = true;
-
-                if(space_delete ==true){
-                  var space_add_alert ='추가 되었습니다.'
-                  alert(space_add_alert);
-                }
+		
+        $.ajax({
+        	url : "${pageContext.request.contextPath}/space/selectFixedNoteList.do",
+        	type : "get",
+        	resultType : 'json',
+        	success : function(data){
+        		$('#space_right_first_div2').children().remove();
+        		
+        		data.forEach(function(value){
+        			$('#space_right_first_div2').append("<div id='space_r_list' class='col-lg-4 col-md-4 col-xs-4'><i class='far fa-list-alt'></i> <span id='space_r_list_title' style='cursor:pointer;'>"+value.ntitle+"</span></div>");
+        		});
+     
+        		
+        	}
+        	
+        	
+        	
+        	
+        });
+       
         $("#space_add_id").hide();
         $("#space_delete_id").hide();
         $("#space_right_first_div").hide();
@@ -378,8 +406,8 @@ $(document).ready(function () {
         $("#space_r_list").show();
         $("#space_right_first_div2").show();
      
-        }
-    }
+        } // 노트고정 편집끝
+    
         //삭제 시 
         function space_delete() {
             var checkedCount = 0;
@@ -415,6 +443,12 @@ $(document).ready(function () {
                
             }
          
+        function callNoteDetail(spaceno,nno){
+        	console.log("sno: " + spaceno);
+        	console.log("nno : " + nno);
+        	
+        	location.href ="${pageContext.request.contextPath}/space/spaceNoteDetail.do?spaceno="+spaceno+"&nno="+nno;
+        }
 
 	</script>
 

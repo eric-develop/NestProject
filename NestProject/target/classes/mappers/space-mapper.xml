@@ -41,16 +41,32 @@
 		
 		
 		<select id="selectNoteList" parameterType="_int" resultMap="NoteMap">
-			SELECT * FROM (SELECT NNO,NBNO,SPACENO,NTITLE,NCONTENT,NICKNAME,SHARESCOPE,TRASHCAN,FIXED FROM NOTE N, MEMBER M WHERE N.MNO = M.MNO)
+			SELECT * FROM (SELECT NNO,NBNO,SPACENO,NTITLE,NCONTENT,NICKNAME,SHARESCOPE,TRASHCAN,FIXED FROM NOTE N, MEMBER M WHERE N.MNO = M.MNO AND N.SPACENO = #{spaceNo})
 		</select>
 		
 		<select id="selectNoteBookList" parameterType="_int" resultType="noteBook">
 			SELECT * FROM NOTEBOOK WHERE SPACENO=#{spaceNo}
 		</select>
 		
+		<update id="noteFix" parameterType="_int">
+			UPDATE NOTE SET FIXED ='Y' WHERE NNO=#{nno}
+		</update>
 		
+		<update id="noteNotFix" parameterType="_int">
+			UPDATE NOTE SET FIXED ='N' WHERE NNO=#{nno}
+		</update>
 		
+		<select id="selectFixedNoteList" resultType="note">
+			SELECT * FROM NOTE WHERE FIXED='Y'
+		</select>
 		
+		<select id="spaceNoteDetail" parameterType="_int" resultType="note">
+			SELECT * FROM NOTE WHERE SPACENO = #{spaceNo} 
+		</select>
+		
+		<select id="selectOneSpace" parameterType="_int" resultType="Space">
+			SELECT * FROM SPACE WHERE SPACENO = #{spaceNo}
+		</select>
 		
 		
 		

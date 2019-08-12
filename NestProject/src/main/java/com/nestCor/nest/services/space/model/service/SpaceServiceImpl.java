@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.nestCor.nest.services.note.model.vo.Note;
 import com.nestCor.nest.services.space.model.dao.SpaceDao;
 import com.nestCor.nest.services.space.model.vo.ChatRoom;
 import com.nestCor.nest.services.space.model.vo.Space;
@@ -77,5 +78,38 @@ public class SpaceServiceImpl implements SpaceService {
 		
 		return spaceContentsMap;
 	}
+
+
+	@Override
+	public void noteFix(int nno) {
+		
+		sDao.noteFix(nno);
+		
+	}
+
+	@Override
+	public void noteNotFix(int nno) {
+		sDao.noteNotFix(nno);
+		
+	}
+	
+	@Override
+	public List<Note> selectFixedNoteList() {
+		
+		return sDao.selectFixedNoteList();
+	}
+
+
+	@Override
+	public Map<String, Object> spaceNoteDetail(int spaceNo) {
+		
+		return sDao.spaceNoteDetail(spaceNo);
+	}
+
+
+	
+
+
+
 
 }

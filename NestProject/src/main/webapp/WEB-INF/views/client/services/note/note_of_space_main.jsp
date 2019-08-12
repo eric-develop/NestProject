@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.*, com.nestCor.nest.services.board.model.vo.*" %>
+<%@ page import="java.util.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -12,20 +12,15 @@
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
-		<c:import url="../common/menubar.jsp"/>
+	<c:import url="../common/menubar.jsp"/>
 	<script>
     var height;
 	$(function(){
-		var i = $('#text').css('height');
-		var arr = i.split('p');
 		
-		console.log(arr[0]);
-		height=arr[0]-2;
-		console.log(height);
 		tinymce.init({
 			  selector:'textarea',
 			  language : 'ko_KR',
-			 
+			  
 			  plugins: [
 			    'link image imagetools table code'
 			  ],
@@ -145,27 +140,37 @@
 			     <div>
 			      <div id="sc1" style="border-bottom: 1px solid #1a1a1a; padding: 14px;">
 			        <div style="padding-top:10px;">
-			        	<h5 style="display:inline-block;">모든 노트</h5>
+			        	<h5 style="display:inline-block;">${spaceNoteDetailContents.spaceName}</h5>
 			        	<p style="display:inline-block;float:right">0개의 노트</p>
 			        </div>
 			      </div>
-			      
+			      <div id="sc2">
+			        <div style="padding:10px;">
+			          <i class="far fa-lightbulb"></i>
+			          <span>
+			            노트 활용 Tip !
+			            NEST에 오신 것을 환영합니다.
+			            NEST는 노트 필기, 작업 관리, 프로젝트 진행, 자료 진행, 자료 정리를 위한 최적의…
+			          </span>
+			        </div>
+			      </div>
 			      <style>
 			      	li{
 			      		list-style:none;
 			      	}
 			      </style>
 			     
-					<c:forEach var="note" items="${list}" varStatus="status">
+					<c:forEach var="note" items="${spaceNoteDetailContents.list}" varStatus="status">
 						
 							<div class="sc3" style="height:110px;overflow:hidden;border-bottom:1px solid #dcdcdc;padding:10px;cursor:pointer">
 					        
-					          
+					          <script>
+					      
+					          </script>
 					          <span>
 					          <input class="noteCheck" type="hidden" value="${note.nno}" style="cursor:zz"/>
-					          <div class="list_ntitle" id="list_ntitle">${note.ntitle}</div>
-					          <div class="list_ncontent1" id="list_ncontent1" style="display:none;">${note.ncontent}</div>
-					          <div class="list_ncontent" id="list_ncontent"></div>
+					          <div id="list_ntitle">${note.ntitle}</div>
+					          <div id="list_ncontent">${note.ncontent}</div>
 					          </span>
 					        
 					      </div>
@@ -175,20 +180,8 @@
 				</div>
 			 </div>
 			 <script>
-				$(function(){
-					var value = 0;
-					
-					while(value < 100) {
-						 $('.list_ncontent').eq(value).text($('.list_ncontent1').eq(value).text());
-						 value++;
-					}
-					console.log($('.list_ntitle').eq(0).text());
-					$('#ntitle').text($('.list_ntitle').eq(0).text());
-					tinyMCE.activeEditor.setContent($('.list_ncontent').eq(0).html());
-					
-				 });
-			 var select = 3;
-			 var nno = $('.sc3').eq(3-3).children().children('input').val();
+			 var select;
+			 var nno;
 				$('.sc3').click(function(){
 					$('.sc3').css("background","#fff");
 					$(this).css("background","#ebebeb");
@@ -199,6 +192,7 @@
 						data:{nno:nno},
 						dataType:'json',
 						success:function(data){
+							console.log(data);
 							$('#ntitle').val(data.ntitle);
 							tinyMCE.activeEditor.setContent(data.ncontent);
 						},error : function(request,status,error){
@@ -221,14 +215,14 @@
 			<!-- Home 화면 구현부분 ////////////////////////////////////////////////////////////////////////////////////////////////////-->
 			<div id="community" style="padding:10px 19px;display:inline-block;height:100%;width:76.66666%;">
 				
-			 <c:if test="${!empty list}">
+			 <c:if test="${!empty spaceNoteDetailContents.list}">
 				<div id="note" style="width:100%;height: 95%;">
 			        <div class="Editor-Title" style="height:7.33333%">
 						<div class="Title" style="width:100%;border-bottom:1px solid lightgray;height:100%">
 							<input type="text" id="ntitle" name="ntitle" placeholder="제목 없음" style="font-size:30px;width:100%; height:100%; border:none; padding-left:10px" />
 						</div>
 					</div>
-					<div id="text" style="overflow:auto;height:92.66666%;">	
+					<div id="text" style="overflow:auto;height:92.66666%;k">	
 							<textarea id="ncontent" name="ncontent" style="border-color:transparent"><b>테스트입니다.</b></textarea>
 					</div>
 					<style>
@@ -251,29 +245,66 @@
 		<!-- End of Content Wrapper -->
 
 		<!-- End of Page Wrapper -->
-		<script>
+	<script>
+	var find = true;
+	var i;
+	var obj;
+	var givenNno = ${nno};
+	
+	$(function(){ // 처음 페이지 열 때
+		var str = '.noteCheck[value='+givenNno+']';
+		
+		
+		$(str).eq(0).prop('checked',true);
+		i=$(str).eq(0).val();
+		obj=$(str).eq(0);
+	
+		check($(str).eq(0).prop('checked'),obj);
+	});
+	
+	$('.noteCheck').click(function(){ // 노트 선택 시 
+		i = $(this).val();
+		console.log(i);
+		
+		var checked = $(this).prop('checked');
+		obj = $(this);
+		console.log(checked);
+		
+		check(checked,obj);
+		
+	});
+	
+	function check(checked,obj){
+		if(checked){
+			$('.noteCheck').prop('checked', false);
+			obj.prop('checked', true);
+			console.log(i);
+			$.ajax({
+				url:'${pageContext.request.contextPath}/note/noteDetail.do',
+				data:{nno:i},
+				dataType:'json',
+				success:function(data){
+					console.log(data);
+					$('#ntitle').val(data.ntitle);
+					if(find) $('#ncontent').html(data.ncontent);
+					else tinyMCE.activeEditor.setContent(data.ncontent);
+					find=false;
+				},error : function(request,status,error){
+    			    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+    			}
+			});
+		}
+	}
+	
 	
 	function deleteOneNote(){
-		
-		$.ajax({
-			url:'${pageContext.request.contextPath}/note/goBackTrash.do',
-			data:{nno:nno,trashcan:'Y'},
-			dataType:'json',
-			success:function(data){
-				alert("삭제성공");
-				$('.sc3').eq(select-3).remove();
-				$('#ntitle').val(null);
-				tinyMCE.activeEditor.setContent("  ");
-			},error : function(request,status,error){
-			    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			}
-		});
-        
+		location.href="${pageContext.request.contextPath}"
+            +"/note/goBackTrash.do?nno="+i+"&trashcan=Y";
 	}
 	
 	function deleteAllNote(){
 		location.href="${pageContext.request.contextPath}"
-            +"/note/goAllTrash.do?mno="+${member.mNo}+"&trashcan=Y";
+            +"/note/goAllTrash.do?mno=1&trashcan=Y";
 	}
 	function afterSave(){
 		var ntitle = $('#ntitle').val();
@@ -300,74 +331,25 @@
 	}
 function goTrash(){
 		
-	$.ajax({
-		url:'${pageContext.request.contextPath}/notebook/trashGo.do',
-		type: 'POST',
-		data:{nno:i,trashcan:"Y"},
-		dataType:'json',
-		success:function(data){
-			if(data){
-				//alert("삭제성공");
-				obj.parent().remove();
-				$('.noteCheck').eq(0).prop('checked',true);
-				check($('.noteCheck').eq(0).prop('checked'),$('.noteCheck').eq(0));
-			}else{
-				alert("삭제실패");}				
-			
-		},error : function(request,status,error){
-		    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-		}
-	});
-}
-	
-function copyNote(){
-	location.href="${pageContext.request.contextPath}/note/copyNote.do?nno="+nno+"&mno="+${member.mNo};
-}
-
-function template(){
-	$("#myModal").modal();	
-}
-
-$('.noteTemplate').click(function(){
-	var index = $('.noteTemplate').index(this);
-	//tinyMCE.activeEditor.setContent($('.tcontent').eq(index).val());
-	var tno = $('.tno').eq(index).val()
-	
-	console.log(index+"/"+tno);
-	$.ajax({
-		url:'${pageContext.request.contextPath}/template/Tselect.do',
-		data:{tno:tno},
-		type:'post',
-		dataType:'json',
-		success:function(data){
-			tinyMCE.activeEditor.setContent(data.tcontent);
-			$('#myModal').modal("hide");
-		},error : function(request,status,error){
-		    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-		}
-	});
-	
-});
-
-function insertTemplate(){
-	var ntitle = $('#ntitle').val();
-	var ncontent = tinyMCE.activeEditor.getContent();
-	$.ajax({
-		url:'${pageContext.request.contextPath}/template/Tinsert.do',
-		data:{ttitle:ntitle,tcontent:ncontent},
-		type : 'post',
-		dataType:'json',
-		success:function(data){
-			if(data.tf){
-				alert("템플릿이 저장되었습니다.");
-			}else{
-				alert("템플릿 저장을 실패하였습니다.");}				
-		},error : function(request,status,error){
-		    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-		}
-	});
-	
-}
+		$.ajax({
+			url:'${pageContext.request.contextPath}/notebook/trashGo.do',
+			type: 'POST',
+			data:{nno:i,trashcan:"Y"},
+			dataType:'json',
+			success:function(data){
+				if(data){
+					//alert("삭제성공");
+					obj.parent().remove();
+					$('.noteCheck').eq(0).prop('checked',true);
+					check($('.noteCheck').eq(0).prop('checked'),$('.noteCheck').eq(0));
+				}else{
+					alert("삭제실패");}				
+				
+			},error : function(request,status,error){
+			    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
+		});
+	}
 	</script>
 	
 </body>
