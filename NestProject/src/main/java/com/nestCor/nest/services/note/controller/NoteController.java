@@ -256,6 +256,29 @@ public class NoteController {
 		return "client/services/note/note_main";
 	}
 	
+	@RequestMapping("/note/searchNote.do")
+	public String searchNote(@RequestParam("search") String search,@RequestParam("mno") int mno,Model model) {
+		
+		Note note = new Note();
+		
+		note.setMno(mno);
+		note.setNtitle(search);
+		System.out.println(note);
+		List<Note> list = noteService.searchNote(note);
+		List<Template> tlist=templateService.selectListTemplate(mno);
+		
+		model.addAttribute("tlist",tlist);
+		model.addAttribute("list",list);
+		model.addAttribute("search",search);
+		model.addAttribute("topmenu",2);
+		
+		
+		return "client/services/note/note_search";
+	}
+	
+	
+	
+	
 	
 	
 	@RequestMapping(value = "/a/images", method = RequestMethod.POST)

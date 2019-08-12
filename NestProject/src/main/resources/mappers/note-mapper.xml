@@ -12,6 +12,15 @@
 			#{ntitle}, #{ncontent}, 's1', DEFAULT,DEFAULT)
 	</insert>
 	
+	<select id="searchNote1" parameterType="note" resultType="note">
+		SELECT * FROM NOTE WHERE NTITLE LIKE '%'|| #{ntitle} || '%'  AND MNO = #{mno}
+	</select>
+	
+	<select id="searchNote2" parameterType="note" resultType="note">
+		SELECT * FROM NOTE WHERE NCONTENT LIKE '%'|| #{ntitle} || '%' AND MNO = #{mno}
+	</select>
+	
+	
 	<select id="noteDetail" parameterType="_int" resultType="note">
 		SELECT * FROM NOTE WHERE NNO = #{nno}
 	</select>

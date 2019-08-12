@@ -145,7 +145,7 @@
 			     <div>
 			      <div id="sc1" style="border-bottom: 1px solid #1a1a1a; padding: 14px;">
 			        <div style="padding-top:10px;">
-			        	<h5 style="display:inline-block;">${nbtitle}</h5>
+			        	<h5 style="display:inline-block;">${search}</h5>
 			        	<p style="display:inline-block;float:right"><b id="noteCount">0</b>개의 노트</p>
 			        </div>
 			      </div>
@@ -178,6 +178,7 @@
 			 <script>
 			 
 			 var select;
+			 var noteCount;
 				$(function(){
 					var value = 0;
 					
@@ -197,10 +198,10 @@
 					  var com = cont-sc-38;
 					  console.log(cont+"/"+sc+"/"+com);
 					  $('#community').css("width",com);
-					
-					  noteCount=$('.sc3').index($('.sc3').last())+1;
-						$('#noteCount').text(noteCount);
-					  
+					 
+					  // 노트 갯수
+					noteCount=$('.sc3').index($('.sc3').last())+1;
+					$('#noteCount').text(noteCount);
 				 });
 			 
 			 var nno = $('.noteCheck').first().val();
@@ -284,10 +285,14 @@
 			dataType:'json',
 			success:function(data){
 				alert("삭제성공");
+				// 노트 지우기
 				$('.sc3').eq(select).remove();
+				
+				// 노트 상세 비우기
 				$('#ntitle').val(null);
 				tinyMCE.activeEditor.setContent("  ");
 				
+				// 노트 갯수
 				noteCount=$('.sc3').index($('.sc3').last())+1;
 				$('#noteCount').text(noteCount);
 				
@@ -311,13 +316,13 @@
 			data:{nno:nno,ntitle:ntitle,ncontent:ncontent},
 			dataType:'json',
 			success:function(data){
-				if(data){
+				
 					alert("저장성공");
 					$('div#list_ntitle').eq(select).text(ntitle);
 					console.log($('#ncontent').text());
 					$('div#list_ncontent').eq(select).text(tinyMCE.activeEditor.getContent({format: 'text'}));
-				}else{
-					alert("저장실패");}				
+					
+							
 				
 			},error : function(request,status,error){
 			    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -327,7 +332,7 @@
 
 	
 function copyNote(){
-	location.href="${pageContext.request.contextPath}/notebook/copyNote.do?nno="+nno+"&mno=${member.mNo}&nbno=${nbno}&nbtitle=${nbtitle}";
+	location.href="${pageContext.request.contextPath}/note/copyNote.do?nno="+nno+"&mno="+${member.mNo};
 }
 
 function template(){

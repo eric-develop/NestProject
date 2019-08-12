@@ -454,9 +454,9 @@
 			
 			<form class="form-inline my-2 my-lg-0" style="padding:12px 16px">
 				<div class="input-group" id="search" style="margin:0 auto;margin-bottom: 30px;">
-					<input class="form-control" type="search"
+					<input class="form-control" type="search" id="searchNote"
 						placeholder="Search" aria-label="Search" style="border:none; background:#e3e3e3d6">
-					<span class="input-group-addon"style="border:none; background:#e3e3e3d6"><i class="fas fa-search"></i></span>
+					<span class="input-group-addon" onclick="search()" style="border:none; background:#e3e3e3d6; cursor:pointer"><i class="fas fa-search"></i></span>
 				</div>
 			</form>
 		</li>
@@ -1064,6 +1064,9 @@ function closeChatContainer(){
 }
 ////메신저 관련 함수들 ////
 
+function search(){
+	location.href="${pageContext.request.contextPath}/note/searchNote.do?search="+$('#searchNote').val()+"&mno=${member.mNo}";
+}
 
 </script>
 <script src="${pageContext.request.contextPath}/resources/js/sb-admin-1.min.js"></script>

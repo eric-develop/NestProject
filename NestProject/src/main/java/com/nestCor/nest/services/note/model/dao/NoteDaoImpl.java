@@ -95,4 +95,21 @@ public class NoteDaoImpl implements NoteDao {
 	public int copyNote(int nno) {
 		return sqlSession.insert("note.copyNote",nno);
 	}
+	
+	@Override
+	public List<Note> searchNote(Note note) {
+		
+		List<Note> list;
+		
+		list = sqlSession.selectList("note.searchNote1",note);
+		
+		if(list.size()>0) {
+			System.out.println("널이 아니오"+list.size()+"개");
+		}else {
+			list = sqlSession.selectList("note.searchNote2",note);
+		}
+		
+		
+		return list;
+	}
 }

@@ -87,6 +87,11 @@ public class NoteServiceImpl implements NoteService {
 		return noteDao.copyNote(nno);
 	}
 	
+	@Override
+	public List<Note> searchNote(Note note) {
+		return noteDao.searchNote(note);
+	}
+	
 	
 	
 }
