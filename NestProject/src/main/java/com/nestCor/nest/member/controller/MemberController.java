@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.nestCor.nest.business.model.service.BusinessService;
 import com.nestCor.nest.member.model.service.MemberService;
 import com.nestCor.nest.member.model.vo.Member;
 import com.nestCor.nest.services.note.model.service.NoteService;
@@ -40,6 +42,9 @@ public class MemberController {
 	@Autowired
 	private BCryptPasswordEncoder pwdEncoder;
 	
+	@Autowired 
+	private BusinessService bService;
+	
 	@RequestMapping("/member/loginView.do")
 	public String loginView() {
 		Map<String,String> map = new HashMap<>();
@@ -62,6 +67,9 @@ public class MemberController {
 			List<Space> spaceList = null;
 			List<Member> bizMemberList = null;
 			
+			String memberAdmin = null;
+			String memberInvitation = null;
+			
 			if(m != null) {
 				if(pwdEncoder.matches(password, m.getPassword())) {
 					
@@ -71,6 +79,11 @@ public class MemberController {
 					List<Note> list = nService.selectListNote(note);
 					model.addAttribute("list", list);
 					model.addAttribute("topmenu",2);
+					
+					int mNo = m.getmNo();
+					memberAdmin = mService.memberAdmin(mNo);
+					memberInvitation = mService.memberInvitation(mNo);
+					
 					url = "client/services/note/note_main";
 					
 				}else {
@@ -93,7 +106,9 @@ public class MemberController {
 			if(spaceList != null) model.addAttribute("spaceList",spaceList);
 			
 			model.addAttribute("member",m)
-			.addAttribute("bizMemberList",bizMemberList);
+			.addAttribute("bizMemberList",bizMemberList)
+			.addAttribute("memberAdmin", memberAdmin)
+			.addAttribute("memberInvitation", memberInvitation);
 			
 			return url;
 	}
@@ -241,7 +256,105 @@ public class MemberController {
 		return bizMemberList;
 	}
 	
+	@RequestMapping("/member/noteMain.do")
+	public String noteMain(Model model, HttpServletRequest req) {
+		
+		/*
+		 * HttpSession session = req.getSession(); Member m =
+		 * (Member)session.getAttribute("member"); int mNo = m.getmNo();
+		 * 
+		 * String selectBizName = bService.bizName(mNo);
+		 * 
+		 * model.addAttribute("selectBizName", selectBizName);
+		 */
+		
+		return "client/services/note/note_main";
+	}
+	
+	@RequestMapping("/member/memberSummary.do")
+	public String memberSummary(Model model, HttpServletRequest req) { 
+		
+		HttpSession session = req.getSession();
+		Member m = (Member)session.getAttribute("member");
+		int mNo = m.getmNo();
+		
+		int totalBusinessMember = bService.totalBusinessMember(mNo);
+		
+		int totalSpace = bService.totalBusinessSpace(mNo);
+		
+		List<Member> businessMemberList = bService.BusinessMemberList(mNo);
+		
+		int totalApprovalN = bService.totalApprovalN(mNo);
+		
+		int totalBusinessAdmin = bService.totalBusinessAdmin(mNo);
+		
+		List<Member> businessAdmin = bService.BusinessAdminList(mNo);
+		
+		int bizNo = bService.inviteBizNo(mNo);
+		
+		int maximumMember = bService.maximumMember(bizNo);
+		
+		String bizName = bService.bizName(mNo);
+		String bmAdmin = bService.bmAdmin(mNo);
+		
+		model
+		.addAttribute("totalBusinessMember", totalBusinessMember)
+		.addAttribute("totalSpace", totalSpace)
+		.addAttribute("businessMemberList", businessMemberList)
+		.addAttribute("totalApprovalN", totalApprovalN)
+		.addAttribute("totalBusinessAdmin", totalBusinessAdmin)
+		.addAttribute("businessAdmin", businessAdmin)
+		.addAttribute("maximumMember", maximumMember)
+		.addAttribute("bizName", bizName)
+		.addAttribute("bmAdmin", bmAdmin);
+		
+		return "client/member/memberSummary";
+	}
+	
+	@RequestMapping("/member/memberInvite.do")
+	public String memberInvite(Model model, HttpServletRequest req) {
+		
+		HttpSession session = req.getSession();
+		Member m = (Member)session.getAttribute("member");
+		int mNo = m.getmNo();
+		
+		int bizNo = bService.inviteBizNo(mNo);
+		
+		int maximumMember = bService.maximumMember(bizNo);
+		
+		String bizName = bService.bizName(mNo);
+		String bmAdmin = bService.bmAdmin(mNo);
+		
+		model
+		.addAttribute("maximumMember", maximumMember)
+		.addAttribute("bizName", bizName)
+		.addAttribute("bmAdmin", bmAdmin);
+		
+		return "client/member/memberInvite";
+	}
+	
+	@RequestMapping("/member/memberManage.do")
+	public String memberManage(Model model, HttpServletRequest req) {
+		
+		HttpSession session = req.getSession();
+		Member m = (Member) session.getAttribute("member");
+		int mNo = m.getmNo();
+		
+		List<Member> memberApprovalStatusN = bService.approvalN(mNo);
 
+		List<Member> memberApprovalStatusY = bService.MemberListApprovalY(mNo);
+		
+		String bizName = bService.bizName(mNo);
+		String bmAdmin = bService.bmAdmin(mNo);
+		
+		model
+		.addAttribute("memberApprovalStatusN", memberApprovalStatusN)
+		.addAttribute("memberApprovalStatusY", memberApprovalStatusY)
+		.addAttribute("bizName", bizName)
+		.addAttribute("bmAdmin", bmAdmin);
+		
+		return "client/member/memberManage";
+	}
 	
 	
 	

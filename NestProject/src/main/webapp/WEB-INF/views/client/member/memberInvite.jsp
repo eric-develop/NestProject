@@ -48,7 +48,12 @@
               </div>
                 <div class="card-header ">
                   <h6 class="card-title">팀원 추가</h6>
+                  <c:if test="${ maximumMember ne 0 }">
                   <h7>개별적으로 팀원을 초대하려면 회원 아이디(이메일)을 입력하세요.</h7>
+                  </c:if>
+                  <c:if test="${ maximumMember eq 0 }">
+                  <h7 style="color: red;">초대 가능한 회원권이 없습니다.</h7>
+                  </c:if>
                 </div>
                 
                 <form method="post" action="${pageContext.request.contextPath}/business/insertBusinessMember.do">
@@ -64,7 +69,12 @@
                 <!-- </form> -->
               </div>
               <div class="card-footer ">
+              	<c:if test="${ maximumMember ne 0 }">
                 <button type="submit" id="btn-invite" class="btn btn-fill btn-primary">초대</button>
+                </c:if>
+              	<c:if test="${ maximumMember eq 0 }">
+                <button disabled="true" type="submit" id="btn-invite" class="btn btn-fill btn-primary">초대</button>
+                </c:if>
               </div>
               </div>
               </form>

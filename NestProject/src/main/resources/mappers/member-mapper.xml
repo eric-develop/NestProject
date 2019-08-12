@@ -37,6 +37,18 @@
 		
 		</select>
 		
+		<!-- 사용자 관리자 유무 -->
+		<select id="memberAdmin" parameterType="_int" resultType="string">
+			SELECT BM.ADMIN FROM MEMBER M
+			JOIN (SELECT * FROM BUSINESS_MEMBER WHERE MNO = #{mNo}) BM USING(MNO)
+		</select>
+		
+		<!-- 비즈니스 초대 요청 여부 -->
+		<select id="memberInvitation" parameterType="_int" resultType="string">
+			SELECT BM.INVITATION FROM MEMBER
+			JOIN (SELECT * FROM BUSINESS_MEMBER WHERE MNO = #{mNo} AND INVITATION = 'N') BM USING(MNO)
+		</select>
+		
 		<!-- 사용자 비즈니스 등록 -->
 		<update id="updateMemberBizNo" parameterType="Member">
 			UPDATE MEMBER SET BIZNO = #{bizNo} WHERE MNO = #{mNo}

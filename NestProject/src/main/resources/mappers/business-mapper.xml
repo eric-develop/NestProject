@@ -27,23 +27,23 @@
 		</select>
 		
 		<!-- 승인 대기 사용자 -->
-		<select id="approvalN" resultType="Member">
-			SELECT * FROM MEMBER
+		<select id="approvalN" resultMap="bmEnrollDate">
+			SELECT MNO, USERID, USERNAME, BM.ADMIN, BM.INVITATION, BM.APPROVAL, BM.ENROLLDATE FROM MEMBER
 			JOIN (SELECT * FROM BUSINESS_MEMBER
 			      JOIN (SELECT BIZNO FROM BUSINESS_MEMBER WHERE MNO = #{mNo}) USING(BIZNO)
-			      WHERE ADMIN = 'N' AND APPROVAL = 'N') USING(MNO)
+			      WHERE ADMIN = 'N' AND APPROVAL = 'N') BM USING(MNO)
 		</select>
 		
 		<!-- 승인 대기 사용자 수 -->
 		<select id="totalApprovalN" resultType="_int">
 			SELECT COUNT(*) FROM BUSINESS_MEMBER
 			JOIN (SELECT BIZNO FROM BUSINESS_MEMBER WHERE MNO = #{mNo}) USING(BIZNO)
-			WHERE ADMIN = 'N' AND APPROVAL = 'N'
+			WHERE ADMIN = 'N' AND INVITATION = 'Y' AND APPROVAL = 'N'
 		</select>
 		
 		<!-- 승인 사용자 리스트 -->
 		<select id="MemberListApprovalY" resultMap="bmEnrollDate">
-			SELECT MNO, USERID, USERNAME, BM.ADMIN, BM.APPROVAL, BM.ENROLLDATE FROM MEMBER
+			SELECT MNO, USERID, USERNAME, BM.ADMIN, BM.INVITATION, BM.APPROVAL, BM.ENROLLDATE FROM MEMBER
 			JOIN (SELECT * FROM BUSINESS_MEMBER
 			      JOIN (SELECT BIZNO FROM BUSINESS_MEMBER WHERE MNO = #{mNo}) USING(BIZNO)
 			      WHERE APPROVAL = 'Y') BM USING(MNO) 
@@ -53,6 +53,7 @@
 		<select id="totalBusinessMember" resultType="_int">
 			SELECT COUNT(DISTINCT MNO) FROM BUSINESS_MEMBER
 			JOIN (SELECT BIZNO FROM BUSINESS_MEMBER WHERE MNO = #{mNo}) USING(BIZNO)
+			WHERE INVITATION = 'Y' AND APPROVAL = 'Y'
 		</select>
 		
 		<!-- 비즈니스 관리자 수 -->
@@ -85,11 +86,21 @@
 		</select>
 		
 		<!-- 승인된 사용자의 비즈니스명 -->
-		<select id="bizName" resultType="Business">
+		<select id="bizName" resultType="string">
 			SELECT DISTINCT BIZNAME FROM BUSINESS
 			JOIN (SELECT * FROM BUSINESS_MEMBER
 				  JOIN (SELECT BIZNO FROM BUSINESS_MEMBER WHERE MNO = #{mNo}) USING(BIZNO)
 				  WHERE APPROVAL = 'Y') BM USING(BIZNO)
+		</select>
+		
+		<select id="maximumMember" resultType="_int">
+			SELECT MAXIMUMMEMBER FROM BUSINESS WHERE BIZNO = #{bizNo}
+		</select>
+		
+		<!-- 비즈니스 관리자 여부 -->
+		<select id="bmAdmin" resultType="string">
+			SELECT BM.ADMIN FROM MEMBER
+			JOIN (SELECT * FROM BUSINESS_MEMBER WHERE MNO = #{mNo}) BM USING(MNO)
 		</select>
 		
 		<insert id="insertBusiness" parameterType="Business">
@@ -99,7 +110,7 @@
 		
 		<insert id="insertBusinessMemberAdmin" parameterType="BusinessMember">
 			INSERT INTO BUSINESS_MEMBER
-			VALUES(SEQ_BIZMNO.NEXTVAL, #{bizNo}, #{mNo}, 'Y', DEFAULT, 'Y', SYSDATE)
+			VALUES(SEQ_BIZMNO.NEXTVAL, #{bizNo}, #{mNo}, 'Y', 'Y', 'Y', SYSDATE)
 		</insert>
 		
 		<insert id="insertBusinessMember" parameterType="BusinessMember">
@@ -111,9 +122,30 @@
 			UPDATE BUSINESS_MEMBER SET INVITATION = 'Y', ENROLLDATE = SYSDATE WHERE MNO = #{mNo}
 		</update>
 		
-		<update id="approvalY" parameterType="BusinessMember">
-			UPDATE BUSINESS_MEMBER SET APPROVAL = 'Y' WHERE MNO = #{mNo}
+		<update id="updateBusinessMemberN" parameterType="BusinessMember">
+			UPDATE BUSINESS_MEMBER SET INVITATION = 'N' WHERE MNO = #{mNo}
 		</update>
+		
+		<update id="approvalY" parameterType="BusinessMember">
+			UPDATE BUSINESS_MEMBER SET APPROVAL = 'Y' WHERE MNO = #{mNo} AND INVITATION = 'Y'
+		</update>
+		
+		<update id="updateBizName" parameterType="string">
+			UPDATE BUSINESS SET BIZNAME = #{bizName} 
+		</update>
+		
+		<update id="maxMemberM" parameterType="_int">
+			UPDATE BUSINESS SET MAXIMUMMEMBER = (MAXIMUMMEMBER - 1) WHERE BIZNO = #{bizNo}
+		</update>
+		
+		<update id="maxMemberP" parameterType="_int">
+			UPDATE BUSINESS SET MAXIMUMMEMBER = (MAXIMUMMEMBER + 1) WHERE BIZNO = #{bizNo}
+		</update>
+		
+		<!-- 비즈니스 요청 거절 사용자 삭제 -->
+		<delete id="deleteBM">
+			DELETE FROM BUSINESS_MEMBER WHERE MNO = #{mNo}
+		</delete>
 		
 		
 </mapper>

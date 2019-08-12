@@ -321,6 +321,11 @@
 			aria-expanded="false" style="width:130px;"> 
 				<img class="img-profile rounded-circle"	src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
 				<span class="mr-2 d-none d-lg-inline text-white-600 small" style="font-size:15px;">${member.nickName}</span>
+				
+				<c:if test="${ memberAdmin eq 'Y' }">
+				<img src="${pageContext.request.contextPath}/resources/images/admin24.png"
+					style="margin-left: 100px;">
+				</c:if>
 			</a> 
 			
 			<!-- 메신저 아이콘 -->
@@ -416,7 +421,15 @@
 				aria-labelledby="userDropdown">
 				<a class="dropdown-item" href="#"> <i
 					class="fas fa-user-cog fa-sm fa-fw mr-2 text-gray-400"></i> 설정
-				</a> 
+				</a>
+				<c:if test="${ memberAdmin eq 'Y' }">
+				<a class="dropdown-item" href="${pageContext.request.contextPath}/member/memberSummary.do" target="_blank"> 
+					<i class="fas fa-user-cog fa-sm fa-fw mr-2 text-gray-400"></i> 관리자 콘솔
+				</a>
+	        	<!-- <a style="font-size: 15px; color: black;">
+	        		<span onclick="memberSummary();">관리자 콘솔</span>
+	        	</a> -->
+	        	</c:if>
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="#" data-toggle="modal"
 					data-target="#logoutModal"> <i
@@ -424,6 +437,12 @@
 					로그아웃
 				</a>
 			</div>
+			
+			<script>
+		function memberSummary(){
+			window.open("${pageContext.request.contextPath}/member/memberSummary.do");
+		}
+		</script>
 			
 		</li>
 
@@ -435,7 +454,12 @@
 		<!-- Divider -->
 		<hr class="sidebar-divider">
 		
-	
+		<c:if test="${ memberInvitation eq 'N' }">
+			<button type="button" class="btn" data-toggle="modal" data-target="#myModal"
+		            		style="width: 100%; border: none; color: white; font-size: 14px;">
+			    비즈니스 그룹 요청
+			</button>
+			</c:if>
 	
 	
 		<!-- Heading -->
@@ -450,6 +474,7 @@
 			</form>
 		</li>
 
+		
 	
 		<li class="nav-item">
 		

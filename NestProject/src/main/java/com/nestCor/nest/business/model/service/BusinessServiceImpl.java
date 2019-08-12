@@ -106,5 +106,35 @@ public class BusinessServiceImpl implements BusinessService {
 	public String bizName(int mNo) {
 		return bDao.bizName(mNo);
 	}
+	
+	@Override
+	public int updateBizName(String bizName) {
+		return bDao.updateBizName(bizName);
+	}
+
+	@Override
+	public int maxMemberM(int bizNo) {
+		return bDao.maxMemberM(bizNo);
+	}
+
+	@Override
+	public int maxMemberP(int bizNo) {
+		return bDao.maxMemberP(bizNo);
+	}
+
+	@Override
+	public int maximumMember(int bizNo) {
+		return bDao.maximumMember(bizNo);
+	}
+
+	@Override
+	public int deleteBM(int mNo) {
+		return bDao.deleteBM(mNo);
+	}
+
+	@Override
+	public String bmAdmin(int mNo) {
+		return bDao.bmAdmin(mNo);
+	}
 
 }

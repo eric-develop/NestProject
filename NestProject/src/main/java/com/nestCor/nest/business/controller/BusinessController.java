@@ -35,8 +35,11 @@ public class BusinessController {
 		
 		int result = bService.insertBusiness(bizName);
 		
+		
+		String loc="/member/memberSummary.do";
+		String msg = "";
+		
 		if(result > 0) {
-			System.out.println("비즈니스 등록 성공");
 			
 			int bizNo = bService.selectBizNo();
 			System.out.println("bizno : " + bizNo);
@@ -52,16 +55,41 @@ public class BusinessController {
 			
 			int insertBusinessMemberAdmin = bService.insertBusinessMemberAdmin(bm);
 			
+			
+
 			if(updateMemberBizNo > 0) System.out.println("회원 비즈니스 번호 등록 성공");
-			if(insertBusinessMemberAdmin > 0) {
-				System.out.println("비즈니스 멤버 등록 성공");
-				
-				model.addAttribute("insertBusinessMemberAdmin", insertBusinessMemberAdmin);
+			if(insertBusinessMemberAdmin > 0) { System.out.println("비즈니스 멤버 등록 성공");
+			
+			System.out.println("비즈니스 등록 성공");
+			msg = "비즈니스 등록 성공";
+			 
 			}
+			
+			model
+			.addAttribute("loc", loc)
+			.addAttribute("msg", msg)
+			.addAttribute("insertBusinessMemberAdmin", insertBusinessMemberAdmin); 
 		}
 		
-		return "redirect:"; 
+		/* return "client/member/memberSummary"; */
+		
+		return "client/common/msg";
 	}
+	
+	
+	 @RequestMapping("/business/updateBizName.do") 
+	 public String updateBizName(Model model, @RequestParam String bizName) {
+	  
+		 int updateBizName = bService.updateBizName(bizName);
+		 
+		 String loc="/member/memberSummary.do";
+		 String msg = "";
+			
+		 if(updateBizName > 0) msg = "비즈니스명이 변경되었습니다.";
+	  
+		 return "client/common/msg"; 
+	 }
+	 
 	
 	@RequestMapping("/business/insertBusinessMember.do")
 	public String insertBusinessMember(Model model, @RequestParam String userId, HttpServletRequest req) {
@@ -80,9 +108,18 @@ public class BusinessController {
 		System.out.println(bm);
 		int result = bService.insertBusinessMember(bm);
 		
-		if(result > 0) System.out.println("비즈니스 회원 초대 성공");
+		String loc = "/member/memberManage.do";
+		String msg = "";
 		
-		return "client/member/memberInvite";
+		if(result > 0) {
+			msg = "비즈니스 회원 초대 성공";
+			
+			int maxMemberM = bService.maxMemberM(bizNo);
+		}
+		
+		model.addAttribute("loc", loc).addAttribute("msg", msg);
+		
+		return "client/common/msg";
 	}
 	
 	@RequestMapping("/business/updateBusinessMemberY.do")
@@ -94,22 +131,79 @@ public class BusinessController {
 		
 		int result = bService.updateBusinessMemberY(mNo);
 		
-		if(result > 0) System.out.println("비즈니스 초대 수락");
+		String loc = "/member/noteMain.do";
+		String msg = "";
 		
-		return "client/services/note/note_main";
+		if(result > 0) msg = "승인 여부를 기다려주세요!";
+		
+		model.addAttribute("loc", loc).addAttribute("msg", msg);
+		
+		return "client/common/msg";
+		
+	}
+
+	@RequestMapping("/business/updateBusinessMemberN.do")
+	public String updateBusinessMemberN(Model model, HttpServletRequest req) {
+		
+		HttpSession session = req.getSession();
+		Member m = (Member) session.getAttribute("member");
+		int mNo = m.getmNo();
+		
+		int result = bService.updateBusinessMemberN(mNo);
+		
+		String loc = "/member/noteMain.do";
+		String msg = "";
+		
+		if(result > 0) msg = "비즈니스 가입 요청을 거절하였습니다.";
+		
+		model.addAttribute("loc", loc).addAttribute("msg", msg);
+		
+		return "client/common/msg";
 		
 	}
 	
-	@RequestMapping("/member/approvalStatusY.do")
-	public String approvalY(@RequestParam int mNo) {
-		
-		System.out.println("승인 mNo : " + mNo);
+	@RequestMapping("/business/approvalStatusY.do")
+	public String approvalY(Model model, @RequestParam int mNo) {
 		
 		int approvalStatusY = bService.approvalY(mNo);
 		
-		if(approvalStatusY > 0) System.out.println("사용자 승인 성공");
+		String loc = "/member/memberManage.do";
+		String msg = "";
 		
-		return "client/member/memberManage";
+		if(approvalStatusY > 0) msg = "사용자 승인 성공";
+		
+		model.addAttribute("loc", loc).addAttribute("msg", msg);
+		
+		return "client/common/msg";
+	}
+	
+	@RequestMapping("/business/deleteBM.do")
+	public String deleteBM(Model model, @RequestParam int mNo) {
+		
+		System.out.println("bm mNo : "+mNo);
+
+		int bizNo = bService.inviteBizNo(mNo);
+		
+		System.out.println("bizNo : "+bizNo);
+		
+		int deleteBM = bService.deleteBM(mNo);
+		
+		String loc = "/member/memberManage.do";
+		String msg = "";
+		
+		
+		if(deleteBM > 0) {
+			msg = "사용자 초대를 취소하였습니다.";
+			
+			
+			System.out.println("result : " + deleteBM);
+			int maxMemberP = bService.maxMemberP(bizNo);
+		}
+		
+		model.addAttribute("loc", loc).addAttribute("msg", msg)
+		.addAttribute("deleteBM", deleteBM);
+		
+		return "client/common/msg";
 	}
 
 }

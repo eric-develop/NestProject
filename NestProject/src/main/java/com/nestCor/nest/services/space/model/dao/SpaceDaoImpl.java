@@ -9,6 +9,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.nestCor.nest.member.model.vo.Member;
+import com.nestCor.nest.member.model.vo.SpaceMember;
 import com.nestCor.nest.services.note.model.vo.Note;
 import com.nestCor.nest.services.notebook.model.vo.NoteBook;
 import com.nestCor.nest.services.space.model.vo.ChatRoom;
@@ -119,6 +121,64 @@ public class SpaceDaoImpl implements SpaceDao {
 		
 	}
 	
-	
+	@Override
+	public List<Space> selectBusinessSpaceList(int mNo) {
+		return sqlSession.selectList("Space_mapper.selectBusinessSpaceList", mNo);
+	}
+
+	@Override
+	public int insertSpaceMember(SpaceMember sm) {
+		return sqlSession.insert("Space_mapper.insertSpaceMember", sm);
+	}
+
+	@Override
+	public int insertSpaceMemberAdd(SpaceMember sm) {
+		return sqlSession.insert("Space_mapper.insertSpaceMemberAdd", sm);
+	}
+
+	@Override
+	public int deleteSpace(int spaceNo) {
+		return sqlSession.delete("Space_mapper.deleteSpace", spaceNo);
+	}
+
+	@Override
+	public int selectMNo(String userId) {
+		return sqlSession.selectOne("Space_mapper.selectMNo", userId);
+	}
+
+	@Override
+	public int countSpaceMember(int spaceNo) {
+		return sqlSession.selectOne("Space_mapper.countSpaceMember", spaceNo);
+	}
+
+	@Override
+	public List<Member> spaceMemberList(int spaceNo) {
+		return sqlSession.selectList("Space_mapper.spaceMemberList", spaceNo);
+	}
+
+	@Override
+	public int deleteSpaceMember(int mNo) {
+		return sqlSession.delete("Space_mapper.deleteSpaceMember", mNo);
+	}
+
+	@Override
+	public int updateRightSetR1(int spaceNo) {
+		return sqlSession.update("Space_mapper.updateRightSetR1", spaceNo);
+	}
+
+	@Override
+	public int updateRightSetR2(int spaceNo) {
+		return sqlSession.update("Space_mapper.updateRightSetR2", spaceNo);
+	}
+
+	@Override
+	public int updateRightSetR3(int spaceNo) {
+		return sqlSession.update("Space_mapper.updateRightSetR3", spaceNo);
+	}
+
+	@Override
+	public int updateRightSetR4(int spaceNo) {
+		return sqlSession.update("Space_mapper.updateRightSetR4", spaceNo);
+	}
 
 }

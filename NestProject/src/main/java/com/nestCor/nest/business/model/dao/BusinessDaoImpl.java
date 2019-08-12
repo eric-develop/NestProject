@@ -43,8 +43,7 @@ public class BusinessDaoImpl implements BusinessDao {
 
 	@Override
 	public int updateBusinessMemberN(int mNo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update("Business_mapper.updateBusinessMemberN", mNo);
 	}
 
 	@Override
@@ -105,6 +104,36 @@ public class BusinessDaoImpl implements BusinessDao {
 	@Override
 	public String bizName(int mNo) {
 		return sqlSession.selectOne("Business_mapper.bizName", mNo);
+	}
+
+	@Override
+	public int updateBizName(String bizName) {
+		return sqlSession.update("Business_mapper.updateBizName", bizName);
+	}
+
+	@Override
+	public int maxMemberM(int bizNo) {
+		return sqlSession.update("Business_mapper.maxMemberM", bizNo);
+	}
+
+	@Override
+	public int maxMemberP(int bizNo) {
+		return sqlSession.update("Business_mapper.maxMemberP", bizNo);
+	}
+
+	@Override
+	public int maximumMember(int bizNo) {
+		return sqlSession.selectOne("Business_mapper.maximumMember", bizNo);
+	}
+
+	@Override
+	public int deleteBM(int mNo) {
+		return sqlSession.delete("Business_mapper.deleteBM", mNo);
+	}
+
+	@Override
+	public String bmAdmin(int mNo) {
+		return sqlSession.selectOne("Business_mapper.bmAdmin", mNo);
 	}
 	
 

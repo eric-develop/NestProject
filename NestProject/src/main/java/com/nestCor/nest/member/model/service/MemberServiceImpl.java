@@ -74,8 +74,6 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.selectBizMemberList(bizNo);
 	}
 	
-
-	
 	@Override
 	public int memberBusinessServiceUpdate(int mNo) {
 
@@ -94,5 +92,14 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.updateMemberBizNo(m);
 	}
 
+	@Override
+	public String memberAdmin(int mNo) {
+		return mDao.memberAdmin(mNo);
+	}
+
+	@Override
+	public String memberInvitation(int mNo) {
+		return mDao.memberInvitation(mNo);
+	}
 
 }

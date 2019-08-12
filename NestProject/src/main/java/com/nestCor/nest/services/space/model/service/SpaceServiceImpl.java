@@ -7,6 +7,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.nestCor.nest.member.model.vo.Member;
+import com.nestCor.nest.member.model.vo.SpaceMember;
 import com.nestCor.nest.services.note.model.vo.Note;
 import com.nestCor.nest.services.space.model.dao.SpaceDao;
 import com.nestCor.nest.services.space.model.vo.ChatRoom;
@@ -106,10 +108,72 @@ public class SpaceServiceImpl implements SpaceService {
 		return sDao.spaceNoteDetail(spaceNo);
 	}
 
+	@Override
+	public List<Space> selectBusinessSpaceList(int mNo) {
+		return sDao.selectBusinessSpaceList(mNo);
+	}
 
-	
+
+	@Override
+	public int insertSpaceMember(SpaceMember sm) {
+		return sDao.insertSpaceMember(sm);
+	}
+
+	@Override
+	public int insertSpaceMemberAdd(SpaceMember sm) {
+		return sDao.insertSpaceMemberAdd(sm);
+	}
+
+	@Override
+	public int deleteSpace(int spaceNo) {
+		return sDao.deleteSpace(spaceNo);
+	}
+
+	@Override
+	public int selectMNo(String userId) {
+		return sDao.selectMNo(userId);
+	}
 
 
+	@Override
+	public int countSpaceMember(int spaceNo) {
+		return sDao.countSpaceMember(spaceNo);
+	}
 
+
+	@Override
+	public List<Member> spaceMemberList(int spaceNo) {
+		return sDao.spaceMemberList(spaceNo);
+	}
+
+
+	@Override
+	public int deleteSpaceMember(int mNo) {
+		return sDao.deleteSpaceMember(mNo);
+	}
+
+
+	@Override
+	public int updateRightSetR1(int spaceNo) {
+		return sDao.updateRightSetR1(spaceNo);
+	}
+
+
+	@Override
+	public int updateRightSetR2(int spaceNo) {
+		return sDao.updateRightSetR2(spaceNo);
+	}
+
+
+	@Override
+	public int updateRightSetR3(int spaceNo) {
+		return sDao.updateRightSetR3(spaceNo);
+	}
+
+
+	@Override
+	public int updateRightSetR4(int spaceNo) {
+		return sDao.updateRightSetR4(spaceNo);
+	}
 
 }

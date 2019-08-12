@@ -141,7 +141,7 @@ thead.text-primary tr th {
 			<div class="content">
 				<div class="row">
 					<div class="col-md-12">
-						<div class="card" style="height: 570px;">
+						<div class="card" style="height: 550px;">
 							<div class="card-header">
 								<h4 class="card-title">사용자 관리</h4>
 							</div>
@@ -154,52 +154,38 @@ thead.text-primary tr th {
 
 								<div id="tab1" class="tabcontent">
 									<!-- <p>tab1 content</p> -->
-									<div class="table-responsive">
+									<div class="table-responsive" style="width:100%; height:390px; overflow:auto">
 										<table class="table table-striped">
 											<thead class="text-primary">
 												<tr>
-													<th class="text-center">
-														<!-- <div class="dropdown col-lg-6 ml-auto mr-auto"
-															style="margin-left: 20px !important;">
-															<button class="dropdown-toggle btn btn-primary btn-block"
-																type="button" id="dropdownMenuButton"
-																data-toggle="dropdown" aria-haspopup="true"
-																aria-expanded="true" style="font-size: 13px;">작업</button>
-															<div class="dropdown-menu"
-																aria-labelledby="dropdownMenuButton"
-																x-placement="bottom-start"
-																style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(1px, 38px, 0px);">
-																<a class="dropdown-item" href="#">모두 승인</a> 
-																<a class="dropdown-item" href="#">모두 거부</a>
-															</div>
-														</div> -->
-													</th>
-													<th>사용자명</th>
-													<th>이메일</th>
-													<th class="text-right"></th>
-													<th class="text-right"></th>
+													<th class="text-center"></th>
+													<th class="text-center">사용자명</th>
+													<th class="text-center">이메일</th>
+													<th class="text-center">초대 수락 여부</th>
+													<th class="text-center"></th>
 												</tr>
 											</thead>
 											<tbody>
-												<form action="${ pageContext.request.contextPath }/member/approvalStatusY.do" method="post">
+												<form action="${ pageContext.request.contextPath }/business/approvalStatusY.do" method="post">
 												<c:forEach items="${ memberApprovalStatusN }" var="mN">
 												<tr>
+													<td class="text-center"></td>
+													<td class="text-center">${ mN.userName }</td>
+													<td class="text-center">${ mN.userId }</td>
 													<td class="text-center">
-														<div class="form-check" style="width: 55%;">
-															<label class="form-check-label"> 
-																<input class="form-check-input" type="checkbox"> 
-																<span class="form-check-sign"></span>
-															</label>
-														</div>
-													</td>
-													<td>${ mN.userName }</td>
-													<td>${ mN.userId }</td>
-													<td class="text-right">
 														<input hidden type="text" value="${mN.mNo}" name="mNo">
+														${ mN.invitation }
 													</td>
-													<td class="text-right">
+													<td class="text-center">
+														<c:if test="${ mN.invitation eq 'Y' }">
 														<button class="btn btn-primary btn-block"
 																type="submit" style="font-size: 13px;">승인</button>
+														</c:if>
+														<c:if test="${ mN.invitation eq 'N' }">
+														<button class="btn btn-primary btn-block"
+																type="button" style="font-size: 13px;"
+																onclick="location.href='${ pageContext.request.contextPath }/business/deleteBM.do?mNo=${mN.mNo}'">초대 취소</button>
+														</c:if>
 													</td>
 												</tr>
 												</c:forEach>
@@ -210,7 +196,7 @@ thead.text-primary tr th {
 
 								<div id="tab2" class="tabcontent selected">
 									<!-- <p>tab2 content</p> -->
-									<div class="table-responsive">
+									<div class="table-responsive" style="width:100%; height:390px; overflow:auto">
 										<table class="table table-striped">
 											<thead class="text-primary">
 												<tr>
@@ -260,7 +246,7 @@ thead.text-primary tr th {
 
 								<div id="tab3" class="tabcontent">
 									<!-- <p>tab3 content</p> -->
-									<div class="table-responsive">
+									<div class="table-responsive" style="width:100%; height:390px; overflow:auto">
 										<table class="table table-striped">
 											<thead class="text-primary">
 												<tr>

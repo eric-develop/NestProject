@@ -55,9 +55,9 @@ public interface BusinessService {
 	 * @return
 	 */
 	int updateBusinessMemberY(int mNo);
-	
+
 	/***
-	 * 비즈니스 신청 거절 (bizNo 0)
+	 * 비즈니스 신청 거절
 	 * @param mNo
 	 * @return
 	 */
@@ -132,5 +132,47 @@ public interface BusinessService {
 	 * @return
 	 */
 	String bizName(int mNo);
-
+	
+	/***
+	 * 비즈니스명 변경
+	 * @param mNo
+	 * @return
+	 */
+	int updateBizName(String bizName);
+	
+	/***
+	 * 초대 가능 사용자 수 - 1
+	 * @param bizNo
+	 * @return
+	 */
+	int maxMemberM(int bizNo);
+	
+	/***
+	 * 초대 가능 사용자 수 + 1
+	 * @param bizNo
+	 * @return
+	 */
+	int maxMemberP(int bizNo);
+	
+	/***
+	 * 초대 가능 사용자 수
+	 * @param bizNo
+	 * @return
+	 */
+	int maximumMember(int bizNo);
+	
+	/***
+	 * 비즈니스 요청 거절 사용자 삭제
+	 * @param mNo
+	 * @return
+	 */
+	int deleteBM(int mNo);
+	
+	/***
+	 * 사용자 관리자 여부
+	 * @param mNo
+	 * @return
+	 */
+	String bmAdmin(int mNo);
+	
 }

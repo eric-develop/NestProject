@@ -7,32 +7,49 @@
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
-      <div class="logo">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"
+      <div class="logo" style="text-align: center; height: 4.375rem; padding-top: 15px;">
+        <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"
             	style="width: 100%; border: none; margin-top: 10px; color: darknavy; font-size: 14px;">
 			    비즈니스 등록
-		</button>
+		</button> -->
+		<div class="sidebar-brand-text mx-3">
+			<img src="/nest/resources/images/nest_wlogo.png" id="center-image" alt="스프링로고" style="width: 150px; height: auto;">
+		</div>
       </div>
       <div class="sidebar-wrapper" id="sidebar-wrapper">
+      <c:if test="${empty bmAdmin }">
+      <a class="btn btn-primary" data-toggle="modal" data-target="#myModal"
+            	style="width: 100%; border: none; margin-top: 20px; color: darknavy; 
+            		   font-size: 17px; color: #fff; margin-bottom: 0;">
+			    비즈니스 등록
+		</a>
+		</c:if>
+		<c:if test="${!empty bmAdmin }">
+      	<a class="btn btn-primary" data-toggle="modal" data-target="#myModal"
+            	style="width: 100%; border: none; margin-top: 20px; 
+            		   font-size: 17px; color: #fff; margin-bottom: 0;">
+			    ${ bizName }
+		</a>
+		</c:if>
         <ul class="nav">
           <li class="active ">
             <a href="${pageContext.request.contextPath}/member/memberSummary.do">
               <i class="now-ui-icons users_single-02"></i>
               <p style="font-size: 14px;">사용자</p>
             </a>
-            <ul>
+            <ul class="btn-primary">
             	<a href="${pageContext.request.contextPath}/member/memberSummary.do">
             	<p style="color: #FFFFFF; font-size: 12px; 
-            		padding-left: 14%; padding-top: 10px;">요약</p>
+            		padding-left: 14%; margin-top: 10px;">요약</p>
             	</a>
             </ul>
-            <ul>
+            <ul class="btn-primary">
             	<a href="${pageContext.request.contextPath}/member/memberInvite.do">
             	<p style="color: #FFFFFF; font-size: 12px; 
             		padding-left: 14%;">사용자 추가</p>
             	</a>
             </ul>
-            <ul>
+            <ul class="btn-primary">
             	<a href="${pageContext.request.contextPath}/member/memberManage.do">
             	<p style="color: #FFFFFF; font-size: 12px; 
             		padding-left: 14%;">사용자 관리</p>
@@ -44,31 +61,31 @@
               <i class="now-ui-icons design_app"></i>
               <p style="font-size: 14px;">콘텐츠</p>
             </a>
-            <ul>
-            	<a href="#">
+            <ul class="btn-primary">
+            	<a href="${pageContext.request.contextPath}/space/spaceManage.do">
             	<p style="color: #FFFFFF; font-size: 12px; 
-            		padding-left: 14%; padding-top: 10px;">스페이스</p>
+            		padding-left: 14%; margin-top: 10px;">스페이스</p>
             	</a>
             </ul>
-            <ul>
+            <ul class="btn-primary">
             	<a href="#">
             	<p style="color: #FFFFFF; font-size: 12px; 
             		padding-left: 14%;">노트북</p>
             	</a>
             </ul>
-            <ul>
+            <ul class="btn-primary">
             	<a href="#">
             	<p style="color: #FFFFFF; font-size: 12px; 
             		padding-left: 14%;">노트</p>
             	</a>
             </ul>
-            <ul>
+            <ul class="btn-primary">
             	<a href="#">
             	<p style="color: #FFFFFF; font-size: 12px; 
             		padding-left: 14%;">태그</p>
             	</a>
             </ul>
-            <ul>
+            <ul class="btn-primary">
             	<a href="#">
             	<p style="color: #FFFFFF; font-size: 12px; 
             		padding-left: 14%;">휴지통</p>
