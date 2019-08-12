@@ -65,7 +65,7 @@
 										</a>
 									
 										<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-											<a class="dropdown-item" onclick="changeTitle()" style="cursor:pointer;"> 노트북 이름바꾸기</a> 
+											<a class="dropdown-item" onclick="changeTitle()" style="cursor:pointer;"> 노트북 이름바꾸기</a>
 											<a class="dropdown-item" onclick="deleteNoteBook()" style="cursor:pointer;"> 노트북 삭제</a>
 										</div>
 									</td>
@@ -77,7 +77,31 @@
 					</table>
 					<c:out value="${pageBar}" escapeXml="false"/>
 				</div>
-		
+				<!-- Modal -->
+			  <div class="modal fade" id="myModal" role="dialog" >
+			    <div class="modal-dialog">
+			    
+			      <!-- Modal content-->
+			      <div class="modal-content" style="height:269px;transform: translate(-50%, 90%);">
+			        <div class="modal-header" style="text-align:left">
+			          <h4 class="modal-title">노트북 이름바꾸기</h4>
+			          <button type="button" class="close" data-dismiss="modal">×</button>
+			        </div>
+			        <div class="modal-body">
+			          
+			          <div class="form-group" >
+				    	<input type="text" class="form-control" id="spaceName" name="spaceName" 
+				    	placeholder="이름"  style="height:45px; margin-top:8px;">
+				  	  </div>
+			          
+			        </div>
+			        <div class="modal-footer">
+			          <button type="submit" class="btn btn-primary" onclick="changeTitle();">만들기</button>
+			        </div>
+			      </div>
+			      
+			    </div>
+			  </div>
 		
 		
 		
@@ -87,6 +111,7 @@
 		<!-- End of Page Wrapper -->
 
  	 <script>
+ 		
  	 	var nbno;
  	 	var index;
  	 	$('.do').click(function(){
@@ -104,7 +129,6 @@
 	         dataType:'json',
 	         success:function(data){
 	            alert("삭제성공");
-	            
 	            $('.nbno').eq(index).parent().remove();
 	         },error : function(request,status,error){
 	             alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -113,13 +137,13 @@
 	        
 	   }
  		 
- 		/* function changeTitle(){
- 		      
- 		      $.ajax({
+ 		function changeTitle(){
+ 				$("#myModal").modal();
+ 		      /*$.ajax({
  		         url:'${pageContext.request.contextPath}/notebook/changeTitle.do',
  		         type: 'POST',
- 		         data:{nbno:nbno},
- 		         dataType:'json',
+ 		         data:{nbno:nbno, nbtitle:nbtitle},
+ 		         son',
  		         success:function(data){
  		            alert("삭제성공");
  		            $('.sc3').eq(select-3).remove();
@@ -128,9 +152,9 @@
  		         },error : function(request,status,error){
  		             alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
  		         }
- 		      });
+ 		      });*/
  		        
- 		   } */
+ 		   }
   
       
 	  </script>

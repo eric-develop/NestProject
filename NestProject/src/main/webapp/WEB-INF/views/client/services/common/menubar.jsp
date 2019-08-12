@@ -775,8 +775,6 @@
 							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 							aria-labelledby="userDropdown">
 							<a class="dropdown-item" href="#"> 새 노트북
-							</a> <a class="dropdown-item" href="#"> 노트북 이름바꾸기
-							</a> <a class="dropdown-item" href="#"> 노트북 삭제
 							</a> 
 						</div>
 					</c:if>
