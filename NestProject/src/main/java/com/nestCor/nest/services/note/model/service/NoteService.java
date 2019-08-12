@@ -34,4 +34,6 @@ public interface NoteService {
 	int moveNote(Note note);
 
 	int copyNote(int nno);
+	
+	List<Note> searchNote(Note note);
 }

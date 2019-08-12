@@ -47,11 +47,13 @@ public class NoteServiceImpl implements NoteService {
 	
 	@Override
 	public int deleteOneTrash(int nno) {
+		System.out.println("deleteOneTrash 서비스");
 		return noteDao.deleteOneTrash(nno);
 	} 
 
 	@Override
 	public int deleteAllTrash(int mno) {
+		System.out.println("deleteAllTrash 서비스");
 		return noteDao.deleteAllTrash(mno);
 	}
 	
@@ -72,7 +74,6 @@ public class NoteServiceImpl implements NoteService {
 	
 	@Override
 	public int searchNno(Note note) {
-		
 		return noteDao.searchNno(note);
 	}
 	
@@ -84,6 +85,11 @@ public class NoteServiceImpl implements NoteService {
 	@Override
 	public int copyNote(int nno) {
 		return noteDao.copyNote(nno);
+	}
+	
+	@Override
+	public List<Note> searchNote(Note note) {
+		return noteDao.searchNote(note);
 	}
 	
 	

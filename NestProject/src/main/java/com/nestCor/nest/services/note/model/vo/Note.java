@@ -1,6 +1,7 @@
 package com.nestCor.nest.services.note.model.vo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Note implements Serializable {
 	private static final long serialVersionUID = 3000L;
@@ -15,6 +16,16 @@ public class Note implements Serializable {
 	private String trashcan;
 	private String nwriter;
 	private String fixed;
+	private Date nDate;
+	
+	public Date getnDate() {
+		return nDate;
+	}
+
+	public void setnDate(Date nDate) {
+		this.nDate = nDate;
+	}
+
 	public Note() {}
 
 	public Note(int nno, int mno, int nbno, int spaceno, String ntitle, String ncontent, String sharescope,

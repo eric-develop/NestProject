@@ -422,8 +422,11 @@
 			<!-- Dropdown - User Information -->
 			<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 				aria-labelledby="userDropdown">
-				<a class="dropdown-item" href="#"> <i
-					class="fas fa-user-cog fa-sm fa-fw mr-2 text-gray-400"></i> 설정
+				<a class="dropdown-item" href="#">
+				 <i class="fas fa-user-cog fa-sm fa-fw mr-2 text-gray-400"></i> 설정
+				 </a> 
+				 <a class="dropdown-item" href="#">
+				 <i class="fas fa-users-cog fa-sm fa-fw mr-2 text-gray-400"></i> 관리자 콘솔
 				</a> 
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="#" data-toggle="modal"
@@ -451,9 +454,9 @@
 			
 			<form class="form-inline my-2 my-lg-0" style="padding:12px 16px">
 				<div class="input-group" id="search" style="margin:0 auto;margin-bottom: 30px;">
-					<input class="form-control" type="search"
+					<input class="form-control" type="search" id="searchNote"
 						placeholder="Search" aria-label="Search" style="border:none; background:#e3e3e3d6">
-					<span class="input-group-addon"style="border:none; background:#e3e3e3d6"><i class="fas fa-search"></i></span>
+					<span class="input-group-addon" onclick="search()" style="border:none; background:#e3e3e3d6; cursor:pointer"><i class="fas fa-search"></i></span>
 				</div>
 			</form>
 		</li>
@@ -658,13 +661,7 @@
 						aria-expanded="false"> <i class="fas fa-save"></i>&nbsp;저장하기
 					</a></li>
 					</c:if>
-					<c:if test="${topmenu eq 3}">
-					<li class="nav-item dropdown no-arrow mx-1"><a
-						class="nav-link dropdown-toggle save" onclick="afterSave()" id="alertsDropdown"
-						role="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"> <i class="fas fa-save"></i>&nbsp;저장하기
-					</a></li>
-					</c:if>
+					
 					
 					
 					<div class="topbar-divider d-none d-sm-block"></div>
@@ -682,7 +679,6 @@
 						<div
 							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 							aria-labelledby="userDropdown">
-							<a class="dropdown-item" href="firstSave()"> 저장 </a>
 							<a class="dropdown-item" onclick="insertTemplate()" style="cursor:pointer"> 템플릿 저장</a>
 							<a class="dropdown-item" onclick="template()" style="cursor:pointer"> 템플릿 적용</a>
 							
@@ -731,9 +727,7 @@
 						<div
 							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 							aria-labelledby="userDropdown">
-							<a class="dropdown-item" onclick="afterSave()" style="cursor:pointer">저장</a> 
 							<a class="dropdown-item" onclick="moveNote()" style="cursor:pointer">이동...</a>
-							<a class="dropdown-item" onclick="insertTemplate()" style="cursor:pointer"> 템플릿 저장</a>
 							<a class="dropdown-item" onclick="template()" style="cursor:pointer"> 템플릿 적용</a> 
 							<a class="dropdown-item" onclick="copyNote()" style="cursor:pointer">노트복제</a> 
 							<a class="dropdown-item" onclick="deleteOneNote()" style="cursor:pointer">노트삭제</a>
@@ -782,7 +776,7 @@
 						<div
 							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 							aria-labelledby="userDropdown">
-							<a class="dropdown-item" href="#"> 새 노트북
+							<a class="dropdown-item" onclick="$('#myModal2').modal();"> 새 노트북
 							</a> 
 						</div>
 					</c:if>
@@ -790,7 +784,6 @@
 						<div
 							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 							aria-labelledby="userDropdown">
-							<a class="dropdown-item" href="#"> 저장
 							</a> <a class="dropdown-item" href="#"> 이동...
 							</a> <a class="dropdown-item" href="#"> 템플릿 적용
 							</a> <a class="dropdown-item" href="#"> 노트복제
@@ -1071,6 +1064,9 @@ function closeChatContainer(){
 }
 ////메신저 관련 함수들 ////
 
+function search(){
+	location.href="${pageContext.request.contextPath}/note/searchNote.do?search="+$('#searchNote').val()+"&mno=${member.mNo}";
+}
 
 </script>
 <script src="${pageContext.request.contextPath}/resources/js/sb-admin-1.min.js"></script>

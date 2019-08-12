@@ -146,7 +146,7 @@
 			      <div id="sc1" style="border-bottom: 1px solid #1a1a1a; padding: 14px;">
 			        <div style="padding-top:10px;">
 			        	<h5 style="display:inline-block;">휴지통</h5>
-			        	<p style="display:inline-block;float:right">0개의 노트</p>
+			        	<p style="display:inline-block;float:right"><b id="noteCount">0</b>개의 노트</p>
 			        </div>
 			      </div>
 			      
@@ -164,9 +164,10 @@
 					          <span>
 						          <input class="noteCheck" type="hidden" value="${note.nno}" style="cursor:zz"/>
 						          <div class="list_ntitle" id="list_ntitle">${note.ntitle}</div>
-						          <div class="list_ncontent1" id="list_ncontent1" style="display:none;">${note.ncontent}</div>
-						          <div class="list_ncontent" id="list_ncontent"></div>
-					          </span>
+						          <div class="list_ncontent1" id="list_ncontent1" style="display:none;text-overflow: ellipsis;">${note.ncontent}</div>
+						          <div style="height:51px;overflow:hidden"><div class="list_ncontent" id="list_ncontent"></div></div>
+						          <div class="nDate" style="font-size:11px;text-align:right;">${note.nDate}</div>
+					          </span> 
 					        
 					      </div>
 						
@@ -197,6 +198,9 @@
 					  console.log(cont+"/"+sc+"/"+com);
 					  $('#community').css("width",com);
 					
+					  // 노트 갯수
+					  noteCount=$('.sc3').index($('.sc3').last())+1;
+						$('#noteCount').text(noteCount);
 				 });
 			 
 			 var nno = $('.noteCheck').first().val();
@@ -284,6 +288,9 @@
  	            $('#ntitle').val(null);
  	            tinyMCE.activeEditor.setContent("  ");
                 
+ 	           noteCount=$('.sc3').index($('.sc3').last())+1;
+				$('#noteCount').text(noteCount);
+ 	            
              },error : function(request,status,error){
                  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
              }
@@ -302,6 +309,9 @@
     	            $('.sc3').eq(select).remove();
     	            $('#ntitle').val(null);
     	            tinyMCE.activeEditor.setContent("  ");
+    	            
+    	            noteCount=$('.sc3').index($('.sc3').last())+1;
+    				$('#noteCount').text(noteCount);
     	         },error : function(request,status,error){
     	             alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
     	         }

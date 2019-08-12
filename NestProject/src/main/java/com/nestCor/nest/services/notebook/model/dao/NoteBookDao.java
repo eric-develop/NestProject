@@ -23,7 +23,7 @@ public interface NoteBookDao {
 	
 	int changeTitle(NoteBook nb);
 	
-	int insertNoteBook(int nbno);
+	int insertNoteBook(NoteBook nb);
 	
 	
 }

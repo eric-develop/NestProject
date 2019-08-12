@@ -221,7 +221,7 @@ var height;
 				var ncontent = tinyMCE.activeEditor.getContent();
 				$.ajax({
 					url:'${pageContext.request.contextPath}/template/Tinsert.do',
-					data:{ttitle:ntitle,tcontent:ncontent},
+					data:{mno:${member.mNo},ttitle:ntitle,tcontent:ncontent},
 					type : 'post',
 					dataType:'json',
 					success:function(data){

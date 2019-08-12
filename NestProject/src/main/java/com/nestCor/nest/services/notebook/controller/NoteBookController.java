@@ -14,6 +14,8 @@ import com.nestCor.nest.services.note.model.service.NoteService;
 import com.nestCor.nest.services.note.model.vo.Note;
 import com.nestCor.nest.services.notebook.model.service.NoteBookService;
 import com.nestCor.nest.services.notebook.model.vo.NoteBook;
+import com.nestCor.nest.services.template.model.service.TemplateService;
+import com.nestCor.nest.services.template.model.vo.Template;
 
 @Controller
 public class NoteBookController {
@@ -22,6 +24,9 @@ public class NoteBookController {
 	 NoteBookService noteBookService;
 	 @Autowired 
 	 NoteService noteService;
+	 @Autowired 
+	 TemplateService templateService;
+	 
 	 
 	 @RequestMapping("/notebook/notebook.do") 
 	 public String selectListNoteBook(@RequestParam("mno") int mno, Model model) {
@@ -36,17 +41,37 @@ public class NoteBookController {
 	 }
 	  
 	 @RequestMapping("/notebook/goNotebook.do") 
-	 public String selectOneNoteBook(@RequestParam("nbno") int nbno,@RequestParam("nbtitle") String nbtitle, Model model) {
+	 public String selectOneNoteBook(@RequestParam("mno") int mno,@RequestParam("nbno") int nbno,@RequestParam("nbtitle") String nbtitle, Model model) {
 		 List<Note> list = noteBookService.selectOneNoteBook(nbno);
-		 System.out.println("list : "+list);
-			
+		 
+		 List<Template> tlist=templateService.selectListTemplate(mno);
+		
+		 model.addAttribute("tlist",tlist);
 		 model.addAttribute("list",list);
 		 model.addAttribute("nbtitle",nbtitle);
+		 model.addAttribute("nbno", nbno);
 		 model.addAttribute("topmenu",2);
 		 
 		 return "client/services/note/notebook_note";
 	 }
-	
+	 
+	 @RequestMapping("/notebook/copyNote.do")
+		public String copyNote(@RequestParam("nbtitle") String nbtitle, @RequestParam("nno") int nno,@RequestParam("mno") int mno,@RequestParam("nbno") int nbno,Model model) {
+			int result = noteService.copyNote(nno);
+			
+			List<Note> list = noteBookService.selectOneNoteBook(nbno);
+			List<Template> tlist=templateService.selectListTemplate(mno);
+			
+			model.addAttribute("tlist",tlist);
+			model.addAttribute("list",list);
+			model.addAttribute("nbtitle",nbtitle);
+			model.addAttribute("nbno", nbno);
+			model.addAttribute("topmenu",2);
+			
+			
+			return "client/services/note/notebook_note";
+		}
+	 
 	 @RequestMapping("/notebook/trashGo.do")
 	 @ResponseBody
 	 public Boolean trashGo(@RequestParam("trashcan") String trashcan, @RequestParam("nno") int nno) {
@@ -122,19 +147,23 @@ public class NoteBookController {
 			return hmap;
 	 }
 	 
-	 @RequestMapping("/notebook/insertNoteBook.do")
-	 @ResponseBody
-	 public HashMap<String, Object> insertNoteBook(@RequestParam("nbno") int nbno,  Model model) {
-		  
-		 HashMap<String, Object> hmap = new HashMap<>();
-			int result = noteBookService.insertNoteBook(nbno);
-			boolean tf;
-			if(result>0) tf=true;
-			else tf=false;
-
-			hmap.put("tf", tf);
+	 @RequestMapping("/notebook/insertNotebook.do")
+	 public String insertNoteBook(@RequestParam("nbtitle") String nbtitle,@RequestParam("mno") int mno,  Model model) {
+		  	
+		 	NoteBook nb = new NoteBook();
+		 	nb.setMno(mno);
+		 	nb.setNbtitle(nbtitle);
+		 	
+			int result = noteBookService.insertNoteBook(nb);
 			
-			return hmap;
+			List<NoteBook> list = noteBookService.selectListNoteBook(mno);
+			 
+				
+			 model.addAttribute("list",list);
+			 model.addAttribute("topmenu",3);
+			
+			
+			return "client/services/note/note_list";
 	 }
 	 
 }

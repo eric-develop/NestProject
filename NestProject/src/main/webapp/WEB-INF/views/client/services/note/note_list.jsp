@@ -19,8 +19,8 @@
 					</div>
 					<table class="table">
 						<colgroup>
-							<col width="70%"/>
-							<col width="10%"/>
+							<col width="50%"/>
+							<col width="30%"/>
 							<col width="10%"/>
 							<col width="10%"/>
 						</colgroup>
@@ -48,13 +48,13 @@
 							<!-- ${b.count} 는 없어서 우선 이대로 실행 -->
 							<c:forEach items="${list}" var="notebook">
 							
-								<tr class="notebook">	
+								<tr class="noteBook">	
 									<input class="nbno" type="hidden" value="${notebook.nbno}" />
 									<!---좋아요 or 추천 갯수 -->
-									<td id="title"> 
-										<a href="${pageContext.request.contextPath}/notebook/goNotebook.do?nbno=${notebook.nbno}&nbtitle=${notebook.nbtitle}" style="color: gray;">${notebook.nbtitle}&nbsp;&nbsp;[0]</a>
+									<td > 
+										<a class="nbtitle" href="${pageContext.request.contextPath}/notebook/goNotebook.do?nbno=${notebook.nbno}&nbtitle=${notebook.nbtitle}&mno=${member.mNo}" style="color: gray;">${notebook.nbtitle}</a>
 									</td>
-									<td>8월 12일</td>
+									<td>${notebook.nbDate }</td>
 									<td>${member.userName}</td>
 									<td>
 										<a
@@ -65,7 +65,7 @@
 										</a>
 									
 										<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-											<a class="dropdown-item" onclick="changeTitle()" style="cursor:pointer;"> 노트북 이름바꾸기</a>
+											<a class="dropdown-item" onclick="gochangeTitle()" style="cursor:pointer;"> 노트북 이름바꾸기</a>
 											<a class="dropdown-item" onclick="deleteNoteBook()" style="cursor:pointer;"> 노트북 삭제</a>
 										</div>
 									</td>
@@ -77,7 +77,7 @@
 					</table>
 					<c:out value="${pageBar}" escapeXml="false"/>
 				</div>
-				<!-- Modal -->
+				<!--이름바꾸기 Modal -->
 			  <div class="modal fade" id="myModal" role="dialog" >
 			    <div class="modal-dialog">
 			    
@@ -90,7 +90,7 @@
 			        <div class="modal-body">
 			          
 			          <div class="form-group" >
-				    	<input type="text" class="form-control" id="spaceName" name="spaceName" 
+				    	<input type="text" class="form-control" id="nbtitle" name="spaceName" 
 				    	placeholder="이름"  style="height:45px; margin-top:8px;">
 				  	  </div>
 			          
@@ -102,7 +102,33 @@
 			      
 			    </div>
 			  </div>
-		
+			
+			<!-- 노트생성 Modal -->
+			  <div class="modal fade" id="myModal2" role="dialog" >
+			    <div class="modal-dialog">
+			    
+			      <!-- Modal content-->
+			      <div class="modal-content" style="height:269px;transform: translate(-50%, 90%);">
+			        <div class="modal-header" style="text-align:left">
+			          <h4 class="modal-title">새 노트북 만들기</h4>
+			          <button type="button" class="close" data-dismiss="modal">×</button>
+			        </div>
+			        <div class="modal-body">
+			          
+			          <div class="form-group" >
+				    	<input type="text" class="form-control" id="newNbtitle" name="spaceName" 
+				    	placeholder="이름"  style="height:45px; margin-top:8px;">
+				  	  </div>
+			          
+			        </div>
+			        <div class="modal-footer">
+			          <button type="submit" class="btn btn-primary" onclick="insertNotebook()">만들기</button>
+			        </div>
+			      </div>
+			      
+			    </div>
+			  </div>
+			
 		
 		
 	</div>
@@ -111,7 +137,15 @@
 		<!-- End of Page Wrapper -->
 
  	 <script>
+ 		$('.noteBook').mouseenter(function(){
+ 			$('.noteBook').css("background","#fff");
+ 			$(this).css("background","#ebebeb");
+ 		});
+ 		$('.noteBook').mouseleave(function(){
+ 			$('.noteBook').css("background","#fff");
+ 		});
  		
+ 	 
  	 	var nbno;
  	 	var index;
  	 	$('.do').click(function(){
@@ -138,23 +172,32 @@
 	   }
  		 
  		function changeTitle(){
- 				$("#myModal").modal();
- 		      /*$.ajax({
+ 				var nbtitle=$('#nbtitle').val();
+ 		      $.ajax({
  		         url:'${pageContext.request.contextPath}/notebook/changeTitle.do',
  		         type: 'POST',
  		         data:{nbno:nbno, nbtitle:nbtitle},
- 		         son',
+ 		         dataType:'json',
  		         success:function(data){
- 		            alert("삭제성공");
- 		            $('.sc3').eq(select-3).remove();
- 		            $('#nbtitle').val(null);
- 		            tinyMCE.activeEditor.setContent("  ");
+ 		           $("#myModal").modal("hide");
+ 		            $('.nbtitle').eq(index).text(nbtitle);
+ 		            
  		         },error : function(request,status,error){
  		             alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
  		         }
- 		      });*/
+ 		      });
  		        
  		   }
+ 		function insertNotebook(){
+				var nbtitle=$('#newNbtitle').val();
+				location.href="${pageContext.request.contextPath}/notebook/insertNotebook.do?nbtitle="+nbtitle+"&mno=${member.mNo}";
+		      
+		        
+		   }
+ 		function gochangeTitle(){
+				$("#myModal").modal();
+		      
+		   }
   
       
 	  </script>

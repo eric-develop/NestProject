@@ -46,11 +46,13 @@ public class NoteDaoImpl implements NoteDao {
 	
 	@Override
 	public int deleteOneTrash(int nno) {
+		System.out.println("deleteOneTrash dao");
 		return sqlSession.delete("note.deleteOneTrash", nno);
 	}
 
 	@Override
 	public int deleteAllTrash(int mno) {
+		System.out.println("deleteOneTrash dao");
 		return sqlSession.delete("note.deleteAllTrash", mno);
 	}
 	
@@ -92,5 +94,22 @@ public class NoteDaoImpl implements NoteDao {
 	@Override
 	public int copyNote(int nno) {
 		return sqlSession.insert("note.copyNote",nno);
+	}
+	
+	@Override
+	public List<Note> searchNote(Note note) {
+		
+		List<Note> list;
+		
+		list = sqlSession.selectList("note.searchNote1",note);
+		
+		if(list.size()>0) {
+			System.out.println("널이 아니오"+list.size()+"개");
+		}else {
+			list = sqlSession.selectList("note.searchNote2",note);
+		}
+		
+		
+		return list;
 	}
 }

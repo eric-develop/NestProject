@@ -9,8 +9,17 @@
 	<insert id="firstSave" parameterType="note">
 		INSERT INTO NOTE VALUES(							
 			SEQ_NNO.NEXTVAL, #{mno}, 1, 1, 
-			#{ntitle}, #{ncontent}, 's1', DEFAULT)
+			#{ntitle}, #{ncontent}, 's1', DEFAULT,DEFAULT)
 	</insert>
+	
+	<select id="searchNote1" parameterType="note" resultType="note">
+		SELECT * FROM NOTE WHERE NTITLE LIKE '%'|| #{ntitle} || '%'  AND MNO = #{mno}
+	</select>
+	
+	<select id="searchNote2" parameterType="note" resultType="note">
+		SELECT * FROM NOTE WHERE NCONTENT LIKE '%'|| #{ntitle} || '%' AND MNO = #{mno}
+	</select>
+	
 	
 	<select id="noteDetail" parameterType="_int" resultType="note">
 		SELECT * FROM NOTE WHERE NNO = #{nno}
@@ -30,25 +39,25 @@
 	</select>
 	
 	<insert id="copyNote" parameterType="_int">
-		INSERT INTO NOTE SELECT SEQ_NNO.NEXTVAL, MNO, NBNO, SPACENO, NTITLE, NCONTENT, SHARESCOPE, TRASHCAN FROM NOTE WHERE NNO = #{nno}
+		INSERT INTO NOTE SELECT SEQ_NNO.NEXTVAL, MNO, NBNO, SPACENO, NTITLE, NCONTENT, SHARESCOPE, TRASHCAN, SYSDATE FROM NOTE WHERE NNO = #{nno}
 	</insert>
 	
 	<update id="updateNote" parameterType="note">
-		UPDATE NOTE SET NTITLE = #{ntitle}, NCONTENT = #{ncontent} WHERE NNO = #{nno}
+		UPDATE NOTE SET NTITLE = #{ntitle}, NCONTENT = #{ncontent}, NDATE=SYSDATE WHERE NNO = #{nno}
 	</update>
 	
 	
 	<update id="goTrash" parameterType="note">
-		UPDATE NOTE SET TRASHCAN= #{trashcan} WHERE NNO = #{nno}			
+		UPDATE NOTE SET TRASHCAN= #{trashcan}, NDATE=SYSDATE WHERE NNO = #{nno}			
 	</update>
 	
 	<update id="goAllTrash" parameterType="note">
-		UPDATE NOTE SET TRASHCAN= #{trashcan} WHERE MNO = #{mno}			
+		UPDATE NOTE SET TRASHCAN= #{trashcan}, NDATE=SYSDATE WHERE MNO = #{mno}			
 	</update>
 	
 	 
 	<update id="restoreTrash" parameterType="note">
-		UPDATE NOTE SET TRASHCAN= #{trashcan} WHERE NNO = #{nno}			
+		UPDATE NOTE SET TRASHCAN= #{trashcan}, NDATE=SYSDATE WHERE NNO = #{nno}			
 	</update>
 	
 	<update id="moveNote" parameterType="note">

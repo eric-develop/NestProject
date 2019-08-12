@@ -34,7 +34,8 @@ public class TemplateController {
 	
 	@RequestMapping("/template/Tinsert.do")
 	@ResponseBody
-	public HashMap<String,Object> insertTemplate(@RequestParam("ttitle") String ttitle, @RequestParam("tcontent") String tcontent) {
+	public HashMap<String,Object> insertTemplate(@RequestParam("ttitle") String ttitle, @RequestParam("tcontent") String tcontent,
+			@RequestParam("mno") int mno) {
 		
 		HashMap<String,Object> hmap = new HashMap<>();
 
@@ -42,6 +43,7 @@ public class TemplateController {
 		
 		tp.setTtitle(ttitle);
 		tp.setTcontent(tcontent);
+		tp.setMno(mno);
 		
 		int result = templateService.insertTemplate(tp);
 		

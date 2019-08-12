@@ -22,6 +22,8 @@ import com.nestCor.nest.services.note.model.service.NoteService;
 import com.nestCor.nest.services.note.model.vo.Note;
 import com.nestCor.nest.services.space.model.service.SpaceService;
 import com.nestCor.nest.services.space.model.vo.Space;
+import com.nestCor.nest.services.template.model.service.TemplateService;
+import com.nestCor.nest.services.template.model.vo.Template;
 
 @SessionAttributes(value= {"member","spaceList","bizMemberList"})
 
@@ -39,6 +41,9 @@ public class MemberController {
 	
 	@Autowired
 	private BCryptPasswordEncoder pwdEncoder;
+	
+	@Autowired
+	TemplateService templateService;
 	
 	@RequestMapping("/member/loginView.do")
 	public String loginView() {
@@ -70,6 +75,8 @@ public class MemberController {
 					Note note = new Note(m.getmNo(),"N");
 					List<Note> list = nService.selectListNote(note);
 					model.addAttribute("list", list);
+					List<Template> tlist=templateService.selectListTemplate(m.getmNo());
+					model.addAttribute("tlist",tlist);
 					model.addAttribute("topmenu",2);
 					url = "client/services/note/note_main";
 					
