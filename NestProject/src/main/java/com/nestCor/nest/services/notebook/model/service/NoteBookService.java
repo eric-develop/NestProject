@@ -24,6 +24,8 @@ public interface NoteBookService {
 	
 	int insertNoteBook(NoteBook nb);
 
+	int searchNbno(int mno);
+
 	
 
 }

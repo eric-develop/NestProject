@@ -19,4 +19,5 @@ public interface MemberDao {
 		int updateMemberBizNo(Member m);
 		int memberBusinessServiceUpdate(int mNo);
 		int memberPremiumServiceUpdate(int mNo);
+		int selectMno(String userId);
 } 

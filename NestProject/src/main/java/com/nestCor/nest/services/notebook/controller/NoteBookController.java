@@ -44,10 +44,13 @@ public class NoteBookController {
 	 public String selectOneNoteBook(@RequestParam("mno") int mno,@RequestParam("nbno") int nbno,@RequestParam("nbtitle") String nbtitle, Model model) {
 		 List<Note> list = noteBookService.selectOneNoteBook(nbno);
 		 
-		 List<Template> tlist=templateService.selectListTemplate(mno);
-		
-		 model.addAttribute("tlist",tlist);
-		 model.addAttribute("list",list);
+		 
+		List<Template> tlist = templateService.selectListTemplate(mno);
+		List<NoteBook> nblist = noteBookService.selectListNoteBook(mno);
+			
+		model.addAttribute("list",list);
+		model.addAttribute("tlist",tlist);
+		model.addAttribute("nblist",nblist);
 		 model.addAttribute("nbtitle",nbtitle);
 		 model.addAttribute("nbno", nbno);
 		 model.addAttribute("topmenu",2);

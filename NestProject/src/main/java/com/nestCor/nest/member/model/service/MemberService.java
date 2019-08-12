@@ -38,5 +38,7 @@ public interface MemberService {
 		 */
 		int memberPremiumServiceUpdate(int mNo);
 		
+		int selectMno(String userId);
+		
 	
 }

@@ -25,5 +25,5 @@ public interface NoteBookDao {
 	
 	int insertNoteBook(NoteBook nb);
 	
-	
+	int searchNbno(int mno);
 }

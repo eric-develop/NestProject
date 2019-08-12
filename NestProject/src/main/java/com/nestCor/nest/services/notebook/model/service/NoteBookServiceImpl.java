@@ -62,4 +62,10 @@ public class NoteBookServiceImpl implements NoteBookService {
 		System.out.println("change service들어옴");
 		return notebookDao.changeTitle(nb);
 	}
+	
+	@Override
+	public int searchNbno(int mno) {
+		return notebookDao.searchNbno(mno);
+	}
+	
 }

@@ -20,6 +20,8 @@ import com.nestCor.nest.member.model.service.MemberService;
 import com.nestCor.nest.member.model.vo.Member;
 import com.nestCor.nest.services.note.model.service.NoteService;
 import com.nestCor.nest.services.note.model.vo.Note;
+import com.nestCor.nest.services.notebook.model.service.NoteBookService;
+import com.nestCor.nest.services.notebook.model.vo.NoteBook;
 import com.nestCor.nest.services.space.model.service.SpaceService;
 import com.nestCor.nest.services.space.model.vo.Space;
 import com.nestCor.nest.services.template.model.service.TemplateService;
@@ -44,6 +46,9 @@ public class MemberController {
 	
 	@Autowired
 	TemplateService templateService;
+	
+	@Autowired
+	NoteBookService nbService;
 	
 	@RequestMapping("/member/loginView.do")
 	public String loginView() {
@@ -73,10 +78,16 @@ public class MemberController {
 					spaceList = sService.selectSpaceList(m.getBizNo());
 					bizMemberList = mService.selectBizMemberList(m.getBizNo());
 					Note note = new Note(m.getmNo(),"N");
+					// 노트 리스트
 					List<Note> list = nService.selectListNote(note);
 					model.addAttribute("list", list);
+					// 템플릿 리스트
 					List<Template> tlist=templateService.selectListTemplate(m.getmNo());
 					model.addAttribute("tlist",tlist);
+					// 노트북 리스트
+					List<NoteBook> nblist = nbService.selectListNoteBook(m.getmNo());
+					model.addAttribute("nblist",nblist);
+					
 					model.addAttribute("topmenu",2);
 					url = "client/services/note/note_main";
 					
@@ -129,6 +140,25 @@ public class MemberController {
 		m.setPassword(pwdEncoder.encode(rawPassword));
 		
 		int result = mService.insertMember(m);
+		
+		int mno = mService.selectMno(m.getUserId());
+		
+		
+		NoteBook nb = new NoteBook(mno,"내 노트북","MyNoteBook","기본");
+		int notebookResult=nbService.insertNoteBook(nb);
+		
+		int nbno = nbService.searchNbno(mno);
+		
+		System.out.println(nbno);
+		
+		Note note = new Note();
+		note.setMno(mno);
+		note.setNno(0);
+		note.setNbno(nbno);
+		note.setNtitle("제목없음");
+		note.setNcontent("   ");
+		
+		int noteResult=nService.firstSave(note);
 		
 		if(result > 0) {
 			System.out.println("회원가입 성공");

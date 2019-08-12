@@ -494,7 +494,7 @@
 
 		
 		<li class="nav-item">
-		<a class="nav-link collapsed tag cate" href="#"
+		<a class="nav-link collapsed tag cate" style="cursor:pointer"
 			data-toggle="collapse" data-target="#collapseSport"
 			aria-expanded="true" aria-controls="collapseSport"> 
 			<i class="fas fa-tag" style="font-size:17px"></i> <span style="font-size:16px;">태그</span>
@@ -727,7 +727,7 @@
 						<div
 							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 							aria-labelledby="userDropdown">
-							<a class="dropdown-item" onclick="moveNote()" style="cursor:pointer">이동...</a>
+							<a class="dropdown-item" onclick="$('#moveNote').modal();" style="cursor:pointer">이동...</a>
 							<a class="dropdown-item" onclick="template()" style="cursor:pointer"> 템플릿 적용</a> 
 							<a class="dropdown-item" onclick="copyNote()" style="cursor:pointer">노트복제</a> 
 							<a class="dropdown-item" onclick="deleteOneNote()" style="cursor:pointer">노트삭제</a>
@@ -784,12 +784,49 @@
 						<div
 							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 							aria-labelledby="userDropdown">
-							</a> <a class="dropdown-item" href="#"> 이동...
-							</a> <a class="dropdown-item" href="#"> 템플릿 적용
-							</a> <a class="dropdown-item" href="#"> 노트복제
-							</a> <a class="dropdown-item" href="#"> 노트삭제
-							</a>
-						</div>						
+							<a class="dropdown-item" onclick="$('#moveNote').modal();" style="cursor:pointer">이동...</a>
+							<a class="dropdown-item" onclick="template()" style="cursor:pointer"> 템플릿 적용</a>  
+							<a class="dropdown-item" onclick="deleteOneNote()" style="cursor:pointer">노트삭제</a>
+							<a class="dropdown-item" onclick="deleteAllNote()" style="cursor:pointer">노트전체삭제</a>
+						</div>
+						<!-- 템플릿 적용 모달 -->
+					  <div class="modal fade" id="myModal" role="dialog">
+					    <div class="modal-dialog">
+					    
+					      <!-- Modal content-->
+					      <div class="modal-content">
+					        <div class="modal-header" style="text-align:left">
+					          <h4 class="modal-title">템플릿 목록</h4>
+					          <button type="button" class="close" data-dismiss="modal">×</button>
+					        </div>
+					        <div class="modal-body" style="overflow:auto">
+					          
+					          <div>
+					          
+					          <c:forEach items="${tlist}" var="notebook" varStatus="status">
+					          	<c:if test="${status.index/2 eq 0 && status.index > 0}">
+					          	<div style="text-align:center;margin-bottom:5px;">
+					          	</c:if>
+					          		<div style="display:inline-block;">
+					          			<input class="tno" type="hidden" value="${notebook.tno }" />
+					          			<div class="noteTemplate" style="border:1px solid #ebebeb"><img src="/nest/resources/uploads/images/guzig.PNG" style="cursor:pointer;width:190px;height:220px"/></div>
+					          			<div style="text-align:center"><b>${notebook.ttitle}</b></div>
+					          		</div>
+					          	<c:if test="${status.index/2 eq 0 && status.index > 0}">
+					          	</div>
+					          	</c:if>
+					          </c:forEach>
+					          
+					          </div>
+					          
+					        </div>
+					        <div class="modal-footer">
+					          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					        </div>
+					      </div>
+					      
+					    </div>
+					  </div>			
 					</c:if>
 					<c:if test="${topmenu eq 5}">
 						<div
@@ -812,6 +849,58 @@
 		<a class="scroll-to-top rounded" href="#page-top">
 		 <i class="fas fa-angle-up"></i>
 		</a>
+		
+		<!-- 노트 이동 모달 -->
+		  <div class="modal fade" id="moveNote" role="dialog">
+		    <div class="modal-dialog">
+		    
+		      <!-- Modal content-->
+		      <div class="modal-content">
+		        <div class="modal-header" style="text-align:left">
+		          <h4 class="modal-title">템플릿 목록</h4>
+		          <button type="button" class="close" data-dismiss="modal">×</button>
+		        </div>
+		        <div class="modal-body" style="overflow:auto">
+		        <div style="background:#e7722e; color:#fff; border-bottom:1px solid #ededed;padding: 10px 0;padding-left: 5px;border-radius: 5px;">
+		          	<div style="display:inline-block;width:19.33333%">제목</div>
+		          	<div style="display:inline-block;width:59.33333%">내용</div>
+		          	<div style="display:inline-block;width:18.33333%">작성자</div>
+	          	</div>
+	          	
+		          <div>
+		          <style>
+		          	.selectNbno{
+		          		border-bottom:1px solid #ededed;
+		          		cursor:pointer;
+		          	}
+		          	.selectNbno>div{
+		          		display:inline-block;
+		          		padding: 10px 0;
+		          		padding-left: 5px;	
+		          	}
+		          </style>
+		          
+		          <c:forEach items="${nblist}" var="notebook" varStatus="status">
+		          	
+		          	<input class="nbno" type="hidden" value="${notebook.nbno }" />
+		          	<div class="selectNbno">
+			          	<div style="width:19.33333%">${notebook.nbtitle}</div>
+			          	<div style="width:59.33333%">${notebook.nbcontent}</div>
+			          	<div style="width:18.33333%">${member.userName}</div>
+		          	</div>
+		          	
+		          </c:forEach>
+		          
+		          </div>
+		          
+		        </div>
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        </div>
+		      </div>
+		      
+		    </div>
+		  </div>				
 		
 		<!-- Logout Modal-->
 		<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -1010,8 +1099,20 @@
 			 socket.emit('callChatLogs',{receiver: receiver, sender: '${member.nickName}'});
 
 		}	 
-
+		
+	     
+	     
+	     
 }); // 페이지 로딩될 때 실행되는 함수들 끝. // 
+
+$('.selectNbno').mouseenter(function(){
+	$('.selectNbno').css("background","#fff");
+	$(this).css("background","#ebebeb");
+});
+$('.selectNbno').mouseleave(function(){
+	$('.selectNbno').css("background","#fff");
+});
+
 
 /////////////// 페이지 이동 관련 함수들 //////////////////////
 $('.newNote').click(function(){

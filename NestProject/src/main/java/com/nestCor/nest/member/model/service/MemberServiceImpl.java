@@ -93,6 +93,10 @@ public class MemberServiceImpl implements MemberService {
 	public int updateMemberBizNo(Member m) {
 		return mDao.updateMemberBizNo(m);
 	}
-
+	
+	@Override
+	public int selectMno(String userId) {
+		return mDao.selectMno(userId);
+	}
 
 }
