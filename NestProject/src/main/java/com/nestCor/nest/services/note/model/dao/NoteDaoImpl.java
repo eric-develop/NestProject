@@ -46,11 +46,13 @@ public class NoteDaoImpl implements NoteDao {
 	
 	@Override
 	public int deleteOneTrash(int nno) {
+		System.out.println("deleteOneTrash dao");
 		return sqlSession.delete("note.deleteOneTrash", nno);
 	}
 
 	@Override
 	public int deleteAllTrash(int mno) {
+		System.out.println("deleteOneTrash dao");
 		return sqlSession.delete("note.deleteAllTrash", mno);
 	}
 	

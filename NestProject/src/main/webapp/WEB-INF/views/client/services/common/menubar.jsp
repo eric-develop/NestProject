@@ -422,8 +422,11 @@
 			<!-- Dropdown - User Information -->
 			<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 				aria-labelledby="userDropdown">
-				<a class="dropdown-item" href="#"> <i
-					class="fas fa-user-cog fa-sm fa-fw mr-2 text-gray-400"></i> 설정
+				<a class="dropdown-item" href="#">
+				 <i class="fas fa-user-cog fa-sm fa-fw mr-2 text-gray-400"></i> 설정
+				 </a> 
+				 <a class="dropdown-item" href="#">
+				 <i class="fas fa-users-cog fa-sm fa-fw mr-2 text-gray-400"></i> 관리자 콘솔
 				</a> 
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="#" data-toggle="modal"
@@ -658,13 +661,7 @@
 						aria-expanded="false"> <i class="fas fa-save"></i>&nbsp;저장하기
 					</a></li>
 					</c:if>
-					<c:if test="${topmenu eq 3}">
-					<li class="nav-item dropdown no-arrow mx-1"><a
-						class="nav-link dropdown-toggle save" onclick="afterSave()" id="alertsDropdown"
-						role="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"> <i class="fas fa-save"></i>&nbsp;저장하기
-					</a></li>
-					</c:if>
+					
 					
 					
 					<div class="topbar-divider d-none d-sm-block"></div>
@@ -682,7 +679,6 @@
 						<div
 							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 							aria-labelledby="userDropdown">
-							<a class="dropdown-item" href="firstSave()"> 저장 </a>
 							<a class="dropdown-item" onclick="insertTemplate()" style="cursor:pointer"> 템플릿 저장</a>
 							<a class="dropdown-item" onclick="template()" style="cursor:pointer"> 템플릿 적용</a>
 							
@@ -731,9 +727,7 @@
 						<div
 							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 							aria-labelledby="userDropdown">
-							<a class="dropdown-item" onclick="afterSave()" style="cursor:pointer">저장</a> 
 							<a class="dropdown-item" onclick="moveNote()" style="cursor:pointer">이동...</a>
-							<a class="dropdown-item" onclick="insertTemplate()" style="cursor:pointer"> 템플릿 저장</a>
 							<a class="dropdown-item" onclick="template()" style="cursor:pointer"> 템플릿 적용</a> 
 							<a class="dropdown-item" onclick="copyNote()" style="cursor:pointer">노트복제</a> 
 							<a class="dropdown-item" onclick="deleteOneNote()" style="cursor:pointer">노트삭제</a>
@@ -782,7 +776,7 @@
 						<div
 							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 							aria-labelledby="userDropdown">
-							<a class="dropdown-item" href="#"> 새 노트북
+							<a class="dropdown-item" onclick="$('#myModal2').modal();"> 새 노트북
 							</a> 
 						</div>
 					</c:if>
@@ -790,7 +784,6 @@
 						<div
 							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 							aria-labelledby="userDropdown">
-							<a class="dropdown-item" href="#"> 저장
 							</a> <a class="dropdown-item" href="#"> 이동...
 							</a> <a class="dropdown-item" href="#"> 템플릿 적용
 							</a> <a class="dropdown-item" href="#"> 노트복제

@@ -19,8 +19,8 @@ public class NoteBookServiceImpl implements NoteBookService {
 	NoteDao noteDao;
 	
 	@Override
-	public int insertNoteBook(int nbno) {
-		return notebookDao.insertNoteBook(nbno);
+	public int insertNoteBook(NoteBook nb) {
+		return notebookDao.insertNoteBook(nb);
 	}
 
 	@Override
@@ -28,11 +28,6 @@ public class NoteBookServiceImpl implements NoteBookService {
 		System.out.println("service들어옴");
 		return notebookDao.selectOneNoteBook(nbno);
 	}
-	
-	/*
-	 * @Override public List<Note> selectListNote(Note note) { return
-	 * notebookDao.selectListNote(note); }
-	 */
 
 	@Override
 	public List<NoteBook> selectListNoteBook(int mno) {

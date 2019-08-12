@@ -91,7 +91,7 @@ public class NoteController {
 	
 	@RequestMapping("/note/saveNote.do")
 	@ResponseBody
-	public boolean saveNote(@RequestParam("nno") int nno,@RequestParam("ntitle") String ntitle, @RequestParam("ncontent") String ncontent) {
+	public Note saveNote(@RequestParam("nno") int nno,@RequestParam("ntitle") String ntitle, @RequestParam("ncontent") String ncontent) {
 		Note note = new Note();
 		note.setNno(nno);
 		note.setNtitle(ntitle);
@@ -102,7 +102,12 @@ public class NoteController {
 		boolean check;
 		if(result>0) check=true;
 		else check=false;
-		return check;
+		
+		note = noteService.noteDetail(nno);
+		
+		System.out.println(note.getnDate());
+		
+		return note;
 	}
 	
 	
@@ -241,7 +246,9 @@ public class NoteController {
 		Note note = new Note(mno,"N");
 
 		List<Note> list = noteService.selectListNote(note);
-
+		List<Template> tlist=templateService.selectListTemplate(mno);
+		
+		model.addAttribute("tlist",tlist);
 		model.addAttribute("list",list);
 		model.addAttribute("topmenu",2);
 		

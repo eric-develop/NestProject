@@ -1,6 +1,7 @@
 package com.nestCor.nest.services.notebook.model.vo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class NoteBook implements Serializable{
 	private static final long serialVersionUID = 3000L;
@@ -10,7 +11,16 @@ public class NoteBook implements Serializable{
 	private String nbtitle;
 	private String nbcontent;
 	private String nbtype;
+	private Date nbDate;
 	
+	public Date getNbDate() {
+		return nbDate;
+	}
+
+	public void setNbDate(Date nbDate) {
+		this.nbDate = nbDate;
+	}
+
 	public NoteBook() {}
 
 	public NoteBook(int nbno, int mno, String nbtitle, String nbcontent, String nbtype) {

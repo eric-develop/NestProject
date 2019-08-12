@@ -15,7 +15,7 @@
 	</select>
 	
 	<insert id="insertTemplate" parameterType="template">
-		INSERT INTO TEMPLATE VALUES(SEQ_TNO.NEXTVAL,2,#{ttitle},#{tcontent},DEFAULT)
+		INSERT INTO TEMPLATE VALUES(SEQ_TNO.NEXTVAL,#{mno},#{ttitle},#{tcontent},DEFAULT)
 	</insert>
 	
 	

@@ -58,9 +58,9 @@ public class NoteBookDaoImpl implements NoteBookDao {
 	}
 	
 	@Override
-	public int insertNoteBook(int nbno) {
+	public int insertNoteBook(NoteBook nb) {
 		System.out.println("insert dao들어옴");
-		return sqlSession.insert("noteBook.insertNoteBook", nbno);
+		return sqlSession.insert("noteBook.insertNoteBook", nb);
 	}
 
 	

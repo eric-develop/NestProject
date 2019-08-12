@@ -32,16 +32,16 @@
 	</update>
 	
 	<insert id="insertOneRenote" parameterType="_int" >         
-		INSERT INTO NOTE SELECT SEQ_NNO.NEXTVAL, MNO, NBNO, SPACENO, NTITLE, NCONTENT, SHARESCOPE, TRASHCAN FROM NOTE WHERE NNO = #{nno}
+		INSERT INTO NOTE SELECT SEQ_NNO.NEXTVAL, MNO, NBNO, SPACENO, NTITLE, NCONTENT, SHARESCOPE, TRASHCAN, SYSDATE FROM NOTE WHERE NNO = #{nno}
 	</insert>
 	
 	<delete id="deleteNoteBook" parameterType="_int">
 		DELETE FROM NOTEBOOK WHERE NBNO = #{nbno}
 	</delete>
 	
-	<insert id="insertNoteBook" parameterType="_int">
+	<insert id="insertNoteBook" parameterType="notebook">
 		INSERT INTO NOTEBOOK VALUES(							
-			#{nbno}, #{mno}, #{nbtitle}, 
-			#{nbcontent}, #{nbtype}
+			SEQ_NBNO.NEXTVAL, #{mno}, #{nbtitle}, 
+			'내용없음', '요리',SYSDATE)
 	</insert>
 </mapper>
