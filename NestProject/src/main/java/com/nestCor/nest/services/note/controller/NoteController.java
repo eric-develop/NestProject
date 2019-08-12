@@ -18,6 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.nestCor.nest.services.note.model.service.NoteService;
 import com.nestCor.nest.services.note.model.vo.Note;
+import com.nestCor.nest.services.notebook.model.service.NoteBookService;
+import com.nestCor.nest.services.notebook.model.vo.NoteBook;
 import com.nestCor.nest.services.template.model.service.TemplateService;
 import com.nestCor.nest.services.template.model.vo.Template;
 
@@ -29,6 +31,9 @@ public class NoteController {
 	
 	@Autowired
 	TemplateService templateService;
+	
+	@Autowired
+	NoteBookService nbService;
 	
 	@RequestMapping("/note/index.do")
 	public String indexgo() {
@@ -71,8 +76,12 @@ public class NoteController {
 	@ResponseBody
 	public int firstSave(@RequestParam("nno") int nno,@RequestParam("ntitle") String ntitle, @RequestParam("ncontent") String ncontent, @RequestParam("mno") int mno,Model model) {
 		Note note = new Note();
+		
+		int nbno = nbService.searchNbno(mno);
+		
 		note.setMno(mno);
 		note.setNno(nno);
+		note.setNbno(nbno);
 		note.setNtitle(ntitle);
 		note.setNcontent(ncontent);
 		System.out.println("저장시도");
@@ -118,10 +127,11 @@ public class NoteController {
 
 		List<Note> list = noteService.selectListNote(note);
 		List<Template> tlist = templateService.selectListTemplate(mno);
+		List<NoteBook> nblist = nbService.selectListNoteBook(mno);
 		
 		model.addAttribute("list",list);
 		model.addAttribute("tlist",tlist);
-		
+		model.addAttribute("nblist",nblist);
 		
 		String path;
 		if(yn.equals("Y")) {path="client/services/note/note_trashcan"; model.addAttribute("topmenu",5);}
@@ -246,10 +256,12 @@ public class NoteController {
 		Note note = new Note(mno,"N");
 
 		List<Note> list = noteService.selectListNote(note);
-		List<Template> tlist=templateService.selectListTemplate(mno);
+		List<Template> tlist = templateService.selectListTemplate(mno);
+		List<NoteBook> nblist = nbService.selectListNoteBook(mno);
 		
-		model.addAttribute("tlist",tlist);
 		model.addAttribute("list",list);
+		model.addAttribute("tlist",tlist);
+		model.addAttribute("nblist",nblist);
 		model.addAttribute("topmenu",2);
 		
 		
@@ -270,12 +282,30 @@ public class NoteController {
 		model.addAttribute("tlist",tlist);
 		model.addAttribute("list",list);
 		model.addAttribute("search",search);
-		model.addAttribute("topmenu",2);
+		model.addAttribute("topmenu",4);
 		
 		
 		return "client/services/note/note_search";
 	}
 	
+	@RequestMapping("/note/moveNbno.do")
+	@ResponseBody
+	public HashMap<String, Object> moveNote(@RequestParam("nno") int nno,@RequestParam("nbno") int nbno ) {
+		HashMap<String, Object> hmap = new HashMap<>();
+		
+		Note note = new Note();
+		note.setNbno(nbno);
+		note.setNno(nno);
+		
+		int result = noteService.moveNote(note);
+		boolean tf;
+		if(result>0) tf=true;
+		else tf=false;
+
+		hmap.put("tf", tf);
+		
+		return hmap;
+	}
 	
 	
 	

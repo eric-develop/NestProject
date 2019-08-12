@@ -23,6 +23,14 @@ public class NoteBook implements Serializable{
 
 	public NoteBook() {}
 
+	public NoteBook(int mno, String nbtitle, String nbcontent, String nbtype) {
+		super();
+		this.mno = mno;
+		this.nbtitle = nbtitle;
+		this.nbcontent = nbcontent;
+		this.nbtype = nbtype;
+	}
+
 	public NoteBook(int nbno, int mno, String nbtitle, String nbcontent, String nbtype) {
 		super();
 		this.nbno = nbno;

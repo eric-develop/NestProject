@@ -63,5 +63,8 @@ public class NoteBookDaoImpl implements NoteBookDao {
 		return sqlSession.insert("noteBook.insertNoteBook", nb);
 	}
 
-	
+	@Override
+	public int searchNbno(int mno) {
+		return sqlSession.selectOne("noteBook.searchNbno", mno);
+	}
 }

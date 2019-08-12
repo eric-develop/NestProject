@@ -8,8 +8,8 @@
 			
 	<insert id="firstSave" parameterType="note">
 		INSERT INTO NOTE VALUES(							
-			SEQ_NNO.NEXTVAL, #{mno}, 1, 1, 
-			#{ntitle}, #{ncontent}, 's1', DEFAULT,DEFAULT)
+			SEQ_NNO.NEXTVAL, #{mno}, #{nbno}, 1, 
+			#{ntitle}, #{ncontent}, 's1', DEFAULT,DEFAULT,DEFAULT)
 	</insert>
 	
 	<select id="searchNote1" parameterType="note" resultType="note">
@@ -39,7 +39,7 @@
 	</select>
 	
 	<insert id="copyNote" parameterType="_int">
-		INSERT INTO NOTE SELECT SEQ_NNO.NEXTVAL, MNO, NBNO, SPACENO, NTITLE, NCONTENT, SHARESCOPE, TRASHCAN, SYSDATE FROM NOTE WHERE NNO = #{nno}
+		INSERT INTO NOTE SELECT SEQ_NNO.NEXTVAL, MNO, NBNO, SPACENO, NTITLE, NCONTENT, SHARESCOPE, TRASHCAN, FIXED, SYSDATE FROM NOTE WHERE NNO = #{nno}
 	</insert>
 	
 	<update id="updateNote" parameterType="note">

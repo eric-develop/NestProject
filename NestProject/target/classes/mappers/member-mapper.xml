@@ -28,6 +28,10 @@
 			SELECT * FROM MEMBER WHERE USERID=#{userId} AND USERNAME=#{userName} AND PHONE=#{phone}
 		</select>
 		
+		<select id="selectMno" parameterType="string" resultType="_int">
+			SELECT MNO FROM MEMBER WHERE USERID=#{userId}
+		</select>
+		
 		<update id="resetPwd" parameterType="Member">
 			UPDATE MEMBER SET PASSWORD=#{password} WHERE USERID=#{userId}
 		</update>

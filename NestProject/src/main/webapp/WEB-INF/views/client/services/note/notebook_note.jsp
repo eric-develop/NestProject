@@ -374,6 +374,38 @@ function insertTemplate(){
 	});
 	
 }
+$('.selectNbno').click(function(){
+	var index = $('.selectNbno').index(this);
+	var nbno = $('.nbno').eq(index).val();
+	
+	$.ajax({
+		url:'${pageContext.request.contextPath}/note/moveNbno.do',
+		data:{nno:nno,nbno:nbno},
+		type : 'post',
+		dataType:'json',
+		success:function(data){
+			alert("이동 성공하였습니다.");
+
+			// 노트 지우기
+			$('.sc3').eq(select).remove();
+			
+			// 노트 상세 비우기
+			$('#ntitle').val(null);
+			tinyMCE.activeEditor.setContent("  ");
+			
+			// 노트 갯수
+			noteCount=$('.sc3').index($('.sc3').last())+1;
+			$('#noteCount').text(noteCount);
+			
+			$('#moveNote').modal("hide");
+		},error : function(request,status,error){
+		    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+	});
+	
+	
+});
+
 	</script>
 	
 </body>

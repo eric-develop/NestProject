@@ -15,6 +15,11 @@
 		SELECT * FROM NOTEBOOK WHERE MNO = #{mno}
 	</select>
 	
+	<select id="searchNbno" parameterType="_int" resultType="_int">
+		SELECT NBNO FROM (SELECT ROWNUM, NBNO FROM NOTEBOOK WHERE MNO = #{mno}) WHERE ROWNUM = 1
+	</select>
+	
+	
 	<update id="updateNoteBook" parameterType="noteBook">
 		UPDATE NOTEBOOK 
 		SET NBTITLE = #{nbtitle},
