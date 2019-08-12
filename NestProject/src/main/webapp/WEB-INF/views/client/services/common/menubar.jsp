@@ -324,7 +324,7 @@
 			</a> 
 			
 			<!-- 메신저 아이콘 -->
-			<span id="left_nav_msg_div">
+			<span id="left_nav_msg_div" style="margin-right:20px">
 			<a href="#" class="imgSelect" class="blind_view"> <i
 				id="left_nav_msg" class="fas fa-comment"></i> <span
 				id="left_nav_msg_count"><b>2</b></span></a>

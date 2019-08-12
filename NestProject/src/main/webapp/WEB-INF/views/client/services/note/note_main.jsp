@@ -25,7 +25,7 @@
 		tinymce.init({
 			  selector:'textarea',
 			  language : 'ko_KR',
-			 
+			  height: height,
 			  plugins: [
 			    'link image imagetools table code'
 			  ],
@@ -162,10 +162,10 @@
 					        
 					          
 					          <span>
-					          <input class="noteCheck" type="hidden" value="${note.nno}" style="cursor:zz"/>
-					          <div class="list_ntitle" id="list_ntitle">${note.ntitle}</div>
-					          <div class="list_ncontent1" id="list_ncontent1" style="display:none;">${note.ncontent}</div>
-					          <div class="list_ncontent" id="list_ncontent"></div>
+						          <input class="noteCheck" type="hidden" value="${note.nno}" style="cursor:zz"/>
+						          <div class="list_ntitle" id="list_ntitle">${note.ntitle}</div>
+						          <div class="list_ncontent1" id="list_ncontent1" style="display:none;">${note.ncontent}</div>
+						          <div class="list_ncontent" id="list_ncontent"></div>
 					          </span>
 					        
 					      </div>
@@ -175,6 +175,7 @@
 				</div>
 			 </div>
 			 <script>
+			 var select;
 				$(function(){
 					var value = 0;
 					
@@ -185,15 +186,15 @@
 					console.log($('.list_ntitle').eq(0).text());
 					$('#ntitle').text($('.list_ntitle').eq(0).text());
 					tinyMCE.activeEditor.setContent($('.list_ncontent').eq(0).html());
-					
+					$('.sc3').eq(select).css("background","#ebebeb");
 				 });
-			 var select = 3;
-			 var nno = $('.sc3').eq(3-3).children().children('input').val();
+			 
+			 var nno = $('.noteCheck').first().val();
 				$('.sc3').click(function(){
 					$('.sc3').css("background","#fff");
 					$(this).css("background","#ebebeb");
-					select=$(this).index();
-					nno = $(this).children().children('input').val();
+					select=$('.sc3').index(this);
+					nno = $('.noteCheck').eq(select).val();
 					$.ajax({
 						url:'${pageContext.request.contextPath}/note/noteDetail.do',
 						data:{nno:nno},
@@ -209,11 +210,11 @@
 				$('.sc3').mouseenter(function(){
 					$('.sc3').css("background","#fff");
 					$(this).css("background","#ebebeb");
-					$('.sc3').eq(select-3).css("background","#ebebeb");
+					
 				});
 				$('.sc3').mouseleave(function(){
 					$('.sc3').css("background","#fff");
-					$('.sc3').eq(select-3).css("background","#ebebeb");
+					//$('.sc3').eq(select).css("background","#ebebeb");
 				});
 				
 				
@@ -229,7 +230,7 @@
 						</div>
 					</div>
 					<div id="text" style="overflow:auto;height:92.66666%;">	
-							<textarea id="ncontent" name="ncontent" style="border-color:transparent"><b>테스트입니다.</b></textarea>
+							<textarea id="ncontent" name="ncontent" style="border-color:transparent"></textarea>
 					</div>
 					<style>
 						.tox-tinymce{
