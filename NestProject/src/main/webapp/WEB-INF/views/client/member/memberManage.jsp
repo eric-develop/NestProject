@@ -175,13 +175,14 @@ thead.text-primary tr th {
 													<td class="text-center">
 														<input hidden type="text" value="${mN.mNo}" name="mNo">
 														${ mN.invitation }
+														<c:if test="${ empty mN.invitation }">사용자 거절</c:if>
 													</td>
 													<td class="text-center">
 														<c:if test="${ mN.invitation eq 'Y' }">
 														<button class="btn btn-primary btn-block"
 																type="submit" style="font-size: 13px;">승인</button>
 														</c:if>
-														<c:if test="${ mN.invitation eq 'N' }">
+														<c:if test="${ mN.invitation eq 'N' or empty mN.invitation }">
 														<button class="btn btn-primary btn-block"
 																type="button" style="font-size: 13px; background:#e7722e"
 																onclick="location.href='${ pageContext.request.contextPath }/business/deleteBM.do?mNo=${mN.mNo}'">초대 취소</button>

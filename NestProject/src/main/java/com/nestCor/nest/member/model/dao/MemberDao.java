@@ -22,4 +22,5 @@ public interface MemberDao {
 		String memberAdmin(int mNo);
 		String memberInvitation(int mNo);
 		Member sMember(int mNo);
+		int invitationMemberY(String userId);
 } 

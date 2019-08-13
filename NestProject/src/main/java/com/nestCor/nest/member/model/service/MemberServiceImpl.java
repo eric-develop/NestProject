@@ -107,4 +107,9 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.sMember(mNo);
 	}
 
+	@Override
+	public int invitationMemberY(String userId) {
+		return mDao.invitationMemberY(userId);
+	}
+
 }

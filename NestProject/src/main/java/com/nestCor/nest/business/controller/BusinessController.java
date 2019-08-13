@@ -140,7 +140,7 @@ public class BusinessController {
 		
 		int result = bService.updateBusinessMemberY(mNo);
 		
-		String loc = "/member/noteMain.do";
+		String loc = "/member/noteMain.do?mNo="+ mNo;
 		String msg = "";
 		
 		if(result > 0) msg = "승인 여부를 기다려주세요!";
@@ -160,7 +160,7 @@ public class BusinessController {
 		
 		int result = bService.updateBusinessMemberN(mNo);
 		
-		String loc = "/member/noteMain.do";
+		String loc = "/member/noteMain.do?mNo="+ mNo;
 		String msg = "";
 		
 		if(result > 0) msg = "비즈니스 가입 요청을 거절하였습니다.";

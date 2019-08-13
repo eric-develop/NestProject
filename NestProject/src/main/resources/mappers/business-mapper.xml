@@ -172,7 +172,7 @@
 		</update>
 		
 		<update id="updateBusinessMemberN" parameterType="BusinessMember">
-			UPDATE BUSINESS_MEMBER SET INVITATION = 'N' WHERE MNO = #{mNo}
+			UPDATE BUSINESS_MEMBER SET INVITATION = '' WHERE MNO = #{mNo}
 		</update>
 		
 		<update id="approvalY" parameterType="BusinessMember">

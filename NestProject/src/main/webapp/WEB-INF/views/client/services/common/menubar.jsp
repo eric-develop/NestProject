@@ -528,7 +528,7 @@
 				비즈니스 등록 </a>
 		</c:if>
 		
-		<c:if test="${ memberAdmin eq 'Y' }">
+		<c:if test="${ memberAdmin eq 'Y'or member.bizNo ne 0 }">
       	<a class="btn" data-toggle="modal" data-target="#myModal_bizNameUpdate"
             	style="width: 100%; border: none; cursor:pointer;
             		   font-size: 17px; color: #fff; margin-bottom: 0; background:#3b332e;">

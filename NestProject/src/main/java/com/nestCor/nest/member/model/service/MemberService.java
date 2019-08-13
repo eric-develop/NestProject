@@ -59,5 +59,11 @@ public interface MemberService {
 		 */
 		Member sMember(int mNo);
 		
+		/***
+		 * 초대 가능 사용자
+		 * @param userId
+		 * @return
+		 */
+		int invitationMemberY(String userId);
 	
 }
