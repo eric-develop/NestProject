@@ -288,6 +288,7 @@
 				$('#ntitle').val(null);
 				tinyMCE.activeEditor.setContent("  ");
 				
+				select=1000;
 				noteCount=$('.sc3').index($('.sc3').last())+1;
 				$('#noteCount').text(noteCount);
 				
@@ -397,6 +398,7 @@ $('.selectNbno').click(function(){
 			noteCount=$('.sc3').index($('.sc3').last())+1;
 			$('#noteCount').text(noteCount);
 			
+			select=1000;
 			$('#moveNote').modal("hide");
 		},error : function(request,status,error){
 		    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);

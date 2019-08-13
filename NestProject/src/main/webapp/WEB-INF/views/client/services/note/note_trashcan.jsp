@@ -284,11 +284,12 @@
              data:{nno:nno,trashcan:"N"},
              dataType:'json',
              success:function(data){
+            	 alert("노트가 복원되었습니다.");
             	 $('.sc3').eq(select).remove();
  	            $('#ntitle').val(null);
  	            tinyMCE.activeEditor.setContent("  ");
-                
- 	           noteCount=$('.sc3').index($('.sc3').last())+1;
+ 	           $('.sc3').css("background","#fff");
+ 	          select=1000;
 				$('#noteCount').text(noteCount);
  	            
              },error : function(request,status,error){
@@ -305,12 +306,12 @@
     	         data:{nno:nno},
     	         dataType:'json',
     	         success:function(data){
-    	            alert("삭제성공");
+    	            alert("삭제가 완료되었습니다.");
     	            $('.sc3').eq(select).remove();
     	            $('#ntitle').val(null);
     	            tinyMCE.activeEditor.setContent("  ");
-    	            
-    	            noteCount=$('.sc3').index($('.sc3').last())+1;
+    	            $('.sc3').css("background","#fff");
+    	            select=1000;
     				$('#noteCount').text(noteCount);
     	         },error : function(request,status,error){
     	             alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -326,6 +327,7 @@
              data:{mno:'${member.mNo}'},
              dataType:'json',
              success:function(data){
+            	 	alert("휴지통 비우기 완료")
                	    $('.sc3').remove();
      	            $('#ntitle').val(null);
      	            tinyMCE.activeEditor.setContent("  ");
