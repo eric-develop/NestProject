@@ -34,10 +34,10 @@ public class BoardController {
 		System.out.println("/board/board.do가 호출되었습니다.");
 		
 		Member member = boardService.getMemberInfo(mNo);
-		
+		System.out.println("mno : " + mNo);
+		System.out.println(member.getmNo());
 		model.addAttribute("member",member);
-		
-		
+
 		return "client/services/board/boardMain";
 	}
 	
@@ -154,16 +154,17 @@ public class BoardController {
 	
 	//게시물 수정페이지로 가기
 	@RequestMapping("/board/boardUpdateView.do")
-	public ModelAndView boardUpdateView(@RequestParam int bno, Model model) {
+	public ModelAndView boardUpdateView(@RequestParam int bno, @RequestParam int mNo, HttpSession session, Model model) {
 		System.out.println("/board/boardView.do가 호출되었습니다.");
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("client/services/board/boardUpdateView"); // 뷰의 이름
 		
 		System.out.println("수정할 글번호 : "+bno);
+		System.out.println("수정하는 멤버번호 : "+mNo);
 		model.addAttribute("board", boardService.selectOneBoard(bno));
 		
-		mv.addObject("bno", bno);
+		mv.addObject("bno", bno).addObject("mNo",mNo);
 		
 		return mv;
 		
@@ -171,10 +172,11 @@ public class BoardController {
 	
 	//게시물 수정
 	@RequestMapping("/board/boardUpdate.do")
-	public String boardUpdate(@RequestParam int bno, Board board, HttpSession session, Model model) {
+	public String boardUpdate(@RequestParam int bno, @RequestParam int mNo, Board board, HttpSession session, Model model) {
 		
 		System.out.println(bno);
 		System.out.println(board);
+		System.out.println(mNo);
 		
 		// 원본 게시글 조회하여 특정 부분 수정하기
 		Board originBoard = boardService.selectOneBoard(bno);
@@ -187,7 +189,12 @@ public class BoardController {
 		
 		int result = boardService.updateBoard(originBoard);
 		
-		String loc = "/board/board.do";
+		Member member = boardService.getMemberInfo(mNo);
+		System.out.println("mNo의 값은 : "+mNo);
+		System.out.println(member.getmNo());
+		model.addAttribute("member",member);
+		
+		String loc = "/board/board.do?mNo="+mNo;
 		String msg = "";
 		
 		if(result > 0) {
@@ -211,12 +218,16 @@ public class BoardController {
 	
 	//게시물 삭제
 	@RequestMapping("/board/boardDelete.do")
-	public String boardDelete(@RequestParam int bno, HttpSession session, Model model) {
+	public String boardDelete(@RequestParam int bno, @RequestParam int mNo, HttpSession session, Model model) {
 		System.out.println("삭제할 글번호 : "+bno);
 		
 		int result = boardService.deleteBoard(bno);
 		
-		String loc = "/board/board.do";
+		Member member = boardService.getMemberInfo(mNo);
+		System.out.println(member.getmNo());
+		model.addAttribute("member",member);
+		
+		String loc = "/board/board.do?mNo="+mNo;
 		String msg = "";
 		
 		if(result >0) {

@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -13,6 +14,9 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
 
 <!-- Custom fonts for this template-->
 <link href="${pageContext.request.contextPath}/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -30,6 +34,7 @@
 
 </head>
 
+
 <body id="page-top">
 
 	<!-- Sidebar -->
@@ -38,7 +43,7 @@
 		id="accordionSidebar">
 
 		<!-- Sidebar - 메인로고 부분 -->
-		<a class="sidebar-brand d-flex align-items-center justify-content-center" href="${pageContext.request.contextPath}/board/board.do">
+		<a class="sidebar-brand d-flex align-items-center justify-content-center" href="${pageContext.request.contextPath}/board/board.do?mNo=${member.mNo}">
 			<div class="sidebar-brand-text mx-3">
 				<img src="/nest/resources/images/nest_wlogo.png" id="center-image" alt="스프링로고" style="width: 150px; height: auto;">
 			</div>

@@ -17,6 +17,7 @@ public class BoardComment implements Serializable{
 	private int likecount;
 	private String bcdate;
 	private String bcdelete;
+	private String bcnickname;
 	
 	
 	public BoardComment() {
@@ -33,7 +34,7 @@ public class BoardComment implements Serializable{
 
 
 	public BoardComment(int cno, int mno, int bno, String ccontent, int clevel, int likecount, String bcdate,
-			String bcdelete) {
+			String bcdelete, String bcnickname) {
 		super();
 		this.cno = cno;
 		this.mno = mno;
@@ -43,6 +44,7 @@ public class BoardComment implements Serializable{
 		this.likecount = likecount;
 		this.bcdate = bcdate;
 		this.bcdelete = bcdelete;
+		this.bcnickname = bcnickname;
 	}
 
 	public int getCno() {
@@ -125,11 +127,29 @@ public class BoardComment implements Serializable{
 	}
 
 
+	
+	public String getBcnickname() {
+		return bcnickname;
+	}
+
+
+
+	public void setBcnickname(String bcnickname) {
+		this.bcnickname = bcnickname;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "BoardComment [cno=" + cno + ", mno=" + mno + ", bno=" + bno + ", ccontent=" + ccontent + ", clevel="
-				+ clevel + ", likecount=" + likecount + ", bcdate=" + bcdate + ", bcdelete=" + bcdelete + "]";
+				+ clevel + ", likecount=" + likecount + ", bcdate=" + bcdate + ", bcdelete=" + bcdelete
+				+ ", bcnickname=" + bcnickname + "]";
 	}
+
+
+
+	
 
 	
 

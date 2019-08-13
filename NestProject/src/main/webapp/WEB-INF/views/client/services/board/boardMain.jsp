@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -25,6 +28,9 @@
 	}
 </style>
 
+
+
+
 <body style="height:100%;width:100%;">
   <div style="height:100%;width:100%;">
 
@@ -34,16 +40,13 @@
 		<c:import url="../board/common/menubar.jsp" />
 
 		<!-- Home 화면 구현부분 ////////////////////////////////////////////////////////////////////////////////////////////////////-->
-			<div style="background : url('/nest/resources/images/chs_web2_small.jpg'); min-height: 10%; background-position: center; background-size: cover;">
-				<!-- <h1 class="title">
-						커뮤니티 <br> <small>다른사람들과 정보를 공유해 보세요</small>
-				</h1> -->
-			</div>
 			<div class="space-50"></div>
-			<div class="row" style="background : url('/nest/resources/images/Hiring manager 5 sec.gif'); min-height: 40%; background-position: center; background-size: cover;">
-				
-				<div class="col-lg-12 col-md-12 col-xs-12 offset-1">
-					<div id="community_text_div" class="col-lg-3 col-md-6 col-xs-6">
+         <div class="row" style="height: 600px;"> <img src="/nest/resources/images/comlogg.png" 
+              style="position: absolute;width:500px;height:130px;left:900px;top:100px; "> 
+         
+            
+            <div class="col-lg-12 col-md-12 col-xs-12 offset-1" style="margin-left:210px;">
+               <div id="community_text_div" class="col-lg-3 col-md-6 col-xs-6">
 						<div class="card-container">
 							<div class="card">
 								<div class="front">

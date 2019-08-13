@@ -7,11 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.nestCor.nest.services.boardComment.model.service.BoardCommentService;
 import com.nestCor.nest.services.boardComment.model.vo.BoardComment;
 
-
+@SessionAttributes(value= {"member"})
 @Controller
 public class BoardCommentController {
 
@@ -19,9 +20,9 @@ public class BoardCommentController {
 	BoardCommentService boardCommentService;
 	
 	@RequestMapping("boardComment/insertBoardComment.do")
-	public String insertBoardComment(@RequestParam int bno, @RequestParam String ccontent, BoardComment boardcomment, Model model) {
+	public String insertBoardComment(@RequestParam int bno, @RequestParam int mno, @RequestParam String ccontent, BoardComment boardcomment, Model model) {
 		System.out.println("/boardComment/boardComment.do가 호출되었습니다.");
-		System.out.println("넘어온 bno의 값은 : "+bno);
+		System.out.println("넘어온 bno의 값은 : "+bno+" mno : "+mno);
 		System.out.println("넘어온 ccontent의 값은 : "+ccontent);
 		System.out.println("boardComment 확인 : "+boardcomment);
 		

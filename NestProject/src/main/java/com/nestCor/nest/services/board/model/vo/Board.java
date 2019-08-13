@@ -20,6 +20,7 @@ public class Board implements Serializable{
 	private String bdelete;
 	private int commentcnt;
 	
+	
 	public Board() {
 		super();
 	}

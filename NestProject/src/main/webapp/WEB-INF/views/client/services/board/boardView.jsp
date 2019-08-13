@@ -39,9 +39,9 @@
 					</ul>
 					<!-----------------------------------제목,작성자 검색시 해당하는 게시물 나와야합니다.--------------------------------->
 					<button style="padding: 10px; margin-top: 30px;" type="button"
-						class="btn btn-light" onclick="location.href='${pageContext.request.contextPath}/board/boardUpdateView.do?bno=${bno}'">수정하기</button>
+						class="btn btn-light" onclick="location.href='${pageContext.request.contextPath}/board/boardUpdateView.do?bno=${bno}&mNo=${member.mNo}'">수정하기</button>
 					<button style="padding: 10px; margin-top: 30px;" type="button"
-					class="btn btn-light" onclick="location.href='${pageContext.request.contextPath}/board/boardDelete.do?bno=${bno}'">삭제하기</button>
+					class="btn btn-light" onclick="location.href='${pageContext.request.contextPath}/board/boardDelete.do?bno=${bno}&mNo=${member.mNo}'">삭제하기</button>
 				</div>
 			</nav>
 			<!---------------------------------------------------------------------------------------->
@@ -94,7 +94,7 @@
 							style="border-bottom: solid 1px #b8b8b8; padding-bottom: 20px;">
 							<form style="width: 100%; margin: 0 auto;">
 								<div class="input-group mb-3">
-
+									<input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" id="mno" name="mno" value= ${member.mNo } hidden>
 									<input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" id="ccontent" name="ccontent">
 									<div class="input-group-append">
 										<button class="btn btn-outline-secondary" type="button" id="button-addon2">확인</button>
@@ -107,7 +107,7 @@
 						<c:forEach items="${clist}" var="bc">
 							<li id="${bc.bno}" class="commentli">
 								<div style="margin-bottom: 10px;">
-									<i class="fas fa-paw" style="font-size: 20px;"></i>&nbsp;&nbsp;${bc.mno}&nbsp;&nbsp;
+									<i class="fas fa-paw" style="font-size: 20px;"></i>&nbsp;&nbsp;${bc.bcnickname}&nbsp;&nbsp;
 									<span id="commentli_time">&nbsp;&nbsp;${bc.bcdate}
 									</span>
 									<span>
@@ -155,7 +155,7 @@
 				alert("댓글을 입력해 주세요");
 				return false;
 			}else{
-				location.href='${pageContext.request.contextPath}/boardComment/insertBoardComment.do?bno=${bno}&ccontent='+ccontent.value;
+				location.href='${pageContext.request.contextPath}/boardComment/insertBoardComment.do?bno=${bno}&mno=${member.mNo}&ccontent='+ccontent.value;
 			}}, false);
 	</script>
 </body>
