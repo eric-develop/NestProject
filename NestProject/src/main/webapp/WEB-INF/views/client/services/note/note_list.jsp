@@ -54,7 +54,7 @@
 									<td > 
 										<a class="nbtitle" href="${pageContext.request.contextPath}/notebook/goNotebook.do?nbno=${notebook.nbno}&nbtitle=${notebook.nbtitle}&mno=${member.mNo}" style="color: gray;">${notebook.nbtitle}</a>
 									</td>
-									<td>${notebook.nbDate }</td>
+									<td>19/08/14</td>
 									<td>${member.userName}</td>
 									<td>
 										<a
