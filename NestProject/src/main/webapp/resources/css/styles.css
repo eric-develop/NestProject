@@ -134,7 +134,8 @@ header{
 #top_membericon{
     display: inline-block;
     background: #b8b8b8;
-    width: 20px; height: 20px;
+    width: 30px;
+    height: 30px;
 }
 #news_membericon{
     display: inline-block;

@@ -245,7 +245,7 @@
     padding-right: 20px;
 }
 #toploginbtn button{
-   margin-top:10px;
+   
     width: 100%;
     height: 100%;
     
@@ -282,6 +282,7 @@
 	
 	#cus_app_logo {
 		width: 100%;
+		
 	}
 	#cus_app_logo img {
 		width: 10%;

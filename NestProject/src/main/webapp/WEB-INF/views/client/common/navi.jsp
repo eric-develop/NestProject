@@ -28,6 +28,7 @@
 	width: 60px;
 	height: 60px;
 	margin: 20px;
+	padding : 15px;
 	background: #ababab;
 	float: left;
 	display: inline-block;
@@ -80,6 +81,7 @@
 	width: 50px;
 	height: 50px;
 	margin: 10px 10px 10px 20px;
+	padding : 15px;
 	background: #d0d0d0;
 	float: left;
 	display: inline-block;
@@ -309,26 +311,39 @@ float: left;
 					<p style="margin: 0; padding-left: 10px">
 						내 프로필 <i class="fas fa-heart"></i>
 					</p>
-					<div id="selfimg" class="rounded-circle"></div>
+					<!-- 채팅 유저 아이콘 -->
+					<div id="selfimg" class="rounded-circle">
+					
+					 <i class="fas fa-dove" style="font-size: 30px; color: #fff;"></i>
+					</div>
+					<!--  -->
 					<span id="msgname">user</span>
 				</div>
 
 
 				<div id="friend">
 
-					<div id="friend_img" class="rounded-circle"></div>
+					<div id="friend_img" class="rounded-circle">
+					<i class="fas fa-dove" style="font-size: 20px; color: #fff;"></i>
+					</div>
 					<p id="msg_friend_name2">user</p>
 				</div>
 				
-				<div id="friend">
-
-					<div id="friend_img" class="rounded-circle"></div>
-					<p id="msg_friend_name2">user</p>
-				</div>
 				
 				<div id="friend">
 
-					<div id="friend_img" class="rounded-circle"></div>
+					<div id="friend_img" class="rounded-circle">
+					<i class="fas fa-dove" style="font-size: 20px; color: #fff;"></i>
+					</div>
+					<p id="msg_friend_name2">user</p>
+				</div>
+				
+				
+				<div id="friend">
+
+					<div id="friend_img" class="rounded-circle">
+					<i class="fas fa-dove" style="font-size: 20px; color: #fff;"></i>
+					</div>
 					<p id="msg_friend_name2">user</p>
 				</div>
 

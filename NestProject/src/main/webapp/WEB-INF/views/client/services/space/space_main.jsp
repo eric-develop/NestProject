@@ -65,28 +65,38 @@
 			<div id="top_line">
 
 
-				<div style="display: inline-block; padding-left: 20px;"> 
+				<div style="display: inline-block; padding-left: 20px; padding-top:10px;"> 
 					<h5>노트북</h5>
 					<p >내 노트북 목록</p>
 
 				</div>
 				<!---============   ==============---->
-				<div style="float: right; display: inline-block;">
+				<div style="float: right; display: inline-block; padding-top: 10px;">
 				<div id="top_line_margin" style="display: inline-block;">
 					<i class="fas fa-users" style="font-size: 30px; color: #a8a8a8;"></i>
 					<span style="color: #afafaf">10 members</span>
-					<div id="top_membericon" class="rounded-circle"></div>
-					<div id="top_membericon" class="rounded-circle"></div>
-					<div id="top_membericon" class="rounded-circle"></div>
-					<div id="top_membericon" class="rounded-circle"></div>
-					<div id="top_membericon" class="rounded-circle"></div>
+					<div id="top_membericon" class="rounded-circle">
+					  <img src="${pageContext.request.contextPath}/resources/images/person1.PNG" class="rounded-circle" style="background: #fff; width: 100%; height: 100%;">
+					</div>
+					<div id="top_membericon" class="rounded-circle">
+					  <img src="${pageContext.request.contextPath}/resources/images/person2.png" class="rounded-circle" style="background: #fff; width: 100%; height: 100%;">
+					</div>
+					<div id="top_membericon" class="rounded-circle">
+					  <img src="${pageContext.request.contextPath}/resources/images/person3.png" class="rounded-circle" style="background: #fff; width: 100%; height: 100%;">
+					</div>
+					<div id="top_membericon" class="rounded-circle">
+					  <img src="${pageContext.request.contextPath}/resources/images/person4.png" class="rounded-circle" style="background: #fff; width: 100%; height: 100%;">
+					</div>
+					<div id="top_membericon" class="rounded-circle">
+					  <img src="${pageContext.request.contextPath}/resources/images/person5.png" class="rounded-circle" style="background: #fff; width: 100%; height: 100%;">
+					</div>
 
 
 
 					<!---->
-					<div id="top_membericon" class="rounded-circle">
+					<div id="top_membericon" class="rounded-circle" >
 						<p
-							style="color: #fff; display: inline-block; margin: 0; padding: 2px;">5</p>
+							style="color: #fff; margin: 0; text-align:center; padding: 2px;">5</p>
 					</div>
 					<!--5개의 사용자 아이콘 노출 후 남은 5명 숫자로 나타내야합니다,-->
 
