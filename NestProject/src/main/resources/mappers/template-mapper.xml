@@ -11,7 +11,7 @@
 	</select>
 	
 	<select id="selectListTemplate" parameterType="_int" resultType="template">
-		SELECT * FROM TEMPLATE WHERE MNO = #{mno}
+		SELECT * FROM TEMPLATE WHERE MNO IN (#{mno},2)
 	</select>
 	
 	<insert id="insertTemplate" parameterType="template">
