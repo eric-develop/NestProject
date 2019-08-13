@@ -98,5 +98,14 @@ public class MemberServiceImpl implements MemberService {
 	public int selectMno(String userId) {
 		return mDao.selectMno(userId);
 	}
+	@Override
+	public String memberAdmin(int mNo) {
+		return mDao.memberAdmin(mNo);
+	}
+
+	@Override
+	public String memberInvitation(int mNo) {
+		return mDao.memberInvitation(mNo);
+	}
 
 }

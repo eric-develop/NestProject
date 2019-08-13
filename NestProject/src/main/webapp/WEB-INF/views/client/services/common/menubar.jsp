@@ -385,6 +385,7 @@
 					<span id="msgname">${member.nickName}</span>
 				</div>
 
+
       		
 			</div>
 			
@@ -420,9 +421,16 @@
 				<a class="dropdown-item" href="#">
 				 <i class="fas fa-user-cog fa-sm fa-fw mr-2 text-gray-400"></i> 설정
 				 </a> 
-				 <a class="dropdown-item" href="#">
-				 <i class="fas fa-users-cog fa-sm fa-fw mr-2 text-gray-400"></i> 관리자 콘솔
-				</a> 
+				<c:if test="${ memberAdmin eq 'Y'}">
+					<a class="dropdown-item"
+						href="${pageContext.request.contextPath}/member/memberSummary.do"
+						target="_blank"> <i
+						class="fas fa-user-cog fa-sm fa-fw mr-2 text-gray-400"></i> 관리자 콘솔
+					</a>
+					
+				</c:if>
+				
+				
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="#" data-toggle="modal"
 					data-target="#logoutModal"> <i
@@ -437,11 +445,127 @@
 
 		<!-- Divider -->
 		<hr class="sidebar-divider my-0">
-
+		
 		<!-- Divider -->
 		<hr class="sidebar-divider">
+		<c:if test="${ member.serviceNo eq 3 and memberAdmin ne 'Y' }">
+			<a class="btn" data-toggle="modal"
+				data-target="#myModal_businessInsert"
+				style="width: 100%; border: none; font-size: 17px; color: #fff; margin-bottom: 0; background: #3b332e;">
+				비즈니스 등록 </a>
+		</c:if>
 		
-	
+		<c:if test="${ memberAdmin eq 'Y' }">
+      	<a class="btn" data-toggle="modal" data-target="#myModal_bizNameUpdate"
+            	style="width: 100%; border: none; cursor:pointer;
+            		   font-size: 17px; color: #fff; margin-bottom: 0; background:#3b332e;">
+			    ${ bizName }
+		</a>
+		</c:if>
+
+		<c:if test="${ memberInvitation eq 'N' }">
+			<button type="button" class="btn" data-toggle="modal"
+				data-target="#myModal_bmInsert"
+				style="width: 100%; border: none; color: white; font-size: 14px;">
+				비즈니스 그룹 요청</button>
+		</c:if>
+		
+		<!-- The Modal -->
+		<form method="post"
+			action="${pageContext.request.contextPath}/business/insertBusiness.do">
+			<div class="modal" id="myModal_businessInsert">
+				<div class="modal-dialog">
+					<div class="modal-content" style="height: 300px;">
+
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<h4 class="modal-title">비즈니스 등록</h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+
+						<!-- Modal body -->
+						<div class="modal-body">
+							<label class="col-md-3 col-form-label">Business is </label>
+							<div class="col-md-11">
+								<div class="form-group">
+									<input type="text" class="form-control" name="bizName"
+										id="bizName">
+								</div>
+							</div>
+						</div>
+
+						<!-- Modal footer -->
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-info">등록</button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</form>
+
+		<!-- The Modal -->
+		<div class="modal" id="myModal_bmInsert">
+			<div class="modal-dialog">
+				<div class="modal-content" style="height: 250px;">
+
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h4 class="modal-title">비즈니스 그룹 요청</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+
+					<!-- Modal body -->
+					<div class="modal-body">
+						${ selectBizName } 비즈니스 그룹 요청이 왔습니다. <br> 수락하시겠습니까?
+					</div>
+
+					<!-- Modal footer -->
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary"
+							onclick="location.href='${ pageContext.request.contextPath }/business/updateBusinessMemberY.do'">수락</button>
+						<button type="button" class="btn btn-danger"
+							onclick="location.href='${ pageContext.request.contextPath }/business/updateBusinessMemberN.do'">거절</button>
+						<!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button> -->
+					</div>
+
+				</div>
+			</div>
+		</div>
+		
+		<!-- The Modal -->
+			<form method="post"
+				action="${pageContext.request.contextPath}/business/updateBizName.do">
+				<div class="modal" id="myModal_bizNameUpdate">
+					<div class="modal-dialog">
+						<div class="modal-content" style="height: 300px;">
+
+							<!-- Modal Header -->
+							<div class="modal-header">
+								<h4 class="modal-title">비즈니스명 변경</h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+
+							<!-- Modal body -->
+							<div class="modal-body">
+								<label class="col-md-3 col-form-label">Business is </label>
+								<div class="col-md-11">
+									<div class="form-group">
+										<input type="text" class="form-control" name="bizName"
+											id="setBizName">
+									</div>
+								</div>
+							</div>
+
+							<!-- Modal footer -->
+							<div class="modal-footer">
+								<button type="submit" class="btn btn-info">변경</button>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</form>
 	
 	
 		<!-- Heading -->

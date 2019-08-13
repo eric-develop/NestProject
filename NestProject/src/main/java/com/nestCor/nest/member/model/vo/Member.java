@@ -25,8 +25,10 @@ public class Member implements Serializable{
 		private Date enrollDate;
 		
 		private String admin;
+		private String invitation;
 		private String approval;
 		private Date spaceEnrollDate;
+		private String mRightSet;
 		public Member() {
 		
 		}
@@ -258,10 +260,23 @@ public class Member implements Serializable{
 			this.spaceEnrollDate = spaceEnrollDate;
 		}
 
+		public String getmRightSet() {
+			return mRightSet;
+		}
 
 
+		public void setmRightSet(String mRightSet) {
+			this.mRightSet = mRightSet;
+		}
+
+		public String getInvitation() {
+			return invitation;
+		}
 
 
+		public void setInvitation(String invitation) {
+			this.invitation = invitation;
+		}
 
 
 		@Override

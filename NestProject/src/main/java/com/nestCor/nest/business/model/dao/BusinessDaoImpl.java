@@ -43,8 +43,7 @@ public class BusinessDaoImpl implements BusinessDao {
 
 	@Override
 	public int updateBusinessMemberN(int mNo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update("Business_mapper.updateBusinessMemberN", mNo);
 	}
 
 	@Override
@@ -105,6 +104,76 @@ public class BusinessDaoImpl implements BusinessDao {
 	@Override
 	public String bizName(int mNo) {
 		return sqlSession.selectOne("Business_mapper.bizName", mNo);
+	}
+
+	@Override
+	public int updateBizName(Business biz) {
+		return sqlSession.update("Business_mapper.updateBizName", biz);
+	}
+
+	@Override
+	public int maxMemberM(int bizNo) {
+		return sqlSession.update("Business_mapper.maxMemberM", bizNo);
+	}
+
+	@Override
+	public int maxMemberP(int bizNo) {
+		return sqlSession.update("Business_mapper.maxMemberP", bizNo);
+	}
+
+	@Override
+	public int maximumMember(int bizNo) {
+		return sqlSession.selectOne("Business_mapper.maximumMember", bizNo);
+	}
+
+	@Override
+	public int deleteBM(int mNo) {
+		return sqlSession.delete("Business_mapper.deleteBM", mNo);
+	}
+
+	@Override
+	public String bmAdmin(int mNo) {
+		return sqlSession.selectOne("Business_mapper.bmAdmin", mNo);
+	}
+
+	@Override
+	public int bmAdminY(int mNo) {
+		return sqlSession.update("Business_mapper.bmAdminY", mNo);
+	}
+
+	@Override
+	public int bmAdminN(int mNo) {
+		return sqlSession.update("Business_mapper.bmAdminN", mNo);
+	}
+
+	@Override
+	public List<Member> activeListN(int mNo) {
+		return sqlSession.selectList("Business_mapper.activeListN", mNo);
+	}
+
+	@Override
+	public int activeY(int mNo) {
+		return sqlSession.update("Business_mapper.activeY", mNo);
+	}
+
+	@Override
+	public int activeN(int mNo) {
+		return sqlSession.update("Business_mapper.activeN", mNo);
+	}
+
+	@Override
+	public int countNoteBook(int mNo) {
+		return sqlSession.selectOne("Business_mapper.countNoteBook", mNo);
+	}
+
+	@Override
+	public int countNote(int mNo) {
+		return sqlSession.selectOne("Business_mapper.countNote", mNo);
+	}
+
+	@Override
+	public List<BusinessMember> memberActiveY(int mNo) {
+		return sqlSession.selectList("Business_mapper.memberActiveY", mNo);
 	}
 	
 

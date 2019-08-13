@@ -39,6 +39,18 @@ public interface MemberService {
 		int memberPremiumServiceUpdate(int mNo);
 		
 		int selectMno(String userId);
+		/***
+		 * 회원 비즈니스 관리자 여부
+		 * @param mNo
+		 * @return
+		 */
+		String memberAdmin(int mNo);
 		
+		/***
+		 * 비즈니스 초대 요청 여부
+		 * @param mNo
+		 * @return
+		 */
+		String memberInvitation(int mNo);
 	
 }

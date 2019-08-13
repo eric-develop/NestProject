@@ -55,9 +55,9 @@ public interface BusinessService {
 	 * @return
 	 */
 	int updateBusinessMemberY(int mNo);
-	
+
 	/***
-	 * 비즈니스 신청 거절 (bizNo 0)
+	 * 비즈니스 신청 거절
 	 * @param mNo
 	 * @return
 	 */
@@ -132,5 +132,87 @@ public interface BusinessService {
 	 * @return
 	 */
 	String bizName(int mNo);
-
+	
+	/***
+	 * 비즈니스명 변경
+	 * @param mNo
+	 * @return
+	 */
+	int updateBizName(Business biz);
+	
+	/***
+	 * 초대 가능 사용자 수 - 1
+	 * @param bizNo
+	 * @return
+	 */
+	int maxMemberM(int bizNo);
+	
+	/***
+	 * 초대 가능 사용자 수 + 1
+	 * @param bizNo
+	 * @return
+	 */
+	int maxMemberP(int bizNo);
+	
+	/***
+	 * 초대 가능 사용자 수
+	 * @param bizNo
+	 * @return
+	 */
+	int maximumMember(int bizNo);
+	
+	/***
+	 * 비즈니스 요청 거절 사용자 삭제
+	 * @param mNo
+	 * @return
+	 */
+	int deleteBM(int mNo);
+	
+	/***
+	 * 사용자 관리자 여부
+	 * @param mNo
+	 * @return
+	 */
+	String bmAdmin(int mNo);
+	
+	/***
+	 * 비즈니스멤버 관리자 권한 부여
+	 * @param mNo
+	 * @return
+	 */
+	int bmAdminY(int mNo);
+	
+	/***
+	 * 비즈니스멤버 관리자 권한 취소
+	 * @param mNo
+	 * @return
+	 */
+	int bmAdminN(int mNo);
+	
+	/***
+	 * 비활성화 사용자
+	 * @param mNo
+	 * @return
+	 */
+	List<Member> activeListN(int mNo);
+	
+	/***
+	 * 사용자 활성화
+	 * @param mNo
+	 * @return
+	 */
+	int activeY(int mNo);
+	
+	/***
+	 * 사용자 비활성화
+	 * @param mNo
+	 * @return
+	 */
+	int activeN(int mNo);
+	
+	int countNoteBook(int mNo);
+	int countNote(int mNo);
+	
+	List<BusinessMember> memberActiveY(int mNo);
+	
 }

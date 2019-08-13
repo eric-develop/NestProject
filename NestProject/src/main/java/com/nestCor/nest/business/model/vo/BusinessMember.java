@@ -13,6 +13,7 @@ public class BusinessMember implements Serializable {
 	private String invitation;
 	private String approval;
 	private Date enrolldate;
+	private String active;
 	
 	public BusinessMember() {
 		super();
@@ -20,7 +21,7 @@ public class BusinessMember implements Serializable {
 	}
 
 	public BusinessMember(int bizmNo, int bizNo, int mNo, String admin, String invitation, String approval,
-			Date enrolldate) {
+			Date enrolldate, String active) {
 		super();
 		this.bizmNo = bizmNo;
 		this.bizNo = bizNo;
@@ -29,6 +30,7 @@ public class BusinessMember implements Serializable {
 		this.invitation = invitation;
 		this.approval = approval;
 		this.enrolldate = enrolldate;
+		this.active = active;
 	}
 
 	public int getBizmNo() {
@@ -79,10 +81,6 @@ public class BusinessMember implements Serializable {
 		this.approval = approval;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	public Date getEnrolldate() {
 		return enrolldate;
 	}
@@ -91,11 +89,25 @@ public class BusinessMember implements Serializable {
 		this.enrolldate = enrolldate;
 	}
 
+	public String getActive() {
+		return active;
+	}
+
+	public void setActive(String active) {
+		this.active = active;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public String toString() {
 		return "BusinessMember [bizmNo=" + bizmNo + ", bizNo=" + bizNo + ", mNo=" + mNo + ", admin=" + admin
-				+ ", invitation=" + invitation + ", approval=" + approval + ", enrolldate=" + enrolldate + "]";
+				+ ", invitation=" + invitation + ", approval=" + approval + ", enrolldate=" + enrolldate + ", active="
+				+ active + "]";
 	}
+	
 	
 
 }

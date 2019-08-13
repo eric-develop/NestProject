@@ -96,6 +96,14 @@ public class MemberDaoImpl implements MemberDao {
 	public int selectMno(String userId) {
 		return sqlSession.selectOne("Member_mapper.selectMno", userId);
 	}
+	@Override
+	public String memberAdmin(int mNo) {
+		return sqlSession.selectOne("Member_mapper.memberAdmin", mNo);
+	}
 
+	@Override
+	public String memberInvitation(int mNo) {
+		return sqlSession.selectOne("Member_mapper.memberInvitation", mNo);
+	}
 
 }

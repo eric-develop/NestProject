@@ -9,6 +9,7 @@
 
 	<typeAliases>
 		<typeAlias type="com.nestCor.nest.member.model.vo.Member" alias="Member"/>
+		<typeAlias type="com.nestCor.nest.member.model.vo.SpaceMember" alias="SpaceMember"/>
 		<typeAlias type="com.nestCor.nest.services.space.model.vo.Space" alias="Space"/>
 		<typeAlias type="com.nestCor.nest.services.board.model.vo.Board" alias="board"/>
 		<typeAlias type="com.nestCor.nest.services.boardComment.model.vo.BoardComment" alias="boardcomment"/>
