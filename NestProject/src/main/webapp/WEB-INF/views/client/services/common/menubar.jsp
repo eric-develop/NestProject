@@ -322,17 +322,24 @@
 <body id="page-top">
 
 	<!-- Sidebar -->
-	<ul	class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" style="background:#3B332E;/*#3B332E*/;"
-		id="accordionSidebar">
+	<ul
+		class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+		style="background: #3B332E;" id="accordionSidebar">
 
 		<!-- Sidebar - 메뉴바 상단 -->
-		<li class="nav-item dropdown no-arrow">
-		
-			<a class="nav-link dropdown-toggle" href="#" id="userDropdown"
+		<li class="nav-item dropdown no-arrow"><a
+			class="nav-link dropdown-toggle" href="#" id="userDropdown"
 			role="button" data-toggle="dropdown" aria-haspopup="true"
-			aria-expanded="false" style="width:130px;"> 
-				<img class="img-profile rounded-circle"	src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
-				<span class="mr-2 d-none d-lg-inline text-white-600 small nickname" style="font-size:15px;">${member.nickName}</span>
+			aria-expanded="false" style="width: 130px;"> <img
+				class="img-profile rounded-circle"
+				src="https://source.unsplash.com/QAB-WJcbgJk/60x60"> <span
+				class="mr-2 d-none d-lg-inline text-white-600 small"
+				style="font-size: 15px;">${member.nickName}</span> 
+				<c:if test="${ memberAdmin eq 'Y' }">
+					<img
+						src="${pageContext.request.contextPath}/resources/images/admin24.png"
+						style="margin-left: 100px;">
+				</c:if>
 			</a> 
 			
 			<!-- 메신저 아이콘 -->
@@ -570,13 +577,12 @@
 		
 		
 		
-		<li class="nav-item">
-		<a class="nav-link collapsed cate" href="#"
-			data-toggle="collapse" 
-			aria-expanded="true" aria-controls="collapseSport"> 
-			<i class="fas fa-star" style="font-size:17px"></i> <span style="font-size:16px;">업그레이드</span>
-		</a>
-		</li>
+		<li class="nav-item"><a class="nav-link collapsed cate service"
+			href="" data-toggle="collapse" data-target="#collapseSport"	
+			aria-expanded="true" aria-controls="collapseSport"> <i
+				class="fas fa-star" style="font-size: 17px"></i> <span
+				style="font-size: 16px;">업그레이드</span>
+		</a></li>
 		
 		<li class="nav-item">
 			<a class="nav-link collapsed community cate" href="#"
@@ -1218,6 +1224,10 @@ $('.trash').click(function(){
 
 $('.community').click(function(){
 	window.open("${pageContext.request.contextPath}/board/board.do?mNo=" + ${member.mNo});
+});
+$('.service').click(function(){
+	window.open("${pageContext.request.contextPath}/service/serviceView.do");
+	/* location.href="${pageContext.request.contextPath}/service/serviceView.do"; */
 });
 
 function goToSpace(spaceNo){

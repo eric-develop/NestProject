@@ -5,17 +5,19 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
-
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.nestCor.nest.business.model.service.BusinessService;
 import com.nestCor.nest.member.model.service.MemberService;
 import com.nestCor.nest.member.model.vo.Member;
 import com.nestCor.nest.services.note.model.service.NoteService;
@@ -47,6 +49,9 @@ public class MemberController {
 	@Autowired
 	TemplateService templateService;
 	
+	@Autowired 
+	private BusinessService bService;
+
 	@Autowired
 	NoteBookService nbService;
 	
@@ -281,6 +286,64 @@ public class MemberController {
 	
 
 	
+	
+	
+	
+	@RequestMapping("/member/memberSummary.do")
+	public String memberSummary(Model model, HttpServletRequest req) { 
+		
+		HttpSession session = req.getSession();
+		Member m = (Member)session.getAttribute("member");
+		int mNo = m.getmNo();
+		
+		int totalBusinessMember = bService.totalBusinessMember(mNo);
+		
+		int totalSpace = bService.totalBusinessSpace(mNo);
+		
+		List<Member> businessMemberList = bService.BusinessMemberList(mNo);
+		
+		int totalApprovalN = bService.totalApprovalN(mNo);
+		
+		int totalBusinessAdmin = bService.totalBusinessAdmin(mNo);
+		
+		List<Member> businessAdmin = bService.BusinessAdminList(mNo);
+		
+//		String bizName = bService.bizName(mNo);
+		
+		model
+		.addAttribute("totalBusinessMember", totalBusinessMember)
+		.addAttribute("totalSpace", totalSpace)
+		.addAttribute("businessMemberList", businessMemberList)
+		.addAttribute("totalApprovalN", totalApprovalN)
+		.addAttribute("totalBusinessAdmin", totalBusinessAdmin)
+		.addAttribute("businessAdmin", businessAdmin);
+//		.addAttribute("bizName", bizName);
+		
+		return "client/member/memberSummary";
+	}
+	
+	@RequestMapping("/member/memberInvite.do")
+	public String memberInvite() {
+		return "client/member/memberInvite";
+	}
+	
+	@RequestMapping("/member/memberManage.do")
+	public String memberManage(Model model, HttpServletRequest req) {
+		
+		HttpSession session = req.getSession();
+		Member m = (Member) session.getAttribute("member");
+		int mNo = m.getmNo();
+		
+		List<Member> memberApprovalStatusN = bService.approvalN(mNo);
+
+		List<Member> memberApprovalStatusY = bService.MemberListApprovalY(mNo);
+		
+		model
+		.addAttribute("memberApprovalStatusN", memberApprovalStatusN)
+		.addAttribute("memberApprovalStatusY", memberApprovalStatusY);
+		
+		return "client/member/memberManage";
+	}
 	
 	
 	
