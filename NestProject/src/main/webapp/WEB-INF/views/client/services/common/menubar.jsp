@@ -702,7 +702,7 @@
 		
 		
 		<li class="nav-item"><a class="nav-link collapsed cate service"
-			href="" data-toggle="collapse" data-target="#collapseSport"	
+			href="" data-toggle="collapse" 	
 			aria-expanded="true" aria-controls="collapseSport"> <i
 				class="fas fa-star" style="font-size: 17px"></i> <span
 				style="font-size: 16px;">업그레이드</span>
@@ -772,7 +772,13 @@
 						aria-expanded="false"> <i class="fas fa-save"></i>&nbsp;저장하기
 					</a></li>
 					</c:if>
-					
+					<c:if test="${topmenu eq 4}">
+					<li class="nav-item dropdown no-arrow mx-1"><a
+						class="nav-link dropdown-toggle save" onclick="afterSave()" id="alertsDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> <i class="fas fa-save"></i>&nbsp;저장하기
+					</a></li>
+					</c:if>
 					
 					
 					<div class="topbar-divider d-none d-sm-block"></div>
@@ -947,7 +953,7 @@
 							aria-labelledby="userDropdown">
 							<a class="dropdown-item"  onclick="restoreTrash()" style="cursor:pointer;"> 노트복원
 							</a> <a class="dropdown-item" onclick="deleteOneTrash()" style="cursor:pointer;"> 삭제
-							</a> <a class="dropdown-item" onclick="deleteAllTrash()" style="cursor:pointer;"> 전체삭제
+							</a> <a class="dropdown-item" onclick="deleteAllTrash()" style="cursor:pointer;"> 휴지통 비우기
 							</a>
 						</div>
 					</c:if>

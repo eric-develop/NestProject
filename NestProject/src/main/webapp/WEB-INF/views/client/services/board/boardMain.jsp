@@ -40,12 +40,12 @@
 		<c:import url="../board/common/menubar.jsp" />
 
 		<!-- Home 화면 구현부분 ////////////////////////////////////////////////////////////////////////////////////////////////////-->
-			<div class="space-50"></div>
-         <div class="row" style="height: 600px;"> <img src="/nest/resources/images/comlogg.png" 
-              style="position: absolute;width:500px;height:130px;left:900px;top:100px; "> 
+			<div class="space-50" style="height:150px;text-align: center;"><img src="/nest/resources/images/comlogg.png" 
+              style="width:500px;height:130px; "></div>
+         <div class="row" style="height: 600px;">  
          
             
-            <div class="col-lg-12 col-md-12 col-xs-12 offset-1" style="margin-left:210px;">
+            <div class="col-lg-12 col-md-12 col-xs-12" style="text-align:center">
                <div id="community_text_div" class="col-lg-3 col-md-6 col-xs-6">
 						<div class="card-container">
 							<div class="card">
@@ -225,7 +225,7 @@
 				<!-- end col-sm-10 -->
 			</div>
 			<!-- end row -->
-			<div class="space-50"></div>
+			
 			<!-- <div class="space-200"></div> -->
 		
 
