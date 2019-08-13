@@ -225,11 +225,11 @@
 				$('.sc3').mouseenter(function(){
 					$('.sc3').css("background","#fff");
 					$(this).css("background","#ebebeb");
-					
+					$('.sc3').eq(select).css("background","#ebebeb");
 				});
 				$('.sc3').mouseleave(function(){
 					$('.sc3').css("background","#fff");
-					//$('.sc3').eq(select).css("background","#ebebeb");
+					$('.sc3').eq(select).css("background","#ebebeb");
 				});
 				
 				
@@ -274,7 +274,7 @@
 			  var cont = $('#cont').width();
 			  var sc = $('#second_container').width();
 			  var com = cont-sc-38;
-			  
+			  console.log(com);
 			  $('#community').css("width",com);
 		} );
 	function deleteOneNote(){
@@ -401,10 +401,35 @@ $('.selectNbno').click(function(){
 		    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		}
 	});
-	
+
+// 커뮤니티로 게시글 보내기
+
 	
 });
+function goCommunity(){
+	var cate1 =$('#cate1').val();
+	var cate2 =$('#cate2').val();
+	console.log(cate1+"/"+cate2);
+	var nickname = $('.nickname').text();
+	var ntitle = $('#ntitle').val();
+	var ncontent = tinyMCE.activeEditor.getContent();
+	$.ajax({
+		url:'${pageContext.request.contextPath}/note/goCommunity.do',
+		data:{ntitle:ntitle,ncontent:ncontent,nickname:nickname,cate1:cate1,cate2:cate2},
+		type : 'post',
+		dataType:'json',
+		success:function(data){
+			alert("게시글 업로드 성공");
 
+			
+
+			$('#goCom').modal("hide");
+			
+		},error : function(request,status,error){
+		    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+	});
+}
 </script>
 	
 </body>

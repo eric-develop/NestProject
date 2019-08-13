@@ -328,7 +328,7 @@
 			role="button" data-toggle="dropdown" aria-haspopup="true"
 			aria-expanded="false" style="width:130px;"> 
 				<img class="img-profile rounded-circle"	src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
-				<span class="mr-2 d-none d-lg-inline text-white-600 small" style="font-size:15px;">${member.nickName}</span>
+				<span class="mr-2 d-none d-lg-inline text-white-600 small nickname" style="font-size:15px;">${member.nickName}</span>
 			</a> 
 			
 			<!-- 메신저 아이콘 -->
@@ -732,6 +732,7 @@
 							<a class="dropdown-item" onclick="copyNote()" style="cursor:pointer">노트복제</a> 
 							<a class="dropdown-item" onclick="deleteOneNote()" style="cursor:pointer">노트삭제</a>
 							<a class="dropdown-item" onclick="deleteAllNote()" style="cursor:pointer">노트전체삭제</a>
+							<a class="dropdown-item" onclick="$('#goCom').modal();" style="cursor:pointer">커뮤니티 게시</a>
 						</div>
 						<!-- Modal -->
 					  <div class="modal fade" id="myModal" role="dialog">
@@ -788,6 +789,7 @@
 							<a class="dropdown-item" onclick="template()" style="cursor:pointer"> 템플릿 적용</a>  
 							<a class="dropdown-item" onclick="deleteOneNote()" style="cursor:pointer">노트삭제</a>
 							<a class="dropdown-item" onclick="deleteAllNote()" style="cursor:pointer">노트전체삭제</a>
+							<a class="dropdown-item" onclick="$('#goCom').modal();" style="cursor:pointer">커뮤니티 게시</a>
 						</div>
 						<!-- 템플릿 적용 모달 -->
 					  <div class="modal fade" id="myModal" role="dialog">
@@ -901,6 +903,95 @@
 		      
 		    </div>
 		  </div>				
+		
+		<!-- 커뮤니티에 글 게시 -->
+		  <div class="modal fade" id="goCom" role="dialog">
+		    <div class="modal-dialog">
+		    
+		      <!-- Modal content-->
+		      <div class="modal-content">
+		        <div class="modal-header" style="text-align:left">
+		          <h4 class="modal-title">템플릿 목록</h4>
+		          <button type="button" class="close" data-dismiss="modal">×</button>
+		        </div>
+		        <div class="modal-body" style="overflow:auto">
+		        	<select id="cate1">
+		        		<option>카테고리1</option>
+		        		<option value="c1">연예/방송</option>
+		        		<option value="c2">스포츠</option>
+		        		<option value="c3">교육/금융/IT</option>
+		        		<option value="c4">여행/음식</option>
+		        		<option value="c5">취미/생활</option>
+		        	</select>
+		        	<select id="cate2">
+		        		<option>카테고리2</option>
+		        		<option class="c1" value="c11">가수</option>
+						<option class="c1" value="c12">배우</option>
+						<option class="c1" value="c13">사회/시사</option>
+						<option class="c1" value="c14">다큐멘터리</option>
+						<option class="c1" value="c15">예능프로그램</option>
+						<option class="c1" value="c16">기타</option>
+						<option class="c2" value="c21">축구</option>
+						<option class="c2" value="c22">야구</option>
+						<option class="c2" value="c23">농구</option>
+						<option class="c2" value="c24">골프</option>
+						<option class="c2" value="c25">기타</option>
+						<option class="c3" value="c31">자격증</option>
+						<option class="c3" value="c32">공무원</option>
+						<option class="c3" value="c33">주식</option>
+						<option class="c3" value="c34">부동산</option>
+						<option class="c3" value="c35">비트코인</option>
+						<option class="c3" value="c36">컴퓨터 부품</option>
+						<option class="c3" value="c37">프로그래밍</option>
+						<option class="c3" value="c38">기타</option>
+						<option class="c4" value="c41">여행</option>
+						<option class="c4" value="c42">워킹홀리데이</option>
+						<option class="c4" value="c43">외식</option>
+						<option class="c4" value="c44">요리</option>
+						<option class="c4" value="c45">디저트</option>
+						<option class="c4" value="c46">기타</option>
+						<option class="c5" value="c51">영화</option>
+						<option class="c5" value="c52">콘서트</option>
+						<option class="c5" value="c53">낚시</option>
+						<option class="c5" value="c54">쇼핑</option>
+						<option class="c5" value="c55">데이트</option>
+						<option class="c5" value="c56">기타</option>
+		        	</select>
+		        	
+		        </div>
+		        <div class="modal-footer">
+		          <button class="btn" onclick="goCommunity()">노트 게시</button>
+		        </div>
+		      </div>
+		      
+		    </div>
+		  </div>				
+		<style>
+			#cate2 option{
+				display:none;
+			}
+		</style>
+		<script>
+			$('#cate1').change(function(){
+				if($(this).val()=="c1"){
+					$('#cate2 option').css("display","none");
+					$('.c1').css("display","block");
+				}else if($(this).val()=="c2"){
+					$('#cate2 option').css("display","none");
+					$('.c2').css("display","block");
+				}else if($(this).val()=="c3"){
+					$('#cate2 option').css("display","none");
+					$('.c3').css("display","block");
+				}else if($(this).val()=="c4"){
+					$('#cate2 option').css("display","none");
+					$('.c4').css("display","block");
+				}else if($(this).val()=="c5"){
+					$('#cate2 option').css("display","none");
+					$('.c5').css("display","block");
+				}
+			});
+		
+		</script>
 		
 		<!-- Logout Modal-->
 		<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

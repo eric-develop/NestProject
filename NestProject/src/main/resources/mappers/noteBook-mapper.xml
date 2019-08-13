@@ -8,7 +8,7 @@
 	<resultMap id="note" type="note"/>
 	
 	<select id="selectOneNoteBook" parameterType="_int" resultType="note">                                    
-		SELECT * FROM NOTE WHERE NBNO = #{nbno} AND TRASHCAN='N'		
+		SELECT * FROM NOTE WHERE NBNO = #{nbno} AND TRASHCAN='N' ORDER BY 1 DESC		
 	</select>
 	
 	<select id="selectListNoteBook" parameterType="_int" resultType="notebook">         

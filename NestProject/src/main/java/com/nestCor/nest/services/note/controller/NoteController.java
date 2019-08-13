@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.nestCor.nest.services.board.model.service.BoardService;
+import com.nestCor.nest.services.board.model.vo.Board;
 import com.nestCor.nest.services.note.model.service.NoteService;
 import com.nestCor.nest.services.note.model.vo.Note;
 import com.nestCor.nest.services.notebook.model.service.NoteBookService;
@@ -34,6 +36,10 @@ public class NoteController {
 	
 	@Autowired
 	NoteBookService nbService;
+
+	@Autowired
+	BoardService bService;
+	
 	
 	@RequestMapping("/note/index.do")
 	public String indexgo() {
@@ -298,6 +304,31 @@ public class NoteController {
 		note.setNno(nno);
 		
 		int result = noteService.moveNote(note);
+		boolean tf;
+		if(result>0) tf=true;
+		else tf=false;
+
+		hmap.put("tf", tf);
+		
+		return hmap;
+	}
+	
+	@RequestMapping("/note/goCommunity.do")
+	@ResponseBody
+	public HashMap<String, Object> goCommunity(@RequestParam("ntitle") String btitle, @RequestParam("ncontent") String bcontent,
+			@RequestParam("nickname") String bwriter, @RequestParam("cate1") String cate1, @RequestParam("cate2") String cate2) {
+		HashMap<String, Object> hmap = new HashMap<>();
+		
+		Board board = new Board();
+		board.setBtitle(btitle);
+		board.setBcontent(bcontent);
+		board.setBwriter(bwriter);
+		board.setCate1_code(cate1);
+		board.setCate2_code(cate2);
+		
+		System.out.println(board);
+		
+		int result = bService.insertBoard(board);
 		boolean tf;
 		if(result>0) tf=true;
 		else tf=false;

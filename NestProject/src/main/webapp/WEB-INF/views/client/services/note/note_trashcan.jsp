@@ -224,11 +224,11 @@
 				$('.sc3').mouseenter(function(){
 					$('.sc3').css("background","#fff");
 					$(this).css("background","#ebebeb");
-					
+					$('.sc3').eq(select).css("background","#ebebeb");
 				});
 				$('.sc3').mouseleave(function(){
 					$('.sc3').css("background","#fff");
-					//$('.sc3').eq(select).css("background","#ebebeb");
+					$('.sc3').eq(select).css("background","#ebebeb");
 				});
 				
 				
