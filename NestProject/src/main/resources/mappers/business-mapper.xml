@@ -142,6 +142,11 @@
 			JOIN (SELECT * FROM BUSINESS_MEMBER WHERE MNO = #{mNo}) BM USING(MNO)
 		</select>
 		
+		<!-- 비즈니스멤버 -->
+		<select id="bm" resultType="BusinessMember">
+			SELECT * FROM BUSINESS_MEMBER WHERE MNO = #{mNo}
+		</select>
+		
 		<insert id="insertBusiness" parameterType="Business">
 			INSERT INTO BUSINESS
 			VALUES(SEQ_BIZNO.NEXTVAL, #{bizName}, 7)
@@ -159,6 +164,11 @@
 		
 		<update id="updateBusinessMemberY" parameterType="BusinessMember">
 			UPDATE BUSINESS_MEMBER SET INVITATION = 'Y', ENROLLDATE = SYSDATE WHERE MNO = #{mNo}
+		</update>
+		
+		<!-- 초대 수락 멤버 비즈니스번호 수정 -->
+		<update id="updateMemberBizNo" parameterType="Member">
+			UPDATE MEMBER SET BIZNO = #{bizNo} WHERE MNO = #{mNo}
 		</update>
 		
 		<update id="updateBusinessMemberN" parameterType="BusinessMember">

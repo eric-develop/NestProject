@@ -175,6 +175,16 @@ public class BusinessDaoImpl implements BusinessDao {
 	public List<BusinessMember> memberActiveY(int mNo) {
 		return sqlSession.selectList("Business_mapper.memberActiveY", mNo);
 	}
+
+	@Override
+	public BusinessMember bm(int mNo) {
+		return sqlSession.selectOne("Business_mapper.bm", mNo);
+	}
+
+	@Override
+	public int updateMemberBizNo(Member bm) {
+		return sqlSession.update("Business_mapper.updateMemberBizNo", bm);
+	}
 	
 
 }

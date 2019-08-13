@@ -21,4 +21,5 @@ public interface MemberDao {
 		int memberPremiumServiceUpdate(int mNo);
 		String memberAdmin(int mNo);
 		String memberInvitation(int mNo);
+		Member sMember(int mNo);
 } 

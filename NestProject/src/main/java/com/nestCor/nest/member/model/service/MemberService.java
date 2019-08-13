@@ -52,5 +52,12 @@ public interface MemberService {
 		 */
 		String memberInvitation(int mNo);
 		
+		/***
+		 * 결제 후 사용자 정보
+		 * @param mNo
+		 * @return
+		 */
+		Member sMember(int mNo);
+		
 	
 }

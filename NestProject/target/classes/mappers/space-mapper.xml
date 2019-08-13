@@ -9,7 +9,7 @@
 			<result property="mNo" column="mno"/>
 			<result property="userId" column="userId"/>
 			<result property="userName" column="username"/>
-			<result property="enrollDate" column="enrollDate"/>
+			<result property="spaceEnrollDate" column="enrollDate"/>
 			<result property="mRightSet" column="mRightSet"/>
 		</resultMap>
 		
@@ -88,7 +88,7 @@
 		
 		<!-- 비즈니스 스페이스 회원 리스트 -->
 		<select id="spaceMemberList" resultMap="spaceMemberList">
-			SELECT MNO, USERID, USERNAME, SM.ENROLLDATE, SM.MRIGHTSET FROM MEMBER
+			SELECT MNO, USERID, USERNAME, TO_CHAR(SM.ENROLLDATE, 'YYYY/MM/DD') ENROLLDATE, SM.MRIGHTSET FROM MEMBER
 			JOIN (SELECT * FROM SPACE_MEMBER WHERE SPACENO = #{spaceNo}) SM USING(MNO)
 			ORDER BY SM.ENROLLDATE DESC
 		</select>

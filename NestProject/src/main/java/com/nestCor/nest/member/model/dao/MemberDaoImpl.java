@@ -102,5 +102,10 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.selectOne("Member_mapper.memberInvitation", mNo);
 	}
 
+	@Override
+	public Member sMember(int mNo) {
+		return sqlSession.selectOne("Member_mapper.sMember", mNo);
+	}
+
 
 }

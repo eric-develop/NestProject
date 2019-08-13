@@ -27,11 +27,22 @@ public class Member implements Serializable{
 		private String admin;
 		private String invitation;
 		private String approval;
-		private Date spaceEnrollDate;
+		private String spaceEnrollDate;
 		private String mRightSet;
 		public Member() {
 		
 		}
+		
+		
+
+
+		public Member(int mNo, int bizNo) {
+			super();
+			this.mNo = mNo;
+			this.bizNo = bizNo;
+		}
+
+
 
 
 		public Member(int mNo, int serviceNo, String userId, String password, String userName, String nickName,
@@ -241,7 +252,7 @@ public class Member implements Serializable{
 
 
 
-		public Date getSpaceEnrollDate() {
+		public String getSpaceEnrollDate() {
 			return spaceEnrollDate;
 		}
 
@@ -251,7 +262,7 @@ public class Member implements Serializable{
 
 
 
-		public void setSpaceEnrollDate(Date spaceEnrollDate) {
+		public void setSpaceEnrollDate(String spaceEnrollDate) {
 			this.spaceEnrollDate = spaceEnrollDate;
 		}
 

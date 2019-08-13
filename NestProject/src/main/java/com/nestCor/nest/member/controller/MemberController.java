@@ -262,15 +262,20 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/noteMain.do")
-	public String noteMain(Model model, HttpServletRequest req, @RequestParam int mNo) {
+	public String noteMain(Model model, HttpSession session, @RequestParam int mNo) {
+		
+		Member m = (Member) session.getAttribute("member");
 		
 		String bizName = bService.bizName(mNo);
 		
 		String memberAdmin = mService.memberAdmin(mNo);
 		
+		Member sMember = mService.sMember(mNo);
+		
 		model
 		.addAttribute("bizName", bizName)
-		.addAttribute("memberAdmin", memberAdmin);
+		.addAttribute("memberAdmin", memberAdmin)
+		.addAttribute("sMember", sMember);
 		
 		return "client/services/note/note_main";
 	}

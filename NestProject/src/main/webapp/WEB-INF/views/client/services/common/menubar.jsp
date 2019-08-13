@@ -521,7 +521,7 @@
 		<!-- Divider -->
 		<hr class="sidebar-divider">
 
-		<c:if test="${ member.serviceNo eq 3 and memberAdmin ne 'Y' }">
+		<c:if test="${ sMember.serviceNo eq 3 and empty memberAdmin }">
 			<a class="btn" data-toggle="modal"
 				data-target="#myModal_businessInsert"
 				style="width: 100%; border: none; font-size: 17px; color: #fff; margin-bottom: 0; background: #3b332e;">

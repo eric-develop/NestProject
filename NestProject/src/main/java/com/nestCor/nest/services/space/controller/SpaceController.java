@@ -139,24 +139,11 @@ public class SpaceController {
 		String bizName = bService.bizName(mNo);
 		String bmAdmin = bService.bmAdmin(mNo);
 		
-		// 회원 리스트
-//		int spaceNo = space.getSpaceNo();
-//		System.out.println("list spaceNo: "+ spaceNo);
-//		List<Member> spaceMemberList = sService.spaceMemberList(spaceNo);
-		
-		// 회원 수
-//		int spaceNo = space.getSpaceNo();
-//		System.out.println("count spaceNo : " + spaceNo);
-//		
-//		int countSpaceMember = sService.countSpaceMember(spaceNo);
-		
 		model
 		.addAttribute("selectBusinessSpaceList", selectBusinessSpaceList)
 		.addAttribute("space", space)
 		.addAttribute("bizName", bizName)
 		.addAttribute("bmAdmin", bmAdmin);
-//		.addAttribute("spaceMemberList", spaceMemberList);
-//		.addAttribute("countSpaceMember", countSpaceMember);
 		
 		return "client/services/space/spaceManage";
 	}
@@ -225,15 +212,13 @@ public class SpaceController {
 	@RequestMapping("/space/spaceMemberList.do")
 	@ResponseBody
 	public List<Member> spaceMemberList(@RequestParam int spaceNo) {
-		System.out.println("spaceNo : " + spaceNo);
 		
 		List<Member> spaceMemberList = sService.spaceMemberList(spaceNo);
+		
 		System.out.println(spaceMemberList);
+		
 		return spaceMemberList;
 		
-//		model.addAttribute("spaceMemberList", spaceMemberList);
-		
-//		return "client/services/space/spaceMemberList";
 	}
 	
 	@RequestMapping("/space/deleteSpaceMember.do")

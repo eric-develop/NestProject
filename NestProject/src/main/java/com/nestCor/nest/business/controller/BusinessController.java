@@ -1,5 +1,7 @@
 package com.nestCor.nest.business.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -70,8 +72,6 @@ public class BusinessController {
 			.addAttribute("insertBusinessMemberAdmin", insertBusinessMemberAdmin); 
 		}
 		
-		/* return "client/member/memberSummary"; */
-		
 		return "client/common/msg";
 	}
 	
@@ -133,9 +133,8 @@ public class BusinessController {
 	}
 	
 	@RequestMapping("/business/updateBusinessMemberY.do")
-	public String updateBusinessMemberY(Model model, HttpServletRequest req) {
+	public String updateBusinessMemberY(Model model, HttpSession session) {
 		
-		HttpSession session = req.getSession();
 		Member m = (Member) session.getAttribute("member");
 		int mNo = m.getmNo();
 		
@@ -177,10 +176,23 @@ public class BusinessController {
 		
 		int approvalStatusY = bService.approvalY(mNo);
 		
+		BusinessMember bm = bService.bm(mNo);
+		
+		Member updateM = new Member(); 
+		updateM.setBizNo(bm.getBizNo());
+		updateM.setmNo(bm.getmNo());
+		  
+		System.out.println("updateM : "+updateM);
+		
 		String loc = "/member/memberManage.do";
 		String msg = "";
 		
-		if(approvalStatusY > 0) msg = "사용자 승인 성공";
+		if(approvalStatusY > 0) {
+			
+			int updateMemberBizNo = bService.updateMemberBizNo(updateM);
+			
+			msg = "사용자 승인 성공";
+		}
 		
 		model.addAttribute("loc", loc).addAttribute("msg", msg);
 		

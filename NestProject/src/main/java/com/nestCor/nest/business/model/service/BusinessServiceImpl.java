@@ -177,4 +177,14 @@ public class BusinessServiceImpl implements BusinessService {
 		return bDao.memberActiveY(mNo);
 	}
 
+	@Override
+	public BusinessMember bm(int mNo) {
+		return bDao.bm(mNo);
+	}
+
+	@Override
+	public int updateMemberBizNo(Member bm) {
+		return bDao.updateMemberBizNo(bm);
+	}
+
 }
