@@ -14,6 +14,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
+
 <!-- Custom fonts for this template-->
 <link href="${pageContext.request.contextPath}/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -449,7 +450,7 @@
 		<li class="nav-item">
 		
 		<a class="nav-link collapsed newNote cate" href="#"
-			data-toggle="collapse" data-target="#collapseBoardcast"
+			data-toggle="collapse" 
 			aria-expanded="true" aria-controls="collapseBoardcast" style="background:#e7722e; border-radius:40px 40px;"> 
 			<i class="fas fa-plus-circle" style="font-size:17px"></i> <span style="font-size:16px;">새 노트</span>
 		</a>
@@ -459,7 +460,7 @@
 	
 		<li class="nav-item">
 		<a class="nav-link collapsed note cate" href="#"
-			data-toggle="collapse" data-target="#collapseSport"
+			data-toggle="collapse" 
 			aria-expanded="true" aria-controls="collapseSport"> 
 			<i class="fas fa-sticky-note" style="font-size:17px"></i> <span style="font-size:16px;">모든 노트</span>
 		</a>
@@ -469,27 +470,18 @@
 		
 		<li class="nav-item">
 		<a class="nav-link collapsed notebook cate" href="#"
-			data-toggle="collapse" data-target="#collapseSport"
+			data-toggle="collapse" 
 			aria-expanded="true" aria-controls="collapseSport"> 
 			<i class="fas fa-book" style="font-size:17px"></i> <span style="font-size:16px;">노트북</span>
 		</a>
 		
 		</li>
 
-		
-		<li class="nav-item">
-		<a class="nav-link collapsed tag cate" style="cursor:pointer"
-			data-toggle="collapse" data-target="#collapseSport"
-			aria-expanded="true" aria-controls="collapseSport"> 
-			<i class="fas fa-tag" style="font-size:17px"></i> <span style="font-size:16px;">태그</span>
-		</a>
-		
-		</li>
 
 
 		<li class="nav-item">
 		<a class="nav-link collapsed trash cate" href="#"
-			data-toggle="collapse" data-target="#collapseSport"
+			data-toggle="collapse" 
 			aria-expanded="true" aria-controls="collapseSport"> 
 			<i class="fas fa-trash" style="font-size:17px"></i> <span style="font-size:16px;">휴지통</span>
 		</a>
@@ -575,7 +567,7 @@
 		
 		<li class="nav-item">
 		<a class="nav-link collapsed cate" href="#"
-			data-toggle="collapse" data-target="#collapseSport"
+			data-toggle="collapse" 
 			aria-expanded="true" aria-controls="collapseSport"> 
 			<i class="fas fa-star" style="font-size:17px"></i> <span style="font-size:16px;">업그레이드</span>
 		</a>
@@ -583,7 +575,7 @@
 		
 		<li class="nav-item">
 			<a class="nav-link collapsed community cate" href="#"
-				data-toggle="collapse" data-target="#collapseSport"
+				data-toggle="collapse" 
 				aria-expanded="true" aria-controls="collapseSport"> 
 				<i class="fas fa-user-friends" style="font-size:17px"></i> <span style="font-size:16px;">커뮤니티</span>
 			</a>
@@ -893,13 +885,15 @@
 		    <div class="modal-dialog">
 		    
 		      <!-- Modal content-->
-		      <div class="modal-content">
+		      <div class="modal-content"style="height:269px;transform: translate(-50%, 90%);">
 		        <div class="modal-header" style="text-align:left">
-		          <h4 class="modal-title">템플릿 목록</h4>
+		          <h4 class="modal-title">커뮤니티 게시</h4>
 		          <button type="button" class="close" data-dismiss="modal">×</button>
 		        </div>
-		        <div class="modal-body" style="overflow:auto">
-		        	<select id="cate1">
+		        <div class="modal-body" style="overflow:auto;vertical-align: center;" >
+		        <div style="overflow:hidden;margin:aute 0;margin: 14px 0;">
+		        	<div style="display:inline-block;width:50%;float:left;padding:0 6px">
+		        	<select id="cate1" class="form-control form-control-sm" style="border:1px solid #e7722e;">
 		        		<option>카테고리1</option>
 		        		<option value="c1">연예/방송</option>
 		        		<option value="c2">스포츠</option>
@@ -907,7 +901,9 @@
 		        		<option value="c4">여행/음식</option>
 		        		<option value="c5">취미/생활</option>
 		        	</select>
-		        	<select id="cate2">
+		        	</div>
+		        	<div style="display:inline-block;width:50%;float:left;padding:0 6px">
+		        	<select id="cate2"class="form-control form-control-sm" style="border:1px solid #e7722e;">
 		        		<option>카테고리2</option>
 		        		<option class="c1" value="c11">가수</option>
 						<option class="c1" value="c12">배우</option>
@@ -941,18 +937,23 @@
 						<option class="c5" value="c55">데이트</option>
 						<option class="c5" value="c56">기타</option>
 		        	</select>
-		        	
+		        	</div>
+		        	</div>
 		        </div>
 		        <div class="modal-footer">
-		          <button class="btn" onclick="goCommunity()">노트 게시</button>
+		          <button class="btn btn-primary" onclick="goCommunity()">게시</button>
 		        </div>
 		      </div>
 		      
 		    </div>
 		  </div>				
 		<style>
+			option{
+				padding:10px 0;
+			}
 			#cate2 option{
 				display:none;
+				
 			}
 		</style>
 		<script>
