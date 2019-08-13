@@ -8,7 +8,7 @@
 			
 	<insert id="firstSave" parameterType="note">
 		INSERT INTO NOTE VALUES(							
-			SEQ_NNO.NEXTVAL, #{mno}, #{nbno}, 1, 
+			SEQ_NNO.NEXTVAL, #{mno}, #{nbno}, 2, 
 			#{ntitle}, #{ncontent}, 's1', DEFAULT,DEFAULT,DEFAULT)
 	</insert>
 	
