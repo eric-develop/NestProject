@@ -13,7 +13,7 @@
 
 		<c:import url="../common/menubar.jsp"/>
 		
-			<div style="width:1430px;min-width: 1429px; height:100%">
+			<div style="width:100%; height:100%">
 			<!--===========================노트 흰색=====================================================================-->
 		
 
@@ -29,35 +29,43 @@
 				<div id="top_line_margin" style="display: inline-block;">
 					<i class="fas fa-users" style="font-size: 30px; color: #a8a8a8;"></i>
 					<span style="color: #afafaf">10 members</span>
-					<div id="top_membericon" class="rounded-circle"></div>
-					<div id="top_membericon" class="rounded-circle"></div>
-					<div id="top_membericon" class="rounded-circle"></div>
-					<div id="top_membericon" class="rounded-circle"></div>
-					<div id="top_membericon" class="rounded-circle"></div>
-
-
-
 					<div id="top_membericon" class="rounded-circle">
-						<p
-							style="color: #fff; display: inline-block; margin: 0; padding: 2px;">5</p>
+					  <img src="${pageContext.request.contextPath}/resources/images/person1.png" class="rounded-circle" style="background: #fff; width: 100%; height: 100%;">
 					</div>
-					<!--5개의 사용자 아이콘 노출 후 남은 5명 숫자로 나타내야합니다,-->
+					<div id="top_membericon" class="rounded-circle">
+					  <img src="${pageContext.request.contextPath}/resources/images/person2.png" class="rounded-circle" style="background: #fff; width: 100%; height: 100%;">
+					</div>
+					<div id="top_membericon" class="rounded-circle">
+					  <img src="${pageContext.request.contextPath}/resources/images/person3.png" class="rounded-circle" style="background: #fff; width: 100%; height: 100%;">
+					</div>
+					<div id="top_membericon" class="rounded-circle">
+					  <img src="${pageContext.request.contextPath}/resources/images/person4.png" class="rounded-circle" style="background: #fff; width: 100%; height: 100%;">
+					</div>
+					<div id="top_membericon" class="rounded-circle">
+					  <img src="${pageContext.request.contextPath}/resources/images/person5.png" class="rounded-circle" style="background: #fff; width: 100%; height: 100%;">
+					</div>
 
-				</div>
+
+
+					<!---->
+					<div id="top_membericon" class="rounded-circle" >
+						<p
+							style="color: #fff; margin: 0; text-align:center; padding: 2px;">5</p>
+					</div>
+					</div>
 					<button type="button" class="btn btn-warning"
 						style="margin-left: 10px;">초대하기</button>
 				</div>
 			</div>
 			<!---=============================----------->
-				<div>
+				<div style="padding: 20px">
 				<!--left_div-->
 				<div id="space_left">
 					<!--title-->
 					<h5 style="display:inline-block;  padding: 0px 20px 4px 10px;">새로운 소식</h5>
 					
-					 <div id="space-left-Container" style="background:rgb(248,248,248); width:650px;height:300px; margin-top:10px;">	
-					 	<div style="width:650px; padding:10px; display:inline-block;    white-space: nowrap;
-overflow-x: scroll;">
+					 <div id="space-left-Container" style="background: background: rgb(248,248,248);">	
+					 	<div id="space-left-Container-div">
 							<c:forEach var="noteList" items="${spaceContentsMap.noteList}" varStatus="i">
 									<div class="card border-secondary mb-3" style="width:300px; height:250px; display:inline-block; margin-top:15px; margin-right:10px;">
 										  <div class="card-header">${noteList.nwriter}</div>
@@ -73,8 +81,8 @@ overflow-x: scroll;">
 						
 <!------right_div-------->
 		
-  <div id="space_right" style="margin-top:10px; width:650px;">
-    <div>
+  <div id="space_right" style="margin-top:10px;">
+    <div id="space_right_btn">
       <h5 style="display:inline-block;  padding: 0px 20px 4px 10px; ">고정된 노트</h5>
 
       <!-- --******************-  -->
@@ -88,7 +96,7 @@ overflow-x: scroll;">
 
     <!---**********************-->
     <!--추가시 div 생성-->
-    <div id="space_right_first_div2" style="margin-top:0px; width:500px; height:300px;">
+    <div id="space_right_first_div2" style="margin-top:0px;">
        
       <c:forEach var="noteList" items="${spaceContentsMap.noteList}">
       	
@@ -148,7 +156,7 @@ overflow-x: scroll;">
   </div>
 
 	<!--=================하단 노트목록 ======================================-->
-<div id="space_note_table" class="col-lg-12">
+<div id="space_note_table" class="col-lg-12 col-md-12 col-xs-12">
                 <p style="display: inline-block; margin-top: 50px; ;font-weight: 500;"><i class="fas fa-heart" style="margin-right: 10px;"></i>함께쓰는 공유 노트</p>
                 <!--새노트-->
                     <div style="float: right; margin-top: 50px; cursor: pointer;">

@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.nestCor.nest.member.model.vo.Member;
 import com.nestCor.nest.services.note.model.vo.Note;
@@ -20,6 +21,7 @@ import com.nestCor.nest.services.space.model.service.SpaceService;
 import com.nestCor.nest.services.space.model.vo.ChatRoom;
 import com.nestCor.nest.services.space.model.vo.Space;
 
+@SessionAttributes(value= {"spaceList"})
 @Controller
 public class SpaceController {
 
@@ -28,26 +30,33 @@ public class SpaceController {
 	
 	
 	@RequestMapping("/space/createSpace.do")
-	public String createSpace(Space space, HttpServletRequest req) {
+	public String createSpace(Space space, HttpServletRequest req, Model model) {
 		
-		
-		System.out.println(space);
+		List<Space> spaceList = null;
+
 		HttpSession session = req.getSession();
 		Member m = (Member)session.getAttribute("member");
-		System.out.println(m);
+		
 		if(space.getPostSpaceDir().equals("on")) {
 			space.setPostSpaceDir("Y");
 		}else space.setPostSpaceDir("N");
 		
 		space.setBizNo(m.getBizNo());
+		
 		int mNo = m.getmNo();
-		System.out.println(space);
+		
 		
 		int result = sService.createSpace(space,mNo);
 		String url = "";
 		
 		
 		if(result > 0) {
+	
+			// 스페이스 리스트
+			spaceList = sService.selectSpaceList(m.getBizNo());
+			
+			model.addAttribute("spaceList",spaceList);
+			
 			url = "client/services/note/note_main";
 		}else { // 에러
 			

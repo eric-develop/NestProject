@@ -143,7 +143,8 @@
 #selfimg {
 	width: 60px;
 	height: 60px;
-	margin: 10px;
+	margin: 20px;
+	padding : 15px;
 	background: #ababab;
 	float: left;
 	display: inline-block;
@@ -154,6 +155,7 @@
 	float: left;
 	padding-top: 20px;
 }
+
 #myself {
 	border-bottom: 1px solid #d0d0d0;
 	width: 100%;
@@ -189,6 +191,7 @@
 	width: 50px;
 	height: 50px;
 	margin: 10px 10px 10px 20px;
+	padding : 15px;
 	background: #d0d0d0;
 	float: left;
 	display: inline-block;
@@ -348,15 +351,6 @@
 				<i class="fas fa-user" id="msg_main" onclick="msg_main();"
 					style="display: inline-block; padding: 0px 10px; color: rgb(255, 119, 0); font-size: 20px; cursor:pointer;"></i>
 
-				<!-- 메세지 아이콘 -->
-				<i style="color: rgb(255, 119, 0); padding: 0px 10px; cursor:pointer;"
-					id="msg_parent_change_icon" onclick="msg_parent_change_icon();"
-					class="fas fa-comment"></i> 
-					
-					<span onclick="closeMSG();"
-					style="cursor: pointer; font-size: 1.5em; float: right;" title="닫기"><i
-					class="fas fa-times" style="padding-right: 10px;"></i></span>
-
 			</div>
 
 			<div id="msg_serch">
@@ -365,21 +359,7 @@
 			</div>
 			<!-- -메세지 아이콘 클릭시 채팅 리스트로 이동- -->
 
-			<div id="msg_parent2">
-				<div id="msg_list">
-
-					<div id="friend_img" class="rounded-circle"></div>
-					<div id="msg_group" style="display: inline-block;">
-						<span id="msg_friend_name">user</span>
-						<p id="msg_text"
-							style="padding: 0; display: inline-block; text-align: left; font-size: 12px; width: 100%; margin: 0 auto;">더운데
-							수고 많으시네요.</p>
-					</div>
-					<p id="msg_date">2019/08/09</p>
-				</div>
-
-
-			</div>
+			
 
 			<!-- --채팅 메인 	 -->
 
@@ -388,16 +368,20 @@
 					<p style="margin: 0; padding-left: 10px">
 						내 프로필
 					</p>
-					<div id="selfimg" class="rounded-circle"></div>
+					<div id="selfimg" class="rounded-circle">
+					   <i class="fas fa-dove" style="font-size: 30px; color: #fff;"></i>
+					</div>
 					<span id="msgname">${member.nickName}</span>
 				</div>
 
       		
 			</div>
 			
-			 <div id="chattingContainer">	
+			  <div id="chattingContainer">	
    			   <div id="chatNav" style="background:rgb(169,189,209); position:relative; width:393px;height:55px; margin-left:5px;">
-	   			   <div id="friend_img"class="rounded-circle" style="padding-bottom:10px; margin: 0px 0px 0px 10px; width:45px; height:45px;"></div>
+	   			   <div id="friend_img"class="rounded-circle" style="padding-bottom:10px; margin: 0px 0px 0px 10px; width:50px; height:50px;">
+	   			   	 <i class="fas fa-dove" style="font-size: 20px; color: #fff;"></i>
+	   			   </div>
 	   			   <span id="receiver"></span>
    			   		<button  class="close" type="button" aria-label="Close" style="margin-righT:5px;" onclick="closeChatContainer();">
 						<span aria-hidden="true">×</span>
@@ -1039,7 +1023,7 @@
 			 window.bizMemberCount +=1;
 			 if(value.nickName != '${member.nickName}'){
 				  
-				 $('#msg_parent').append("<div id="+value.nickName+" class='friend' style='cursor:pointer;'>"+ "<div id='friend_img' class='rounded-circle'></div><p id='msg_friend_name2'>" + value.nickName + "</p></div>");
+				 $('#msg_parent').append("<div id="+value.nickName+" class='friend' style='cursor:pointer;'>"+ "<div id='friend_img' class='rounded-circle'> <i class='fas fa-dove' style='font-size: 20px; color: #fff;'></i></div><p id='msg_friend_name2'>" + value.nickName + "</p></div>");
 
 				};
 			   
@@ -1074,7 +1058,7 @@
 			divTop = 0;
 		$('.popupLayer').css({
 			"top" : divTop,
-			"left" : divLeft,
+			"left" : divLeft+20,
 			"z-index" : 1,
 			"position" : "absolute"
 		}).show();
