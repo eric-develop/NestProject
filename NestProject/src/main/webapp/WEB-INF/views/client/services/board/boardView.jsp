@@ -61,7 +61,7 @@
 
 					<p class="com_title_text cmtright"
 						style="border-left: #e0e0e0 solid 1px;">
-						&nbsp;&nbsp;댓글&nbsp;10&nbsp;</p>
+						&nbsp;&nbsp;댓글&nbsp;${totalCommentContents}&nbsp;</p>
 					<p class="com_title_text cmtright">&nbsp;&nbsp;조회수&nbsp;${board.bcount}
 						&nbsp;</p>
 				</div>

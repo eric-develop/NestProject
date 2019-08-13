@@ -23,13 +23,18 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/styles.css">
 
+<style>
+@font-face { font-family: 'Godo'; font-style: normal; font-weight: 400; src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff') format('woff'); } @font-face { font-family: 'Godo'; font-style: normal; font-weight: 700; src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff') format('woff'); } .godo * { font-family: 'Godo', sans-serif; }
+      * {font-family: 'Godo';}
+</style>
+
 </head>
 
 <body id="page-top">
 
 	<!-- Sidebar -->
 	<ul
-		class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+		class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" style="background:#3B332E;"
 		id="accordionSidebar">
 
 		<!-- Sidebar - 메인로고 부분 -->
@@ -46,26 +51,30 @@
 		<hr class="sidebar-divider">
 
 		<!-- Heading -->
-		<div class="sidebar-heading">카테고리</div>
+		<div class="sidebar-heading" style=" font-size:14px;color:#e7722e;">카테고리</div>
 
 		<!-- Nav Item - 연예/방송 카테고리 -->
 		<li class="nav-item"><a class="nav-link collapsed" href="#"
 			data-toggle="collapse" data-target="#collapseBoardcast"
 			aria-expanded="true" aria-controls="collapseBoardcast"> <i
-				class="fas fa-fw fa-folder"></i> <span>연예/방송</span>
+				class="fas fa-fw fa-folder"></i> <span style=" font-size:16px;">연예/방송</span>
 		</a>
 			<div id="collapseBoardcast" class="collapse"
 				aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-				<div class="bg-white py-2 collapse-inner rounded">
-					<h6 class="collapse-header">연예 :</h6>
+				<div class="bg-white py-2 collapse-inner rounded" >
+					<h6 class="collapse-header" style=" font-size:16px;color:#e7722e;">연예</h6>
+					<div style="padding:6px;">
 					<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c1&cate2_code=c11">가수</a> 
 					<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c1&cate2_code=c12">배우</a> 
-					<h6 class="collapse-header">방송 :</h6>
+					</div>
+					<h6 class="collapse-header" style=" font-size:16px;color:#e7722e;">방송</h6>
+					<div style="padding:6px;">
 					<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c1&cate2_code=c13">사회/시사</a> 
 					<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c1&cate2_code=c14">다큐멘터리</a> 
 					<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c1&cate2_code=c15">예능 프로그램</a>
-					<hr class="sidebar-divider" color ='lightgray'>
-					<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c1&cate2_code=c16">기타</a>
+					</div>
+					<hr class="sidebar-divider" color='lightgray'>
+					<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c1&cate2_code=c16" >기타</a>
 				</div>
 			</div></li>
 
@@ -73,16 +82,18 @@
 		<li class="nav-item"><a class="nav-link collapsed" href="#"
 			data-toggle="collapse" data-target="#collapseSport"
 			aria-expanded="true" aria-controls="collapseSport"> <i
-				class="fas fa-fw fa-folder"></i> <span>스포츠</span>
+				class="fas fa-fw fa-folder"></i> <span style=" font-size:16px;">스포츠</span>
 		</a>
 			<div id="collapseSport" class="collapse"
 				aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
-					<h6 class="collapse-header">스포츠 :</h6>
-					<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c2&cate2_code=c21">축구</a> 
+					<h6 class="collapse-header"style=" font-size:16px;color:#e7722e;">스포츠</h6>
+					<div style="padding:6px;">
+					<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c2&cate2_code=c21">축구</a>
 					<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c2&cate2_code=c22">야구</a> 
 					<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c2&cate2_code=c23">농구</a> 
 					<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c2&cate2_code=c24">골프</a>
+					</div>
 					<hr class="sidebar-divider" color ='lightgray'>
 					<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c2&cate2_code=c25">기타</a>
 				</div>
@@ -92,21 +103,27 @@
 		<li class="nav-item"><a class="nav-link collapsed" href="#"
 			data-toggle="collapse" data-target="#collapseEdu"
 			aria-expanded="true" aria-controls="collapseEdu"> <i
-				class="fas fa-fw fa-folder"></i> <span>교육/금융/IT</span>
+				class="fas fa-fw fa-folder"></i> <span style=" font-size:16px;">교육/금융/IT</span>
 		</a>
 			<div id="collapseEdu" class="collapse"
 				aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
-					<h6 class="collapse-header">교육 :</h6>
+					<h6 class="collapse-header"  style=" font-size:16px;color:#e7722e;">교육</h6>
+					<div style="padding:6px;">
 					<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c3&cate2_code=c31">자격증</a> 
 					<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c3&cate2_code=c32">공무원</a>
-					<h6 class="collapse-header">금융 :</h6>
+					</div>
+					<h6 class="collapse-header"  style=" font-size:16px;color:#e7722e;">금융</h6>
+					<div style="padding:6px;">
 					<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c3&cate2_code=c33">주식</a> 
 					<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c3&cate2_code=c34">부동산</a>
 					<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c3&cate2_code=c35">비트코인</a>
-					<h6 class="collapse-header">IT :</h6>
+					</div>
+					<h6 class="collapse-header"  style=" font-size:16px;color:#e7722e;">IT</h6>
+					<div style="padding:6px;">
 					<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c3&cate2_code=c36">프로그래밍</a>
 					<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c3&cate2_code=c37">컴퓨터 부품</a>
+					</div>
 					<hr class="sidebar-divider" color ='lightgray'>
 					<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c3&cate2_code=c38">기타</a>
 
@@ -117,18 +134,22 @@
 		<li class="nav-item"><a class="nav-link collapsed" href="#"
 			data-toggle="collapse" data-target="#collapseTrv"
 			aria-expanded="true" aria-controls="collapseTrv"> <i
-				class="fas fa-fw fa-folder"></i> <span>여행/음식</span>
+				class="fas fa-fw fa-folder"></i> <span style=" font-size:16px;">여행/음식</span>
 		</a>
 			<div id="collapseTrv" class="collapse"
 				aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
-					<h6 class="collapse-header">여행 :</h6>
+					<h6 class="collapse-header"  style=" font-size:16px;color:#e7722e;">여행</h6>
+					<div style="padding:6px;">
 					<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c4&cate2_code=c41">여행</a> 
 					<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c4&cate2_code=c42">워킹홀리데이</a>
-					<h6 class="collapse-header">음식 :</h6>
+					</div>
+					<h6 class="collapse-header"  style=" font-size:16px;color:#e7722e;">음식</h6>
+					<div style="padding:6px;">
 					<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c4&cate2_code=c43">외식</a> 
 					<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c4&cate2_code=c44">요리</a>
 					<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c4&cate2_code=c45">디저트</a> 
+					</div>
 					<hr class="sidebar-divider" color ='lightgray'>
 					<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c4&cate2_code=c46">기타</a>
 				</div>
@@ -138,18 +159,22 @@
 		<li class="nav-item"><a class="nav-link collapsed" href="#"
 			data-toggle="collapse" data-target="#collapseHobby"
 			aria-expanded="true" aria-controls="collapseHobby"> <i
-				class="fas fa-fw fa-folder"></i> <span>취미/생활</span>
+				class="fas fa-fw fa-folder"></i> <span style=" font-size:16px;">취미/생활</span>
 		</a>
 		<div id="collapseHobby" class="collapse"
 			aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 			<div class="bg-white py-2 collapse-inner rounded">
-				<h6 class="collapse-header">취미 :</h6>
+				<h6 class="collapse-header" style=" font-size:16px;color:#e7722e;">취미</h6>
+				<div style="padding:6px;">
 				<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c5&cate2_code=c51">영화</a> 
 				<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c5&cate2_code=c52">콘서트</a> 
 				<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c5&cate2_code=c53">낚시</a>
-				<h6 class="collapse-header">생활 :</h6>
+				</div>
+				<h6 class="collapse-header" style=" font-size:16px;color:#e7722e;">생활 </h6>
+				<div style="padding:6px;">
 				<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c5&cate2_code=c54">쇼핑</a> 
 				<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c5&cate2_code=c55">데이트</a>
+				</div>
 				<hr class="sidebar-divider" color ='lightgray'>
 				<a class="collapse-item" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=c5&cate2_code=c56">기타</a>
 
@@ -161,11 +186,11 @@
 		<hr class="sidebar-divider">
 
 		<!-- Heading -->
-		<div class="sidebar-heading">기타</div>
+		<div class="sidebar-heading" style=" font-size:14px;color:#e7722e;">기타</div>
 
 		<!-- Nav Item - Tables -->
 		<li class="nav-item"><a class="nav-link" href=""> <i
-				class="fas fa-fw fa-cog"></i> <span>설정</span></a></li>
+				class="fas fa-fw fa-cog"></i> <span style=" font-size:16px;">설정</span></a></li>
 
 		<!-- Divider -->
 		<hr class="sidebar-divider d-none d-md-block">

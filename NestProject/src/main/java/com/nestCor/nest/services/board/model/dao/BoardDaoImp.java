@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.nestCor.nest.member.model.vo.Member;
 import com.nestCor.nest.services.board.model.vo.Board;
 
 @Repository
@@ -51,6 +52,12 @@ public class BoardDaoImp implements BoardDao {
 	@Override
 	public int deleteBoard(int bno) {
 		return sqlSession.update("board.deleteBoard", bno);
+	}
+
+	@Override
+	public Member getMemberInfo(int mNo) {
+		
+		return sqlSession.selectOne("board.getMemberInfo",mNo);
 	}
 
 }

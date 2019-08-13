@@ -12,6 +12,12 @@
 		ORDER BY BCDATE DESC
 	</select>
 	
+	<select id="selectBoardCommentTotalContents" resultType="_int">
+		SELECT COUNT(*) 
+		FROM BCOMMENT
+		WHERE BNO=#{bno} AND BCDELETE='N'
+	</select>
+	
 	<insert id="insertBoardComment" parameterType="boardcomment">
 		INSERT INTO BCOMMENT(CNO, MNO, BNO, CCONTENT, CLEVEL, LIKECOUNT, BCDATE, BCDELETE) 
 		VALUES (SEQ_CNO.NEXTVAL, 1, #{bno}, #{ccontent}, DEFAULT, DEFAULT, DEFAULT, DEFAULT)

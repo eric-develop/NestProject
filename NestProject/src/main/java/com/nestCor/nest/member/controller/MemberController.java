@@ -85,6 +85,7 @@ public class MemberController {
 					List<Template> tlist=templateService.selectListTemplate(m.getmNo());
 					model.addAttribute("tlist",tlist);
 					// 노트북 리스트
+					System.out.println(m.getmNo());
 					List<NoteBook> nblist = nbService.selectListNoteBook(m.getmNo());
 					model.addAttribute("nblist",nblist);
 					

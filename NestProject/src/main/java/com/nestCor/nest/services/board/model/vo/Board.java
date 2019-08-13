@@ -18,6 +18,7 @@ public class Board implements Serializable{
 	private Date bdate;
 	private int bcount;
 	private String bdelete;
+	private int commentcnt;
 	
 	public Board() {
 		super();
@@ -32,7 +33,7 @@ public class Board implements Serializable{
 	}
 
 	public Board(int bno, String cate1_code, String cate2_code, String btitle, String bcontent, String bwriter,
-			Date bdate, int bcount, String bdelete) {
+			Date bdate, int bcount, String bdelete, int commentcnt) {
 		super();
 		this.bno = bno;
 		this.cate1_code = cate1_code;
@@ -43,6 +44,7 @@ public class Board implements Serializable{
 		this.bdate = bdate;
 		this.bcount = bcount;
 		this.bdelete = bdelete;
+		this.commentcnt = commentcnt;
 	}
 
 
@@ -153,11 +155,25 @@ public class Board implements Serializable{
 		this.bdelete = bdelete;
 	}
 
+	
+	
+	public int getCommentcnt() {
+		return commentcnt;
+	}
+
+
+
+	public void setCommentcnt(int commentcnt) {
+		this.commentcnt = commentcnt;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "Board [bno=" + bno + ", cate1_code=" + cate1_code + ", cate2_code=" + cate2_code + ", btitle=" + btitle
 				+ ", bcontent=" + bcontent + ", bwriter=" + bwriter + ", bdate=" + bdate + ", bcount=" + bcount
-				+ ", bdelete=" + bdelete + "]";
+				+ ", bdelete=" + bdelete + ", commentcnt=" + commentcnt + "]";
 	}
 	
 	

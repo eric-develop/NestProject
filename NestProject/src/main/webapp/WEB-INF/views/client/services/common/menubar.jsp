@@ -1136,7 +1136,7 @@ $('.trash').click(function(){
 });
 
 $('.community').click(function(){
-	window.open("${pageContext.request.contextPath}/board/board.do");
+	window.open("${pageContext.request.contextPath}/board/board.do?mNo=" + ${member.mNo});
 });
 
 function goToSpace(spaceNo){

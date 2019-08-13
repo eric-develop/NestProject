@@ -22,8 +22,9 @@ public class BoardCommentDaoImp implements BoardCommentDao {
 
 	@Override
 	public int selectBoardCommentTotalContents(BoardComment boardcomment) {
-		// TODO Auto-generated method stub
-		return 0;
+		System.out.println("boardComment dao까지 잘왓음");
+		System.out.println("boardcomment dao 값 확인 : "+boardcomment);
+		return sqlSession.selectOne("boardcomment.selectBoardCommentTotalContents", boardcomment);
 	}
 
 	@Override

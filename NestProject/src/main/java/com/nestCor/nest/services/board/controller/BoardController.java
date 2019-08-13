@@ -10,14 +10,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.nestCor.nest.services.boardComment.model.service.BoardCommentService;
-import com.nestCor.nest.services.boardComment.model.vo.BoardComment;
 import com.nestCor.nest.common.util.Utils;
+import com.nestCor.nest.member.model.vo.Member;
 import com.nestCor.nest.services.board.model.service.BoardService;
 import com.nestCor.nest.services.board.model.vo.Board;
+import com.nestCor.nest.services.boardComment.model.service.BoardCommentService;
+import com.nestCor.nest.services.boardComment.model.vo.BoardComment;
 
+@SessionAttributes(value= {"member"})
 @Controller
 public class BoardController {
 	@Autowired
@@ -27,14 +30,19 @@ public class BoardController {
 	BoardCommentService boardCommentService;
 	
 	@RequestMapping("/board/board.do")
-	public String boardMain() {
+	public String boardMain(@RequestParam("mNo") int mNo,Model model) {
 		System.out.println("/board/board.do가 호출되었습니다.");
+		
+		Member member = boardService.getMemberInfo(mNo);
+		
+		model.addAttribute("member",member);
+		
 		
 		return "client/services/board/boardMain";
 	}
 	
 	@RequestMapping("/board/boardList.do")
-	public ModelAndView ShowboardList(@RequestParam String cate1_code, @RequestParam String cate2_code, 
+	public ModelAndView ShowboardList(@RequestParam String cate1_code, @RequestParam String cate2_code,
 								@RequestParam(value = "cPage", required = false, defaultValue = "1") int cPage,
 								Model model){
 		System.out.println("/board/boardList.do가 호출되었습니다. 넘어온 카테고리1값 : " +cate1_code + " 카테고리2값 : "+cate2_code);
@@ -87,7 +95,13 @@ public class BoardController {
 	
 	//가급적이면 @RequestParam을 쓰지 않으려고 했는데 경로를 설정해줘야 하는 부분에서 해당 카테고리 리스트를 보여줘야 하기 때문에 부득이하게 받았다.
 	@RequestMapping("/board/insertBoard.do")
-	public String insertBoard(@RequestParam String cate1_code, @RequestParam String cate2_code, Board board, Model model){
+	public String insertBoard(@RequestParam String cate1_code, @RequestParam String cate2_code, Board board, Model model,HttpSession session){
+
+		
+		Member m = (Member)session.getAttribute("member");
+		
+		System.out.println("nicName확인 : " + m.getNickName());
+		
 		System.out.println("insertBoard 확인 : " + board);
 		int result = boardService.insertBoard(board);
 		
@@ -128,7 +142,10 @@ public class BoardController {
 
 		System.out.println("넘어온 list 확인 : " + clist);
 		
-		model.addAttribute("clist", clist);
+		//댓글 개수 조회
+		int totalCommentContents = boardCommentService.selectBoardCommentTotalContents(boardcomment);
+		
+		model.addAttribute("clist", clist).addAttribute("totalCommentContents",totalCommentContents);
 		
 		mv.addObject("bno", bno);
 		

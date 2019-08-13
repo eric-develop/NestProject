@@ -3,6 +3,7 @@ package com.nestCor.nest.services.board.model.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.nestCor.nest.member.model.vo.Member;
 import com.nestCor.nest.services.board.model.vo.Board;
 
 public interface BoardDao {
@@ -23,4 +24,6 @@ public interface BoardDao {
 	
 	//게시물 삭제
 	int deleteBoard(int bno);
+
+	Member getMemberInfo(int mNo);
 }

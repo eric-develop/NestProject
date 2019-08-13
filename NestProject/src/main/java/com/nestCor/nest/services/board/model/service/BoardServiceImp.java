@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.nestCor.nest.member.model.vo.Member;
 import com.nestCor.nest.services.board.model.dao.BoardDao;
 import com.nestCor.nest.services.board.model.vo.Board;
 
@@ -45,6 +46,13 @@ public class BoardServiceImp implements BoardService {
 		int result = boardDao.deleteBoard(bno);
 		
 		return result;
+	}
+
+	@Override
+	public Member getMemberInfo(int mNo) {
+		
+		
+		return boardDao.getMemberInfo(mNo);
 	}
 
 	

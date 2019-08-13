@@ -225,7 +225,9 @@
 					<div id="text" style="overflow:auto;height:92.66666%;k">	
 							<textarea id="ncontent" name="ncontent" style="border-color:transparent"><b>테스트입니다.</b></textarea>
 					</div>
+					
 					<style>
+					
 						.tox-tinymce{
 							border:none;
 						}

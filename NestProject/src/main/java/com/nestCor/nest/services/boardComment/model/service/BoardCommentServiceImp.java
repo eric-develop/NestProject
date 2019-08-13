@@ -31,7 +31,7 @@ public class BoardCommentServiceImp implements BoardCommentService {
 	@Override
 	public int selectBoardCommentTotalContents(BoardComment boardcomment) {
 		// TODO Auto-generated method stub
-		return 0;
+		return boardcommentDao.selectBoardCommentTotalContents(boardcomment);
 	}
 
 	@Override

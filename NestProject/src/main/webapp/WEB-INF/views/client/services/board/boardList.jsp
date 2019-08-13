@@ -97,7 +97,7 @@
 									<td id="title"> 
 										<a href="${pageContext.request.contextPath}/board/boardView.do?bno=${b.bno}"
 											style="color: gray;">${b.btitle}</a>
-										<a href=# style="text-decoration: none;">&nbsp;&nbsp;[0]</a>
+										<a href=# style="text-decoration: none;">&nbsp;&nbsp;[${b.commentcnt}]</a>
 									</td>
 									<td>${b.bdate}</td>
 									<td>${b.bwriter}</td>
