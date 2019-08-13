@@ -5,7 +5,14 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
-
+<style>
+textarea.form-control{
+height: 80% !important; 
+}
+.form-group {
+    width: 100% !important;;
+}
+</style>
  <c:import url="../../common/customer_head.jsp"/>
 <body style="overflow: auto;">
 
@@ -31,7 +38,7 @@
     <form class="notice_form">
     <!-- 제목 -->
   <div class="form-group row" style="margin: 0;">
-    <div class="form-group">
+    <div class="form-group" style="">
       <label id="notice_write_p" for="inputEmail4"  class="col-sm-2 col-form-label">제목</label>
       <input id="notice_input" type="text" class="form-control" id="inputEmail4">
     </div>

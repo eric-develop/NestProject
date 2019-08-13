@@ -11,22 +11,31 @@
 
 @media ( min-width : 300px) and (max-width: 1199.98px) {
 	#centerbtn_0{
-    margin: 0 auto;
-    width: 100%;
-    padding:20px;
-    height: 300px
+ height: 300px;
+	width: 100%;
+	padding: 10px;
 }#cus_table_div{
 width: 100%;
-height: 70%;
+height: 69%;
+overflow: auto;
+}#cus_table_div_div{
+	height: 100%;
 }
 }
 @media ( min-width : 1200px) {
 	#centerbtn_0{
-    margin: 0 auto;
-    width: 100%;
-    height: 16%;
+   height: 300px;
+	margin: 0 auto;
+	width: 1200px;
+	margin-top: 20px;
+    
 }#cus_table_div{
-margin: 0 auto; width: 1200px;
+margin: 0 auto;
+width: 1200px;
+overflow: auto;
+}#cus_table_div_div{
+	height: 600px;
+	padding: 50px 0px;
 }
 }
 
@@ -51,7 +60,7 @@ margin: 0 auto; width: 1200px;
     <!----------공지사항 테이블------->
     <div id="cus_table_div">
 
-        <div style="padding: 50px 0px; height: 600px; overflow-y: scroll;">
+        <div id="cus_table_div_div" >
             <table class="table">
                 <thead>
                     <tr>

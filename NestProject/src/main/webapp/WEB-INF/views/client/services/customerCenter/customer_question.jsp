@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
-<html lang="ko" style="overflow: hidden;">
+<html lang="ko">
  <c:import url="../../common/customer_head.jsp"/>
 
 <title>자주찾는 질문</title>
@@ -15,7 +15,8 @@
 @media ( min-width : 1200px) {
 	#cus_serch {
 		height: 440px;
-	}#msg_list{
+	}
+#msg_list{
 height: 90px;
 border-bottom: #d0d0d0 1px solid;
 
@@ -27,15 +28,26 @@ border-bottom: #d0d0d0 1px solid;
   
    
 }
+#centerbtn8{
+	height: 300px;
+	margin: 0 auto;
+	width: 1200px;
+	margin-top: 20px;
+}
 }
 @media ( min-width : 300px) and (max-width: 1199.98px) {
 	#cus_serch {
-		height: 10%;
+		height: 100%;
 	
-	}
+	
 }.container_ {
    width: 100%;
-   heigh:80%;
+   heigh:69%;
+}#centerbtn8{
+	height: 300px;
+	width: 100%;
+	padding: 10px;
+}
 }
 </style>
 
@@ -47,7 +59,7 @@ border-bottom: #d0d0d0 1px solid;
 
    <c:import url="../../common/customer_navi.jsp"/>
     <!----------->
-    <div id="centerbtn">
+    <div id="centerbtn8">
         <p style="text-align: left; font-size: 12px;">고객센터 &nbsp; > &nbsp; 자주찾는 질문<p>
                 <!--사이트 맵-->
                 <h4 style="text-align: center; margin-top: 50px;">자주찾는 질문</h4>

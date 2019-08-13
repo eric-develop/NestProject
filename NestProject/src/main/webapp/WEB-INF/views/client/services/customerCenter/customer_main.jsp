@@ -12,7 +12,11 @@
 	.container_2 {
 		margin: 0 auto;
 		width: 1200px;
-		height: 100%;
+		 height: 100px;
+	}#cus_only {
+		height: 500px;
+		margin: 0 auto;
+		width: 1200px;
 	}
 }
 
