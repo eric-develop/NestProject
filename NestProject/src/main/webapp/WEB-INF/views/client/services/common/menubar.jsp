@@ -343,6 +343,7 @@
 				<!--  메세지 갯수 필요 -->
 			</span>
 			
+			
 			<!------------------ 메신저 바디 ----------------->
 		<div class="popupLayer">
 
@@ -351,7 +352,9 @@
 				<!-- 사람 아이콘 -->
 				<i class="fas fa-user" id="msg_main" onclick="msg_main();"
 					style="display: inline-block; padding: 0px 10px; color: rgb(255, 119, 0); font-size: 20px; cursor:pointer;"></i>
-
+				<span onclick="closeMSG();"
+					style="cursor: pointer; font-size: 1.5em; float: right;" title="닫기"><i
+					class="fas fa-times" style="padding-right: 10px;"></i></span>
 			</div>
 
 			<div id="msg_serch">
@@ -498,7 +501,7 @@
 				aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
 					<h6 style="padding: 10px; height: 40px;" class="collapse-header">
-						<a class="sidebar-link" href="#"style="text-decoration: none; display: block;" data-toggle="modal" data-target="#exampleModal">스페이스만들기</a>
+						<a class="sidebar-link" href="#"style="text-decoration: none; display: block; font-size:16px; color:orange;" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-cube"></i>&nbsp;스페이스 만들기</a>
 					</h6>
 					<c:forEach items="${spaceList}" var="sList">
               				
@@ -515,7 +518,9 @@
 		    <div class="modal-content" style="width:650px; height:400px;">
 		      <div class="modal-header" style="border:none;">
 		        <h5 class="modal-title" id="exampleModalLabel">스페이스 생성</h5>
+		        
 		        <button type="button" id="xBtn" class="close" data-dismiss="modal" aria-label="Close">
+		         
 		           <span aria-hidden="true" >&times;</span>
 		        </button>
 		      </div>

@@ -45,7 +45,7 @@
 		</select>
 		
 		<select id="selectNoteBookList" parameterType="_int" resultType="noteBook">
-			SELECT * FROM NOTEBOOK WHERE SPACENO=#{spaceNo}
+			SELECT * FROM NOTEBOOK
 		</select>
 		
 		<update id="noteFix" parameterType="_int">
