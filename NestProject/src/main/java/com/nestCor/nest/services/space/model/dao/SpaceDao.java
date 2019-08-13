@@ -20,4 +20,5 @@ public interface SpaceDao {
 	List<Note> selectFixedNoteList();
 	void noteNotFix(int nno);
 	Map<String, Object> spaceNoteDetail(int spaceNo);
+
 }

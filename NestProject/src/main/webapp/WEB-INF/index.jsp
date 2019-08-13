@@ -406,7 +406,7 @@
     float: right;
     width: 130px;
 }
-#index_loginbtn{
+#index_	btn{
  width: 100px;
  height: 40px;
 }#introLogin{
@@ -434,7 +434,7 @@
 
 
 				<div id="toploginbtn">
-					<button  id="index_loginbtn" type="button" class="btn btn-light">
+					<button  id="index_loginbtn" type="button" class="btn btn-light" style="margin-top:0px;">
 						<p>login</p>
 					</button>
 
@@ -490,10 +490,10 @@
 			</div>
 
 			<div id="main2box">
-				<h3>그룹웨어</h3>
+				<h3>클라우드</h3>
 				<p>
-					팀워크를 위한 스페이스를 만들어보세요. <br> 팀원을 초대하고 서로의 노트를 공유할 수 있습니다.<br>
-					빠른 회신과 파일공유로 업무 효율을 높여보세요.
+					자료공유를 위한 스페이스를 만들어보세요. <br> 멤버를 초대하고 서로의 노트를 공유할 수 있습니다.<br>
+					
 				</p>
 			</div>
 		</div>
@@ -508,7 +508,7 @@
 			<div id="main3box">
 				<h3>채팅으로 소통이 가능합니다.</h3>
 				<p>
-					친구, 그룹으로 나누어 원활한 소통이 가능합니다. <br> NEST의 채팅 서비스로 프라이버시를 보호 받고,<br>
+					스페이스 구성원들과 실시간으로 대화할 수 있습니다. <br> NEST의 채팅 서비스로 프라이버시를 보호 받고,<br>
 					팀원들과 소통해보세요.
 				</p>
 
@@ -528,10 +528,10 @@
 				</div>
 
 				<div id="main4text">
-					<h3>화면 공유를 지원합니다.</h3>
+					<h3>커뮤니티를 제공합니다.</h3>
 					<p>
-						우리 NEST는 사용자에 어려움을 해결하기 위해 노력하였습니다. <br> 화면 공유 기능으로 지금 해결 하기
-						어려운 문제나 일들을 팀원에게<br> 혹은 친구에게 요청과 도움을 줄 수 있습니다.
+						관심사에 맞는 공간에서 소통하고 정보를 공유하세요! 
+					
 					</p>
 
 
@@ -540,67 +540,6 @@
 			</div>
 		</div>
 
-
-		<div id="mainlastdiv">
-
-			<h4 style="text-align: center;">나만의 프라이빗 오피스를 경험 할 수 있습니다.</h4>
-			<ul
-				style="width: 800px; margin: 0 auto; text-align: center; padding: 0%;">
-				<li id="mainlastone"><div class="rounded-circle">
-						<b><p id="mtitle"
-								style="padding-top: 50px; text-align: center">NOTE</p></b>
-					</div></li>
-
-				<li id="mainlastone">
-					<div class="rounded-circle">
-						<b>
-							<p id="mtitle"
-								style="color: #fff; padding-top: 50px; text-align: center">SHARE</p>
-						</b>
-					</div>
-				</li>
-				<li id="mainlastone">
-					<div class="rounded-circle">
-						<p id="mtitle" style="padding-top: 50px; text-align: center">
-							<b>MESSAGE</b>
-						</p>
-					</div>
-				</li>
-				<li id="mainlastone">
-					<div class="rounded-circle">
-						<b>
-							<p id="mtitle" style="padding-top: 50px; text-align: center">SCREEN</p>
-						</b>
-					</div>
-				</li>
-
-
-			</ul>
-			<ul id="mainlastul">
-				<li id="mainlastli">
-					<p id="mlip" style="text-align: center;">
-						나만의 노트와 우리들만의 <br> 노트를 만들어 보세요
-					</p>
-				</li>
-				<li id="mainlastli">
-					<p id="mlip" style="text-align: center;">
-						네스트만 있다면 더 빠르게 <br> 일정을 공유하고 파일을 <br>업로드 할 수 있습니다.
-					</p>
-				</li>
-				<li id="mainlastli">
-					<p id="mlip" style="text-align: center;">
-						프로젝트를 진행 할 때<br> 가장 중요한 소통이 가능합니다.
-
-					</p>
-				</li>
-				<li id="mainlastli">
-					<p id="mlip" style="text-align: center;">
-						화면을 공유하고 제어가 <br> 가능 합니다. 어려운 상황을 <br> 팀원의 도움으로 대처 하세요.
-					</p>
-				</li>
-			</ul>
-
-		</div>
 			</div>
 		<div id="indexlast_div">
 

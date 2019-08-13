@@ -20,8 +20,8 @@
 			<div id="top_line">
 
 				<div style="display: inline-block;"> 
-					<h5>노트북</h5>
-					<p >내 노트북 목록</p>
+					<h5>${spaceContentsMap.spaceName}</h5>
+					<p>${spaceContentsMap.spaceExplain}</p>
 
 				</div>
 				
@@ -53,9 +53,7 @@
 							style="color: #fff; margin: 0; text-align:center; padding: 2px;">5</p>
 					</div>
 					</div>
-					<button type="button" class="btn btn-warning"
-						style="margin-left: 10px;">초대하기</button>
-				</div>
+				
 			</div>
 			<!---=============================----------->
 				<div style="padding: 20px">
@@ -102,7 +100,7 @@
       	
       	  <c:if test="${noteList.fixed eq 'Y'}">
 	      <div id="space_r_list" class="col-lg-4 col-md-4 col-xs-4">
-	        <i class="far fa-list-alt"></i> <span id="space_r_list_title" style="cursor:pointer;">${noteList.ntitle}</span>
+	        <i class="far fa-list-alt"></i> <span id="space_r_list_title" style="cursor:pointer;" onclick="callNoteDetail('${noteList.spaceno}','${noteList.nno}')">${noteList.ntitle}</span>
 	        
 	      </div>
 	      </c:if>
@@ -179,17 +177,17 @@
                          <tr>
 				            <td scope="row"><i class="fas fa-caret-down" style="font-size: 20px; margin-right: 10px;"></i>
 				              <i class="fas fa-sticky-note" style="font-size: 20px; color: #b8b8b8; margin-right: 4px;"></i>
-				              <span style="cursor:pointer">${noteBookList.nbtitle}</span>
+				              <span style="cursor:pointer" onclick="callNoteBookDetail('${noteBookList.nbno}','${noteBookList.nbtitle}','${noteBookList.mno}')">${noteBookList.nbtitle}</span>
 				            </td>
 				            <td>홍길동</td>
-				            <td>7월 9일</td>
+				            <td>8월 14일</td>
 				            <td>${noteBookList.nbtype}</td>
            				 </tr>
 						</c:forEach>
 					<!-- 노트 뿌리는 부분 -->
 					<c:forEach var="noteList" items="${spaceContentsMap.noteList}" varStatus="i">
                         <tr>
-    						<td style="padding-left: 38px;"><i class="fas fa-book" style="font-size: 20px; margin-right: 10px;"></i><span style="cursor:pointer">${noteList.ntitle}</span></td>
+    						<td style="padding-left: 38px;"><i class="fas fa-book" style="font-size: 20px; margin-right: 10px;"></i><span style="cursor:pointer" onclick="callNoteDetail('${noteList.spaceno}','${noteList.nno}')">${noteList.ntitle}</span></td>
                             <td>${noteList.nwriter}</td>
                             <td></td>
                             <td>${noteList.sharescope}</td>
@@ -452,12 +450,15 @@ $(document).ready(function () {
             }
          
         function callNoteDetail(spaceno,nno){
-        	console.log("sno: " + spaceno);
-        	console.log("nno : " + nno);
+        	
         	
         	location.href ="${pageContext.request.contextPath}/space/spaceNoteDetail.do?spaceno="+spaceno+"&nno="+nno;
         }
 
+        function callNoteBookDetail(nbno,nbtitle,mno){
+
+        	location.href ="${pageContext.request.contextPath}/notebook/goNotebook.do?nbno="+nbno+"&mno="+mno+"&nbtitle="+nbtitle;
+        }
 	</script>
 
 </html>

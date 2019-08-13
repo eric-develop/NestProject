@@ -15,13 +15,13 @@ public class MsgController {
 	public String sendMsg(@RequestParam String phone){
 			
 	
-	   String ACCOUNT_SID = "ACbbe879649eba3277f44db06a1225f3a1";
-	   String AUTH_TOKEN = "c06d610999e0b490abd79e9c3a398f35";
+	   String ACCOUNT_SID = "AC49cdf142933bcfec8d3fb7007dfa54cf";
+	   String AUTH_TOKEN = "46b4b284d314dcdb6127a0dd43e13987";
 	   String verifyNum = randomNum();
 	        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 	        Message message = Message.creator(
 	                new com.twilio.type.PhoneNumber(phone),
-	                new com.twilio.type.PhoneNumber("+14849862224"),
+	                new com.twilio.type.PhoneNumber("+13343260797"),
 	                verifyNum)
 	            .create();
 

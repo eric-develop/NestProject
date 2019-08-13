@@ -73,10 +73,15 @@ public class SpaceDaoImpl implements SpaceDao {
 		noteList = sqlSession.selectList("Space_mapper.selectNoteList",spaceNo);
 		noteBookList = sqlSession.selectList("Space_mapper.selectNoteBookList",spaceNo);
 		
+		Space space = sqlSession.selectOne("Space_mapper.selectOneSpace",spaceNo);
+		
+		String spaceName = space.getSpaceName();
+		String spaceExplain= space.getSpaceExplain();
+		
 		spaceContentsMap.put("noteList", noteList);
 		spaceContentsMap.put("noteBookList", noteBookList);
-		
-		
+		spaceContentsMap.put("spaceName",spaceName);
+		spaceContentsMap.put("spaceExplain",spaceExplain);
 		return spaceContentsMap;
 	}
 
@@ -118,6 +123,8 @@ public class SpaceDaoImpl implements SpaceDao {
 		return spaceNoteDetailContents;
 		
 	}
+
+	
 	
 	
 

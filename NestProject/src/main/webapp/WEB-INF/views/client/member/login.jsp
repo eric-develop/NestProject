@@ -50,16 +50,11 @@
 	                <button style="width: 100%;" type="submit" class="btn btn-secondary">로그인</button>
 	            </div>
          	  </form>  
-            <div style="margin: 20px 20px;">
-	            <input style="margin-left: 40px;" type="checkbox" name="check" value="keeplogin"><span  style="margin-right: 20px; margin-left: 5px;">로그인 상태유지</span>
-	            <input type="checkbox" name="check" value="remembermail"><span style="margin-left: 5px;">이메일 기억하기</span>
-           </div>
+          
             </div>
 
             <div style="width: 300px; margin: 0 auto; border-radius: 30px; margin-bottom: 10px;">
-            <button  style="width: 100%; border-radius: 0.5rem; border: none; 
-                background: #F28B30; color: #fff; "  type="button" class="btn btn-success">
-            kakao 간편 로그인</button><br>
+         
             </div>
             <div style="width:300px; margin: 0 auto; border-radius: 30px;">
 
@@ -197,7 +192,7 @@
 	            <label for="purpose">사용 목적</label>
 	            <select class="custom-select d-block w-100" id="purpose" name="purpose" required>
 	              <option value="개인용도">개인용도</option>
-	              <option value="그룹웨어">그룹웨어</option>
+	              <option value="그룹웨어">클라우드 이용</option>
 	              <option value="커뮤니티">커뮤니티</option>
 	              <option value="기타">기타</option>
 	            </select>

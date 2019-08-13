@@ -87,7 +87,7 @@ public class SpaceController {
      
 
         model.addAttribute("spaceContentsMap",spaceContentsMap);
-	
+        System.out.println(spaceContentsMap);
 		return "client/services/space/space_main"; 
 	}
 	
@@ -131,6 +131,8 @@ public class SpaceController {
 		return "client/services/note/note_of_space_main";
 		
 	}
+	
+	
 
 	
 	

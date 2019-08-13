@@ -346,7 +346,7 @@
 			<span id="left_nav_msg_div" style="margin-right:20px">
 			<a href="#" class="imgSelect" class="blind_view"> <i
 				id="left_nav_msg" class="fas fa-comment"></i> <span
-				id="left_nav_msg_count"><b>2</b></span></a>
+				id="left_nav_msg_count"><b></b></span></a>
 				<!--  메세지 갯수 필요 -->
 			</span>
 			
@@ -660,17 +660,14 @@
 		        <div class="modal-body">
 		      	
 		       	  <div class="form-group">
-			    	<input type="text" class="form-control" id="spaceName" name="spaceName" placeholder="스페이스 이름을 입력하세요">
+			    	<input type="text" class="form-control" id="spaceName" name="spaceName" placeholder="스페이스 이름을 입력하세요" style="height:45px;margin-bottom:20px;">
 			  	  </div>
 			  	  
 			  	   <div class="form-group">
-			    	<input type="text" class="form-control" id="spaceExplain" name="spaceExplain" placeholder="스페이스에 대한 설명을 적어주세요" style="height:60px; margin:0px;">
+			    	<input type="text" class="form-control" id="spaceExplain" name="spaceExplain" placeholder="스페이스에 대한 설명을 적어주세요" style="height:60px; margin-bottom:20px;">
 			  	   </div>
 			  	   
-			  	   <div class="form-group form-check" >
-					  <input type="checkbox" class="form-check-input" id="postSpaceDir" name="postSpaceDir">
-				 	  <label class="form-check-label" for="dirPostCheck">스페이스 디렉토리에 게시</label>
-				   </div>
+			  	 
  				   
  				   <label>접근 권한 설정 </label>
  				   <select class="form-control form-control-sm" id="rightSet" name="rightSet">
@@ -716,17 +713,7 @@
 			</a>
 	    </li>
 
-		<!-- Divider -->
-		<hr class="sidebar-divider">
-
-		<!-- Heading -->
-		<div class="sidebar-heading" style="font-size:14px;">기타</div>
-
-		<!-- Nav Item - Tables -->
-		<li class="nav-item"><a class="nav-link" href=""> <i
-				class="fas fa-fw fa-cog" style="font-size:17px"></i> <span style="font-size:16px;">고객센터</span></a></li>
-
-		<!-- Divider -->
+	
 		<hr class="sidebar-divider d-none d-md-block">
 
 		<!-- Sidebar Toggler (Sidebar) -->

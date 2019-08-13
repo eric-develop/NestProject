@@ -235,7 +235,7 @@
 											
 											alert(data.msg);
 											$('.close').trigger('click');
-											location.href="${pageContext.request.contextPath}/member/memberSearchView.do";
+											location.href="${pageContext.request.contextPath}/member/loginView.do";
 											
 										},
 										error: function(){
