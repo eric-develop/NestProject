@@ -67,11 +67,8 @@
 				</div>
 				<!------------------------------------------------------------------------->
 
-				<div style="height: 400px; padding: 30px;">
+				<div style="padding: 30px;">
 					${board.bcontent}
-					<br><br>
-					<br><br><br><br>
-					<br><br><br><br>
 				</div>
 				<div id="commaintext"
 					style="margin: 0 auto; width: 248px; padding: 40px 0px;">
