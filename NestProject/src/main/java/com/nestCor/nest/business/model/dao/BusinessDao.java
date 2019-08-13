@@ -26,11 +26,21 @@ public interface BusinessDao {
 	List<Member> BusinessMemberList(int mNo);
 	List<Member> BusinessAdminList(int mNo);
 	String bizName(int mNo);
-	int updateBizName(String bizName);
+	int updateBizName(Business biz);
 	int maxMemberM(int bizNo);
 	int maxMemberP(int bizNo);
 	int maximumMember(int bizNo);
 	int deleteBM(int mNo);
 	String bmAdmin(int mNo);
+	int bmAdminY(int mNo);
+	int bmAdminN(int mNo);
+	List<Member> activeListN(int mNo);
+	int activeY(int mNo);
+	int activeN(int mNo);
+	
+	int countNoteBook(int mNo);
+	int countNote(int mNo);
+	
+	List<BusinessMember> memberActiveY(int mNo);
 
 }

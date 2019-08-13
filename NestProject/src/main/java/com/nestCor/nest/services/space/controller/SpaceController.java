@@ -223,13 +223,17 @@ public class SpaceController {
 	}
 	
 	@RequestMapping("/space/spaceMemberList.do")
-	public String spaceMemberList(Model model, @RequestParam int spaceNo) {
+	@ResponseBody
+	public List<Member> spaceMemberList(@RequestParam int spaceNo) {
+		System.out.println("spaceNo : " + spaceNo);
 		
 		List<Member> spaceMemberList = sService.spaceMemberList(spaceNo);
+		System.out.println(spaceMemberList);
+		return spaceMemberList;
 		
-		model.addAttribute("spaceMemberList", spaceMemberList);
+//		model.addAttribute("spaceMemberList", spaceMemberList);
 		
-		return "client/services/space/spaceMemberList";
+//		return "client/services/space/spaceMemberList";
 	}
 	
 	@RequestMapping("/space/deleteSpaceMember.do")

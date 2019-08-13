@@ -138,7 +138,7 @@ public interface BusinessService {
 	 * @param mNo
 	 * @return
 	 */
-	int updateBizName(String bizName);
+	int updateBizName(Business biz);
 	
 	/***
 	 * 초대 가능 사용자 수 - 1
@@ -174,5 +174,45 @@ public interface BusinessService {
 	 * @return
 	 */
 	String bmAdmin(int mNo);
+	
+	/***
+	 * 비즈니스멤버 관리자 권한 부여
+	 * @param mNo
+	 * @return
+	 */
+	int bmAdminY(int mNo);
+	
+	/***
+	 * 비즈니스멤버 관리자 권한 취소
+	 * @param mNo
+	 * @return
+	 */
+	int bmAdminN(int mNo);
+	
+	/***
+	 * 비활성화 사용자
+	 * @param mNo
+	 * @return
+	 */
+	List<Member> activeListN(int mNo);
+	
+	/***
+	 * 사용자 활성화
+	 * @param mNo
+	 * @return
+	 */
+	int activeY(int mNo);
+	
+	/***
+	 * 사용자 비활성화
+	 * @param mNo
+	 * @return
+	 */
+	int activeN(int mNo);
+	
+	int countNoteBook(int mNo);
+	int countNote(int mNo);
+	
+	List<BusinessMember> memberActiveY(int mNo);
 	
 }

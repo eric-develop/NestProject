@@ -76,10 +76,10 @@
 
 .ManageUsers-Tab.selected {
 	padding-bottom: 7px;
-	border-color: #f96332;
+	border-color: #e7722e ;
 	border-width: 3px;
 	text-decoration: none;
-	color: #f96332;
+	color: #e7722e ;
 }
 
 .tab {
@@ -148,8 +148,8 @@ thead.text-primary tr th {
 							<div class="card-body">
 								<div class="ManageUsers-TabBar tab">
 									<div class="ManageUsers-Tab" data-tab="tab1">요청 </div>
-									<div class="ManageUsers-Tab selected" data-tab="tab2">활성 사용자 </div>
-									<div class="ManageUsers-Tab" data-tab="tab3">비활성화된 사용자</div>
+									<div class="ManageUsers-Tab selected" data-tab="tab2">사용자 </div>
+									<div class="ManageUsers-Tab" data-tab="tab3">관리자</div>
 								</div>
 
 								<div id="tab1" class="tabcontent">
@@ -157,7 +157,7 @@ thead.text-primary tr th {
 									<div class="table-responsive" style="width:100%; height:390px; overflow:auto">
 										<table class="table table-striped">
 											<thead class="text-primary">
-												<tr>
+												<tr style="color: #e7722e">
 													<th class="text-center"></th>
 													<th class="text-center">사용자명</th>
 													<th class="text-center">이메일</th>
@@ -183,13 +183,14 @@ thead.text-primary tr th {
 														</c:if>
 														<c:if test="${ mN.invitation eq 'N' }">
 														<button class="btn btn-primary btn-block"
-																type="button" style="font-size: 13px;"
+																type="button" style="font-size: 13px; background:#e7722e"
 																onclick="location.href='${ pageContext.request.contextPath }/business/deleteBM.do?mNo=${mN.mNo}'">초대 취소</button>
 														</c:if>
 													</td>
 												</tr>
 												</c:forEach>
 												</form>
+												</tbody>
 										</table>
 									</div>
 								</div>
@@ -199,87 +200,71 @@ thead.text-primary tr th {
 									<div class="table-responsive" style="width:100%; height:390px; overflow:auto">
 										<table class="table table-striped">
 											<thead class="text-primary">
-												<tr>
-													<th class="text-center">
-														<div class="dropdown col-lg-6 ml-auto mr-auto"
-															style="margin-left: 20px !important;">
-															<button class="dropdown-toggle btn btn-primary btn-block"
-																type="button" id="dropdownMenuButton"
-																data-toggle="dropdown" aria-haspopup="false"
-																aria-expanded="true" style="font-size: 13px;">작업</button>
-															<div class="dropdown-menu"
-																aria-labelledby="dropdownMenuButton"
-																x-placement="bottom-start"
-																style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(1px, 38px, 0px);">
-																<a class="dropdown-item" href="#">관리자 접근 권한 취소</a> <a
-																	class="dropdown-item" href="#">관리자 만들기</a> <a
-																	class="dropdown-item" href="#">사용자 비활성화</a>
-															</div>
-														</div>
-													</th>
-													<th>사용자명</th>
+												<tr style="color: #e7722e">
+													<th class="text-center"></th>
+													<th class="text-center">사용자명</th>
 													<th class="text-center">이메일</th>
 													<th class="text-center">관리자 여부</th>
 													<th class="text-center">가입일</th>
+													<th class="text-center">설정</th>
 												</tr>
 											</thead>
 											<tbody>
 												<c:forEach items="${ memberApprovalStatusY }" var="mY">
 												<tr>
-													<td class="text-center">
-														<div class="form-check" style="width: 55%;">
-															<label class="form-check-label"> <input
-																class="form-check-input" type="checkbox"> <span
-																class="form-check-sign"></span>
-															</label>
-														</div>
-													</td>
-													<td>${ mY.userName }</td>
+													<td class="text-center"></td> 
+													<td class="text-center">${ mY.userName }</td>
 													<td class="text-center">${ mY.userId }</td>
-													<td class="text-center">${ mY.admin }</td>
+													<td class="text-center">
+														<a  data-toggle="dropdown" style="color: black; cursor: pointer;" href="">
+														${ mY.admin }
+														</a>
+													</td>
 													<td class="text-center">${ mY.spaceEnrollDate }</td>
+													<td class="text-center">
+														<button class="btn btn-primary btn-block"
+																type="button" style="font-size: 13px; background:#e7722e" 
+																onclick="location.href='${pageContext.request.contextPath}/business/bmAdminY.do?mNo=${ mY.mNo }'">관리자 권한 부여</button>
+													</td>
 												</tr>
 												</c:forEach>
+												</tbody>
 										</table>
 									</div>
 								</div>
+								
+								
 
 								<div id="tab3" class="tabcontent">
 									<!-- <p>tab3 content</p> -->
 									<div class="table-responsive" style="width:100%; height:390px; overflow:auto">
 										<table class="table table-striped">
 											<thead class="text-primary">
-												<tr>
-													<th class="text-center">
-														<div class="dropdown col-lg-6 ml-auto mr-auto"
-															style="margin-left: 20px !important;">
-															<button class="btn btn-primary btn-block" type="button"
-																id="dropdownMenuButton" data-toggle="dropdown"
-																aria-haspopup="true" aria-expanded="true"
-																style="font-size: 13px;">활성화</button>
-														</div>
-													</th>
-													<th>사용자명</th>
-													<th>이메일</th>
+												<tr style="color: #e7722e">
+													<th class="text-center"></th>
+													<th class="text-center">사용자명</th>
+													<th class="text-center">이메일</th>
 													<th class="text-center">관리자 여부</th>
-													<th class="text-right">가입일</th>
+													<th class="text-center">가입일</th>
+													<th class="text-center">설정</th>
 												</tr>
 											</thead>
 											<tbody>
+												<c:forEach items="${ activeListN }" var="a">
 												<tr>
+													<td class="text-center"></td>
+													<td class="text-center">${ a.userName }</td>
+													<td class="text-center">${ a.userId }</td>
+													<td class="text-center">${ a.admin }</td>
+													<td class="text-center">${ a.spaceEnrollDate }</td>
 													<td class="text-center">
-														<div class="form-check" style="width: 55%;">
-															<label class="form-check-label"> <input
-																class="form-check-input" type="checkbox"> <span
-																class="form-check-sign"></span>
-															</label>
-														</div>
+														<button class="btn btn-primary btn-block"
+																type="button" style="font-size: 13px; background:#e7722e"
+																onclick="location.href='${pageContext.request.contextPath}/business/bmAdminN.do?mNo=${ a.mNo }'">관리자 권한 취소</button>
 													</td>
-													<td>Moleskine Agenda</td>
-													<td>Office</td>
-													<td class="text-center">25</td>
-													<td class="text-right">€ 1,225</td>
 												</tr>
+												</c:forEach>
+												</tbody>
 										</table>
 									</div>
 								</div>

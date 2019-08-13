@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.nestCor.nest.business.model.service.BusinessService;
+import com.nestCor.nest.business.model.vo.BusinessMember;
 import com.nestCor.nest.member.model.service.MemberService;
 import com.nestCor.nest.member.model.vo.Member;
 import com.nestCor.nest.services.note.model.service.NoteService;
@@ -25,7 +26,7 @@ import com.nestCor.nest.services.note.model.vo.Note;
 import com.nestCor.nest.services.space.model.service.SpaceService;
 import com.nestCor.nest.services.space.model.vo.Space;
 
-@SessionAttributes(value= {"member","spaceList","bizMemberList"})
+@SessionAttributes(value= {"member","spaceList","bizMemberList,memberAdmin"})
 
 @Controller
 public class MemberController {
@@ -64,11 +65,13 @@ public class MemberController {
 			String msg = "";
 			System.out.println(userId);
 			Member m = mService.selectMember(userId);
+			
 			List<Space> spaceList = null;
 			List<Member> bizMemberList = null;
 			
 			String memberAdmin = null;
 			String memberInvitation = null;
+//			String memberActiveY = null;
 			
 			if(m != null) {
 				if(pwdEncoder.matches(password, m.getPassword())) {
@@ -83,6 +86,7 @@ public class MemberController {
 					int mNo = m.getmNo();
 					memberAdmin = mService.memberAdmin(mNo);
 					memberInvitation = mService.memberInvitation(mNo);
+//					memberActiveY = bService.memberActiveY(mNo);
 					
 					url = "client/services/note/note_main";
 					
@@ -109,6 +113,7 @@ public class MemberController {
 			.addAttribute("bizMemberList",bizMemberList)
 			.addAttribute("memberAdmin", memberAdmin)
 			.addAttribute("memberInvitation", memberInvitation);
+//			.addAttribute("memberActiveY", memberActiveY);
 			
 			return url;
 	}
@@ -257,16 +262,15 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/noteMain.do")
-	public String noteMain(Model model, HttpServletRequest req) {
+	public String noteMain(Model model, HttpServletRequest req, @RequestParam int mNo) {
 		
-		/*
-		 * HttpSession session = req.getSession(); Member m =
-		 * (Member)session.getAttribute("member"); int mNo = m.getmNo();
-		 * 
-		 * String selectBizName = bService.bizName(mNo);
-		 * 
-		 * model.addAttribute("selectBizName", selectBizName);
-		 */
+		String bizName = bService.bizName(mNo);
+		
+		String memberAdmin = mService.memberAdmin(mNo);
+		
+		model
+		.addAttribute("bizName", bizName)
+		.addAttribute("memberAdmin", memberAdmin);
 		
 		return "client/services/note/note_main";
 	}
@@ -294,6 +298,9 @@ public class MemberController {
 		
 		int maximumMember = bService.maximumMember(bizNo);
 		
+		int countNoteBook = bService.countNoteBook(mNo);
+		int countNote = bService.countNote(mNo);
+		
 		String bizName = bService.bizName(mNo);
 		String bmAdmin = bService.bmAdmin(mNo);
 		
@@ -306,7 +313,9 @@ public class MemberController {
 		.addAttribute("businessAdmin", businessAdmin)
 		.addAttribute("maximumMember", maximumMember)
 		.addAttribute("bizName", bizName)
-		.addAttribute("bmAdmin", bmAdmin);
+		.addAttribute("bmAdmin", bmAdmin)
+		.addAttribute("countNoteBook", countNoteBook)
+		.addAttribute("countNote", countNote);
 		
 		return "client/member/memberSummary";
 	}
@@ -344,12 +353,15 @@ public class MemberController {
 
 		List<Member> memberApprovalStatusY = bService.MemberListApprovalY(mNo);
 		
+		List<Member> activeListN = bService.activeListN(mNo);
+		
 		String bizName = bService.bizName(mNo);
 		String bmAdmin = bService.bmAdmin(mNo);
 		
 		model
 		.addAttribute("memberApprovalStatusN", memberApprovalStatusN)
 		.addAttribute("memberApprovalStatusY", memberApprovalStatusY)
+		.addAttribute("activeListN", activeListN)
 		.addAttribute("bizName", bizName)
 		.addAttribute("bmAdmin", bmAdmin);
 		

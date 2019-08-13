@@ -108,8 +108,8 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 	
 	@Override
-	public int updateBizName(String bizName) {
-		return bDao.updateBizName(bizName);
+	public int updateBizName(Business biz) {
+		return bDao.updateBizName(biz);
 	}
 
 	@Override
@@ -135,6 +135,46 @@ public class BusinessServiceImpl implements BusinessService {
 	@Override
 	public String bmAdmin(int mNo) {
 		return bDao.bmAdmin(mNo);
+	}
+
+	@Override
+	public int bmAdminY(int mNo) {
+		return bDao.bmAdminY(mNo);
+	}
+
+	@Override
+	public int bmAdminN(int mNo) {
+		return bDao.bmAdminN(mNo);
+	}
+
+	@Override
+	public List<Member> activeListN(int mNo) {
+		return bDao.activeListN(mNo);
+	}
+
+	@Override
+	public int activeY(int mNo) {
+		return bDao.activeY(mNo);
+	}
+
+	@Override
+	public int activeN(int mNo) {
+		return bDao.activeN(mNo);
+	}
+
+	@Override
+	public int countNoteBook(int mNo) {
+		return bDao.countNoteBook(mNo);
+	}
+
+	@Override
+	public int countNote(int mNo) {
+		return bDao.countNote(mNo);
+	}
+
+	@Override
+	public List<BusinessMember> memberActiveY(int mNo) {
+		return bDao.memberActiveY(mNo);
 	}
 
 }

@@ -108,7 +108,7 @@ thead.text-primary tr th {
 								<div class="table-responsive"style="width:100%; height:450px; overflow:auto">
 									<table class="table table-striped">
 										<thead class="text-primary">
-											<tr>
+											<tr style="color: #e7722e">
 												<th class="text-center"></th>
 												<th>스페이스명</th>
 												<th>권한</th>
@@ -122,16 +122,27 @@ thead.text-primary tr th {
 													<td class="text-center"><input hidden type="text"
 														value="${ bs.spaceNo }" name="spaceNo"></td>
 													<td>
-														<a class="view" style="color: black;"
+														<%-- <a class="view" style="color: black;"
 														href="${pageContext.request.contextPath}/space/spaceMemberList.do?spaceNo=${ bs.spaceNo }">
 														${ bs.spaceName }
+														<a hidden value="${ bs.spaceNo }"></a>
+														</div>
+														<div class="fold" style="display: none; margin-top:10px; color: grey;">
+								                           		<c:forEach items="${ spaceMemberList }" var="sm">
+								                           		${ sm.userName } </br>
+								                           		</c:forEach>
+								                        </a> --%>
+														<a class="view" style="color: black; cursor: pointer;">
+														${ bs.spaceName }
+														</a>
+														<div class="table-row smList" style="display: none; margin-top: 10px;"></div>
 														<%-- <a hidden value="${ bs.spaceNo }"></a>
 														</div>
 														<div class="fold" style="display: none; margin-top:10px; color: grey;">
 								                           		<c:forEach items="${ spaceMemberList }" var="sm">
 								                           		${ sm.userName } </br>
 								                           		</c:forEach> --%>
-								                        </a>
+								                        
 													</td>
 														<td style="width: 25%">
 														<div class="dropdown">
@@ -206,16 +217,61 @@ thead.text-primary tr th {
 										  </div>
 										  </form>
 										  
-										  <!-- <script>  
+										  <script>  
 						                      $(".view").click(function(){
 						                           if($(this).next().css("display") == "none") {
 						                              $(this).next().show('10000');
 						                              $(this).next().show();
+						                              
+						                              $.ajax({
+								                    		 url : "${pageContext.request.contextPath}/space/spaceMemberList.do",
+								                    		 data : {spaceNo : ${bs.spaceNo}},
+								                    		 dataType : "json",
+								                    		 success : function(data){
+								                    			 $('.smList').children().remove();
+							                                	 $('.smList').html("");
+								                                 data.forEach(function(value){
+								                                	console.log(value);
+								                                	 $('.smList').append(
+													              			   value.userName +"&nbsp;"
+													            			   +value.enrollDate
+													            			   +"<a href='${pageContext.request.contextPath}/space/deleteSpaceMember.do?mNo="+value.mNo+"'>"
+													            			   +"<i style='color: red;' class='now-ui-icons ui-1_simple-remove'></i>"
+													            			   +"</a> </br>");
+								                                	
+								                                	 
+								                                	 
+								                                 });
+								                                 
+								                    			
+													            			   /* +"<a style='color: grey;' data-toggle='dropdown' href='#'>"
+													            			   + value.mRightSet +"권한</a>&nbsp;"  */
+											            		
+											            			   /* '<c:forEach items="${ spaceMemberList }" var="sm">
+																	   ${ sm.userName }  &nbsp;
+																	   <a style="color: grey;" data-toggle="dropdown" href="#">
+																	   		${sm.mRightSet } 권한
+																	   </a>
+																	   &nbsp; ${ sm.enrollDate }
+																	   <a href="${pageContext.request.contextPath}/space/deleteSpaceMember.do?mNo=${ sm.mNo }">
+																	   <i style="color: red;" class="now-ui-icons ui-1_simple-remove"></i>
+																	   </a> </br>
+																	   </c:forEach>' */
+								                    					
+								                    			 
+								                    			 
+								                    		 }
+								                    	 });
+						                              
 						                           } else {
 						                              $(this).next().hide();
 						                           }
 						                        });
-					                     </script> -->
+						                      
+						                      $(function(){
+						                    	 
+						                      });
+					                     </script>
 										  
 											</c:forEach>
 										</tbody>

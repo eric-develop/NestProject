@@ -70,10 +70,10 @@
               </div>
               <div class="card-footer ">
               	<c:if test="${ maximumMember ne 0 }">
-                <button type="submit" id="btn-invite" class="btn btn-fill btn-primary">초대</button>
+                <button type="submit" id="btn-invite" class="btn btn-fill btn-primary" style="background:#e7722e">초대</button>
                 </c:if>
               	<c:if test="${ maximumMember eq 0 }">
-                <button disabled="true" type="submit" id="btn-invite" class="btn btn-fill btn-primary">초대</button>
+                <button disabled="true" type="submit" id="btn-invite" class="btn btn-fill btn-primary" style="background:#e7722e">초대</button>
                 </c:if>
               </div>
               </div>

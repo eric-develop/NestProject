@@ -107,8 +107,8 @@ public class BusinessDaoImpl implements BusinessDao {
 	}
 
 	@Override
-	public int updateBizName(String bizName) {
-		return sqlSession.update("Business_mapper.updateBizName", bizName);
+	public int updateBizName(Business biz) {
+		return sqlSession.update("Business_mapper.updateBizName", biz);
 	}
 
 	@Override
@@ -134,6 +134,46 @@ public class BusinessDaoImpl implements BusinessDao {
 	@Override
 	public String bmAdmin(int mNo) {
 		return sqlSession.selectOne("Business_mapper.bmAdmin", mNo);
+	}
+
+	@Override
+	public int bmAdminY(int mNo) {
+		return sqlSession.update("Business_mapper.bmAdminY", mNo);
+	}
+
+	@Override
+	public int bmAdminN(int mNo) {
+		return sqlSession.update("Business_mapper.bmAdminN", mNo);
+	}
+
+	@Override
+	public List<Member> activeListN(int mNo) {
+		return sqlSession.selectList("Business_mapper.activeListN", mNo);
+	}
+
+	@Override
+	public int activeY(int mNo) {
+		return sqlSession.update("Business_mapper.activeY", mNo);
+	}
+
+	@Override
+	public int activeN(int mNo) {
+		return sqlSession.update("Business_mapper.activeN", mNo);
+	}
+
+	@Override
+	public int countNoteBook(int mNo) {
+		return sqlSession.selectOne("Business_mapper.countNoteBook", mNo);
+	}
+
+	@Override
+	public int countNote(int mNo) {
+		return sqlSession.selectOne("Business_mapper.countNote", mNo);
+	}
+
+	@Override
+	public List<BusinessMember> memberActiveY(int mNo) {
+		return sqlSession.selectList("Business_mapper.memberActiveY", mNo);
 	}
 	
 

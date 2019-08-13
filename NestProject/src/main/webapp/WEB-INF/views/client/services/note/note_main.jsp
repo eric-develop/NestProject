@@ -219,36 +219,6 @@
 				
 			</script>
 			
-			<!-- The Modal -->
-  <div class="modal" id="myModal">
-    <div class="modal-dialog">
-      <div class="modal-content" style="height: 250px;">
-      
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">비즈니스 그룹 요청</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        
-        <!-- Modal body -->
-        <div class="modal-body">
-          ${ selectBizName } 비즈니스 그룹 요청이 왔습니다. <br>
-                      수락하시겠습니까?
-        </div>
-        
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" 
-          		onclick="location.href='${ pageContext.request.contextPath }/business/updateBusinessMemberY.do'">수락</button>
-          <button type="button" class="btn btn-danger"
-          		 onclick="location.href='${ pageContext.request.contextPath }/business/updateBusinessMemberN.do'">거절</button>
-          <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button> -->
-        </div>
-        
-      </div>
-    </div>
-  </div>
-			
 			<!-- Home 화면 구현부분 ////////////////////////////////////////////////////////////////////////////////////////////////////-->
 			<div id="community" style="padding:10px 19px;display:inline-block;height:100%;width:76.66666%;">
 				
