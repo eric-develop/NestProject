@@ -133,13 +133,13 @@
 			IMP.request_pay({ // param 결제 요청에 필요한 속성과 값
 			    pg: "inicis",
 			    pay_method: "card",
-			    merchant_uid: "userId"+"_"+new Date(),
+			    merchant_uid: "${member.userId}"+"_"+new Date(),
 			    name: "${map.premium.serviceName}",
 			    amount: "100", /* ${map.premium.price} */
-			    buyer_email: "gildong@gmail.com",
-			    buyer_name: "홍길동",
-			    buyer_tel: "010-4242-4242",
-			    buyer_addr: "서울특별시 강남구 신사동",
+			    buyer_email: "${member.userId}",
+			    buyer_name: "${member.userName}",
+			    buyer_tel: "${member.phone}",
+			    buyer_addr: "",
 			    buyer_postcode: "01181"
 			}, function(rsp) { // callback 
 				// STEP4 가맹점 서버에 imp
@@ -149,8 +149,6 @@
 				    
 				    $('#form2').submit();
 				    
-				    alert("결제 성공");
-					
 				} else {
 					// 결제 실패 시 로직,
 					console.log("결제 실패" + rsp.error_msg);
@@ -163,13 +161,13 @@
 			IMP.request_pay({ // param 결제 요청에 필요한 속성과 값
 			    pg: "inicis",
 			    pay_method: "card",
-			    merchant_uid: "userId"+"_"+(new Date().getTime() / 1000),
+			    merchant_uid: "${member.userId}"+"_"+(new Date().getTime() / 1000),
 			    name: "${map.business.serviceName}",
 			    amount: "100",
-			    buyer_email: "gildong@gmail.com",
-			    buyer_name: "홍길동",
-			    buyer_tel: "010-4242-4242",
-			    buyer_addr: "서울특별시 강남구 신사동",
+			    buyer_email: "${member.userId}",
+			    buyer_name: "${member.userName}",
+			    buyer_tel: "${member.phone}",
+			    buyer_addr: "",
 			    buyer_postcode: "01181"
 			}, function(rsp) { // callback 
 				// STEP4 가맹점 서버에 imp
@@ -193,8 +191,6 @@
 				    
 				    $('#form3').submit();
 				    
-				    alert("결제 성공");
-					
 				} else {
 					// 결제 실패 시 로직,
 					console.log("결제 실패 : " + rsp.error_msg);

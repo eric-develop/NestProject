@@ -42,5 +42,8 @@ public interface BusinessDao {
 	int countNote(int mNo);
 	
 	List<BusinessMember> memberActiveY(int mNo);
+	BusinessMember bm(int mNo);
+	
+	int updateMemberBizNo(Member bm);
 
 }

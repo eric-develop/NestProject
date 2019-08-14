@@ -36,6 +36,9 @@
 <script src="${pageContext.request.contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 <!-- Custom scripts for all pages-->
 
+<script
+	src="${pageContext.request.contextPath}/resources/js/sb-admin-1.min.js"></script>
+
 
 
 <style>
@@ -448,14 +451,15 @@
 		
 		<!-- Divider -->
 		<hr class="sidebar-divider">
-		<c:if test="${ member.serviceNo eq 3 and memberAdmin ne 'Y' }">
+		
+		<c:if test="${ sMember.serviceNo eq 3 and empty memberAdmin }">
 			<a class="btn" data-toggle="modal"
 				data-target="#myModal_businessInsert"
 				style="width: 100%; border: none; font-size: 17px; color: #fff; margin-bottom: 0; background: #3b332e;">
 				비즈니스 등록 </a>
 		</c:if>
 		
-		<c:if test="${ memberAdmin eq 'Y' }">
+		<c:if test="${ memberAdmin eq 'Y'or member.bizNo ne 0 }">
       	<a class="btn" data-toggle="modal" data-target="#myModal_bizNameUpdate"
             	style="width: 100%; border: none; cursor:pointer;
             		   font-size: 17px; color: #fff; margin-bottom: 0; background:#3b332e;">
@@ -469,7 +473,7 @@
 				style="width: 100%; border: none; color: white; font-size: 14px;">
 				비즈니스 그룹 요청</button>
 		</c:if>
-		
+
 		<!-- The Modal -->
 		<form method="post"
 			action="${pageContext.request.contextPath}/business/insertBusiness.do">
@@ -1213,7 +1217,7 @@
 	
 	
 
-	  var socket = io("localhost:3000");
+	  var socket = io("192.168.20.72:3000");
 
 	  socket.on('connect',function(){
 	      console.log('서버와 연결');

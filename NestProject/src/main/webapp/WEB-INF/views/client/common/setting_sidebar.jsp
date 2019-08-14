@@ -59,8 +59,8 @@
 		
 
 		<ul class="nav">
-			<li class="active " style="background: #3b332e;"><a
-				href="${pageContext.request.contextPath}/member/memberSummary.do"
+			<li class="active " style="background: #3b332e;">
+			<a href="${pageContext.request.contextPath}/member/memberSummary.do"
 				style="background: #e7722e"> <i
 					class="now-ui-icons users_single-02"></i>
 					<p style="font-size: 14px;">사용자</p>
@@ -95,26 +95,6 @@
 							style="color: #FFFFFF; font-size: 12px; padding-left: 14%; margin-top: 10px;">스페이스</p>
 					</a>
 				</ul>
-				<ul class="btn-primary" style="background: #3b332e;">
-					<a href="#">
-						<p style="color: #FFFFFF; font-size: 12px; padding-left: 14%;">노트북</p>
-					</a>
-				</ul>
-				<ul class="btn-primary" style="background: #3b332e;">
-					<a href="#">
-						<p style="color: #FFFFFF; font-size: 12px; padding-left: 14%;">노트</p>
-					</a>
-				</ul>
-				<ul class="btn-primary" style="background: #3b332e;">
-					<a href="#">
-						<p style="color: #FFFFFF; font-size: 12px; padding-left: 14%;">태그</p>
-					</a>
-				</ul>
-				<ul class="btn-primary" style="background: #3b332e;">
-					<a href="#">
-						<p style="color: #FFFFFF; font-size: 12px; padding-left: 14%;">휴지통</p>
-					</a>
-				</ul></li>
 		</ul>
 	</div>
 </div>

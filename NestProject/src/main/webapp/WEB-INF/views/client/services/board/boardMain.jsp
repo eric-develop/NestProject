@@ -70,26 +70,26 @@
 								<!-- end front panel -->
 								<div class="back">
 									<div class="header">
-										<h5 class="motto">"우리조가 1등입니다. "</h5>
+										<h5 class="motto">"Our team is best!! "</h5>
 									</div>
 									<div class="content">
 										<div class="main">
-											<h4 class="text-center">Job Description</h4>
+											<h4 class="text-center">인기글</h4>
 											<p class="text-center">Web design, Adobe Photoshop,
 												HTML5, CSS3, Corel and many others...</p>
 
 											<div class="stats-container">
 												<div class="stats">
-													<h4>235</h4>
-													<p>Followers</p>
+													<h4>2</h4>
+													<p>게시글 수</p>
 												</div>
 												<div class="stats">
-													<h4>114</h4>
-													<p>Following</p>
+													<h4>1</h4>
+													<p>댓글등록 수</p>
 												</div>
 												<div class="stats">
-													<h4>35</h4>
-													<p>Projects</p>
+													<h4>비트코인</h4>
+													<p>주로 활동하는<br>카테고리</p>
 												</div>
 											</div>
 
@@ -134,22 +134,22 @@
 									</div>
 									<div class="content">
 										<div class="main">
-											<h4 class="text-center">Job Description</h4>
+											<h4 class="text-center">인기글</h4>
 											<p class="text-center">Web design, Adobe Photoshop,
 												HTML5, CSS3, Corel and many others...</p>
 
 											<div class="stats-container">
 												<div class="stats">
-													<h4>235</h4>
-													<p>Followers</p>
+													<h4>5</h4>
+													<p>게시글 수</p>
 												</div>
 												<div class="stats">
-													<h4>114</h4>
-													<p>Following</p>
+													<h4>3</h4>
+													<p>댓글등록 수</p>
 												</div>
 												<div class="stats">
-													<h4>35</h4>
-													<p>Projects</p>
+													<h4>연예</h4>
+													<p>주로 활동하는<br>카테고리</p>
 												</div>
 											</div>
 
@@ -177,37 +177,36 @@
 									</div>
 									<div class="content">
 										<div class="main">
-											<h3 class="name">전미정</h3>
-											<p class="profession">Anna</p>
+											<h3 class="name">유정훈</h3>
+											<p class="profession">Daniel</p>
 
-											<p class="text-center">"은서언니 나가!!" <br> "대현오빠 결별하자 " 
-												<br> "해인아 말좀들어라" </p>
+											<p class="text-center">"여러분은 어디에서도 들을 수 없는 강의를 듣고 있어요."<br>"늦게 오지말고 일찍일찍 다녀요. " 
+												<br> "으하하핫~!! 이거 내가 만든거에요~" </p>
 										</div>
 									</div>
 								</div>
 								<!-- end front panel -->
 								<div class="back">
 									<div class="header">
-										<h5 class="motto">"아니!!"</h5>
+										<h5 class="motto">"포기하지 마세요~!!"</h5>
 									</div>
 									<div class="content">
 										<div class="main">
-											<h4 class="text-center">Job Description</h4>
-											<p class="text-center">Web design, Adobe Photoshop,
-												HTML5, CSS3, Corel and many others...</p>
+											<h4 class="text-center">인기 글</h4>
+											<p class="text-center">저는 여러분들 중 그 누구도 낙오된 사람없이 <br>함께 가길 희망해요~!! <br>저와 함께 합시다.</p>
 
 											<div class="stats-container">
 												<div class="stats">
-													<h4>235</h4>
-													<p>Followers</p>
+													<h4>4</h4>
+													<p>게시글 수</p>
 												</div>
 												<div class="stats">
-													<h4>114</h4>
-													<p>Following</p>
+													<h4>7</h4>
+													<p>댓글등록 수</p>
 												</div>
 												<div class="stats">
-													<h4>35</h4>
-													<p>Projects</p>
+													<h4>교육</h4>
+													<p>주로 활동하는<br>카테고리</p>
 												</div>
 											</div>
 

@@ -213,7 +213,7 @@
 	<div id="content-wrapper" class="d-flex flex-column">
 
 		<!-- Main Content -->
-		<div id="content" style="flex:0;">
+		<div id="content">
 
 			<!-- Topbar -->
 			<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -261,39 +261,39 @@
 						<div
 							class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
 							aria-labelledby="alertsDropdown">
-							<h6 class="dropdown-header">Alerts Center</h6>
+							<h6 class="dropdown-header">알림</h6>
 							<a class="dropdown-item d-flex align-items-center" href="#">
 								<div class="mr-3">
-									<div class="icon-circle bg-primary">
+									<div class="icon-circle bg-success">
 										<i class="fas fa-file-alt text-white"></i>
 									</div>
 								</div>
 								<div>
-									<div class="small text-gray-500">December 12, 2019</div>
-									<span class="font-weight-bold">새로운 알림이 있습니다</span>
+									<div class="small text-gray-500">August 09, 2019</div>
+									<span class="font-weight-bold">새로운 알림이 있습니다.</span>
 								</div>
 							</a> <a class="dropdown-item d-flex align-items-center" href="#">
 								<div class="mr-3">
 									<div class="icon-circle bg-success">
-										<i class="fas fa-donate text-white"></i>
+										<i class="fas fa-file-alt text-white"></i>
 									</div>
 								</div>
 								<div>
-									<div class="small text-gray-500">December 7, 2019</div>
-									새로운 알림이 있습니다
+									<div class="small text-gray-500">August 09, 2019</div>
+									<span class="font-weight-bold">새로운 알림이 있습니다.</span>
 								</div>
 							</a> <a class="dropdown-item d-flex align-items-center" href="#">
 								<div class="mr-3">
-									<div class="icon-circle bg-warning">
-										<i class="fas fa-exclamation-triangle text-white"></i>
+									<div class="icon-circle bg-success">
+										<i class="fas fa-file-alt text-white"></i>
 									</div>
 								</div>
 								<div>
-									<div class="small text-gray-500">December 2, 2019</div>
-									새로운 알림이 있습니다
+									<div class="small text-gray-500">August 09, 2019</div>
+									<span class="font-weight-bold">새로운 알림이 있습니다.</span>
 								</div>
 							</a> <a class="dropdown-item text-center small text-gray-500"
-								href="#">Show All Alerts</a>
+								href="#">알림 모두보기</a>
 						</div></li>
 
 					<!-- Nav Item - Messages -->
@@ -307,7 +307,7 @@
 						<div
 							class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
 							aria-labelledby="messagesDropdown">
-							<h6 class="dropdown-header">Message Center</h6>
+							<h6 class="dropdown-header">메세지</h6>
 							<a class="dropdown-item d-flex align-items-center" href="#">
 								<div class="dropdown-list-image mr-3">
 									<img class="rounded-circle"
@@ -315,9 +315,8 @@
 									<div class="status-indicator bg-success"></div>
 								</div>
 								<div class="font-weight-bold">
-									<div class="text-truncate">Hi there! I am wondering if
-										you can help me with a problem I've been having.</div>
-									<div class="small text-gray-500">Emily Fowler · 58m</div>
+									<div class="text-truncate">NEST 회원이 되신것을 환영합니다.</div>
+									<div class="small text-gray-500">NEST 개발팀 </div>
 								</div>
 							</a> <a class="dropdown-item d-flex align-items-center" href="#">
 								<div class="dropdown-list-image mr-3">
@@ -326,9 +325,8 @@
 									<div class="status-indicator"></div>
 								</div>
 								<div>
-									<div class="text-truncate">I have the photos that you
-										ordered last month, how would you like them sent to you?</div>
-									<div class="small text-gray-500">Jae Chun · 1d</div>
+									<div class="text-truncate">노트 사용 설명서 안내입니다.</div>
+									<div class="small text-gray-500">NEST 개발팀</div>
 								</div>
 							</a> <a class="dropdown-item d-flex align-items-center" href="#">
 								<div class="dropdown-list-image mr-3">
@@ -337,10 +335,8 @@
 									<div class="status-indicator bg-warning"></div>
 								</div>
 								<div>
-									<div class="text-truncate">Last month's report looks
-										great, I am very happy with the progress so far, keep up the
-										good work!</div>
-									<div class="small text-gray-500">Morgan Alvarez · 2d</div>
+									<div class="text-truncate">채팅 사용 설명서 안내입니다.</div>
+									<div class="small text-gray-500">NEST 개발팀</div>
 								</div>
 							</a> <a class="dropdown-item d-flex align-items-center" href="#">
 								<div class="dropdown-list-image mr-3">
@@ -349,13 +345,11 @@
 									<div class="status-indicator bg-success"></div>
 								</div>
 								<div>
-									<div class="text-truncate">Am I a good boy? The reason I
-										ask is because someone told me that people say this to all
-										dogs, even if they aren't good...</div>
-									<div class="small text-gray-500">Chicken the Dog · 2w</div>
+									<div class="text-truncate">이번달 공지사항 안내입니다.</div>
+									<div class="small text-gray-500">NEST 개발팀</div>
 								</div>
 							</a> <a class="dropdown-item text-center small text-gray-500"
-								href="#">Read More Messages</a>
+								href="#">메세지 더보기</a>
 						</div></li>
 
 					<div class="topbar-divider d-none d-sm-block"></div>
@@ -366,7 +360,7 @@
 						class="nav-link dropdown-toggle" href="#" id="userDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"> <span
-							class="mr-2 d-none d-lg-inline text-gray-600 small">NEST</span>
+							class="mr-2 d-none d-lg-inline text-gray-600 small">${member.nickName}</span>
 							<img class="img-profile rounded-circle"
 							src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
 					</a> <!-- Dropdown - User Information -->

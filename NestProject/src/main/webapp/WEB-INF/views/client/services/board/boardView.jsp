@@ -31,11 +31,7 @@
 
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
-						<li class="nav-item "><a class="nav-link" href="#"
-							style="padding-top: 30px;">&nbsp;인기 <span class="sr-only">(current)</span></a>
-						</li>
-						<li class="nav-item"><a class="nav-link" href="#"
-							style="padding-top: 30px;">최신</a></li>
+						
 					</ul>
 					<!-----------------------------------제목,작성자 검색시 해당하는 게시물 나와야합니다.--------------------------------->
 					<button style="padding: 10px; margin-top: 30px;" type="button"
@@ -72,18 +68,18 @@
 				</div>
 				<div id="commaintext"
 					style="margin: 0 auto; width: 248px; padding: 40px 0px;">
-					<button id="upbtn" type="button" class="btn btn-link">
+					<!-- <button id="upbtn" type="button" class="btn btn-link">
 						<i id="upicon" class="fas fa-caret-up"></i> <span
 							style="color: darkgrey">21</span>
-					</button>
+					</button> -->
 					<!----좋아요 누를때 숫자 올라가야합니다.---->
 
-					<button id="downbtn" type="button" class="btn btn-link">
+					<!-- <button id="downbtn" type="button" class="btn btn-link">
 						<i id="downicon" class="fas fa-caret-down"
 							style="margin-right: 10px;"></i>
-						<!-- 비추/싫어요 숫자 올라가야합니다.-->
+						비추/싫어요 숫자 올라가야합니다.
 						<span style="color: darkgrey">4</span>
-					</button>
+					</button> -->
 				</div>
 				<div id="comment">
 					<ul id="commentul">
@@ -91,7 +87,7 @@
 							style="border-bottom: solid 1px #b8b8b8; padding-bottom: 20px;">
 							<form style="width: 100%; margin: 0 auto;">
 								<div class="input-group mb-3">
-									<input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" id="mno" name="mno" value= ${member.mNo } hidden>
+									<input type="text"  id="mno" name="mno" value= ${member.mNo } hidden>
 									<input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" id="ccontent" name="ccontent">
 									<div class="input-group-append">
 										<button class="btn btn-outline-secondary" type="button" id="button-addon2">확인</button>
@@ -114,8 +110,8 @@
 								</div>
 								<p>${bc.ccontent}</p>
 								<div style="padding-top: 20px;">
-									<a href="#" id="commentp"
-										onclick="SirenFunction('SirenDiv'); return false;">답글달기</a>
+									<!-- <a href="#" id="commentp"
+										onclick="SirenFunction('SirenDiv'); return false;">답글달기</a> -->
 										
 								</div>
 							</li>

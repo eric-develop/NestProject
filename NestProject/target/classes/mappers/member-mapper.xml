@@ -49,6 +49,16 @@
 		
 		</select>
 		
+		<!-- 초대 가능한 사용자 -->
+		<select id="invitationMemberY" parameterType="string" resultType="_int">
+			SELECT COUNT(*) FROM MEMBER WHERE USERID = #{userId} AND BIZNO != 0
+		</select>
+		
+		<!-- 결제 후 사용자 정보 -->
+		<select id="sMember" parameterType="_int" resultType="Member">
+			SELECT * FROM MEMBER WHERE MNO = #{mNo}
+		</select>
+		
 		<!-- 사용자 관리자 유무 -->
 		<select id="memberAdmin" parameterType="_int" resultType="string">
 			SELECT BM.ADMIN FROM MEMBER M

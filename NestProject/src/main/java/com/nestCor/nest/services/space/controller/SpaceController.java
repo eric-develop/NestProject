@@ -37,9 +37,7 @@ public class SpaceController {
 		HttpSession session = req.getSession();
 		Member m = (Member)session.getAttribute("member");
 		
-		if(space.getPostSpaceDir().equals("on")) {
-			space.setPostSpaceDir("Y");
-		}else space.setPostSpaceDir("N");
+		
 		
 		space.setBizNo(m.getBizNo());
 		

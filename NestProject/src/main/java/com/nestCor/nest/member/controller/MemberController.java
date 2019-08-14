@@ -79,7 +79,7 @@ public class MemberController {
 			
 			String memberAdmin = null;
 			String memberInvitation = null;
-//			String memberActiveY = null;
+			String bizName = null;
 			
 			if(m != null) {
 				if(pwdEncoder.matches(password, m.getPassword())) {
@@ -129,8 +129,8 @@ public class MemberController {
 			model.addAttribute("member",m)
 			.addAttribute("bizMemberList",bizMemberList)
 			.addAttribute("memberAdmin", memberAdmin)
-			.addAttribute("memberInvitation", memberInvitation);
-//			.addAttribute("memberActiveY", memberActiveY);
+			.addAttribute("memberInvitation", memberInvitation)
+			.addAttribute("bizName", bizName);
 			
 			return url;
 	}
@@ -196,6 +196,18 @@ public class MemberController {
 	     map.put("isUsable", isUsable);
 	    
 		return map;
+	}
+	
+	// 초대 가능 사용자
+	@RequestMapping("/member/invitationMemberY.do")
+	@ResponseBody
+	public Map<String, Object> invitationMemberY(@RequestParam String userId){
+		 
+		 Map<String,Object> map = new HashMap<>();
+		 boolean result = mService.invitationMemberY(userId)== 0? true:false;
+	     map.put("result", result);
+	    
+	     return map;
 	}
 	
 	@RequestMapping(value="/member/nickDupCheck.do")
@@ -304,10 +316,11 @@ public class MemberController {
 		
 		String memberAdmin = mService.memberAdmin(mNo);
 		
+		Member sMember = mService.sMember(mNo);
 		model
 		.addAttribute("bizName", bizName)
-		.addAttribute("memberAdmin", memberAdmin);
-		
+		.addAttribute("memberAdmin", memberAdmin)
+		.addAttribute("sMember", sMember);
 		return "client/services/note/note_main";
 	}
 	

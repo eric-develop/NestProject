@@ -22,6 +22,9 @@ public interface BoardService {
 	//게시물 리스트조회
 	List<Map<String, String>> selectBoardList(int cPage, int limit, Board board);
 	
+	//조회수 많은순으로 리스트조회
+	List<Map<String, String>> selectBoardList2(int cPage, int limit, Board board);
+	
 	//게시물 상세보기
 	Board selectOneBoard(int bno);
 	

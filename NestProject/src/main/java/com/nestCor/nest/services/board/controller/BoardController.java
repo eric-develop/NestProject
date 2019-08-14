@@ -79,6 +79,44 @@ public class BoardController {
 		return mv;
 	}
 	
+	@RequestMapping("/board/boardListPup.do")
+	public ModelAndView ShowboardList2(@RequestParam String cate1_code, @RequestParam String cate2_code,
+								@RequestParam(value = "cPage", required = false, defaultValue = "1") int cPage,
+								Model model){
+		System.out.println("/board/boardListPup.do가 호출되었습니다. 넘어온 카테고리1값 : " +cate1_code + " 카테고리2값 : "+cate2_code);
+		
+		int limit = 10; // 한 페이지 당 게시글 수
+		
+		Board board = new Board(cate1_code, cate2_code);
+		
+		// 1. 현재 페이지 게시글 목록 가져오기
+		ArrayList<Map<String, String>> list = new ArrayList<>(boardService.selectBoardList2(cPage, limit, board));
+
+		System.out.println("넘어온 list 확인 : " + list);
+		
+		// 2. 전체 페이지 게시글 수 가져오기
+		int totalContents = boardService.selectBoardTotalContents(board);
+		
+		System.out.println("게시글 수 : "+totalContents);
+		
+		
+		String pageBar = Utils.getPageBar(totalContents, cPage, limit, "boardList.do?cate1_code="+cate1_code+"&cate2_code="+cate2_code);
+		
+		//해당되는 곳으로 값을 보내는 기능
+		model.addAttribute("list", list).addAttribute("totalContents", totalContents).addAttribute("numPerPage", limit).addAttribute("pageBar", pageBar);
+		
+		//다음으로 보낼때 카테고리들 값을 같이 넘겨주기 위해서 ModelAndView를 썼다.
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("client/services/board/boardList"); // 보낼 뷰의 경로
+		
+		// 다음 뷰로 보낼 cate1_code, cate2_code
+		mv.addObject("cate1_code", cate1_code); 
+		mv.addObject("cate2_code", cate2_code);
+		
+		
+		return mv;
+	}
+	
 	@RequestMapping("/board/boardForm.do")
 	public ModelAndView boardForm(@RequestParam String cate1_code, @RequestParam String cate2_code){
 		ModelAndView mv = new ModelAndView();

@@ -34,10 +34,10 @@
 
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav mr-auto">
-							<li class="nav-item "><a class="nav-link" href="#"
+							<li class="nav-item "><a class="nav-link" href="${pageContext.request.contextPath}/board/boardListPup.do?cate1_code=${cate1_code}&cate2_code=${cate2_code}"
 								style="padding-top: 30px;">&nbsp;인기 <span class="sr-only">(current)</span></a>
 							</li>
-							<li class="nav-item"><a class="nav-link" href="#"
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/board/boardList.do?cate1_code=${cate1_code}&cate2_code=${cate2_code}"
 								style="padding-top: 30px;">최신</a></li>
 
 
@@ -92,7 +92,7 @@
 									<th scope="row">${b.bno} &nbsp;&nbsp;&nbsp;
 									<i	class="far fa-thumbs-up"
 										style="font-size: 10px; color: #b8b8b8"></i> 
-									<span style="color: #b8b8b8">1</span></th>
+									<span style="color: #b8b8b8">${b.bcount}</span></th>
 									<!---좋아요 or 추천 갯수 -->
 									<td id="title"> 
 										<a href="${pageContext.request.contextPath}/board/boardView.do?bno=${b.bno}"

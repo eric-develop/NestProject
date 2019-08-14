@@ -53,11 +53,26 @@ public class PaymentController {
 		
 		int result1 = memberService.memberPremiumServiceUpdate(mNo);
 		
-		if(result > 0) System.out.println("insertPremiumPayment 성공");
+		String loc="/member/noteMain.do?mNo="+ mNo;
+		String msg = "";
 		
-		if(result1 > 0) System.out.println("memberPremiumServiceUpdate 성공");
+		if(result > 0) {
+			System.out.println("insertBusinessPayment 성공");
+			
+			if(result1 > 0) {
+				System.out.println("memberBusinessServiceUpdate 성공");
+				
+				int serviceNo = m.getServiceNo();
+				
+				msg = "결제 성공! 프리미엄 서비스를 이용하세요.";
+			}
+		}
 		
-		return "client/services/note/note_main";
+		model
+		.addAttribute("loc", loc)
+		.addAttribute("msg", msg);
+		
+		return "client/common/msg";
 	}
 	@RequestMapping("/payment/insertBusinessPayment.do")
 	public String insertBusinessPayment(Model model, HttpServletRequest req) {
@@ -70,11 +85,24 @@ public class PaymentController {
 		
 		int result1 = memberService.memberBusinessServiceUpdate(mNo);
 		
-		if(result > 0) System.out.println("insertBusinessPayment 성공");
+		String loc="/member/noteMain.do?mNo="+ mNo;
+		String msg = "";
 		
-		if(result1 > 0) System.out.println("memberBusinessServiceUpdate 성공");
+		if(result > 0) {
+			System.out.println("insertBusinessPayment 성공");
+			
+			if(result1 > 0) {
+				System.out.println("memberBusinessServiceUpdate 성공");
+				
+				msg = "결제 성공! 비즈니스를 등록하고 서비스를 이용하세요.";
+			}
+		}
 		
-		return "client/services/note/note_main";
+		model
+		.addAttribute("loc", loc)
+		.addAttribute("msg", msg);
+		
+		return "client/common/msg";
 	}
 
 	

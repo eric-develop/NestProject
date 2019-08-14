@@ -25,6 +25,11 @@
   <link href="${pageContext.request.contextPath }/resources/assets/css/now-ui-dashboard.css?v=1.3.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="${pageContext.request.contextPath }/resources/assets/demo/demo.css" rel="stylesheet" />
+
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 
 <body class="user-profile">
@@ -59,14 +64,14 @@
                 <form method="post" action="${pageContext.request.contextPath}/business/insertBusinessMember.do">
                 <div class="form-group">
               <div class="card-body ">
-                <%-- <form method="post" action="${pageContext.request.contextPath}/member/memberInviteTo.do"> --%>
                   <label>Email address</label>
-                  <!-- <div class="form-group"> -->
                     <input type="email" class="form-control" id="userId" name="userId">
-                    <label id="emailMemberFalse" style="color:red; font-size:12px; display:none; margin-left:1px;">입력한 이메일의 회원이 없습니다.</label>
-	                <label id="emailMemberTrue" style="color:green; font-size:12px; display:none; margin-left:1px;">초대 가능한 회원입니다.</label>
-                  <!-- </div> -->
-                <!-- </form> -->
+                    <label id="emailAvailableLabel" style="color:red; font-size:12px; display:none; margin-left:1px; margin-top: 10px;">회원에 등록되지 않은 이메일입니다.</label>
+	                <label id="emailDupLabel" style="color:green; font-size:12px; display:none; margin-left:1px; margin-top: 10px;">초대 가능한 이메일입니다.</label>
+	                <label id="emailValidLabel" style="color:red; font-size:12px; display:none; margin-left:1px; margin-top: 10px;">이메일 형식이 올바르지 않습니다.</label>
+	                
+	                <label id="invitationMemberY" style="color:red; font-size:12px; display:none; margin-left:1px; margin-top: 10px;">이미 비즈니스에 등록된 사용자입니다.</label>
+
               </div>
               <div class="card-footer ">
               	<c:if test="${ maximumMember ne 0 }">
@@ -88,28 +93,109 @@
       </div>
       
       <script>
-          		$("userId").on("keyup", function(){
-          			var userId = $(this).val();
-    				 
-          			$.ajax({
-          				url : "${pageContext.request.contextPath}/member/idDupCheck.do",
-          				data : {userId : userId},
-          				dataType : "json",
-          				success : function(data){
-          					if(data.isUsable == true){
-          						$('#emailMemberFalse').show();
-          						$('#emailMemberTrue').hide();
-          						$('#btn-invite').prop("disabled", true);
-          					} else{
-          						$('#emailMemberFalse').hide();
-          						$('#emailMemberTrue').show();
-          						$('#btn-invite').prop("disabled", false);
-          					}
-          				}, error : function(){
-          					console.log("회원 초대 에러");
-          				}
-          			});
-          		});
+   // 이메일 유효성 체크 이벤트
+		$("#userId").on("keyup",function(){
+			var userId = $(this).val();
+			var regEx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+			 
+			// 유효한 이메일 형식인지 판별
+			if(regEx.test(userId) == false){
+				$('#emailAvailableLabel').hide();
+				$('#emailValidLabel').show();
+				$('#emailDupLabel').hide();
+				$('#invitationMemberY').hide();
+				$('#btn-invite').attr('disabled', true);
+				
+			}else if(true){ // 중복 이메일인지 판별
+				
+					 $.ajax({
+						url : "${pageContext.request.contextPath}/member/idDupCheck.do",
+						data : {userId : userId},
+						dataType : "json",
+						success : function(data){
+							if(data.isUsable == false){
+								$('#emailAvailableLabel').hide();
+								$('#emailValidLabel').hide();
+								$('#emailDupLabel').show();
+								$('#invitationMemberY').hide();
+								$('#btn-invite').attr('disabled', false);
+								
+								
+								
+							} /* else if(data.isUsable == false){
+								
+								// bizno를 가지고 있는 회원인지
+								 $.ajax({
+										url : "${pageContext.request.contextPath}/member/invitationMemberY.do",
+										data : {userId : userId},
+										dataType : "json",
+										success : function(data){
+											if(data.result == true){
+												$('#emailAvailableLabel').hide();
+												$('#emailValidLabel').hide();
+												$('#emailDupLabel').hide();
+												$('#invitationMemberY').show();
+												$('#btn-invite').attr('disabled', true);
+												
+											}
+										},
+										error : function(req,status,error){
+											console.log("error");
+										}
+										 
+									 });
+								
+							} */ else{
+								$('#emailAvailableLabel').show();
+								$('#emailValidLabel').hide();
+								$('#emailDupLabel').hide();
+								$('#invitationMemberY').hide();
+								$('#btn-invite').attr('disabled', true);
+								
+							}
+						},
+						error : function(req,status,error){
+							console.log("아이디 중복 체크 실패!");
+							// 화면 에러 로그
+							console.log(req);
+							console.log(status);
+							console.log(error);
+						}
+						 
+					 }); // ajax끝
+					 
+					 
+					  // bizno를 가지고 있는 회원인지
+					 $.ajax({
+							url : "${pageContext.request.contextPath}/member/invitationMemberY.do",
+							data : {userId : userId},
+							dataType : "json",
+							success : function(data){
+								if(data.result == true){
+									$('#emailAvailableLabel').show();
+									$('#emailValidLabel').hide();
+									$('#emailDupLabel').hide();
+									$('#invitationMemberY').hide();
+									$('#btn-invite').attr('disabled', true);
+									
+								} else{
+									$('#emailAvailableLabel').hide();
+									$('#emailValidLabel').hide();
+									$('#emailDupLabel').hide();
+									$('#invitationMemberY').show();
+									$('#btn-invite').attr('disabled', true);
+								}
+							},
+							error : function(req,status,error){
+								console.log("error");
+							}
+							 
+						 }); 
+			
+			 }
+			
+
+		});
           </script>
       
       <footer class="footer">

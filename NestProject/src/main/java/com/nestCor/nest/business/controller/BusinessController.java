@@ -1,5 +1,7 @@
 package com.nestCor.nest.business.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -70,8 +72,6 @@ public class BusinessController {
 			.addAttribute("insertBusinessMemberAdmin", insertBusinessMemberAdmin); 
 		}
 		
-		/* return "client/member/memberSummary"; */
-		
 		return "client/common/msg";
 	}
 	
@@ -111,7 +111,7 @@ public class BusinessController {
 		int bizNo = bService.inviteBizNo(mNo);
 		
 		int inviteMNO = bService.inviteMNo(userId);
-		System.out.println("inviteMno: " + inviteMNO);
+		
 		BusinessMember bm = new BusinessMember();
 		bm.setBizNo(bizNo);
 		bm.setmNo(inviteMNO);
@@ -133,15 +133,14 @@ public class BusinessController {
 	}
 	
 	@RequestMapping("/business/updateBusinessMemberY.do")
-	public String updateBusinessMemberY(Model model, HttpServletRequest req) {
+	public String updateBusinessMemberY(Model model, HttpSession session) {
 		
-		HttpSession session = req.getSession();
 		Member m = (Member) session.getAttribute("member");
 		int mNo = m.getmNo();
 		
 		int result = bService.updateBusinessMemberY(mNo);
 		
-		String loc = "/member/noteMain.do";
+		String loc = "/member/noteMain.do?mNo="+ mNo;
 		String msg = "";
 		
 		if(result > 0) msg = "승인 여부를 기다려주세요!";
@@ -161,7 +160,7 @@ public class BusinessController {
 		
 		int result = bService.updateBusinessMemberN(mNo);
 		
-		String loc = "/member/noteMain.do";
+		String loc = "/member/noteMain.do?mNo="+ mNo;
 		String msg = "";
 		
 		if(result > 0) msg = "비즈니스 가입 요청을 거절하였습니다.";
@@ -177,10 +176,23 @@ public class BusinessController {
 		
 		int approvalStatusY = bService.approvalY(mNo);
 		
+		BusinessMember bm = bService.bm(mNo);
+		
+		Member updateM = new Member(); 
+		updateM.setBizNo(bm.getBizNo());
+		updateM.setmNo(bm.getmNo());
+		  
+		System.out.println("updateM : "+updateM);
+		
 		String loc = "/member/memberManage.do";
 		String msg = "";
 		
-		if(approvalStatusY > 0) msg = "사용자 승인 성공";
+		if(approvalStatusY > 0) {
+			
+			int updateMemberBizNo = bService.updateMemberBizNo(updateM);
+			
+			msg = "사용자 승인 성공";
+		}
 		
 		model.addAttribute("loc", loc).addAttribute("msg", msg);
 		

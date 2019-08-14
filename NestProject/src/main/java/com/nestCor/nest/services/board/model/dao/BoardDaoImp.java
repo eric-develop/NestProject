@@ -29,6 +29,14 @@ public class BoardDaoImp implements BoardDao {
 		return sqlSession.selectList("board.selectBoardList", board, rows);
 
 	}
+	
+	@Override
+	public List<Map<String, String>> selectBoardList2(int cPage, int limit, Board board) {
+		System.out.println("DAO까지 cate가 잘갔는지 값 확인 : "+board);
+		RowBounds rows = new RowBounds((cPage-1) * limit, limit);
+		return sqlSession.selectList("board.selectBoardList2", board, rows);
+	}
+
 
 	@Override
 	public int selectBoardTotalContents(Board board) {
@@ -60,4 +68,5 @@ public class BoardDaoImp implements BoardDao {
 		return sqlSession.selectOne("board.getMemberInfo",mNo);
 	}
 
+	
 }

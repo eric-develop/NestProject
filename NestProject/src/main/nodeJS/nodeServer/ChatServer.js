@@ -12,7 +12,7 @@ const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 
 // Connection URL
-const url = 'mongodb://localhost:27017';
+const url = 'mongodb://192.168.20.72:27017';
 
 // Database Name
 const dbName = 'myproject';

@@ -112,7 +112,7 @@ thead.text-primary tr th {
 												<th class="text-center"></th>
 												<th>스페이스명</th>
 												<th>권한</th>
-												<th>회원 수</th>
+												<th>생성일</th>
 												<th>스페이스 설정</th>
 											</tr>
 										</thead>
@@ -122,26 +122,11 @@ thead.text-primary tr th {
 													<td class="text-center"><input hidden type="text"
 														value="${ bs.spaceNo }" name="spaceNo"></td>
 													<td>
-														<%-- <a class="view" style="color: black;"
-														href="${pageContext.request.contextPath}/space/spaceMemberList.do?spaceNo=${ bs.spaceNo }">
-														${ bs.spaceName }
-														<a hidden value="${ bs.spaceNo }"></a>
-														</div>
-														<div class="fold" style="display: none; margin-top:10px; color: grey;">
-								                           		<c:forEach items="${ spaceMemberList }" var="sm">
-								                           		${ sm.userName } </br>
-								                           		</c:forEach>
-								                        </a> --%>
 														<a class="view" style="color: black; cursor: pointer;">
 														${ bs.spaceName }
 														</a>
-														<div class="table-row smList" style="display: none; margin-top: 10px;"></div>
-														<%-- <a hidden value="${ bs.spaceNo }"></a>
-														</div>
-														<div class="fold" style="display: none; margin-top:10px; color: grey;">
-								                           		<c:forEach items="${ spaceMemberList }" var="sm">
-								                           		${ sm.userName } </br>
-								                           		</c:forEach> --%>
+														<div class="table-row smList" 
+															style="display: none; margin-top: 10px; font-weight: lighter;"></div>
 								                        
 													</td>
 														<td style="width: 25%">
@@ -169,7 +154,7 @@ thead.text-primary tr th {
 														    </div>
 														</div>
 														</td>
-													<td>회원 수</td>
+													<td>${ bs.createDate }</td>
 													<td style="width: 30%">
 													<c:if test="${ bs.rightSet eq 'R4' }">
 														<button class="btn btn-info" data-toggle="modal"
@@ -234,31 +219,11 @@ thead.text-primary tr th {
 								                                	console.log(value);
 								                                	 $('.smList').append(
 													              			   value.userName +"&nbsp;"
-													            			   +value.enrollDate
+													            			   +value.spaceEnrollDate +"&nbsp;"
 													            			   +"<a href='${pageContext.request.contextPath}/space/deleteSpaceMember.do?mNo="+value.mNo+"'>"
 													            			   +"<i style='color: red;' class='now-ui-icons ui-1_simple-remove'></i>"
 													            			   +"</a> </br>");
-								                                	
-								                                	 
-								                                	 
 								                                 });
-								                                 
-								                    			
-													            			   /* +"<a style='color: grey;' data-toggle='dropdown' href='#'>"
-													            			   + value.mRightSet +"권한</a>&nbsp;"  */
-											            		
-											            			   /* '<c:forEach items="${ spaceMemberList }" var="sm">
-																	   ${ sm.userName }  &nbsp;
-																	   <a style="color: grey;" data-toggle="dropdown" href="#">
-																	   		${sm.mRightSet } 권한
-																	   </a>
-																	   &nbsp; ${ sm.enrollDate }
-																	   <a href="${pageContext.request.contextPath}/space/deleteSpaceMember.do?mNo=${ sm.mNo }">
-																	   <i style="color: red;" class="now-ui-icons ui-1_simple-remove"></i>
-																	   </a> </br>
-																	   </c:forEach>' */
-								                    					
-								                    			 
 								                    			 
 								                    		 }
 								                    	 });

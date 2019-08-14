@@ -27,6 +27,11 @@ public class BoardServiceImp implements BoardService {
 	}
 
 	@Override
+	public List<Map<String, String>> selectBoardList2(int cPage, int limit, Board board) {
+		return boardDao.selectBoardList2(cPage, limit, board);
+	}
+
+	@Override
 	public int selectBoardTotalContents(Board board) {
 		return boardDao.selectBoardTotalContents(board);
 	}
@@ -55,5 +60,6 @@ public class BoardServiceImp implements BoardService {
 		return boardDao.getMemberInfo(mNo);
 	}
 
+	
 	
 }

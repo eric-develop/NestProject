@@ -43,8 +43,7 @@ public class BusinessServiceImpl implements BusinessService {
 
 	@Override
 	public int updateBusinessMemberN(int mNo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return bDao.updateBusinessMemberN(mNo);
 	}
 
 	@Override
@@ -175,6 +174,16 @@ public class BusinessServiceImpl implements BusinessService {
 	@Override
 	public List<BusinessMember> memberActiveY(int mNo) {
 		return bDao.memberActiveY(mNo);
+	}
+
+	@Override
+	public BusinessMember bm(int mNo) {
+		return bDao.bm(mNo);
+	}
+
+	@Override
+	public int updateMemberBizNo(Member bm) {
+		return bDao.updateMemberBizNo(bm);
 	}
 
 }

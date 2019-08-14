@@ -207,9 +207,6 @@
 	    	if(btitle.value==""||btitle.value.length==0){
 				alert("제목을 입력해 주세요");
 				return false;
-			} else if(bcontent.value==""||bcontent.value.length==0){
-				alert("내용을 입력해 주세요");
-				return false;
 			}
 	    });
 	</script>
