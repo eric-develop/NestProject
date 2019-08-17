@@ -103,7 +103,7 @@ public class MemberController {
 					int mNo = m.getmNo();
 					memberAdmin = mService.memberAdmin(mNo);
 					memberInvitation = mService.memberInvitation(mNo);
-//					memberActiveY = bService.memberActiveY(mNo);
+					bizName = bService.bizName(mNo);
 					
 					url = "client/services/note/note_main";
 					

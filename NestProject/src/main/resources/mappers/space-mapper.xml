@@ -4,6 +4,14 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Space_mapper">
+
+		<resultMap type="Member" id="spaceMemberList">
+			<result property="mNo" column="mno"/>
+			<result property="userId" column="userId"/>
+			<result property="userName" column="username"/>
+			<result property="spaceEnrollDate" column="enrollDate"/>
+			<result property="mRightSet" column="mRightSet"/>
+		</resultMap>
 		
 		<insert id="insertSpace" parameterType="Space">
 			INSERT INTO SPACE VALUES(SEQ_SPACENO.NEXTVAL,#{bizNo},#{spaceName},#{spaceExplain},#{rightSet},#{postSpaceDir},DEFAULT)
@@ -68,7 +76,63 @@
 			SELECT * FROM SPACE WHERE SPACENO = #{spaceNo}
 		</select>
 		
+		<!-- 비즈니스 스페이스 리스트 -->
+		<select id="selectBusinessSpaceList" parameterType="_int" resultType="Space">
+			SELECT * FROM SPACE WHERE BIZNO = (SELECT BIZNO FROM BUSINESS_MEMBER WHERE MNO = #{mNo})
+		</select>
 		
+		<!-- select mNo -->
+		<select id="selectMNo" parameterType="Member" resultType="_int">
+			SELECT MNO FROM MEMBER WHERE USERID = #{userId}
+		</select>
+		
+		<!-- 비즈니스 스페이스 회원 리스트 -->
+		<select id="spaceMemberList" resultMap="spaceMemberList">
+			SELECT MNO, USERID, USERNAME, TO_CHAR(SM.ENROLLDATE, 'YYYY/MM/DD') ENROLLDATE, SM.MRIGHTSET FROM MEMBER
+			JOIN (SELECT * FROM SPACE_MEMBER WHERE SPACENO = #{spaceNo}) SM USING(MNO)
+			ORDER BY SM.ENROLLDATE DESC
+		</select>
+		
+		<!-- 비즈니스 스페이스 회원 수 -->
+		<insert id="countSpaceMember" parameterType="_int">
+			SELECT COUNT(*) FROM SPACE_MEMBER WHERE SPACENO = #{spaceNo}
+		</insert>
+		
+		<!-- 비즈니스 스페이스멤버 가입 -->
+		<insert id="insertSpaceMember" parameterType="SpaceMember">
+			INSERT INTO SPACE_MEMBER 
+			VALUES (SEQ_SNO.NEXTVAL, #{spaceNo}, #{mNo}, '초대', SYSDATE, DEFAULT, DEFAULT)
+		</insert>
+		
+		<!-- 비즈니스 스페이스멤버 회원 추가 -->
+		<insert id="insertSpaceMemberAdd" parameterType="SpaceMember">
+			INSERT INTO SPACE_MEMBER
+			VALUES(SEQ_SNO.NEXTVAL, #{spaceNo}, #{mNo}, DEFAULT, SYSDATE, DEFAULT, DEFAULT)
+		</insert>
+		
+		<!-- 스페이스 권한 변경 -->
+		<update id="updateRightSetR1" parameterType="_int">
+			UPDATE SPACE SET RIGHTSET = 'R1' WHERE SPACENO = #{spaceNo}
+		</update>
+		<update id="updateRightSetR2" parameterType="_int">
+			UPDATE SPACE SET RIGHTSET = 'R2' WHERE SPACENO = #{spaceNo}
+		</update>
+		<update id="updateRightSetR3" parameterType="_int">
+			UPDATE SPACE SET RIGHTSET = 'R3' WHERE SPACENO = #{spaceNo}
+		</update>
+		<update id="updateRightSetR4" parameterType="_int">
+			UPDATE SPACE SET RIGHTSET = 'R4' WHERE SPACENO = #{spaceNo}
+		</update>
+		
+		<!-- 비즈니스 스페이스멤버 회원 삭제 -->
+		<delete id="deleteSpaceMember">
+			DELETE FROM SPACE_MEMBER WHERE MNO = #{mNo}
+		</delete>
+		
+		<!-- 비즈니스 스페이스 삭제 -->
+		<delete id="deleteSpace">
+			DELETE FROM SPACE WHERE SPACENO = #{spaceNo}
+		</delete>
 		
 		
 </mapper>

@@ -114,38 +114,35 @@
 						dataType : "json",
 						success : function(data){
 							if(data.isUsable == false){
-								$('#emailAvailableLabel').hide();
-								$('#emailValidLabel').hide();
-								$('#emailDupLabel').show();
-								$('#invitationMemberY').hide();
-								$('#btn-invite').attr('disabled', false);
 								
-								
-								
-							} /* else if(data.isUsable == false){
-								
-								// bizno를 가지고 있는 회원인지
-								 $.ajax({
-										url : "${pageContext.request.contextPath}/member/invitationMemberY.do",
-										data : {userId : userId},
-										dataType : "json",
-										success : function(data){
-											if(data.result == true){
-												$('#emailAvailableLabel').hide();
-												$('#emailValidLabel').hide();
-												$('#emailDupLabel').hide();
-												$('#invitationMemberY').show();
-												$('#btn-invite').attr('disabled', true);
-												
-											}
-										},
-										error : function(req,status,error){
-											console.log("error");
+								$.ajax({
+									url : "${pageContext.request.contextPath}/member/invitationMemberY.do",
+									data : {userId : userId},
+									dataType : "json",
+									success : function(data){
+										if(data.result == true){
+											$('#emailAvailableLabel').hide();
+											$('#emailValidLabel').hide();
+											$('#emailDupLabel').show();
+											$('#invitationMemberY').hide();
+											$('#btn-invite').attr('disabled', false);
+											
+										} else{
+											$('#emailAvailableLabel').hide();
+											$('#emailValidLabel').hide();
+											$('#emailDupLabel').hide();
+											$('#invitationMemberY').show();
+											$('#btn-invite').attr('disabled', true);
 										}
-										 
-									 });
+									},
+									error : function(req,status,error){
+										console.log("error");
+									}
+									 
+								 }); 
 								
-							} */ else{
+								
+							} else{
 								$('#emailAvailableLabel').show();
 								$('#emailValidLabel').hide();
 								$('#emailDupLabel').hide();
@@ -165,32 +162,6 @@
 					 }); // ajax끝
 					 
 					 
-					  // bizno를 가지고 있는 회원인지
-					 $.ajax({
-							url : "${pageContext.request.contextPath}/member/invitationMemberY.do",
-							data : {userId : userId},
-							dataType : "json",
-							success : function(data){
-								if(data.result == true){
-									$('#emailAvailableLabel').show();
-									$('#emailValidLabel').hide();
-									$('#emailDupLabel').hide();
-									$('#invitationMemberY').hide();
-									$('#btn-invite').attr('disabled', true);
-									
-								} else{
-									$('#emailAvailableLabel').hide();
-									$('#emailValidLabel').hide();
-									$('#emailDupLabel').hide();
-									$('#invitationMemberY').show();
-									$('#btn-invite').attr('disabled', true);
-								}
-							},
-							error : function(req,status,error){
-								console.log("error");
-							}
-							 
-						 }); 
 			
 			 }
 			

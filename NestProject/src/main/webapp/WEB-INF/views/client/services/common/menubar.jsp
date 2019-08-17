@@ -442,6 +442,12 @@
 				</a>
 			</div>
 			
+			<script>
+		function memberSummary(){
+			window.open("${pageContext.request.contextPath}/member/memberSummary.do");
+		}
+		</script>
+			
 		</li>
 
 

@@ -166,7 +166,7 @@ thead.text-primary tr th {
 												</tr>
 											</thead>
 											<tbody>
-												<form action="${ pageContext.request.contextPath }/business/approvalStatusY.do" method="post">
+												<%-- <form action="${ pageContext.request.contextPath }/business/approvalStatusY.do" method="post"> --%>
 												<c:forEach items="${ memberApprovalStatusN }" var="mN">
 												<tr>
 													<td class="text-center"></td>
@@ -180,7 +180,8 @@ thead.text-primary tr th {
 													<td class="text-center">
 														<c:if test="${ mN.invitation eq 'Y' }">
 														<button class="btn btn-primary btn-block"
-																type="submit" style="font-size: 13px;">승인</button>
+																type="button" style="font-size: 13px; background:#e7722e"
+																onclick="location.href='${ pageContext.request.contextPath }/business/approvalStatusY.do?mNo=${mN.mNo}'">승인</button>
 														</c:if>
 														<c:if test="${ mN.invitation eq 'N' or empty mN.invitation }">
 														<button class="btn btn-primary btn-block"
@@ -190,7 +191,7 @@ thead.text-primary tr th {
 													</td>
 												</tr>
 												</c:forEach>
-												</form>
+												<!-- </form> -->
 												</tbody>
 										</table>
 									</div>
